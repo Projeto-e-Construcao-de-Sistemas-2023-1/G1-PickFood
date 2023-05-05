@@ -26,7 +26,13 @@ Os pedidos feitos pelos clientes são enviados pelos restaurantes e são gerenci
 Assim que o pedido é entregue e concluído o pedido é armazenado no histórico de pedidos do cliente e é possível pode avaliar o restaurante e avaliar o prato. Caso um restaurante receba 3 ou mais reclamações por pedido por não conter os ingredientes litados, ele será banido do sistema. Caso seja da escolha do cliente, ele pode favoritar o restaurante ou prato, assim como também tem a opção de remover dos favoritos. Se necessário, o sistema oferece ao cliente a possibilidade de enviar um e-mail ao suporte.
 
 
+
 <hr>
 
-Todos os arquivos estão sendo versionados nesse projeto
+## Integrações
+| Nome  | Descrição   |
+| ------- | -------- |
+| ViaCEP   | Checa o СЕР do cliente e restaurante, utilizado para complementar os dados de endereço como a rua, número, cidade e UF(Unidade Federativa) |
+| Firebase   | API para autenticação do usuário e banco de dados.    |
+| Mailgun  | API API utilizada para envio de e-mail |
 
