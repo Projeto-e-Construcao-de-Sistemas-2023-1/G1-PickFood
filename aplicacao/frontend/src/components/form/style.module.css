@@ -3,13 +3,26 @@
 }
 
 .field {
-
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
 }
 
 .label {
-        
+    position: absolute;
+    top: -10px
 }
 
 .input {
+    background-color: #E7E7E7;
+    border: none;
+    width: 11.813rem;
+    height: 2.313rem;
+    border-radius: 5px;
+}
 
+.input:focus {
+    border: none;
+    outline: none;
 }

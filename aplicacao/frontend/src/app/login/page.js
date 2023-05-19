@@ -1,6 +1,9 @@
-import Form from "../../components/form";
+import Form from "@/components/Form";
 
 export default function Login() {
+
+    
+
     return (
         <>
             <Form>
@@ -13,6 +16,8 @@ export default function Login() {
                     <Form.Label>Senha</Form.Label>
                     <Form.Input/>
                 </Form.Field>
+
+                
             </Form>
         </>
     )
