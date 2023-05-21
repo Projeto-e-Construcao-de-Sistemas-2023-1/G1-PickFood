@@ -1,6 +1,7 @@
-package br.pickfood.restaurante.model;
+package br.pickfood.model.restaurante;
 
 
+import br.pickfood.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,11 +14,8 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "Restaurante")
-public class Restaurante {
+public class Restaurante extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public String id;
     public String nome_fantasia;
     public String cnpj;
     public String razao_social;
@@ -25,7 +23,9 @@ public class Restaurante {
     public float taxa_entrega;
 
 
-
-
-
+    @Override
+    public <D> D convertToDto() {
+        //conversão
+        return null;
+    }
 }

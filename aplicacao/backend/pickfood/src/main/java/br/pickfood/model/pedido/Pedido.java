@@ -1,4 +1,4 @@
-package br.pickfood.pedido;
+package br.pickfood.model.pedido;
 
 
 import jakarta.persistence.Entity;

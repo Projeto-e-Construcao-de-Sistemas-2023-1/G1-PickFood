@@ -1,4 +1,4 @@
-package br.pickfood.pedido.enums;
+package br.pickfood.enums.pedido;
 
 public enum FormaDePagamento {
     PIX,
