@@ -1,5 +1,5 @@
-import styles from "./style.module.css"
-
+import styles from "./styles.module.css"
+import Button from "../Button"
 export default function Form({ children }) {
     return <form className={ styles.form }>{ children }</form>
 }
@@ -17,5 +17,5 @@ Form.Input = function FormInput() {
 } 
 
 Form.Button = function FormButton({ children }) {
-    return <button>{ children }</button>
+    return <Button>{ children }</Button>
 } 

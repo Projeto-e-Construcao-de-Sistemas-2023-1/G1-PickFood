@@ -1,0 +1,3 @@
+@function converterPxParaRem($valor) {
+    @return $valor/16px*1rem
+}
