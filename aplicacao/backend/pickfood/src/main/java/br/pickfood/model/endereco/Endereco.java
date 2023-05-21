@@ -14,9 +14,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "Endereco")
 public class Endereco extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
     @Column(name = "rua")
     private String rua;
