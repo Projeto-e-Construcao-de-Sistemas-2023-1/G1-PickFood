@@ -15,6 +15,7 @@ import {
 } from "./styles.module.scss"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Logo from "@/components/Logo";
 
 export default function Login() {
 
@@ -35,13 +36,7 @@ export default function Login() {
                 className={ arrow }
                 alt="Icone de seta apontando para trás."
             />
-            <Image 
-                src="/logo.svg" 
-                width={ 57 } 
-                height={ 31 }
-                alt="Logo do PickFood. Consiste na palavra 'PickFood' sobrepondo dois circulos: um verde claro e outro verde escuro."
-                className={ logo }
-            />
+           <Logo/>
             <Form>
                 <Form.Field>
                     <Form.Label>Email</Form.Label>
