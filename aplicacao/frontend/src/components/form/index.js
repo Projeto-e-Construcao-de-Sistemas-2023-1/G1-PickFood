@@ -1,4 +1,4 @@
-import styles from "./styles.module.css"
+import styles from "./styles.module.scss"
 import Button from "../Button"
 export default function Form({ children }) {
     return <form className={ styles.form }>{ children }</form>

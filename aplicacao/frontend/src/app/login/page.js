@@ -1,3 +1,5 @@
+'use client';
+
 import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
@@ -7,14 +9,21 @@ import {
     links, 
     link,
     center,
-    arrow
+    arrow,
+    botaoGoogle,
+    containerInferior
 } from "./styles.module.scss"
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
 
+    const router = useRouter();
+
     const authenticate = () => {
         // request
+
+        router.push("/cliente/home");
     }
 
     return (
@@ -54,7 +63,14 @@ export default function Login() {
 
             <div className={ divider }></div>
 
-            <Link href={ "" } className={ [link, center].join(' ') }>Quero me tornar um parceiro</Link>
+            <div className={ containerInferior }>
+                <button className={ botaoGoogle }>
+                    <Image src="/google.png" width={17} height={17}/>
+                    Entrar com Google
+                </button>
+
+                <Link href={ "" } className={ [link, center].join(' ') }>Quero me tornar um parceiro</Link>
+            </div>
         </Container>
     )
 }
