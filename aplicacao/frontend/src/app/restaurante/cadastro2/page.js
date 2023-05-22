@@ -9,7 +9,7 @@ import {
     arrow
 } from "./styles.module.scss"
 
-export default function Cadastro1() {
+export default function Cadastro2() {
 
     const authenticate = () => {
         // request
@@ -25,35 +25,24 @@ export default function Cadastro1() {
                 alt="Icone de seta apontando para trás."
             />
 
-            <div className={ [center, title].join(' ') }>Informações do restaurante</div>
+            <div className={ [center, title].join(' ') }>Informações Adicionais</div>
 
             <div className={forms}>
             <Form>
                 <Form.Field>
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>DDD + Número</Form.Label>
                     <Form.Input/>
                 </Form.Field>
                 
                 <Form.Field>
-                    <Form.Label>Senha</Form.Label>
+                    <Form.Label>Horário de Funcionamento</Form.Label>
                     <Form.Input/>
                 </Form.Field>
 
                 <Form.Field>
-                    <Form.Label>Nome Fantasia</Form.Label>
+                    <Form.Label>Taxa de Entrega</Form.Label>
                     <Form.Input/>
                 </Form.Field>
-                
-                <Form.Field>
-                    <Form.Label>Razão Social</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
-
-                <Form.Field>
-                    <Form.Label>CNPJ</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
-
 
                 <Form.Button onClick={ () => authenticate() }>Continuar</Form.Button>
             </Form>
