@@ -1,4 +1,4 @@
-import { container} from "./styles.module.css";
+import { container} from "./styles.module.scss";
 
 export default function Container({ children }) {
     return(

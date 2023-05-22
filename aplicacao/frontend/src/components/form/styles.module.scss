@@ -1,8 +1,14 @@
+@use "../../styles/utils.module.scss";
+
 .form {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .field:last-of-type {
+        margin-bottom: utils.converterPxParaRem(37px);
+    }
 }
 
 .field {
@@ -22,7 +28,7 @@
 .input {
     background-color: #E7E7E7;
     border: none;
-    width: 11.813rem;
+    width: 12rem;
     height: 2.313rem;
     border-radius: 5px;
 }
@@ -31,4 +37,3 @@
     border: none;
     outline: none;
 }
-
