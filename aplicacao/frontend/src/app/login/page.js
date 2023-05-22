@@ -1,3 +1,5 @@
+'use client';
+
 import Form from "@/components/form";
 import Container from "@/components/Container";
 import Image from "next/image";
@@ -7,18 +9,28 @@ import {
     links, 
     link,
     center,
-    arrow
+    arrow,
+    botaoGoogle,
+    containerInferior
 } from "./styles.module.scss"
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Logo from "@/components/Logo";
 
 export default function Login() {
 
-    const authenticate = () => {
+    const router = useRouter();
+
+    const authenticate = (e) => {
+        e.preventDefault();
+
         // request
+     
+        router.push("/cliente/home");
     }
 
     return (
-        <Container>
+        <>
             <Image
                 src="/icons/back.svg"
                 width={ 21 }
@@ -26,13 +38,7 @@ export default function Login() {
                 className={ arrow }
                 alt="Icone de seta apontando para trás."
             />
-            <Image 
-                src="/logo.svg" 
-                width={ 57 } 
-                height={ 31 }
-                alt="Logo do PickFood. Consiste na palavra 'PickFood' sobrepondo dois circulos: um verde claro e outro verde escuro."
-                className={ logo }
-            />
+           <Logo className={ logo }/>
             <Form>
                 <Form.Field>
                     <Form.Label>Email</Form.Label>
@@ -44,7 +50,7 @@ export default function Login() {
                     <Form.Input/>
                 </Form.Field>
 
-                <Form.Button onClick={ () => authenticate() }>Entrar</Form.Button>
+                <Form.Button onClick={ authenticate }>Entrar</Form.Button>
             </Form>
 
             <div className={ links }>
@@ -54,7 +60,14 @@ export default function Login() {
 
             <div className={ divider }></div>
 
-            <Link href={ "" } className={ [link, center].join(' ') }>Quero me tornar um parceiro</Link>
-        </Container>
+            <div className={ containerInferior }>
+                <button className={ botaoGoogle }>
+                    <Image src="/google.png" width={17} height={17} alt="logo do google"/>
+                    Entrar com Google
+                </button>
+
+                <Link href={ "" } className={ [link, center].join(' ') }>Quero me tornar um parceiro</Link>
+            </div>
+        </>
     )
 }

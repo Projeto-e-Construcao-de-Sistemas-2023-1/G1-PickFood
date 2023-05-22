@@ -1,4 +1,4 @@
-import styles from "./styles.module.css"
+import styles from "./styles.module.scss"
 import Button from "../Button"
 export default function Form({ children }) {
     return <form className={ styles.form }>{ children }</form>
@@ -16,6 +16,6 @@ Form.Input = function FormInput() {
     return <input className={ styles.input }/>
 } 
 
-Form.Button = function FormButton({ children }) {
-    return <Button>{ children }</Button>
+Form.Button = function FormButton({ children, ...restProps }) {
+    return <Button { ...restProps }>{ children }</Button>
 } 
