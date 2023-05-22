@@ -14,7 +14,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "cliente")
 
-// Verificar se está certo - Arthur
+// Verificar se está certo
 public class Cliente extends BaseEntity{
 
     @Column(name = "nome")
