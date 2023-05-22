@@ -19,7 +19,6 @@ export default function NavbarSuperiorCliente() {
                 </NavbarSuperior.Botao>
 
 
-
                 <NavbarSuperior.Dropdown ativo={ ativo }>
                     <NavbarSuperior.LinkDropdown href="">
                         <NavbarSuperior.IconeDropdown src="/icons/meu-perfil.svg"/>
