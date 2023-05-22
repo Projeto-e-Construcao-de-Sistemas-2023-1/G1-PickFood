@@ -1,0 +1,22 @@
+@use "../../styles/utils.module.scss";
+@use "../../styles/cores.module.scss";
+
+.nav {
+    border-radius: utils.converterPxParaRem(10px);
+    box-shadow: 0 -1px 15px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    width: 100%;
+    left: 0%;
+    bottom: -1%;
+    display: flex;
+    justify-content: center;
+    height: utils.converterPxParaRem(35px);
+    font-size: utils.converterPxParaRem(11px);
+    padding: utils.converterPxParaRem(10px);
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,9 +1,11 @@
-import Container from "@/components/Container";
-import NavbarSuperior from "@/components/NavbarSuperior";
-import NavbarSuperiorContainer from "@/containers/NavbarSuperior";
+import NavbarSuperiorContainer from "@/containers/NavbarSuperiorCliente";
+import NavbarInferiorCliente from "@/containers/NavbarInferiorCliente";
 
 export default function ClienteLayout({ children }) {
     return(
-        <NavbarSuperiorContainer/>
+        <>
+            <NavbarSuperiorContainer/>
+            <NavbarInferiorCliente/>
+        </>
     );
 }
