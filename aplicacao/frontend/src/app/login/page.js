@@ -1,4 +1,4 @@
-import Form from "@/components/Form";
+import Form from "@/components/form";
 import Container from "@/components/Container";
 import Image from "next/image";
 import { 
