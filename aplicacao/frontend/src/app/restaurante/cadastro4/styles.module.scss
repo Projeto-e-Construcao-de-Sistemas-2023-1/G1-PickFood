@@ -1,0 +1,46 @@
+@use "../../../styles/cores.module.scss";
+@use "../../../styles/utils.module.scss";
+
+.arrow {
+    margin-top: utils.converterPxParaRem(20px);
+}
+
+.logo {
+    margin: 0 auto;
+    display: flex;
+    margin-bottom: 2.188rem;
+}
+
+.checkboxes{ 
+    display: flex;
+    flex-direction: column;
+    margin-bottom: utils.converterPxParaRem(36px);  
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: utils.converterPxParaRem(10px);
+
+    font-weight: 400;
+    font-size: 12px;
+    color: #343434;
+}
+
+.title {
+
+    font-weight: 700;
+    font-size: utils.converterPxParaRem(12px);
+    margin-top: utils.converterPxParaRem(20px);
+    margin-bottom: utils.converterPxParaRem(37px);
+
+    text-align: center;
+
+    color: #343434;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
