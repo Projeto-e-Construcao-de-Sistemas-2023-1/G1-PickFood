@@ -21,14 +21,16 @@ export default function Login() {
 
     const router = useRouter();
 
-    const authenticate = () => {
-        // request
+    const authenticate = (e) => {
+        e.preventDefault();
 
+        // request
+     
         router.push("/cliente/home");
     }
 
     return (
-        <Container>
+        <>
             <Image
                 src="/icons/back.svg"
                 width={ 21 }
@@ -36,7 +38,7 @@ export default function Login() {
                 className={ arrow }
                 alt="Icone de seta apontando para trás."
             />
-           <Logo/>
+           <Logo className={ logo }/>
             <Form>
                 <Form.Field>
                     <Form.Label>Email</Form.Label>
@@ -48,7 +50,7 @@ export default function Login() {
                     <Form.Input/>
                 </Form.Field>
 
-                <Form.Button onClick={ () => authenticate() }>Entrar</Form.Button>
+                <Form.Button onClick={ authenticate }>Entrar</Form.Button>
             </Form>
 
             <div className={ links }>
@@ -60,12 +62,12 @@ export default function Login() {
 
             <div className={ containerInferior }>
                 <button className={ botaoGoogle }>
-                    <Image src="/google.png" width={17} height={17}/>
+                    <Image src="/google.png" width={17} height={17} alt="logo do google"/>
                     Entrar com Google
                 </button>
 
                 <Link href={ "" } className={ [link, center].join(' ') }>Quero me tornar um parceiro</Link>
             </div>
-        </Container>
+        </>
     )
 }

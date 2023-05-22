@@ -16,6 +16,6 @@ Form.Input = function FormInput() {
     return <input className={ styles.input }/>
 } 
 
-Form.Button = function FormButton({ children }) {
-    return <Button>{ children }</Button>
+Form.Button = function FormButton({ children, ...restProps }) {
+    return <Button { ...restProps }>{ children }</Button>
 } 

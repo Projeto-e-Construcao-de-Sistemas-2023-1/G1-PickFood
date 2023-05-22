@@ -5,7 +5,11 @@
     margin-top: utils.converterPxParaRem(20px);
 }
 
-
+.logo {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
 
 .links {
     display: flex;
