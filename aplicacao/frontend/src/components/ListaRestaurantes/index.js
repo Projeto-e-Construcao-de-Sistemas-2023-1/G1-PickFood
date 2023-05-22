@@ -4,38 +4,25 @@ import {
     item,
     link,
     nome,
-    restricoes
+    restricoes,
+    restricao
 } from "./styles.module.scss";
+import Image from "next/image";
 
-export default function ListaRestaurantes({ children }) {
+export default function ListaRestaurantes({ restaurantes }) {
     return(
-        <ul className={ lista }>{ children }</ul>
-    )
-}
-
-ListaRestaurantes.Item = function ListaRestaurantes({ href, children }) {
-    return(
-        <li className={ item }>
-            <Link className={ link } href={ href }>{ children }</Link>
-        </li>
-    )
-}
-
-ListaRestaurantes.Nome = function ListaRestaurantesNome({ children }) {
-    return(
-        <div className={ nome }>{ children }</div>
-    )
-}
-
-ListaRestaurantes.Restricoes = function ListaRestaurantesRestricoes({ children }) {
-    return(
-        <div className={ restricoes }>{ children }</div>
-    )
-}
-
-ListaRestaurantes.Restricao = function ListaRestaurantesRestricao({ children }) {
-    return(
-        <div className={ restricoes }>{ children }</div>
+        <ul className={ lista }>
+            <li className={ item }>
+                <Link href={ "" } className={ link }>
+                    <Image width={10} height={15} src="/icons/favorito_desmarcado.svg" alt="Icone de favorito quando o restaurante ainda não foi favoritado."/>
+                    <div className={ nome }>Nome do restaurante</div>
+                    <div className={ restricoes }>
+                        <div className={ restricao }>Sem lactose</div>
+                        <div className={ restricao }>Low carb</div>
+                    </div>
+                </Link>
+            </li>
+        </ul>
     )
 }
 
