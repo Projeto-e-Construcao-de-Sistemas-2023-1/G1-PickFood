@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Time;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -25,12 +27,11 @@ public class Restaurante extends BaseEntity {
     @Column(name = "razao_social")
     public String razao_social;
 
-    //rever se o tipo do dado ta correto
     @Column(name = "horario_abertura")
-    public String horario_abertura;
+    public Time horario_abertura;
 
     @Column(name = "horario_fechamento")
-    public String horario_fechamento;
+    public Time horario_fechamento;
 
     @Column(name = "taxa_entrega")
     public float taxa_entrega;
