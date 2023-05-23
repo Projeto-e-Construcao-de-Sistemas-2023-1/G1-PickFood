@@ -14,6 +14,10 @@ public class EnderecoController {
 
     private final EnderecoService enderecoService;
 
+    @GetMapping
+    public void verEndereco(@PathVariable Integer id){
+        enderecoService.findById(id);
+    }
     @PostMapping("/cadastrar")
     public void cadastrarEndereco(@RequestBody Endereco endereco){
         enderecoService.create(endereco);
