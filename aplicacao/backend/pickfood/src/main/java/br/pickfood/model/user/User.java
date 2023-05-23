@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Data
+
 public class User extends BaseEntity{
 	
 	@Column(name = "email")

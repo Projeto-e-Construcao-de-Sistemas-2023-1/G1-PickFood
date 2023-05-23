@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 @Builder
 public class RestauranteDTO extends BaseDTO<Restaurante> {
 
-    //criar resto do dto
+
     @Override
     public <E> E convertToEntity() {
         return null;
