@@ -3,7 +3,7 @@ package br.pickfood.view.controller;
 import br.pickfood.model.cliente.Cliente;
 import br.pickfood.model.dto.cliente.ClienteDTO;
 import br.pickfood.service.cliente.ClienteService;
-import br.pickfood.utils.DTOConverter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +19,7 @@ public class ClienteController {
 
     @GetMapping
     public ResponseEntity<Object> getAllClientes() {
-        List<Cliente> entityList = clienteService.findAll();
-        List<ClienteDTO> clienteDTOList = DTOConverter.convertToDTOList(entityList, ClienteDTO.class);
+        List<ClienteDTO> clienteDTOList = clienteService.listarTodos();
         if(clienteDTOList.isEmpty())
             return ResponseEntity.notFound().build();
 

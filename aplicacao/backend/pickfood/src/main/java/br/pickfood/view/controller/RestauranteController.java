@@ -1,7 +1,7 @@
 package br.pickfood.view.controller;
 
 import br.pickfood.model.dto.item.ItemDTO;
-import br.pickfood.utils.DTOConverter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;

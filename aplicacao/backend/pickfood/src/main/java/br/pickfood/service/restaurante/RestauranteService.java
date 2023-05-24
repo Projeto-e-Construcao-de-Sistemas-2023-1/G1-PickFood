@@ -11,8 +11,9 @@ import br.pickfood.repository.restaurante.IRestauranteRepository;
 import br.pickfood.service.BaseServiceImpl;
 
 @Service
-public class RestauranteService extends BaseServiceImpl<RestauranteDTO, Restaurante, IRestauranteRepository> {
-
+public class RestauranteService extends BaseServiceImpl<RestauranteDTO, Restaurante, IRestauranteRepository> 
+	implements IRestauranteService{
+	
 	public List<RestauranteDTO> listByName(String name) {
 		return baseRepository.findByNomeFantasiaContains(name).stream().map(Restaurante::convertToDto).collect(Collectors.toList());
 	}
