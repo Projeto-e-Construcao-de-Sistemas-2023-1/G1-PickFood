@@ -18,7 +18,7 @@ import { useState } from "react";
 export default function MeuPerfil() {
 
 
-    const [ativo, setAtivo] = useState(true);
+    const [ativo, setAtivo] = useState(false);
 
     return(
         <>
@@ -30,7 +30,7 @@ export default function MeuPerfil() {
 
                 <Modal.Rodape>
                     <Modal.BotaoConfirmar/>
-                    <Modal.BotaoCancelar/>
+                    <Modal.BotaoCancelar onClick={ () => setAtivo(false) }/>
                 </Modal.Rodape>
             </Modal>
 
@@ -55,7 +55,7 @@ export default function MeuPerfil() {
                     </Link>
                 </li>
             </ul>
-            <div className={ excluirConta }>
+            <div className={ excluirConta } onClick={ () => { setAtivo(prev => !prev) } }>
                 <Image className={ iconeExcluirConta } alt="Icone de 'Excluir conta'." src="/icons/lixeira.svg" width={15} height={15}/>
                 <div className={ textoExcluirConta }>Excluir conta</div>
             </div>

@@ -9,10 +9,15 @@ import {
     botaoConfirmar,
     botaoCancelar
 } from "./styles.module.scss";
+import { createContext } from "react";
+
+const ModalContext = createContext(false);
 
 export default function Modal({ ativo, children }) {
     return(
-        <div style={{ display: ativo ? "block" : "none" }} className={ modal }>{ children }</div>
+        <ModalContext.Provider>
+            <div style={{ display: ativo ? "block" : "none" }} className={ modal }>{ children }</div>
+        </ModalContext.Provider>
     )
 }
 
