@@ -1,4 +1,4 @@
-package br.pickfood.infra.security;
+package br.pickfood.service.token;
 
 import br.pickfood.model.user.User;
 import com.auth0.jwt.JWT;
@@ -11,7 +11,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
-import static com.auth0.jwt.algorithms.Algorithm.*;
 
 @Service
 public class TokenService {
@@ -23,8 +22,7 @@ public class TokenService {
             var algoritmo = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("API PickFood")
-                    .withSubject(user.getUsername())
-                    .withSubject(user.getId().toString())
+                    .withSubject(user.getEmail())
                     .withExpiresAt(dataExpiracao())
                     .sign(algoritmo);
         } catch (JWTCreationException exception){

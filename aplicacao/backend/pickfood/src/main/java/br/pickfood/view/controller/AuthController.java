@@ -1,6 +1,6 @@
 package br.pickfood.view.controller;
 
-import br.pickfood.infra.security.TokenService;
+import br.pickfood.service.token.TokenService;
 import br.pickfood.infra.security.dto.DadosTokenJWT;
 
 import br.pickfood.model.dto.user.UserDTO;
@@ -28,8 +28,8 @@ public class AuthController {
 
    @PostMapping
    public ResponseEntity login(@RequestBody @Valid UserDTO dto){
-       User entity = dto.convertToEntity();
-       var authToken = new UsernamePasswordAuthenticationToken(entity.getUsername(), entity.getPassword());
+
+       var authToken = new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getSenha());
        var autentication =  manager.authenticate(authToken);
        var tokenJWT =  tokenService.gerarToken((User) autentication.getPrincipal());
        return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));

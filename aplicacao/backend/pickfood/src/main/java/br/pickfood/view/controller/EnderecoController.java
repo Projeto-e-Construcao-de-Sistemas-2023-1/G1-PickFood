@@ -14,7 +14,7 @@ public class EnderecoController {
 
     private final EnderecoService enderecoService;
 
-    @GetMapping
+    @GetMapping("/{id}")
     public void verEndereco(@PathVariable Integer id){
         enderecoService.findById(id);
     }
