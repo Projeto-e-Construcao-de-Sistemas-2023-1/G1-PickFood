@@ -1,0 +1,40 @@
+@use "../../styles/cores.module.scss";
+@use "../../styles/utils.module.scss";
+
+
+.texto {
+    font-weight: 400;
+    font-size: 12px;
+    display: flex;
+    color: cores.$preto;
+    margin-bottom: utils.converterPxParaRem(12px);
+}
+
+.foto {
+    color: cores.$preto;
+    margin-right: utils.converterPxParaRem(8px);
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preco {
+    color: cores.$preto;
+}
+
+.nome {
+    color: cores.$preto;
+}
+
+.editar {
+    margin-left: utils.converterPxParaRem(80px);
+    color: cores.$preto;
+}
+
+.lixo {
+    margin-left: utils.converterPxParaRem(13px);
+    color: cores.$preto;
+}
