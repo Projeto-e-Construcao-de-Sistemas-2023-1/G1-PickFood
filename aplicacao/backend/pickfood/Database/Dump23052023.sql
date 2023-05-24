@@ -281,6 +281,23 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+CREATE TABLE `mydb`.`restaurante_ingrediente_alergenico` (
+  `ingrediente_alergenico` INT NOT NULL,
+  `restaurante` INT NOT NULL,
+  INDEX `fk_ingrediente_alergenico_restaurante_ingrediente_alergenic_idx` (`ingrediente_alergenico` ASC) VISIBLE,
+  INDEX `fk_restaurante_restaurante_ingrediente_alergenico_idx` (`restaurante` ASC) VISIBLE,
+  CONSTRAINT `fk_restaurante_restaurante_ingrediente_alergenico`
+    FOREIGN KEY (`restaurante`)
+    REFERENCES `mydb`.`restaurante` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ingrediente_alergenico_restaurante_ingrediente_alergenico`
+    FOREIGN KEY (`ingrediente_alergenico`)
+    REFERENCES `mydb`.`ingrediente_alergenico` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
 --
 -- Dumping data for table `user`
 --
