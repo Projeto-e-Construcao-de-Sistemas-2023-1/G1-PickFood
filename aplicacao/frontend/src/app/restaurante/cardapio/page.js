@@ -1,13 +1,13 @@
 'use client';
 
-import CardapioPreview from "@/components/CardapioPreview";
-import Button from "@/components/Button";
+import CardapioRestaurante from "@/components/CardapioRestaurante";
 import Pesquisa from "@/components/Pesquisa";
+import Image from "next/image";
 
 import { 
     divider,
     titulo,
-    botao
+    botao,
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
 
@@ -25,20 +25,11 @@ export default function Login() {
 
     return (
         <>
+            <Pesquisa/> 
 
-            <Pesquisa/>
+            <div className= { titulo } >Cardápio</div>
 
-           <div className= { titulo } >Cardápio</div>
-
-            <CardapioPreview/>
-
-            <div className= { botao }>
-                <Button onClick={ authenticate }>Exibir cardápio</Button>
-            </div>
-            
-
-
-            <div className={ divider }></div>
+            <CardapioRestaurante/>
 
         </>
     )
