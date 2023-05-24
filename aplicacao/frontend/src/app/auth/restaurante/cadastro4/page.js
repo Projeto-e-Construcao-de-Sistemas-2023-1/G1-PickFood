@@ -27,7 +27,7 @@ export default function Cadastro3() {
                 alt="Icone de seta apontando para trás."
             />
 
-            <div className={ title }>Risco de Contaminação Cruzada</div>
+            <h2 className={ title }>Risco de Contaminação Cruzada</h2>
 
                 <div className={ checkboxes }>
                     <div className={checkbox}>

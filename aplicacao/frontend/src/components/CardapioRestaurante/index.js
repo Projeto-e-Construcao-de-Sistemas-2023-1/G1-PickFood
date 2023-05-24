@@ -10,9 +10,28 @@ import {
     preco,
     nome
 } from "./styles.module.scss"
+import { useRouter } from "next/navigation";
+import Modal from "@/components/Modal";
+import { useState } from "react";
 
-export default function CardapioPreview() {
+export default function CardapioRestaurante() {
+
+    const [ativo, setAtivo] = useState(false);
+
     return(
+        <>
+        <Modal ativo={ ativo }>
+        <Modal.Cabecalho>
+            <Modal.Icone svg="/icons/aviso.svg"/>
+            <Modal.Titulo>Tem certeza que deseja excluir sua conta?</Modal.Titulo>
+        </Modal.Cabecalho>
+
+        <Modal.Rodape>
+            <Modal.BotaoConfirmar/>
+            <Modal.BotaoCancelar onClick={ () => setAtivo(false) }/>
+        </Modal.Rodape>
+    </Modal>
+
         <ul className= {lista}>
             <li className={texto}>
                 <Image className={foto}
@@ -36,7 +55,8 @@ export default function CardapioPreview() {
                     className={ lixo }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de editar."
+                    onClick={ () => { setAtivo(prev => !prev) } }
+                    alt="Icone de lixo."
             /></li>
 
             <li className={texto}>
@@ -61,7 +81,8 @@ export default function CardapioPreview() {
                     className={ lixo }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de editar."
+                    onClick={ () => { setAtivo(prev => !prev) } }
+                    alt="Icone de lixo."
             /></li>
 
             <li className={texto}>
@@ -86,7 +107,8 @@ export default function CardapioPreview() {
                     className={ lixo }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de editar."
+                    onClick={ () => { setAtivo(prev => !prev) } }
+                    alt="Icone de lixo."
             /></li>
 
             <li className={texto}>
@@ -111,7 +133,8 @@ export default function CardapioPreview() {
                     className={ lixo }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de editar."
+                    onClick={ () => { setAtivo(prev => !prev) } }
+                    alt="Icone de lixo."
             /></li>
 
             <li className={texto}>
@@ -129,14 +152,15 @@ export default function CardapioPreview() {
                     className={ editar }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de editar."
+                    alt="Icone de edtar."
                 /> 
-                <Image
+               <Image
                     src="/icons/lixo.svg"
                     className={ lixo }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de editar."
+                    onClick={ () => { setAtivo(prev => !prev) } }
+                    alt="Icone de lixo."
             /></li>
 
             <li className={texto}>
@@ -161,7 +185,8 @@ export default function CardapioPreview() {
                     className={ lixo }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de editar."
+                    onClick={ () => { setAtivo(prev => !prev) } }
+                    alt="Icone de lixo."
             /></li>
 
             <li className={texto}>
@@ -186,7 +211,8 @@ export default function CardapioPreview() {
                     className={ lixo }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de editar."
+                    onClick={ () => { setAtivo(prev => !prev) } }
+                    alt="Icone de lixo."
             /></li>
 
             <li className={texto}>
@@ -211,7 +237,8 @@ export default function CardapioPreview() {
                     className={ lixo }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de editar."
+                    onClick={ () => { setAtivo(prev => !prev) } }
+                    alt="Icone de lixo."
             /></li>
 
             <li className={texto}>
@@ -236,7 +263,8 @@ export default function CardapioPreview() {
                     className={ lixo }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de editar."
+                    onClick={ () => { setAtivo(prev => !prev) } }
+                    alt="Icone de lixo."
             /></li>
 
             <li className={texto}>
@@ -261,8 +289,10 @@ export default function CardapioPreview() {
                     className={ lixo }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de editar."
+                    onClick={ () => { setAtivo(prev => !prev) } }
+                    alt="Icone de lixo."
             /></li>
         </ul>
+    </>
     )
 }

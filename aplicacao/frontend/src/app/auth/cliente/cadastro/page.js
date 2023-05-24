@@ -3,7 +3,7 @@
 import Logo from "@/components/Logo";
 import { logo, arrow } from "./styles.module.scss";
 import Image from "next/image";
-import Form from "@/components/Form";
+import Form from "@/components/form";
 import { useRouter } from "next/navigation";
 
 export default function CadastroCliente() {

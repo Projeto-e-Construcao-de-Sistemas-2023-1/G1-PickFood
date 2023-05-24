@@ -7,6 +7,7 @@ import {
     titulo,
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Login() {
 
@@ -22,9 +23,10 @@ export default function Login() {
 
     return (
         <>
-            <Pesquisa/> 
 
-            <div className= { titulo }>Cardápio</div>
+            <Pesquisa/> 
+            
+            <h2 className= { titulo }>Cardápio</h2>
 
             <CardapioRestaurante/>
 

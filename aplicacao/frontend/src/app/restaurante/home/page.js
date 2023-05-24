@@ -25,7 +25,7 @@ export default function Login() {
     return (
         <>
 
-           <div className= { titulo } >Cardápio</div>
+           <h2 className= { titulo } >Cardápio</h2>
 
             <CardapioPreview/>
 
