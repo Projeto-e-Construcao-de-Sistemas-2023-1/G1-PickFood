@@ -34,11 +34,17 @@ public class Cliente extends BaseEntity {
     private String telefone;
 
     @OneToOne
-    User user;
-    @OneToMany(mappedBy = "cliente")
+    @JoinColumn(name = "user")
+    private User user;
+
+
+    @OneToMany
     private List<Endereco> endereco;
-    @OneToMany(mappedBy = "cliente")
+
+    @OneToMany
     private List<Pedido> pedidos;
+
+
     @Override
     public ClienteDTO convertToDto() {
         return ClienteDTO.builder()

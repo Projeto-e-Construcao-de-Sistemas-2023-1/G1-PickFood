@@ -38,9 +38,7 @@ public class Endereco extends BaseEntity {
     @OneToOne(mappedBy = "endereco")
     private Restaurante restaurante;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+
 
     @Override
     public EnderecoDTO convertToDto() {
@@ -54,14 +52,6 @@ public class Endereco extends BaseEntity {
         		.build();
     }
 
-    @ManyToOne(optional = false)
-    private Cliente clientes;
 
-    public Cliente getClientes() {
-        return clientes;
-    }
 
-    public void setClientes(Cliente clientes) {
-        this.clientes = clientes;
-    }
 }

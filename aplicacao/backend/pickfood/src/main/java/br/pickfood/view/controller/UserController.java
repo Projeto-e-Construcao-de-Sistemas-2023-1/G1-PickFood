@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -28,7 +29,7 @@ public class UserController {
 			@RequestBody UserDTO dto){
 		
 		User entity = dto.convertToEntity();
-		
+
 		return new ResponseEntity(service.create(entity), HttpStatusCode.valueOf(200));
 	}
 }

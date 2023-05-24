@@ -4,15 +4,11 @@ package br.pickfood.model.restaurante;
 import java.sql.Time;
 
 import br.pickfood.model.BaseEntity;
+import br.pickfood.model.cliente.Cliente;
 import br.pickfood.model.dto.restaurante.RestauranteDTO;
 import br.pickfood.model.endereco.Endereco;
 import br.pickfood.model.user.User;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,10 +26,7 @@ public class Restaurante extends BaseEntity{
 
     @Column(name = "nome_fantasia")
     private String nomeFantasia;
-    
-    @OneToOne
-    @JoinColumn(name = "user")
-    private User user;
+
 
     @Column(name = "cnpj")
     private String cnpj;
@@ -53,6 +46,10 @@ public class Restaurante extends BaseEntity{
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "endereco")
     private Endereco endereco;
+
+    @OneToOne
+    @JoinColumn(name = "user")
+    private User user;
 
     public RestauranteDTO convertToDto() {
         return RestauranteDTO.builder()
