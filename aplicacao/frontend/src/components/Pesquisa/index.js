@@ -7,7 +7,6 @@ import {
     pesquisa,
     adicionar,
     input, 
-    icone,
     buscar
 } from "./styles.module.scss";
 export default function Pesquisa(){
