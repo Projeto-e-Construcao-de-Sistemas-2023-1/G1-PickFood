@@ -5,6 +5,7 @@
     flex-direction:row;
     position: relative;
     display: flex;
+    justify-content: center;
 
     min-width: utils.converterPxParaRem(200px);
 }
@@ -13,8 +14,8 @@
     border: none;
     size: 100%;
 
-    margin-top: utils.converterPxParaRem(12px);
-    margin-bottom: utils.converterPxParaRem(29px);
+    margin-top: utils.converterPxParaRem(20px);
+    margin-bottom: utils.converterPxParaRem(20px);
     margin-right: utils.converterPxParaRem(8px);
     
 
@@ -29,14 +30,14 @@
     width: utils.converterPxParaRem(15px);
     height: utils.converterPxParaRem(15px);
     position: absolute;
-    left: 4px;
-    top: 13px;
+    left: utils.converterPxParaRem(44px);
+    top: utils.converterPxParaRem(21px);
 }
 
 .adicionar {
     width: utils.converterPxParaRem(15px);
     height: utils.converterPxParaRem(15px);
     position: absolute;
-    left: 230px;
-    top: 13px;
+    left: utils.converterPxParaRem(250px);
+    top: utils.converterPxParaRem(21px);
 }

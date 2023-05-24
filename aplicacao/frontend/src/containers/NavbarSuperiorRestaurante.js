@@ -4,7 +4,7 @@ import NavbarSuperior from "@/components/NavbarSuperior";
 import Overlay from "@/components/Overlay";
 import { useState } from "react";
 
-export default function NavbarSuperiorRestaurante() {
+export default function NavbarSuperiorRestaurnte() {
 
     const [ativo, setAtivo] = useState(false);
 

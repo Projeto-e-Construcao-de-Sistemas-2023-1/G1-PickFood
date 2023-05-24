@@ -33,8 +33,6 @@ export default function Login() {
                 <Button onClick={ authenticate }>Exibir cardápio</Button>
             </div>
             
-
-
             <div className={ divider }></div>
 
         </>

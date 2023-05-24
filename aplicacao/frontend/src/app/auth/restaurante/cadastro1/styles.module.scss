@@ -1,5 +1,5 @@
-@use "../../../styles/cores.module.scss";
-@use "../../../styles/utils.module.scss";
+@use "../../../../styles/cores.module.scss";
+@use "../../../../styles/utils.module.scss";
 
 .arrow {
     margin-top: utils.converterPxParaRem(20px);
@@ -20,15 +20,15 @@
 
     font-weight: 700;
     font-size: utils.converterPxParaRem(12px);
-    margin-top: 56px;
-    margin-bottom: 66px;
+    margin-top: utils.converterPxParaRem(56px);
+    margin-bottom: utils.converterPxParaRem(66px);
 
     text-align: center;
 
-    color: #343434;
+    color: cores.$preto;
 }
 
 
 .botao {
-    margin-top: 90px;
+    margin-top: utils.converterPxParaRem(90px);
 }

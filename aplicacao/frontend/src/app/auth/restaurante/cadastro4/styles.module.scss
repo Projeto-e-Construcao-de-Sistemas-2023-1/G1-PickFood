@@ -1,5 +1,5 @@
-@use "../../../styles/cores.module.scss";
-@use "../../../styles/utils.module.scss";
+@use "../../../../styles/cores.module.scss";
+@use "../../../../styles/utils.module.scss";
 
 .arrow {
     margin-top: utils.converterPxParaRem(20px);
@@ -23,8 +23,8 @@
     margin-bottom: utils.converterPxParaRem(10px);
 
     font-weight: 400;
-    font-size: 12px;
-    color: #343434;
+    font-size: utils.converterPxParaRem(12px);
+    color: cores.$preto;
 }
 
 .title {
@@ -36,7 +36,7 @@
 
     text-align: center;
 
-    color: #343434;
+    color: cores.$preto;
 }
 
 .center {
