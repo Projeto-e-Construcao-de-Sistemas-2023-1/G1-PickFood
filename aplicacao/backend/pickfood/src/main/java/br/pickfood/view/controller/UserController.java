@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -18,16 +19,19 @@ import br.pickfood.service.user.UserService;
 
 @RestController
 @RequestMapping("/user")
+@Transactional
 public class UserController {
 	
 	@Autowired
 	UserService service;
-	
+
+
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Object> insertUser(
 			@RequestBody UserDTO dto){
-
+		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
+		dto.setSenha(pwdEncoder.encode(dto.getSenha()));
 		User entity = dto.convertToEntity();
 
 		return new ResponseEntity(service.create(entity), HttpStatusCode.valueOf(200));
