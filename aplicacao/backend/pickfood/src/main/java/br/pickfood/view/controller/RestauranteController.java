@@ -1,5 +1,7 @@
 package br.pickfood.view.controller;
 
+import br.pickfood.model.dto.item.ItemDTO;
+import br.pickfood.utils.DTOConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import br.pickfood.model.dto.restaurante.RestauranteDTO;
 import br.pickfood.model.restaurante.Restaurante;
 import br.pickfood.service.restaurante.RestauranteService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/restaurante")
 public class RestauranteController {
@@ -27,7 +31,7 @@ public class RestauranteController {
 	private RestauranteService service;
 
     @PostMapping
-    public ResponseEntity<Object> cadastrar(@RequestBody @Validated(ICreation.class) 
+    public ResponseEntity<RestauranteDTO> cadastrar(@RequestBody @Validated(ICreation.class)
     	RestauranteDTO dto){
     	
     	Restaurante entity = dto.convertToEntity();
@@ -36,7 +40,7 @@ public class RestauranteController {
     }
     
     @PutMapping
-    public ResponseEntity<Object> update(@RequestBody @Validated(IUpdate.class)
+    public ResponseEntity<RestauranteDTO> update(@RequestBody @Validated(IUpdate.class)
     		RestauranteDTO dto){
     	
     	Restaurante entity = dto.convertToEntity();
@@ -45,17 +49,18 @@ public class RestauranteController {
     }
     
     @GetMapping(path = "/list/{name}")
-    public ResponseEntity<Object> listByName(@PathVariable String name){
+    public ResponseEntity<RestauranteDTO> listByName(@PathVariable String name){
+
     	return new ResponseEntity(service.listByName(name), HttpStatusCode.valueOf(200));
     }
     
     @GetMapping(path = "/list")
-    public ResponseEntity<Object> listAll(){
-    	return new ResponseEntity(service.findAll(), HttpStatusCode.valueOf(200));
+    public ResponseEntity<RestauranteDTO> listAll(){
+    	return new ResponseEntity(service.listAll(), HttpStatusCode.valueOf(200));
     }
     
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Object> findById(@PathVariable Integer id){
+    public ResponseEntity<RestauranteDTO> findById(@PathVariable Integer id){
     	return new ResponseEntity(service.findById(id), HttpStatusCode.valueOf(200));
     }
     
