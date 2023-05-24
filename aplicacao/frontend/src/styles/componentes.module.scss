@@ -1,0 +1,7 @@
+@use "./utils.module.scss";
+
+.tituloPagina {
+    font-size: utils.converterPxParaRem(14px);
+    font-weight: bold;
+    margin-bottom: utils.converterPxParaRem(30px);
+}
