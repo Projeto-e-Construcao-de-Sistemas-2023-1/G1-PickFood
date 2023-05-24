@@ -11,6 +11,13 @@ export default function Home() {
             <div className={ banner }></div>
             <h2 className={ titulo }>Restaurantes disponíveis</h2>
             <ListaRestaurantes/>
+            <ListaRestaurantes/>
+            <ListaRestaurantes/>
+            <ListaRestaurantes/>
+            <ListaRestaurantes/>
+            <ListaRestaurantes/>
+            <ListaRestaurantes/>
+            <ListaRestaurantes/>
         </>
     )
 }

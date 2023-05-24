@@ -12,6 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: cores.$branco;
     
     height: utils.converterPxParaRem(45px);
     font-size: utils.converterPxParaRem(12px);

@@ -1,9 +1,20 @@
+'use client';
+
 import Logo from "@/components/Logo";
 import { logo, arrow } from "./styles.module.scss";
 import Image from "next/image";
 import Form from "@/components/Form";
+import { useRouter } from "next/navigation";
 
 export default function CadastroCliente() {
+
+    const router = useRouter();
+
+    const cadastrar = () => {
+
+        router.push("/cliente/home");
+    }
+
     return(
         <>
             <Image
@@ -36,7 +47,7 @@ export default function CadastroCliente() {
                     <Form.Input/>
                 </Form.Field> 
                 
-                <Form.Button>Cadastrar</Form.Button>
+                <Form.Button onClick={ cadastrar } >Cadastrar</Form.Button>
             </Form>
         </>
     )
