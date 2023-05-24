@@ -15,5 +15,6 @@
     height: 200px;
     border-radius: utils.converterPxParaRem(10px);
     margin-bottom: utils.converterPxParaRem(31.57px);
-   
+    display: flex;
+    align-items: center;
 }

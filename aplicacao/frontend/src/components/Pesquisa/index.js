@@ -9,17 +9,25 @@ import {
     input, 
     buscar
 } from "./styles.module.scss";
-export default function Pesquisa(){
+export default function Pesquisa({ setBusca }){
     
     const [valor, setValor] = useState();
+
     const handleChange = (e) => {
-        const input = e.target
-        const val = input.value
+        const input = e.target;
+        const val = input.value;
+
         setValor(val)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        setBusca(valor)
+    }
+
     return (
-        <div className={ pesquisa }>
+        <form className={ pesquisa } onSubmit={ handleSubmit }>
             <input onChange={ handleChange } value= { valor } className={ input } placeholder="      Busque aqui..."/>
            
             <Image className= { buscar }
@@ -28,13 +36,6 @@ export default function Pesquisa(){
                 height={ 21 }
                 alt="Icone de uma lupa."
             />
-
-            <Image className= { adicionar }
-                src="/icons/adicionar.svg"
-                width={ 21 }
-                height={ 21 }
-                alt="Icone de círculo com um + no centro."
-            />   
-        </div>
+        </form>
     )
 }

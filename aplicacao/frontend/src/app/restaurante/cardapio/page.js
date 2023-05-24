@@ -7,6 +7,7 @@ import {
     titulo,
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Login() {
 
@@ -23,6 +24,12 @@ export default function Login() {
     return (
         <>
             <Pesquisa/> 
+            <Image className= { adicionar }
+                src="/icons/adicionar.svg"
+                width={ 21 }
+                height={ 21 }
+                alt="Icone de círculo com um + no centro."
+            /> 
 
             <div className= { titulo }>Cardápio</div>
 
