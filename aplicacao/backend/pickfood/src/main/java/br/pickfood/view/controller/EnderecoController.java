@@ -1,6 +1,5 @@
 package br.pickfood.view.controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.pickfood.model.dto.endereco.EnderecoDTO;
 import br.pickfood.model.endereco.Endereco;
 import br.pickfood.service.endereco.EnderecoService;
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping("/endereco")
 public class EnderecoController {
