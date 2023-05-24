@@ -112,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`item` (
   `nome` VARCHAR(45) NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
   `descricao` VARCHAR(45) NOT NULL,
+  `foto` VARCHAR(150) NOT NULL,
   `restaurante` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_restaurante_item_idx` (`restaurante` ASC) VISIBLE,
@@ -196,21 +197,67 @@ CREATE TABLE IF NOT EXISTS `mydb`.`restaurante_categoria` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE TABLE `mydb`.`restaurante_ingrediente_alergenico` (
-  `ingrediente_alergenico` INT NOT NULL,
+
+-- -----------------------------------------------------
+-- Table `mydb`.`ingrediente_alergenico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`ingrediente_alergenico` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`restaurante_ingrediente_alergenico
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`restaurante_ingrediente_alergenico` (
   `restaurante` INT NOT NULL,
-  INDEX `fk_ingrediente_alergenico_restaurante_ingrediente_alergenic_idx` (`ingrediente_alergenico` ASC) VISIBLE,
-  INDEX `fk_restaurante_restaurante_ingrediente_alergenico_idx` (`restaurante` ASC) VISIBLE,
-  CONSTRAINT `fk_restaurante_restaurante_ingrediente_alergenico`
-    FOREIGN KEY (`restaurante`)
-    REFERENCES `mydb`.`restaurante` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  `ingrediente_alergenico` INT NOT NULL,
+  INDEX `fk_ingrediente_alergenico_restaurante_ingrediente_alergenico_idx` (`ingrediente_alergenico` ASC) VISIBLE,
+  INDEX `fk_restaurante_ingrediente_alergenico_restaurante_idx` (`restaurante` ASC) VISIBLE,
   CONSTRAINT `fk_ingrediente_alergenico_restaurante_ingrediente_alergenico`
     FOREIGN KEY (`ingrediente_alergenico`)
     REFERENCES `mydb`.`ingrediente_alergenico` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_restaurante_ingrediente_alergenico_restaurante`
+    FOREIGN KEY (`restaurante`)
+    REFERENCES `mydb`.`restaurante` (`user`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`restricao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`restricao` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`item_restricao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`item_restricao` (
+  `item` INT NOT NULL,
+  `restricao` INT NOT NULL,
+  INDEX `fk_restricao_item_restricao_idx` (`restricao` ASC) VISIBLE,
+  INDEX `fk_item_restricao_item_idx` (`item` ASC) VISIBLE,
+  CONSTRAINT `fk_restricao_item_restricao`
+    FOREIGN KEY (`restricao`)
+    REFERENCES `mydb`.`restricao` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_item_restricao_item`
+    FOREIGN KEY (`item`)
+    REFERENCES `mydb`.`item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 
