@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  build:
+    image: maven:3.8.1-openjdk-17-slim
+    volumes:
+      - ./src:/app/src
+      - ./pom.xml:/app/pom.xml
+    command: mvn -f /app/pom.xml clean package -Dmaven.test.skip
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - build
+    volumes:
+      - ./app.war:/app/app.war
+    command: java -jar app.war
+
