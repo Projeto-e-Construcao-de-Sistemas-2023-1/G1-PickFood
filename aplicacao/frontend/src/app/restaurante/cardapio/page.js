@@ -5,13 +5,11 @@ import Pesquisa from "@/components/Pesquisa";
 
 import { 
     titulo,
+    adicionar,
+    pesquisa
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
-<<<<<<< HEAD
 import Image from "next/image";
-=======
-import { useState } from "react";
->>>>>>> 7a0eb19ffb0338b9d65ba947864ea07f711f6e3a
 
 export default function Login() {
 
@@ -27,13 +25,15 @@ export default function Login() {
 
     return (
         <>
-            <Pesquisa/> 
-            <Image className= { adicionar }
-                src="/icons/adicionar.svg"
-                width={ 21 }
-                height={ 21 }
-                alt="Icone de círculo com um + no centro."
-            /> 
+            <div className={ pesquisa }>
+                <Pesquisa/> 
+                <Image className= { adicionar }
+                    src="/icons/adicionar.svg"
+                    width={ 21 }
+                    height={ 21 }
+                    alt="Icone de círculo com um + no centro."
+                /> 
+            </div>
             
             <h2 className= { titulo }>Cardápio</h2>
 
