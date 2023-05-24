@@ -1,12 +1,10 @@
 package br.pickfood.model.endereco;
 
 import br.pickfood.model.BaseEntity;
+import br.pickfood.model.cliente.Cliente;
 import br.pickfood.model.dto.endereco.EnderecoDTO;
 import br.pickfood.model.restaurante.Restaurante;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,7 +37,11 @@ public class Endereco extends BaseEntity {
     
     @OneToOne(mappedBy = "endereco")
     private Restaurante restaurante;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
     @Override
     public EnderecoDTO convertToDto() {
         return EnderecoDTO.builder()
@@ -50,5 +52,16 @@ public class Endereco extends BaseEntity {
         		.complemento(this.complemento)
         		.bairro(this.bairro)
         		.build();
+    }
+
+    @ManyToOne(optional = false)
+    private Cliente clientes;
+
+    public Cliente getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(Cliente clientes) {
+        this.clientes = clientes;
     }
 }

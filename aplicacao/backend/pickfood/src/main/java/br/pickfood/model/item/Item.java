@@ -27,6 +27,7 @@ public class Item extends BaseEntity {
     private String descricao;
 
 
+
     @Override
     public ItemDTO convertToDto() {
         return ItemDTO.builder()
