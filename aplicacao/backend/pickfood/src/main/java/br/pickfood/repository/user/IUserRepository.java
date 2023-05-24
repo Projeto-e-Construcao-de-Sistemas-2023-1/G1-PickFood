@@ -9,7 +9,8 @@ import br.pickfood.repository.IBaseRepository;
 @Repository
 public interface IUserRepository extends IBaseRepository<User>{
 
-    UserDetails findByEmail(String email);
 
 
+
+    UserDetails findByemail(String email);
 }

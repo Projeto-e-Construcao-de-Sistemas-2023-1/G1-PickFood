@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,9 +30,13 @@ public class AuthController {
    @PostMapping
    public ResponseEntity login(@RequestBody @Valid UserDTO dto){
 
-       var authToken = new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getSenha());
-       var autentication =  manager.authenticate(authToken);
-       var tokenJWT =  tokenService.gerarToken((User) autentication.getPrincipal());
-       return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
+           BCryptPasswordEncoder pwdEncode = new BCryptPasswordEncoder();
+           dto.setSenha(pwdEncode.encode(dto.getSenha()));
+           var authToken = new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getSenha());
+           var autentication = manager.authenticate(authToken);
+           var tokenJWT =  tokenService.gerarToken((User) autentication.getPrincipal());
+           System.out.println("token gerado: " + tokenJWT);
+           return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
+
    }
 }
