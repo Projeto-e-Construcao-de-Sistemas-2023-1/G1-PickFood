@@ -3,9 +3,13 @@ import {
     lista,
     item,
     link,
+    favorito,
+    info,
     nome,
     restricoes,
-    restricao
+    restricao,
+    estrelas,
+    estrela
 } from "./styles.module.scss";
 import Image from "next/image";
 
@@ -14,14 +18,23 @@ export default function ListaRestaurantes({ restaurantes }) {
         <ul className={ lista }>
             <li className={ item }>
                 <Link href={ "" } className={ link }>
-                    <Image width={10} height={15} src="/icons/favorito_desmarcado.svg" alt="Icone de favorito quando o restaurante ainda não foi favoritado."/>
-                    <div className={ nome }>Nome do restaurante</div>
-                    <div className={ restricoes }>
-                        <div className={ restricao }>Sem lactose</div>
-                        <div className={ restricao }>Low carb</div>
+                    <Image className={ favorito } width={10} height={15} src="/icons/favorito_desmarcado.svg" alt="Icone de favorito quando o restaurante ainda não foi favoritado."/>
+                    <div className={ info }>
+                        <div className={ nome }>Nome do restaurante</div>
+                        <div className={ restricoes }>
+                            <div className={ restricao }>Sem lactose</div>
+                            <div className={ restricao }>Low carb</div>
+                        </div>
+                    </div>
+                    <div className={ estrelas }>
+                        <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
+                        <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
+                        <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
+                        <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
                     </div>
                 </Link>
             </li>
+            
         </ul>
     )
 }

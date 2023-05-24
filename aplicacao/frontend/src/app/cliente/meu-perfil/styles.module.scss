@@ -1,0 +1,40 @@
+@use "../../../styles/utils.module.scss";
+@use "../../../styles/cores.module.scss";
+
+.titulo {
+    font-size: utils.converterPxParaRem(14px);
+    font-weight: bold;
+    margin-bottom: utils.converterPxParaRem(23px);
+}
+
+.lista {
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.item {
+    margin-bottom: utils.converterPxParaRem(20px);
+}
+
+.link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.icone {
+    margin-right: utils.converterPxParaRem(8px);
+}
+
+.excluirConta {
+    display: flex;
+    align-items: center;
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.iconeExcluirConta {
+    margin-right: utils.converterPxParaRem(8px);
+}
+
+.textoExcluirConta {
+    color: cores.$vermelho;
+}

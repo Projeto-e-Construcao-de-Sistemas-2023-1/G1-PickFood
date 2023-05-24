@@ -10,7 +10,6 @@ export default function Pesquisa(){
         const input = e.target
         const val = input.value
         setValor(val)
-        console.log(valor)
     }
 
     return (

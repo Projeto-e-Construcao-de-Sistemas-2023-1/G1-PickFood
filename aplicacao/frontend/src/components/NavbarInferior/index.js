@@ -20,7 +20,7 @@ NavbarInferior.Item = function NavbarInferiorItem({ children, ...restProps }) {
 
 NavbarInferior.Icone = function NavbarInferiorIcone({ alt, ...restProps }) {
     return (
-        <Image className={ icone } { ...restProps } alt={ alt } width={9.5} height={10}/>
+        <Image className={ icone } { ...restProps } alt={ alt } width={15} height={15}/>
     )
 }
 

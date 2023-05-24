@@ -1,0 +1,39 @@
+@use "../../styles/cores.module.scss";
+@use "../../styles/utils.module.scss";
+
+.item {
+    margin-bottom: utils.converterPxParaRem(21px);
+}
+
+.link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.favorito {
+    margin-right: utils.converterPxParaRem(13px);
+}
+
+.info {
+    margin-right: utils.converterPxParaRem(13px);
+}
+
+.nome {
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.restricoes {
+    font-size: utils.converterPxParaRem(10px);
+    display: flex;
+    margin-top: utils.converterPxParaRem(3px);
+
+}
+
+.estrela {
+    margin-right: utils.converterPxParaRem(5.57px);
+
+    &:last-of-type {
+        margin-right: 0;
+    }
+}
