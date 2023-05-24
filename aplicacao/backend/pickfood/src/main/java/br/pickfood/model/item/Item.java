@@ -18,15 +18,15 @@ import lombok.*;
 public class Item extends BaseEntity {
 
     @Column(name = "preco")
-    private float preco;
+    private Float preco;
     @Column(name = "nome")
     private String nome;
     @Column(name = "tipo")
     private String tipo;
     @Column(name = "descricao")
     private String descricao;
-
-
+    //@Column(name = "foto")
+    //private String foto;
 
     @Override
     public ItemDTO convertToDto() {

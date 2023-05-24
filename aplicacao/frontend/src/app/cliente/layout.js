@@ -5,7 +5,7 @@ export default function ClienteLayout({ children }) {
     return(
         <>
             <NavbarSuperiorContainer/>
-            <>{ children }</>
+            <div>{ children }</div>
             <NavbarInferiorCliente/>
         </>
     );

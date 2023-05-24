@@ -14,18 +14,22 @@
     align-items: center;
     
     height: utils.converterPxParaRem(45px);
-    font-size: utils.converterPxParaRem(11px);
+    font-size: utils.converterPxParaRem(12px);
 }
 
 .item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: utils.converterPxParaRem(51px);
+    margin-right: utils.converterPxParaRem(54px);
 
     &:last-of-type {
         margin-right: 0;
     }
+}
+
+.link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
 }
 
 .icone {

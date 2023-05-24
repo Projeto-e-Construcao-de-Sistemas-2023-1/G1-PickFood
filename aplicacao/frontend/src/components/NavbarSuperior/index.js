@@ -34,7 +34,7 @@ NavbarSuperior.LinkDropdown = function NavbarSuperiorLinkDropdown({ children, ..
 }
 
 NavbarSuperior.IconeDropdown = function NavbarSuperiorIconeDropDown({ ...restProps  }) {
-    return <Image className={ iconeDropdown } width={13} height={16} { ...restProps }/>
+    return <Image className={ iconeDropdown } width={15} height={15} { ...restProps }/>
 }
 
 NavbarSuperior.LabelDropdown = function NavbarSuperiorLabelDropDown({ children }) {

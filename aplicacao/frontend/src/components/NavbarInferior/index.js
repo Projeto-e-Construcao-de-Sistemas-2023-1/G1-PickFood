@@ -3,8 +3,10 @@ import {
     nav,
     item,
     icone,
-    label
+    label,
+    link
 } from "./styles.module.scss";
+import Link from "next/link";
 
 export default function NavbarInferior({ children, ...restProps }) {
     return (
@@ -18,9 +20,15 @@ NavbarInferior.Item = function NavbarInferiorItem({ children, ...restProps }) {
     )
 }
 
+NavbarInferior.Link = function NavbarInferiorLink({ href, children }) {
+    return(
+        <Link className={ link } href={ href }>{ children }</Link>
+    )
+}
+
 NavbarInferior.Icone = function NavbarInferiorIcone({ alt, ...restProps }) {
     return (
-        <Image className={ icone } { ...restProps } alt={ alt } width={9.5} height={10}/>
+        <Image className={ icone } { ...restProps } alt={ alt } width={15} height={15}/>
     )
 }
 

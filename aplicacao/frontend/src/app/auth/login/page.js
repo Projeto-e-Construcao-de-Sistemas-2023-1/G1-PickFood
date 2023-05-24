@@ -1,6 +1,6 @@
 'use client';
 
-import Form from "@/components/form";
+import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
 import { 
@@ -55,7 +55,7 @@ export default function Login() {
 
             <div className={ links }>
                 <Link href={ "" } className={ link }>Esqueci minha senha</Link>
-                <Link href={ "" } className={ link }>Criar conta</Link>
+                <Link href={ "/auth/cliente/cadastro" } className={ link }>Criar conta</Link>
             </div>
 
             <div className={ divider }></div>

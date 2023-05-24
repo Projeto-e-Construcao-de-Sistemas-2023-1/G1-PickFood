@@ -1,7 +1,16 @@
-.link {
-    text-decoration: none;
+@use "../../../styles/utils.module.scss";
+
+.titulo {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: utils.converterPxParaRem(16px);
 }
 
-.nome {
-    text-decoration: none;
+.banner {
+    background-image: url("../../../../public/banner_home.png");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    width: 100%;
+    height: 200px;
 }

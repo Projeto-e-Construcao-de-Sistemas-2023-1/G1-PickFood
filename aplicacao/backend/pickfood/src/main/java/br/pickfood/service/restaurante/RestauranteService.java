@@ -16,5 +16,7 @@ public class RestauranteService extends BaseServiceImpl<RestauranteDTO, Restaura
 	public List<RestauranteDTO> listByName(String name) {
 		return baseRepository.findByNomeFantasiaContains(name).stream().map(Restaurante::convertToDto).collect(Collectors.toList());
 	}
-
+	public List<RestauranteDTO> listAll(){
+		return baseRepository.findAll().stream().map(Restaurante::convertToDto).collect(Collectors.toList());
+	}
 }

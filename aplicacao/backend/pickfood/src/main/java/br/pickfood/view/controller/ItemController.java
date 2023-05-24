@@ -3,7 +3,6 @@ package br.pickfood.view.controller;
 import br.pickfood.model.dto.item.ItemDTO;
 import br.pickfood.model.item.Item;
 import br.pickfood.service.item.ItemService;
-import br.pickfood.utils.DTOConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -25,8 +24,8 @@ public class ItemController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> verItem(){
-        List<Item> item = service.findAll();
-        List<ItemDTO> dto = DTOConverter.convertToDTOList(item, ItemDTO.class);
+
+        List<ItemDTO> dto = service.listAll();
         if(dto.isEmpty())
             return ResponseEntity.notFound().build();
 

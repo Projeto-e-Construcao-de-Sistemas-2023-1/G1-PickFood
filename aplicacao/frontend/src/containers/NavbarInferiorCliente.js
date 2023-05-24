@@ -4,16 +4,22 @@ export default function NavbarInferiorCliente() {
     return(
         <NavbarInferior>
             <NavbarInferior.Item>
-                <NavbarInferior.Icone src="/icons/buscar.svg"/>
-                <NavbarInferior.Label>Buscar</NavbarInferior.Label>
+                <NavbarInferior.Link href={ "" }>
+                    <NavbarInferior.Icone src="/icons/buscar.svg"/>
+                    <NavbarInferior.Label>Buscar</NavbarInferior.Label>
+                </NavbarInferior.Link>
             </NavbarInferior.Item>
             <NavbarInferior.Item>
-                <NavbarInferior.Icone src="/icons/home.svg"/>
-                <NavbarInferior.Label>Home</NavbarInferior.Label>
+                <NavbarInferior.Link href={ "/cliente/home" }>
+                    <NavbarInferior.Icone src="/icons/home.svg"/>
+                    <NavbarInferior.Label>Home</NavbarInferior.Label>
+                </NavbarInferior.Link>
             </NavbarInferior.Item>
             <NavbarInferior.Item>
-                <NavbarInferior.Icone src="/icons/carrinho.svg"/>
-                <NavbarInferior.Label>Carrinho</NavbarInferior.Label>
+                <NavbarInferior.Link href={ "/cliente/carrinho" }>
+                    <NavbarInferior.Icone src="/icons/carrinho.svg"/>
+                    <NavbarInferior.Label>Carrinho</NavbarInferior.Label>
+                </NavbarInferior.Link>
             </NavbarInferior.Item>
         </NavbarInferior>
     )

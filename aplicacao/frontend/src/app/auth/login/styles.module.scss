@@ -8,7 +8,7 @@
 .logo {
     display: flex;
     margin: 0 auto;
-    margin-bottom: 1rem;
+    margin-bottom: utils.converterPxParaRem(35px);
 }
 
 .links {
