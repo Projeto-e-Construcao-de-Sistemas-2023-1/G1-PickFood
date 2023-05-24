@@ -4,11 +4,10 @@
 
 .titulo {
     margin-top: utils.converterPxParaRem(15px);
-    margin-bottom: utils.converterPxParaRem(20px);
-    display: flex;
-    justify-content: center;
-
-    font-weight: 700;
-    font-size: utils.converterPxParaRem(12px);
+    text-align: center;
+    font-size: utils.converterPxParaRem(14px);
+    font-weight: bold;
+    margin-bottom: utils.converterPxParaRem(30px);
+    
     color: cores.$preto;
 }

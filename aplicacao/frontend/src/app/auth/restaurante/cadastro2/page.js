@@ -26,7 +26,7 @@ export default function Cadastro2() {
                 alt="Icone de seta apontando para trás."
             />
 
-            <div className={ [center, title].join(' ') }>Informações Adicionais</div>
+            <h2 className={ [center, title].join(' ') }>Informações Adicionais</h2>
 
             <div className={forms}>
             <Form>
