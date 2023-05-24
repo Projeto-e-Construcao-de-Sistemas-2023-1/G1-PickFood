@@ -11,6 +11,7 @@ import {
     buscar
 } from "./styles.module.scss";
 export default function Pesquisa(){
+    
     const [valor, setValor] = useState();
     const handleChange = (e) => {
         const input = e.target
@@ -19,8 +20,6 @@ export default function Pesquisa(){
     }
 
     return (
-        <>
-
         <div className={ pesquisa }>
             <input onChange={ handleChange } value= { valor } className={ input } placeholder="      Busque aqui..."/>
            
@@ -37,7 +36,6 @@ export default function Pesquisa(){
                 height={ 21 }
                 alt="Icone de círculo com um + no centro."
             />   
-            </div>
-        </>
+        </div>
     )
 }
