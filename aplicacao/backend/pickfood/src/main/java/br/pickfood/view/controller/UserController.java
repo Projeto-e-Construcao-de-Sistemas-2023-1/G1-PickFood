@@ -27,7 +27,7 @@ public class UserController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Object> insertUser(
 			@RequestBody UserDTO dto){
-		
+
 		User entity = dto.convertToEntity();
 
 		return new ResponseEntity(service.create(entity), HttpStatusCode.valueOf(200));
