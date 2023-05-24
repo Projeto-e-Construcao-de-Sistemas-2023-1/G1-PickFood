@@ -1,0 +1,11 @@
+@use "../../../../styles/utils.module.scss";
+
+.arrow {
+    margin-top: utils.converterPxParaRem(20px);
+}
+
+.logo {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: utils.converterPxParaRem(35px);
+}

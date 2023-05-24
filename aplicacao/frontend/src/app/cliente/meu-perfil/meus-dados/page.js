@@ -1,9 +1,11 @@
 import Form from "@/components/form";
 import { tituloPagina } from "../../../../styles/componentes.module.scss";
+import Image from "next/image";
 
 export default function MeusDados() {
     return(
         <>
+            <Image width={21} height={21} src="/icons/back.svg"/>
             <h2 className={ tituloPagina }>Meus Dados</h2>
             <Form>
                 <Form.Field>
