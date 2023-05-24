@@ -4,10 +4,12 @@
 
 .titulo {
     margin-top: utils.converterPxParaRem(15px);
-    margin-bottom: 15px;
+    margin-bottom: utils.converterPxParaRem(15px);
+    display: flex;
+    justify-content: center;
 
     font-weight: 700;
-    font-size: 12px;
+    font-size: utils.converterPxParaRem(12px);
     color: cores.$preto;
 }
 

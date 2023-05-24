@@ -2,12 +2,9 @@
 
 import CardapioRestaurante from "@/components/CardapioRestaurante";
 import Pesquisa from "@/components/Pesquisa";
-import Image from "next/image";
 
 import { 
-    divider,
     titulo,
-    botao,
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
 
@@ -27,7 +24,7 @@ export default function Login() {
         <>
             <Pesquisa/> 
 
-            <div className= { titulo } >Cardápio</div>
+            <div className= { titulo }>Cardápio</div>
 
             <CardapioRestaurante/>
 

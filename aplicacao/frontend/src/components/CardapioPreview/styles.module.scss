@@ -4,7 +4,7 @@
 
 .texto {
     font-weight: 400;
-    font-size: 12px;
+    font-size: utils.converterPxParaRem(12px);
     text-align: center;
     display: flex;
     align-items: center;

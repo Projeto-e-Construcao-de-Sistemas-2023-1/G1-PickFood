@@ -1,5 +1,5 @@
-@use "../../../styles/cores.module.scss";
-@use "../../../styles/utils.module.scss";
+@use "../../../../styles/cores.module.scss";
+@use "../../../../styles/utils.module.scss";
 
 .arrow {
     margin-top: utils.converterPxParaRem(20px);
@@ -25,7 +25,7 @@
 
     text-align: center;
 
-    color: #343434;
+    color: cores.$preto;
 }
 
 
