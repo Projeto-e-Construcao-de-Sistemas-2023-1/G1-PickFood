@@ -196,6 +196,23 @@ CREATE TABLE IF NOT EXISTS `mydb`.`restaurante_categoria` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE TABLE `mydb`.`restaurante_ingrediente_alergenico` (
+  `ingrediente_alergenico` INT NOT NULL,
+  `restaurante` INT NOT NULL,
+  INDEX `fk_ingrediente_alergenico_restaurante_ingrediente_alergenic_idx` (`ingrediente_alergenico` ASC) VISIBLE,
+  INDEX `fk_restaurante_restaurante_ingrediente_alergenico_idx` (`restaurante` ASC) VISIBLE,
+  CONSTRAINT `fk_restaurante_restaurante_ingrediente_alergenico`
+    FOREIGN KEY (`restaurante`)
+    REFERENCES `mydb`.`restaurante` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ingrediente_alergenico_restaurante_ingrediente_alergenico`
+    FOREIGN KEY (`ingrediente_alergenico`)
+    REFERENCES `mydb`.`ingrediente_alergenico` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
