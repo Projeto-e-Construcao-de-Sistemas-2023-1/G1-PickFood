@@ -43,15 +43,13 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Link href={ "/restaurante/" }>
-                    <Image
-                        src="/icons/editar.svg"
-                        className={ editar }
-                        width={ 14 }
-                        height={ 14 }
-                        alt="Icone de editar."
-                        />
-                </Link>
+                <Image
+                    src="/icons/editar.svg"
+                    className={ editar }
+                    width={ 14 }
+                    height={ 14 }
+                    alt="Icone de editar."
+                    />
                 <Image
                     src="/icons/lixo.svg"
                     className={ lixo }
@@ -59,7 +57,8 @@ export default function CardapioRestaurante() {
                     height={ 14 }
                     onClick={ () => { setAtivo(prev => !prev) } }
                     alt="Icone de lixo."
-            /></li>
+                />
+            </li>
 
             <li className={texto}>
                 <Image className={foto}
