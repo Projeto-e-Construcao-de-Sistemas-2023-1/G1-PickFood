@@ -43,11 +43,11 @@ public class Restaurante extends BaseEntity{
     @Column(name = "taxa_entrega")
     private Double taxaEntrega;
     
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco")
     private Endereco endereco;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user")
     private User user;
 
