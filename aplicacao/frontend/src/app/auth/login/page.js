@@ -27,8 +27,7 @@ export default function Login() {
 
     const authenticate = (e) => {
         e.preventDefault();
-// request
-        
+
         definirUsuario({
             nome: "pedro"
         });

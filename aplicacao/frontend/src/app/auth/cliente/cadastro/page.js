@@ -10,10 +10,6 @@ export default function CadastroCliente() {
 
     const router = useRouter();
 
-    const cadastrar = () => {
-
-        router.push("/cliente/home");
-    }
 
     return(
         <>
