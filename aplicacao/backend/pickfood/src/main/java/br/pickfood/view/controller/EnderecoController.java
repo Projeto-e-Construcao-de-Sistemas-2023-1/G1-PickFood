@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +36,7 @@ public class EnderecoController {
             return ResponseEntity.notFound().build();
         }
     }
+
     @GetMapping
     public ResponseEntity<Object> getAllEnderecos() {
         List<EnderecoDTO> enderecoDTOList = enderecoService.listarTodos();
@@ -50,6 +53,30 @@ public class EnderecoController {
         EnderecoDTO createdEndereco = enderecoService.create(entity);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createdEndereco);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EnderecoDTO> updateEndereco(@PathVariable Integer id, @RequestBody EnderecoDTO enderecoDTO) {
+
+        if (enderecoService.findEntityById(id)!= null) {
+            Endereco updatedEntity = enderecoDTO.convertToEntity();
+            updatedEntity.setId(id);
+
+            EnderecoDTO updatedEndereco = enderecoService.update(updatedEntity);
+            return ResponseEntity.ok(updatedEndereco);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEndereco(@PathVariable Integer id) {
+        if (enderecoService.findById(id) != null) {
+            enderecoService.delete(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }
