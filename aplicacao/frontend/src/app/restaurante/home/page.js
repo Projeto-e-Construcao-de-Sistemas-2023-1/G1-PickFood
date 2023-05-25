@@ -2,6 +2,7 @@
 
 import CardapioPreview from "@/components/CardapioPreview";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 import { 
     divider,
@@ -9,29 +10,23 @@ import {
     botao
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
+import { createContext, useState } from "react";
 
-export default function Login() {
-
-    const router = useRouter();
-
-    const authenticate = (e) => {
-        e.preventDefault();
-
-        // request
-     
-        router.push("/cliente/home");
-    }         
+export default function RestauranteHome() {        
 
     return (
         <>
 
-           <div className= { titulo } >Cardápio</div>
+           <h2 className= { titulo } >Cardápio</h2>
 
             <CardapioPreview/>
 
-            <div className= { botao }>
-                <Button onClick={ authenticate }>Exibir cardápio</Button>
-            </div>
+            <Link href={"restaurante/cardapio"}>
+                <div className= { botao }>
+                <Button>Exibir cardápio</Button>
+                </div>
+            </Link>
+            
             
             <div className={ divider }></div>
 

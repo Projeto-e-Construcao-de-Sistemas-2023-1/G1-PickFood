@@ -21,7 +21,7 @@ export default function NavbarSuperiorRestaurnte() {
 
 
                 <NavbarSuperior.Dropdown ativo={ ativo }>
-                    <NavbarSuperior.LinkDropdown href="">
+                    <NavbarSuperior.LinkDropdown href={ "/restaurante/perfil" }>
                         <NavbarSuperior.IconeDropdown src="/icons/meu-perfil.svg"/>
                         <NavbarSuperior.LabelDropdown>Meu Perfil</NavbarSuperior.LabelDropdown>
                     </NavbarSuperior.LinkDropdown>

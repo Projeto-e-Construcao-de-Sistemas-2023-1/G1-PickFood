@@ -9,7 +9,7 @@
 .title {
 
     font-weight: 700;
-    font-size: utils.converterPxParaRem(12px);
+    font-size: utils.converterPxParaRem(14px);
     margin-top: utils.converterPxParaRem(30px);
     margin-bottom: utils.converterPxParaRem(30px);
     justify-content: center;
@@ -28,14 +28,18 @@
     margin-top: utils.converterPxParaRem(40px);
 }
 
-.link {
+.excluirConta {
+    display: flex;
+    align-items: center;
+    font-size: utils.converterPxParaRem(12px);
+}
 
-    font-weight: 400;
-    font-size: utils.converterPxParaRem(11px);
-    line-height: utils.converterPxParaRem(13px);
-    text-align: center;
+.iconeExcluirConta {
+    margin-right: utils.converterPxParaRem(8px);
+}
+
+.textoExcluirConta {
     margin-left: utils.converterPxParaRem(60px);
-    margin-top: utils.converterPxParaRem(13px);
-
-    color: #FF7D7D;
+    
+    color: cores.$vermelho;
 }

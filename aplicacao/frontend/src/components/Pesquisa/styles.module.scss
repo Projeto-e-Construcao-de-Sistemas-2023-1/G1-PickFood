@@ -26,6 +26,7 @@
     border-radius: utils.converterPxParaRem(5px);
     width: 100%;
     height: utils.converterPxParaRem(26px);
+    padding-left: utils.converterPxParaRem(25px);
 }
 
 .buscar {
@@ -35,9 +36,4 @@
     left: utils.converterPxParaRem(5px);
     top: 50%;
     transform:translateY(-50%);
-}
-
-.adicionar {
-    width: utils.converterPxParaRem(15px);
-    height: utils.converterPxParaRem(15px);
 }

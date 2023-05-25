@@ -1,26 +1,40 @@
 'use client';
 
-import Form from "@/components/form";
+import Image from "next/image";
+import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Link from "next/link";
 import { 
     title,
     center,
     forms,
-    link,
+    excluirConta,
+    textoExcluirConta,
     opcoes
 } from "./styles.module.scss"
+import Modal from "@/components/Modal";
+import { useState } from "react";
 
 export default function Cadastro1() {
 
-    const authenticate = () => {
-        // request
-    }
+    const [ativo, setAtivo] = useState(false);
 
     return (
         <Container>
 
-            <div className={ [center, title].join(' ') }>Minhas informações</div>
+            <Modal ativo={ ativo }>
+                <Modal.Cabecalho>
+                    <Modal.Icone svg="/icons/aviso.svg"/>
+                    <Modal.Titulo>Tem certeza que deseja excluir sua conta?</Modal.Titulo>
+                </Modal.Cabecalho>
+
+                <Modal.Rodape>
+                    <Modal.BotaoConfirmar/>
+                    <Modal.BotaoCancelar onClick={ () => setAtivo(false) }/>
+                </Modal.Rodape>
+            </Modal>
+
+            <h2 className={ [center, title].join(' ') }>Minhas informações</h2>
 
             <div className={forms}>
             <Form>
@@ -49,11 +63,15 @@ export default function Cadastro1() {
                     <Form.Input/>
                 </Form.Field>
 
+                <Link href={"/restaurante/perfil"}>
                 <div className={ opcoes }>
-                    <Form.Button onClick={ () => authenticate() }>Salvar alterações</Form.Button>
-                    <Link href={ "" } className={ link }>Excluir conta</Link>
+                    <Form.Button>Salvar alterações</Form.Button>
+                    <div className={ excluirConta } onClick={ () => { setAtivo(prev => !prev) } }>
+                    <div className={ textoExcluirConta }>Excluir conta</div>
+                    </div>
                 </div>
-                
+                </Link>
+            
             </Form>
             </div>
 

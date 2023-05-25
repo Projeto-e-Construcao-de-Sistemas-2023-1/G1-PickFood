@@ -5,8 +5,11 @@ import Pesquisa from "@/components/Pesquisa";
 
 import { 
     titulo,
+    adicionar,
+    pesquisa
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Login() {
 
@@ -22,9 +25,17 @@ export default function Login() {
 
     return (
         <>
-            <Pesquisa/> 
-
-            <div className= { titulo }>Cardápio</div>
+            <div className={ pesquisa }>
+                <Pesquisa/> 
+                <Image className= { adicionar }
+                    src="/icons/adicionar.svg"
+                    width={ 21 }
+                    height={ 21 }
+                    alt="Icone de círculo com um + no centro."
+                /> 
+            </div>
+            
+            <h2 className= { titulo }>Cardápio</h2>
 
             <CardapioRestaurante/>
 

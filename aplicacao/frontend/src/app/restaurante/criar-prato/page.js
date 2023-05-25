@@ -2,12 +2,9 @@
 import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
-import Link from "next/link";
 import { 
-    title,
-    center,
     forms,
-    arrow
+    imagem
 } from "./styles.module.scss"
 
 export default function Cadastro1() {
@@ -18,51 +15,38 @@ export default function Cadastro1() {
 
     return (
         <Container>
-            <Link href={""}>
+
             <Image
-                src="/icons/back.svg"
+                src="/icons/foto.svg"
                 width={ 21 }
                 height={ 21 }
-                className={ arrow }
+                className={ imagem }
                 alt="Icone de seta apontando para trás."
             />
-                 
-            </Link>
-            
-
-            <h2 className={ [center, title].join(' ') }>Informações do restaurante</h2>
 
             <div className={forms}>
             <Form>
                 <Form.Field>
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>Nome</Form.Label>
                     <Form.Input/>
                 </Form.Field>
                 
                 <Form.Field>
-                    <Form.Label>Senha</Form.Label>
+                    <Form.Label>Tipo</Form.Label>
                     <Form.Input/>
                 </Form.Field>
 
                 <Form.Field>
-                    <Form.Label>Nome Fantasia</Form.Label>
+                    <Form.Label>Preço</Form.Label>
                     <Form.Input/>
                 </Form.Field>
                 
                 <Form.Field>
-                    <Form.Label>Razão Social</Form.Label>
+                    <Form.Label>Descrição</Form.Label>
                     <Form.Input/>
                 </Form.Field>
 
-                <Form.Field>
-                    <Form.Label>CNPJ</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
-
-                <Link href={"auth/restaurante/cadastro2"}>
-                   <Form.Button onClick={ () => authenticate() }>Continuar</Form.Button> 
-                </Link>
-                
+                <Form.Button onClick={ () => authenticate() }>Continuar</Form.Button>
             </Form>
             </div>
 

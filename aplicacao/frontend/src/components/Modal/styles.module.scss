@@ -11,6 +11,7 @@
     border-radius: utils.converterPxParaRem(10px);
     padding: utils.converterPxParaRem(12px) utils.converterPxParaRem(21px);
     min-width: utils.converterPxParaRem(197px);
+    z-index: 2;
 }
 
 .cabecalho {

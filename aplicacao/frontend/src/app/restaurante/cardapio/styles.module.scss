@@ -1,14 +1,28 @@
 @use "../../../styles/cores.module.scss";
 @use "../../../styles/utils.module.scss";
 
+.pesquisa {
+    flex-direction:row;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: utils.converterPxParaRem(200px);
+}
 
 .titulo {
     margin-top: utils.converterPxParaRem(15px);
-    margin-bottom: utils.converterPxParaRem(20px);
-    display: flex;
-    justify-content: center;
-
-    font-weight: 700;
-    font-size: utils.converterPxParaRem(12px);
+    text-align: center;
+    font-size: utils.converterPxParaRem(14px);
+    font-weight: bold;
+    margin-bottom: utils.converterPxParaRem(30px);
+    
     color: cores.$preto;
+}
+
+.adicionar {
+    width: utils.converterPxParaRem(15px);
+    height: utils.converterPxParaRem(15px);
+    margin-left: utils.converterPxParaRem(5px);
 }
