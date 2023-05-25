@@ -28,13 +28,15 @@ export default function Login() {
     const authenticate = (e) => {
         e.preventDefault();
 
-        definirUsuario({
-            nome: "pedro"
-        });
+        const dados = {nome: "pedro"};
 
-        localStorage.setItem("usuario", {
-            nome: "pedro"
-        })
+        definirUsuario(dados);
+
+        const dadosJson = JSON.stringify(dados);
+
+        localStorage.setItem("usuario", dadosJson);
+
+
         router.push("/cliente/home");
     }
 

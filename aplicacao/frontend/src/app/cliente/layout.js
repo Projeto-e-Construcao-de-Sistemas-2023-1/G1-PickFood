@@ -14,6 +14,7 @@ export default function ClienteLayout({ children }) {
     useEffect(() => {
 
         console.log(usuario)
+        
         if (Object.keys(usuario).length === 0) {
             router.push("/auth/login");
         }

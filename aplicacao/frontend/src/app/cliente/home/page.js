@@ -8,6 +8,7 @@ import {
 import Pesquisa from "@/components/Pesquisa";
 import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/app/layout";
+import request from "@/services/axios";
 
 
 export default function Home() {
@@ -17,8 +18,21 @@ export default function Home() {
     const { usuario } = useContext(AuthContext);
 
     useEffect(() => {
-        console.log(usuario);
-    }, [busca, usuario]);
+
+        request.get("restaurante/list")
+            .then((response) => {
+                console.log("Entrou no then: ")
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error("Entrou no catch: ");
+                console.error(error);
+            })
+            .finally(() => {
+                console.warn("Entrou no finally: ");
+                
+            });
+    })
 
     return(
         <>

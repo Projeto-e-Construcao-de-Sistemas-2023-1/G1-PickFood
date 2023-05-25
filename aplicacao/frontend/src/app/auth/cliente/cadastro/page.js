@@ -5,11 +5,26 @@ import { logo, arrow } from "./styles.module.scss";
 import Image from "next/image";
 import Form from "@/components/Form";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { AuthContext } from "@/app/layout";
 
 export default function CadastroCliente() {
 
     const router = useRouter();
 
+    const { definirUsuario } = useContext(AuthContext);
+
+    const cadastrar = () => {
+        const dados = {nome: "coura"}
+
+        definirUsuario(dados);
+
+        const dadosJson = JSON.stringify(dados);
+
+        localStorage.setItem("usuario", dadosJson);
+
+        router.push("/cliente/home")
+    }
 
     return(
         <>
