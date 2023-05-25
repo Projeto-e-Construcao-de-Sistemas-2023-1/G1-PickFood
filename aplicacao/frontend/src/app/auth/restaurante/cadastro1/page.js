@@ -1,7 +1,8 @@
 'use client';
-import Form from "@/components/form";
+import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
+import Link from "next/link";
 import { 
     title,
     center,
@@ -17,6 +18,7 @@ export default function Cadastro1() {
 
     return (
         <Container>
+            <Link href={""}>
             <Image
                 src="/icons/back.svg"
                 width={ 21 }
@@ -24,6 +26,9 @@ export default function Cadastro1() {
                 className={ arrow }
                 alt="Icone de seta apontando para trás."
             />
+                 
+            </Link>
+            
 
             <h2 className={ [center, title].join(' ') }>Informações do restaurante</h2>
 
@@ -54,8 +59,10 @@ export default function Cadastro1() {
                     <Form.Input/>
                 </Form.Field>
 
-
-                <Form.Button onClick={ () => authenticate() }>Continuar</Form.Button>
+                <Link href={"auth/restaurante/cadastro2"}>
+                   <Form.Button onClick={ () => authenticate() }>Continuar</Form.Button> 
+                </Link>
+                
             </Form>
             </div>
 
