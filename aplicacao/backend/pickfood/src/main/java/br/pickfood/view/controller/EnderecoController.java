@@ -31,6 +31,7 @@ public class EnderecoController {
     public ResponseEntity<EnderecoDTO> getEnderecoById(@PathVariable Integer id) {
         EnderecoDTO enderecoDTO = enderecoService.findById(id);
         if (enderecoDTO != null) {
+
             return ResponseEntity.ok(enderecoDTO);
         } else {
             return ResponseEntity.notFound().build();
@@ -68,6 +69,7 @@ public class EnderecoController {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEndereco(@PathVariable Integer id) {
