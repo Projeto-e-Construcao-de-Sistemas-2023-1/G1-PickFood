@@ -3,6 +3,7 @@
 import NavbarSuperior from "@/components/NavbarSuperior";
 import Overlay from "@/components/Overlay";
 import { useState } from "react";
+import navbarSuperiorRestaurante from "@/fixtures/navbar-superior-restaurante";
 
 export default function NavbarSuperiorRestaurnte() {
 
@@ -18,17 +19,17 @@ export default function NavbarSuperiorRestaurnte() {
                     Restaurante
                 </NavbarSuperior.Botao>
 
-
-
                 <NavbarSuperior.Dropdown ativo={ ativo }>
-                    <NavbarSuperior.LinkDropdown href={ "/restaurante/perfil" }>
-                        <NavbarSuperior.IconeDropdown src="/icons/meu-perfil.svg"/>
-                        <NavbarSuperior.LabelDropdown>Meu Perfil</NavbarSuperior.LabelDropdown>
-                    </NavbarSuperior.LinkDropdown>
-                    <NavbarSuperior.LinkDropdown href="">
-                        <NavbarSuperior.IconeDropdown src="/icons/sair.svg"/>
-                        <NavbarSuperior.LabelDropdown>Sair</NavbarSuperior.LabelDropdown>
-                    </NavbarSuperior.LinkDropdown>
+                    {
+                        navbarSuperiorRestaurante.map(({ id, link, icone, label }) => {
+                            return(
+                                <NavbarSuperior.LinkDropdown href={ link } key={ id }>
+                                    <NavbarSuperior.IconeDropdown src={ icone }/>
+                                    <NavbarSuperior.LabelDropdown>{ label }</NavbarSuperior.LabelDropdown>
+                                </NavbarSuperior.LinkDropdown>
+                            )
+                        })
+                    }
                 </NavbarSuperior.Dropdown>
 
             </NavbarSuperior>
