@@ -6,16 +6,19 @@ import {
     banner
 } from "./styles.module.scss";
 import Pesquisa from "@/components/Pesquisa";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/app/layout";
 
 
 export default function Home() {
 
     const [busca, setBusca] = useState("");
 
+    const { usuario } = useContext(AuthContext);
+
     useEffect(() => {
-        console.log("ola mundo");
-    }, [busca]);
+        console.log(usuario);
+    }, [busca, usuario]);
 
     return(
         <>

@@ -1,6 +1,6 @@
 'use client';
 
-import Form from "@/components/form";
+import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
 import { 
@@ -16,16 +16,26 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Logo from "@/components/Logo";
+import { useContext } from "react";
+import { AuthContext } from "@/app/layout";
 
 export default function Login() {
 
     const router = useRouter();
 
+    const { definirUsuario } = useContext(AuthContext);
+
     const authenticate = (e) => {
         e.preventDefault();
+// request
+        
+        definirUsuario({
+            nome: "pedro"
+        });
 
-        // request
-     
+        localStorage.setItem("usuario", {
+            nome: "pedro"
+        })
         router.push("/cliente/home");
     }
 

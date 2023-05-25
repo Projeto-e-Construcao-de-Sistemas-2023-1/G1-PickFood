@@ -43,13 +43,15 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Image
-                    src="/icons/editar.svg"
-                    className={ editar }
-                    width={ 14 }
-                    height={ 14 }
-                    alt="Icone de editar."
-                />
+                <Link href={ "/restaurante/" }>
+                    <Image
+                        src="/icons/editar.svg"
+                        className={ editar }
+                        width={ 14 }
+                        height={ 14 }
+                        alt="Icone de editar."
+                        />
+                </Link>
                 <Image
                     src="/icons/lixo.svg"
                     className={ lixo }

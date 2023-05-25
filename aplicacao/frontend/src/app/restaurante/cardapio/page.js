@@ -7,11 +7,7 @@ import {
     titulo,
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
-<<<<<<< HEAD
 import Image from "next/image";
-=======
-import { useState } from "react";
->>>>>>> 7a0eb19ffb0338b9d65ba947864ea07f711f6e3a
 
 export default function Login() {
 
