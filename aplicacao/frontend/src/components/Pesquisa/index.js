@@ -5,7 +5,6 @@ import styles from "./styles.module.scss"
 import Image from "next/image";
 import { 
     pesquisa,
-    adicionar,
     input, 
     buscar
 } from "./styles.module.scss";
