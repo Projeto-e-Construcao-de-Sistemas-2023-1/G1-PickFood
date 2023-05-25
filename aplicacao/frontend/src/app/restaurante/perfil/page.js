@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import Form from "@/components/form";
+import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Link from "next/link";
 import { 
@@ -18,10 +18,6 @@ import { useState } from "react";
 export default function Cadastro1() {
 
     const [ativo, setAtivo] = useState(false);
-
-    const authenticate = () => {
-        // request
-    }
 
     return (
         <Container>
@@ -67,13 +63,15 @@ export default function Cadastro1() {
                     <Form.Input/>
                 </Form.Field>
 
+                <Link href={"/restaurante/perfil"}>
                 <div className={ opcoes }>
-                    <Form.Button onClick={ () => authenticate() }>Salvar alterações</Form.Button>
+                    <Form.Button>Salvar alterações</Form.Button>
                     <div className={ excluirConta } onClick={ () => { setAtivo(prev => !prev) } }>
                     <div className={ textoExcluirConta }>Excluir conta</div>
                     </div>
                 </div>
-                
+                </Link>
+            
             </Form>
             </div>
 

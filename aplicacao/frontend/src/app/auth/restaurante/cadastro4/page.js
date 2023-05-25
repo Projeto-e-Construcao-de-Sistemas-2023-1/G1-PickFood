@@ -1,8 +1,9 @@
 'use client';
 
-import Form from "@/components/form";
+import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
+import Link from "next/link";
 import { 
     center,
     title,
@@ -11,7 +12,7 @@ import {
     arrow
 } from "./styles.module.scss"
 
-export default function Cadastro3() {
+export default function Cadastro4() {
 
     const authenticate = () => {
         // request
@@ -19,14 +20,16 @@ export default function Cadastro3() {
 
     return (
         <Container>
-            <Image
+            <Link href={"auth/restaurante/cadastro3"}>
+                <Image
                 src="/icons/back.svg"
                 width={ 21 }
                 height={ 21 }
                 className={ arrow }
                 alt="Icone de seta apontando para trás."
-            />
-
+                />
+            </Link>
+            
             <h2 className={ title }>Risco de Contaminação Cruzada</h2>
 
                 <div className={ checkboxes }>
@@ -80,8 +83,10 @@ export default function Cadastro3() {
                     </div>
                     
                 </div>
-            
-                <div className={ center }><Form.Button onClick={ () => authenticate() }>Continuar</Form.Button></div>
+                <Link href={"restaurante/home"}>
+                     <div className={ center }><Form.Button onClick={ () => authenticate() }>Continuar</Form.Button></div>
+                </Link>
+               
            
 
         </Container>
