@@ -3,9 +3,8 @@ package br.pickfood.model.item;
 import br.pickfood.model.BaseEntity;
 import br.pickfood.model.dto.item.ItemDTO;
 import br.pickfood.model.dto.user.UserDTO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import br.pickfood.model.restaurante.Restaurante;
+import jakarta.persistence.*;
 import lombok.*;
 
 
@@ -31,6 +30,10 @@ public class Item extends BaseEntity {
 
     @Column(name = "foto")
     private String foto;
+
+    @ManyToOne()
+    @JoinColumn(name = "restaurante")
+    private Restaurante restaurante;
 
     @Override
     public ItemDTO convertToDto() {

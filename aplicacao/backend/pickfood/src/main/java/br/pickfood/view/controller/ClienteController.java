@@ -59,44 +59,27 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCliente);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ClienteDTO> updateCliente(@PathVariable Integer id, @RequestBody ClienteDTO clienteDTO) {
-        if (clienteService.findEntityById(id)!= null) {
+    @PutMapping()
+    public ResponseEntity<ClienteDTO> updateCliente(@RequestBody ClienteDTO clienteDTO) {
             Cliente updatedEntity = clienteDTO.convertToEntity();
-            updatedEntity.setId(id);
+            return ResponseEntity.ok(clienteService.update(updatedEntity));
 
-            ClienteDTO updatedCliente = clienteService.update(updatedEntity);
-            return ResponseEntity.ok(updatedCliente);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCliente(@PathVariable Integer id) {
-        if (clienteService.findById(id) != null) {
             clienteService.delete(id);
             return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @GetMapping("/{id}/enderecos") //lista todos os enderecos so cliente
     public ResponseEntity<Object> listarEnderecosCliente(@PathVariable Integer id) {
 
         Cliente clienteEntity = clienteService.findEntityById(id);
+        List<Endereco> enderecos = clienteEntity.getEndereco();
+        List<EnderecoDTO> enderecosDTO = enderecos.stream().map(Endereco::convertToDto).collect(Collectors.toList());
+        return ResponseEntity.ok(enderecosDTO);
 
-        if (clienteEntity != null) {
-            List<Endereco> enderecos = clienteEntity.getEndereco();
-
-            List<EnderecoDTO> enderecosDTO = enderecos.stream().map(Endereco::convertToDto).collect(Collectors.toList());
-
-            return ResponseEntity.ok(enderecosDTO);
-
-        } else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @PostMapping("{id}/enderecos") //associa endereco ao cliente

@@ -36,7 +36,7 @@ public class RestauranteController {
     	
     	Restaurante entity = dto.convertToEntity();
     	
-    	return new ResponseEntity(service.create(entity), HttpStatusCode.valueOf(200));
+    	return new ResponseEntity(service.create(entity), HttpStatusCode.valueOf(201));
     }
     
     @PutMapping

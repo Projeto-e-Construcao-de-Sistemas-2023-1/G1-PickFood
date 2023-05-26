@@ -8,12 +8,7 @@ import br.pickfood.model.dto.user.UserDTO;
 import br.pickfood.model.endereco.Endereco;
 import br.pickfood.model.pedido.Pedido;
 import br.pickfood.model.user.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,12 +33,12 @@ public class Cliente extends BaseEntity {
     @Column(name = "telefone")
     private String telefone;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user")
     private User user;
 
 
-    @OneToMany()
+    @OneToMany
     private List<Endereco> endereco;
 
     @OneToMany
@@ -58,7 +53,7 @@ public class Cliente extends BaseEntity {
                         .id(this.user.getId())
                         .senha(this.user.getSenha())
                         .email(this.user.getEmail())
-                        .type("restaurante")
+                        .type("cliente")
                         .build())
                 .nome(this.nome)
                 .cpf(this.cpf)

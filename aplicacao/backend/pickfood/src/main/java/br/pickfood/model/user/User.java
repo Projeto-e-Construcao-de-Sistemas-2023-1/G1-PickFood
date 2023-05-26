@@ -47,6 +47,8 @@ public class User extends BaseEntity implements UserDetails {
 	public UserDTO convertToDto() {
     	UserDTO dto = new UserDTO();
     	dto.setId(this.id);
+    	dto.setIdCliente(this.cliente.getId());
+    	dto.setIdRestaurante(this.restaurante.getId());
     	dto.setEmail(this.email);
     	dto.setSenha(this.senha);
     	

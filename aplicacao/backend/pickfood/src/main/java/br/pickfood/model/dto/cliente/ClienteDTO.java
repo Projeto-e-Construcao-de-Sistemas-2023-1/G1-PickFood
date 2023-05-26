@@ -27,7 +27,8 @@ public class ClienteDTO extends BaseDTO<Cliente> {
     @Override
     public Cliente convertToEntity() {
         return Cliente.builder()
-                .user(User.builder().id(this.user.getId())
+                .user(User.builder()
+                        .id(this.user.getId())
                         .email(this.user.getEmail())
                         .senha(this.user.getSenha())
                         .build())

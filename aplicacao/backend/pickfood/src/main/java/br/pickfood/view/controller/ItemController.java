@@ -26,8 +26,6 @@ public class ItemController {
     public ResponseEntity<Object> verItem(){
 
         List<ItemDTO> dto = service.listAll();
-        if(dto.isEmpty())
-            return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(dto);
     }
