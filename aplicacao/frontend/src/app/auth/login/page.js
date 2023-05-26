@@ -53,15 +53,23 @@ export default function Login() {
 
             const dados = res.data;
 
-            definirUsuario({
-                id: dados.id,
-                email: dados.email,
-                tipo: dados.type
-            })
+            
 
             if (dados.type === "restaurante") {
+                definirUsuario({
+                    id: dados.idRestaurante,
+                    email: dados.email,
+                    tipo: dados.type
+                })
+
                 router.push("/restaurante/home");
             } else {
+                definirUsuario({
+                    id: dados.idCliente,
+                    email: dados.email,
+                    tipo: dados.type
+                })
+
                 router.push("/cliente/home");
             }
 

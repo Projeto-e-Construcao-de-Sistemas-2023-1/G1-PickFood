@@ -63,14 +63,14 @@ export default function CadastroCliente() {
         })
         .then((res) => {
             const dados = res.data;
+            
+            definirUsuario(dados);
 
+            router.push("/cliente/home")
             
         })
 
-        definirUsuario(dados);
-
-
-        router.push("/cliente/home")
+        
     }
 
     return(
@@ -86,23 +86,23 @@ export default function CadastroCliente() {
             <Form>
                 <Form.Field>
                     <Form.Label>Nome e sobrenome</Form.Label>
-                    <Form.Input value={ nome }/>
+                    <Form.Input value={ nome } onChange={ handleNome }/>
                 </Form.Field>
                 <Form.Field>
-                    <Form.Label value={ email }>Email</Form.Label>
+                    <Form.Label value={ email } onChange={ handleEmail }>Email</Form.Label>
                     <Form.Input/>
                 </Form.Field>
                 <Form.Field>
                     <Form.Label>Senha</Form.Label>
-                    <Form.Input value={ senha }/>
+                    <Form.Input value={ senha } onChange={ handleSenha }/>
                 </Form.Field>
                 <Form.Field>
                     <Form.Label>CPF</Form.Label>
-                    <Form.Input value={ cpf }/>
+                    <Form.Input value={ cpf } onChange={ handleCpf }/>
                 </Form.Field>
                 <Form.Field>
                     <Form.Label>Celular (DDD + número)</Form.Label>
-                    <Form.Input value={ telefone }/>
+                    <Form.Input value={ telefone } onChange={ handleTelefone }/>
                 </Form.Field> 
                 
                 <Form.Button onClick={ cadastrar } >Cadastrar</Form.Button>
