@@ -13,6 +13,7 @@ public class ItemDTO extends BaseDTO<Item> {
     private String nome;
     private String tipo;
     private String descricao;
+    private String foto;
 
     @Override
     public Item convertToEntity() {
@@ -20,6 +21,7 @@ public class ItemDTO extends BaseDTO<Item> {
                 .preco(this.preco)
                 .nome(this.nome)
                 .descricao(this.descricao)
+                .foto(this.foto)
                 .build();
 
 
