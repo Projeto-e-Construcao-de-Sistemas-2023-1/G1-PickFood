@@ -1,21 +1,26 @@
 package br.pickfood.model.user;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import br.pickfood.model.BaseEntity;
 import br.pickfood.model.cliente.Cliente;
 import br.pickfood.model.dto.user.UserDTO;
 import br.pickfood.model.restaurante.Restaurante;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -32,16 +37,30 @@ public class User extends BaseEntity implements UserDetails {
 	@Column(name = "senha")
 	private String senha;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Restaurante restaurante;
 
-
-
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Cliente cliente;
 
     @Override
 	public UserDTO convertToDto() {
-		return UserDTO.builder()
-				.email(this.email)
-				.senha(this.senha)
-				.build();
+    	UserDTO dto = new UserDTO();
+    	dto.setId(this.id);
+    	dto.setEmail(this.email);
+    	dto.setSenha(this.senha);
+    	
+    	if(restaurante != null) {
+    		String name = restaurante.getClass().getName();
+    		dto.setType(name.substring(name.lastIndexOf('.') + 1).toLowerCase());
+    	}
+    	
+    	if(cliente != null) {
+    		String name = cliente.getClass().getName();
+    		dto.setType(name.substring(name.lastIndexOf('.') + 1).toLowerCase());
+    	}
+    	
+    	return dto;
 	}
 
 	@Override
