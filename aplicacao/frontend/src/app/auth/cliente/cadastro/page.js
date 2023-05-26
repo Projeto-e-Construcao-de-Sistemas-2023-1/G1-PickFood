@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/app/layout";
 import request from "@/services/axios";
+import { v4 as uuid } from "uuid";
 
 export default function CadastroCliente() {
 
@@ -54,23 +55,52 @@ export default function CadastroCliente() {
 
     const cadastrar = () => {
 
-        request.post("user", {
+        // request.post("user", {
+        //     nome,
+        //     email,
+        //     senha,
+        //     cpf,
+        //     telefone
+        // })
+        // .then((res) => {
+        //     const dados = res.data;
+            
+            
+
+        //     router.push("/cliente/home")
+            
+        // })
+
+        const id = uuid();
+
+        const user = {
+            id, 
+            nome,
+            email,
+        } 
+
+        const dados = {
+            id,
             nome,
             email,
             senha,
             cpf,
-            telefone
-        })
-        .then((res) => {
-            const dados = res.data;
-            
-            definirUsuario(dados);
+            telefone,
+            tipo: "cliente"
+        }
 
-            router.push("/cliente/home")
-            
-        })
+        const clientesJaCadastratos = JSON.parse(localStorage.getItem("usuarios"));
+
+        if (clientesJaCadastratos === null || clientesJaCadastratos.length === 0) {
+            localStorage.setItem("usuarios", JSON.stringify([dados]))
+        } else {
+            localStorage.setItem("usuarios", JSON.stringify([dados, ...clientesJaCadastratos]))
+        }
+        
+        definirUsuario(user);
 
         
+        router.push("/cliente/home");
     }
 
     return(
@@ -89,12 +119,12 @@ export default function CadastroCliente() {
                     <Form.Input value={ nome } onChange={ handleNome }/>
                 </Form.Field>
                 <Form.Field>
-                    <Form.Label value={ email } onChange={ handleEmail }>Email</Form.Label>
-                    <Form.Input/>
+                    <Form.Label >Email</Form.Label>
+                    <Form.Input value={ email } onChange={ handleEmail }/>
                 </Form.Field>
                 <Form.Field>
                     <Form.Label>Senha</Form.Label>
-                    <Form.Input value={ senha } onChange={ handleSenha }/>
+                    <Form.Input value={ senha } onChange={ handleSenha } type={"password"}/>
                 </Form.Field>
                 <Form.Field>
                     <Form.Label>CPF</Form.Label>

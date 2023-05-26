@@ -44,41 +44,59 @@ export default function Login() {
     const authenticate = (e) => {
         e.preventDefault();
 
-        request.post("user/login", {
-            email,
-            senha
-        })
-        .then((res) => {
-            console.log(res.data);
+        const usuariosJaCadastrados = JSON.parse(localStorage.getItem("usuarios"));
 
-            const dados = res.data;
+        console.log(email);
+        console.log(senha)
+
+        for (const user of usuariosJaCadastrados) {
+            if (user.senha == senha && user.email == email) {
+
+
+                definirUsuario({
+                    id: user.id,
+                    email: user.email,
+                    nome: user.nome
+                });
+                break;
+            }
+        }
+
+        router.push("/cliente/home")
+        // request.post("user/login", {
+        //     email,
+        //     senha
+        // })
+        // .then((res) => {
+
+        //     const dados = res.data;
 
             
 
-            if (dados.type === "restaurante") {
-                definirUsuario({
-                    id: dados.idRestaurante,
-                    email: dados.email,
-                    tipo: dados.type
-                })
+        //     if (dados.type === "restaurante") {
+        //         definirUsuario({
+        //             id: dados.idRestaurante,
+        //             email: dados.email,
+        //             tipo: dados.type
+        //         })
 
-                router.push("/restaurante/home");
-            } else {
-                definirUsuario({
-                    id: dados.idCliente,
-                    email: dados.email,
-                    tipo: dados.type
-                })
+        //         router.push("/restaurante/home");
+        //     } else {
+        //         definirUsuario({
+        //             id: dados.idCliente,
+        //             email: dados.email,
+        //             tipo: dados.type
+        //         })
 
-                router.push("/cliente/home");
-            }
+        //         router.push("/cliente/home");
+        //     }
 
-        })
-        .catch((err) => {
-            console.log(err);
+        // })
+        // .catch((err) => {
+        //     console.log(err);
 
-            router.push("/auth/login");
-        })
+        //     router.push("/auth/login");
+        // })
 
     }
 

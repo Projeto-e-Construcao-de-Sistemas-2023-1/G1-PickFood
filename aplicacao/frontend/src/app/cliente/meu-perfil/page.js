@@ -14,12 +14,36 @@ import {
     textoExcluirConta
 } from "./styles.module.scss";
 import Modal from "@/components/Modal";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "@/app/layout";
+import { useRouter } from "next/navigation";
 
 export default function MeuPerfil() {
 
 
     const [ativo, setAtivo] = useState(false);
+
+    const { usuario } = useContext(AuthContext);
+    const router = useRouter();
+
+    const excluir = () => {
+        let usuariosJaCadastrados = JSON.parse(localStorage.getItem("usuarios"));
+
+        let indexBuscado = -1;
+
+        for (const index in usuariosJaCadastrados) {
+            if (usuariosJaCadastrados[index].id === usuario.id) {
+                indexBuscado = index;
+                break;
+            }
+        }
+
+        usuariosJaCadastrados.splice(indexBuscado, 1);
+
+        localStorage.setItem("usuarios", JSON.stringify([...usuariosJaCadastrados]));
+
+        router.push("/auth/login");
+    }
 
     return(
         <>
@@ -30,7 +54,7 @@ export default function MeuPerfil() {
                 </Modal.Cabecalho>
 
                 <Modal.Rodape>
-                    <Modal.BotaoConfirmar/>
+                    <Modal.BotaoConfirmar onClick={ excluir }/>
                     <Modal.BotaoCancelar onClick={ () => setAtivo(false) }/>
                 </Modal.Rodape>
             </Modal>
