@@ -1,7 +1,7 @@
 package br.pickfood.view.controller;
 
 import br.pickfood.model.dto.item.ItemDTO;
-import br.pickfood.model.dto.item.ItemDTOResponse;
+
 import br.pickfood.model.dto.restaurante.RestauranteDTO;
 import br.pickfood.model.item.Item;
 import br.pickfood.service.item.ItemService;
@@ -37,19 +37,15 @@ public class ItemController {
 
     @PostMapping("/restaurante/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ItemDTOResponse> cadastrarItem(@PathVariable Integer id, @RequestBody ItemDTO dto){
+    public ResponseEntity<ItemDTO> cadastrarItem(@PathVariable Integer id, @RequestBody ItemDTO dto){
         Item entity = dto.convertToEntity();
-        var restaurante = restauranteService.findById(id);
+        RestauranteDTO restaurante = restauranteService.findById(id);
         entity.setRestaurante(restaurante.convertToEntity());
 
         service.create(entity);
         dto.setRestaurante(restaurante);
-        ItemDTOResponse dtoResponse = new ItemDTOResponse(entity.getPreco(),
-                dto.getNome(),
-                dto.getTipo(),
-                dto.getDescricao(),
-                dto.getFoto(),restaurante.getNome_fantasia());
-        return new ResponseEntity(dtoResponse, HttpStatusCode.valueOf(201));
+
+        return new ResponseEntity(dto, HttpStatusCode.valueOf(201));
     }
 
     @PutMapping
