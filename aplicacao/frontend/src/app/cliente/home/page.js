@@ -20,6 +20,7 @@ export default function Home() {
 
     useEffect(() => {
 
+
         request.get("restaurante/list")
             .then((response) => {
                 console.log("Entrou no then: ")

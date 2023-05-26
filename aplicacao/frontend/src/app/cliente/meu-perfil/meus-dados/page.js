@@ -3,6 +3,7 @@ import { tituloPagina } from "../../../../styles/componentes.module.scss";
 import Image from "next/image";
 
 export default function MeusDados() {
+
     return(
         <>
             <Image width={21} height={21} src="/icons/back.svg"/>
