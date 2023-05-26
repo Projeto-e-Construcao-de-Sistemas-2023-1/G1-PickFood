@@ -15,8 +15,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class EnderecoService extends BaseServiceImpl<EnderecoDTO, Endereco,IEnderecoRepository> {
 
-
     public List<EnderecoDTO> listarTodos() {
         return baseRepository.findAll().stream().map(Endereco::convertToDto).collect(Collectors.toList());
     }
+    
+    
 }

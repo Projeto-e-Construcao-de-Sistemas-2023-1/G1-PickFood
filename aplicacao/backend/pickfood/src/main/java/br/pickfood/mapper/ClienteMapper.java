@@ -5,11 +5,12 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
-import br.pickfood.model.dto.restaurante.RestauranteDTO;
-import br.pickfood.model.restaurante.Restaurante;
+import br.pickfood.model.cliente.Cliente;
+import br.pickfood.model.dto.cliente.ClienteDTO;
 
 @Mapper(componentModel = "spring")
-public interface EnderecoMapper {
+public interface ClienteMapper {
+	
 	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-	void updateEnderecoFromDto(RestauranteDTO dto, @MappingTarget Restaurante entity);
+	void updateClienteFromDto(ClienteDTO dto, @MappingTarget Cliente entity);
 }

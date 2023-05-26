@@ -59,12 +59,9 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCliente);
     }
 
-    @PutMapping()
+    @PutMapping
     public ResponseEntity<ClienteDTO> updateCliente(@RequestBody ClienteDTO clienteDTO) {
-            Cliente updatedEntity = clienteDTO.convertToEntity();
-            return ResponseEntity.ok(clienteService.update(updatedEntity));
-
-
+            return ResponseEntity.ok(clienteService.update(clienteDTO));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCliente(@PathVariable Integer id) {
