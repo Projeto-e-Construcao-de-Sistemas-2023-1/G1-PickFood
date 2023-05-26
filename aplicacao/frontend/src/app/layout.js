@@ -18,16 +18,6 @@ export default function RootLayout({ children }) {
 
   const [usuario, setUsuario] = useState({});
 
-  useEffect(() => {
-
-    const possivelUsuario = JSON.parse(localStorage.getItem("usuario"));
-
-    if (possivelUsuario && Object.keys(possivelUsuario).length !== 0) {
-      setUsuario(possivelUsuario);
-    }
-
-  }, [])
-
   return (
     <html lang="pt-br">
       <body className={inter.className}>

@@ -17,22 +17,22 @@ export default function Home() {
 
     const { usuario } = useContext(AuthContext);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        request.get("restaurante/list")
-            .then((response) => {
-                console.log("Entrou no then: ")
-                console.log(response);
-            })
-            .catch((error) => {
-                console.error("Entrou no catch: ");
-                console.error(error);
-            })
-            .finally(() => {
-                console.warn("Entrou no finally: ");
+    //     request.get("restaurante/list")
+    //         .then((response) => {
+    //             console.log("Entrou no then: ")
+    //             console.log(response);
+    //         })
+    //         .catch((error) => {
+    //             console.error("Entrou no catch: ");
+    //             console.error(error);
+    //         })
+    //         .finally(() => {
+    //             console.warn("Entrou no finally: ");
                 
-            });
-    })
+    //         });
+    // })
 
     return(
         <>

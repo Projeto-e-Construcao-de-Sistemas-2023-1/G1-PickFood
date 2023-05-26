@@ -10,7 +10,7 @@ import {
 } from "./styles.module.scss";
 export default function Pesquisa({ setBusca }){
     
-    const [valor, setValor] = useState();
+    const [valor, setValor] = useState("");
 
     const handleChange = (e) => {
         const input = e.target;

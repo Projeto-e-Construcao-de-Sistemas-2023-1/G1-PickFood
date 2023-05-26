@@ -15,7 +15,7 @@ export default function ClienteLayout({ children }) {
 
         console.log(usuario)
         
-        if (Object.keys(usuario).length === 0) {
+        if (!usuario || Object.keys(usuario).length === 0) {
             router.push("/auth/login");
         }
 
