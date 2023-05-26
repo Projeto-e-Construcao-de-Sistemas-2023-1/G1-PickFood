@@ -31,7 +31,7 @@ public class Item extends BaseEntity {
     @Column(name = "foto")
     private String foto;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "restaurante")
     private Restaurante restaurante;
 

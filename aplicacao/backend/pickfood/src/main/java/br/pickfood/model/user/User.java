@@ -47,19 +47,19 @@ public class User extends BaseEntity implements UserDetails {
 	public UserDTO convertToDto() {
     	UserDTO dto = new UserDTO();
     	dto.setId(this.id);
-    	dto.setIdCliente(this.cliente.getId());
-    	dto.setIdRestaurante(this.restaurante.getId());
     	dto.setEmail(this.email);
     	dto.setSenha(this.senha);
     	
     	if(restaurante != null) {
     		String name = restaurante.getClass().getName();
     		dto.setType(name.substring(name.lastIndexOf('.') + 1).toLowerCase());
+        	dto.setIdRestaurante(this.restaurante.getId());
     	}
     	
     	if(cliente != null) {
     		String name = cliente.getClass().getName();
     		dto.setType(name.substring(name.lastIndexOf('.') + 1).toLowerCase());
+        	dto.setIdCliente(this.cliente.getId());
     	}
     	
     	return dto;
