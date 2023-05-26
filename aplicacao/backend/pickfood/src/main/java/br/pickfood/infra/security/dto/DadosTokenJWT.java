@@ -1,4 +1,4 @@
-package br.pickfood.infra.security.dto;
-
-public record DadosTokenJWT(String tokenJWT) {
-}
+//package br.pickfood.infra.security.dto;
+//
+//public record DadosTokenJWT(String tokenJWT) {
+//}

@@ -2,6 +2,8 @@ package br.pickfood.model.dto.restaurante;
 
 import java.sql.Time;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import br.pickfood.groups.ICreation;
 import br.pickfood.groups.IUpdate;
 import br.pickfood.model.dto.BaseDTO;
@@ -26,17 +28,22 @@ public class RestauranteDTO extends BaseDTO<Restaurante> {
 	
 	private UserDTO user;
 	
-    private String nome_fantasia;
+	@JsonProperty(value = "nome_fantasia")
+    private String nomeFantasia;
     
     private String cnpj;
+    
+	@JsonProperty(value = "razao_social")
+    private String razaoSocial;
 
-    private String razao_social;
+	@JsonProperty(value = "horario_abertura")
+    private Time horarioAbertura;
 
-    private Time horario_abertura;
-
-    private Time horario_fechamento;
-
-    private Double taxa_entrega;
+	@JsonProperty(value = "horario_fechamento")
+    private Time horarioFechamento;
+	
+	@JsonProperty(value = "taxa_entrega")
+    private Double taxaEntrega;
     
     private EnderecoDTO endereco;
     
@@ -51,11 +58,11 @@ public class RestauranteDTO extends BaseDTO<Restaurante> {
         				.senha(this.user.getSenha())
         				.build())
         		.cnpj(this.cnpj)
-        		.nomeFantasia(this.nome_fantasia)
-        		.razaoSocial(this.razao_social)
-        		.horarioAbertura(this.horario_abertura)
-        		.horarioFechamento(this.horario_fechamento)
-        		.taxaEntrega(this.taxa_entrega)
+        		.nomeFantasia(this.nomeFantasia)
+        		.razaoSocial(this.razaoSocial)
+        		.horarioAbertura(this.horarioAbertura)
+        		.horarioFechamento(this.horarioFechamento)
+        		.taxaEntrega(this.taxaEntrega)
         		.endereco(endereco.convertToEntity())
         		.telefone(this.telefone)
         		.build();

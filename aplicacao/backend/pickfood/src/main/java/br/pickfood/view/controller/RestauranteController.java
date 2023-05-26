@@ -1,7 +1,11 @@
 package br.pickfood.view.controller;
 
-import br.pickfood.model.dto.item.ItemDTO;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +19,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import br.pickfood.groups.ICreation;
 import br.pickfood.groups.IUpdate;
 import br.pickfood.model.dto.restaurante.RestauranteDTO;
 import br.pickfood.model.restaurante.Restaurante;
 import br.pickfood.service.restaurante.RestauranteService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/restaurante")
@@ -43,9 +48,7 @@ public class RestauranteController {
     public ResponseEntity<RestauranteDTO> update(@RequestBody @Validated(IUpdate.class)
     		RestauranteDTO dto){
     	
-    	Restaurante entity = dto.convertToEntity();
-    	
-    	return new ResponseEntity(service.update(entity), HttpStatusCode.valueOf(200));
+    	return new ResponseEntity(service.update(dto), HttpStatusCode.valueOf(200));
     }
     
     @GetMapping(path = "/list/{name}")
@@ -68,5 +71,22 @@ public class RestauranteController {
     public ResponseEntity<Object> delete(@PathVariable Integer id){
     	service.delete(id);
     	return new ResponseEntity(HttpStatusCode.valueOf(204));
+    }
+    
+    public static void copyNonNullProperties(Object src, Object target) {
+        BeanUtils.copyProperties(src, target, getNullPropertyNames(src));
+    }
+    
+    public static String[] getNullPropertyNames (Object source) {
+        final BeanWrapper src = new BeanWrapperImpl(source);
+        java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
+
+        Set<String> emptyNames = new HashSet<String>();
+        for(java.beans.PropertyDescriptor pd : pds) {
+            Object srcValue = src.getPropertyValue(pd.getName());
+            if (srcValue == null) emptyNames.add(pd.getName());
+        }
+        String[] result = new String[emptyNames.size()];
+        return emptyNames.toArray(result);
     }
 }

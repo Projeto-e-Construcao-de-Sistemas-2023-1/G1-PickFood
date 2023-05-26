@@ -4,13 +4,21 @@ package br.pickfood.model.restaurante;
 import java.sql.Time;
 import java.util.List;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import br.pickfood.model.BaseEntity;
 import br.pickfood.model.dto.restaurante.RestauranteDTO;
 import br.pickfood.model.dto.user.UserDTO;
 import br.pickfood.model.endereco.Endereco;
 import br.pickfood.model.item.Item;
 import br.pickfood.model.user.User;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,11 +32,11 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @SuperBuilder
 @Table(name = "Restaurante")
+@DynamicUpdate
 public class Restaurante extends BaseEntity{
 
     @Column(name = "nome_fantasia")
     private String nomeFantasia;
-
 
     @Column(name = "cnpj")
     private String cnpj;
@@ -45,7 +53,6 @@ public class Restaurante extends BaseEntity{
     @Column(name = "taxa_entrega")
     private Double taxaEntrega;
 
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco")
     private Endereco endereco;
@@ -60,7 +67,6 @@ public class Restaurante extends BaseEntity{
     @OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL)
     private List<Item> itens;
 
-
     public RestauranteDTO convertToDto() {
         return RestauranteDTO.builder()
         		.id(this.id)
@@ -71,11 +77,11 @@ public class Restaurante extends BaseEntity{
         				.type("restaurante")
         				.build())
         		.cnpj(this.cnpj)
-        		.nome_fantasia(this.nomeFantasia)
-        		.razao_social(this.razaoSocial)
-        		.horario_abertura(this.horarioAbertura)
-        		.horario_fechamento(this.horarioFechamento)
-        		.taxa_entrega(this.taxaEntrega)
+        		.nomeFantasia(this.nomeFantasia)
+        		.razaoSocial(this.razaoSocial)
+        		.horarioAbertura(this.horarioAbertura)
+        		.horarioFechamento(this.horarioFechamento)
+        		.taxaEntrega(this.taxaEntrega)
         		.endereco(this.endereco.convertToDto())
         		.telefone(this.telefone)
         		.build();
