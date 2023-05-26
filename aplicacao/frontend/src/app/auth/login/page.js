@@ -61,8 +61,10 @@ export default function Login() {
                 break;
             }
         }
-
-        router.push("/cliente/home")
+        if(email != "" || senha != ""){
+            router.push("/cliente/home")
+        }
+   
         // request.post("user/login", {
         //     email,
         //     senha
