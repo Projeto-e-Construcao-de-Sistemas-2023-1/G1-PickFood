@@ -42,7 +42,7 @@ public class Cliente extends BaseEntity {
     private User user;
 
 
-    @OneToMany
+    @OneToMany()
     private List<Endereco> endereco;
 
     @OneToMany
