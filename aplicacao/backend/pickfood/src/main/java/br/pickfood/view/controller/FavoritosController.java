@@ -28,12 +28,12 @@ public class FavoritosController {
 	FavoritosService service;
 	
     @PostMapping
-    public ResponseEntity<FavoritosDTO> cadastrar(@RequestBody @Validated(ICreation.class)
+    public ResponseEntity<Object> cadastrar(@RequestBody @Validated(ICreation.class)
     	FavoritosDTO dto){
     	
     	Favoritos entity = dto.convertToEntity();
     	
-    	return new ResponseEntity(service.create(entity), HttpStatusCode.valueOf(200));
+    	return new ResponseEntity(service.createAndReturnRestaurante(entity), HttpStatusCode.valueOf(200));
     }
     
     @DeleteMapping
