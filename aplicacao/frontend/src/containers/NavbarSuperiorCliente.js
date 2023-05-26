@@ -1,12 +1,30 @@
 'use client';
 
+import { AuthContext } from "@/app/layout";
 import NavbarSuperior from "@/components/NavbarSuperior";
 import Overlay from "@/components/Overlay";
-import { useState } from "react";
+import request from "@/services/axios";
+import { useContext, useEffect, useState } from "react";
 
 export default function NavbarSuperiorCliente() {
 
     const [ativo, setAtivo] = useState(false);
+    const [nome, setNome] = useState("");
+    const { usuario } = useContext(AuthContext);
+
+    useEffect(() => {
+
+        request.get(`cliente/${usuario.id}`)
+            .then((res) => {
+                const dados = res.data;
+
+                setNome(dados.nome);
+            })
+            .catch((err) => {
+
+                setNome("Joelma");
+            });
+    }, [usuario.id])
 
     return (
         <>
@@ -15,7 +33,7 @@ export default function NavbarSuperiorCliente() {
 
                 
                 <NavbarSuperior.Botao onClick={ () => { setAtivo(prev => !prev) } }>
-                    Joelma
+                    { nome }
                 </NavbarSuperior.Botao>
 
 
@@ -28,7 +46,7 @@ export default function NavbarSuperiorCliente() {
                         <NavbarSuperior.IconeDropdown src="/icons/meus-pedidos.svg"/>
                         <NavbarSuperior.LabelDropdown>Meus Pedidos</NavbarSuperior.LabelDropdown>
                     </NavbarSuperior.LinkDropdown>
-                    <NavbarSuperior.LinkDropdown href="">
+                    <NavbarSuperior.LinkDropdown href="/auth/login">
                         <NavbarSuperior.IconeDropdown src="/icons/sair.svg"/>
                         <NavbarSuperior.LabelDropdown>Sair</NavbarSuperior.LabelDropdown>
                     </NavbarSuperior.LinkDropdown>

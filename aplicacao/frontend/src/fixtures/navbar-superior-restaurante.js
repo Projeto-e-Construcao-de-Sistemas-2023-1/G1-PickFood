@@ -7,7 +7,7 @@ const navbarSuperiorRestaurante =  [
     },
     {
         id: 2,
-        link: "",
+        link: "/auth/login",
         icone: "/icons/sair.svg",
         label: "Sair"
     }

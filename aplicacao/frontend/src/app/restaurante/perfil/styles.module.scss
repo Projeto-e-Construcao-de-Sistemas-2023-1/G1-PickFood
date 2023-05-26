@@ -26,7 +26,8 @@
     display: flex;
     justify-content: center;
 
-    margin-top: utils.converterPxParaRem(40px);
+    margin-top: utils.converterPxParaRem(20px);
+    margin-bottom: utils.converterPxParaRem(70px);
 }
 
 .excluirConta {
