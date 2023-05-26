@@ -12,8 +12,8 @@ Form.Label = function InputLabel({ children }) {
     return <label className={ styles.label }>{ children }</label>
 }
 
-Form.Input = function FormInput({ value, onChange}) {
-    return <input className={ styles.input } value={ value } onChange={ onChange }/>
+Form.Input = function FormInput({ type, value, onChange}) {
+    return <input className={ styles.input } value={ value } onChange={ onChange } type={ type }/>
 } 
 
 Form.Button = function FormButton({ children, ...restProps }) {

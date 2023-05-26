@@ -49,12 +49,27 @@ export default function Login() {
             senha
         })
         .then((res) => {
-            console.log(res);
+            console.log(res.data);
 
-            router.push("/cliente/home");
+            const dados = res.data;
+
+            definirUsuario({
+                id: dados.id,
+                email: dados.email,
+                tipo: dados.type
+            })
+
+            if (dados.type === "restaurante") {
+                router.push("/restaurante/home");
+            } else {
+                router.push("/cliente/home");
+            }
+
         })
         .catch((err) => {
-            console.error(err);
+            console.log(err);
+
+            router.push("/auth/login");
         })
 
     }
@@ -80,7 +95,7 @@ export default function Login() {
                 
                 <Form.Field>
                     <Form.Label>Senha</Form.Label>
-                    <Form.Input value={ senha } onChange={ handleSenha }/>
+                    <Form.Input value={ senha } onChange={ handleSenha } type={ "password" }/>
                 </Form.Field>
 
                 <Form.Button onClick={ authenticate }>Entrar</Form.Button>
