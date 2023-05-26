@@ -2,7 +2,7 @@
 @use "../styles/cores.module.scss";
 
 .descricao {
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: utils.converterPxParaRem(16px);
 }
 
@@ -36,6 +36,6 @@
 }
 
 .espacamento {
-    margin-bottom: utils.converterPxParaRem(10px);
+    margin-bottom: utils.converterPxParaRem(20px);
     text-align: justify;
 }
