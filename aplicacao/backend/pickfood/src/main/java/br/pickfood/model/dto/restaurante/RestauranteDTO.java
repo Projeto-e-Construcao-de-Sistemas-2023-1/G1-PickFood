@@ -39,6 +39,8 @@ public class RestauranteDTO extends BaseDTO<Restaurante> {
     private Double taxa_entrega;
     
     private EnderecoDTO endereco;
+    
+    private String telefone;
 
     @Override
     public Restaurante convertToEntity() {
@@ -55,6 +57,7 @@ public class RestauranteDTO extends BaseDTO<Restaurante> {
         		.horarioFechamento(this.horario_fechamento)
         		.taxaEntrega(this.taxa_entrega)
         		.endereco(endereco.convertToEntity())
+        		.telefone(this.telefone)
         		.build();
     }
 }
