@@ -16,28 +16,47 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Logo from "@/components/Logo";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "@/app/layout";
+import request from "@/services/axios";
 
 export default function Login() {
 
     const router = useRouter();
+
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+
+    const handleEmail = (e) => {
+        const valor = e.target.value;
+
+        setEmail(valor);
+    }
+
+    const handleSenha = (e) => {
+        const valor = e.target.value;
+
+        setSenha(valor);
+    }
 
     const { definirUsuario } = useContext(AuthContext);
 
     const authenticate = (e) => {
         e.preventDefault();
 
-        const dados = {nome: "pedro"};
+        request.post("user/login", {
+            email,
+            senha
+        })
+        .then((res) => {
+            console.log(res);
 
-        definirUsuario(dados);
+            router.push("/cliente/home");
+        })
+        .catch((err) => {
+            console.error(err);
+        })
 
-        const dadosJson = JSON.stringify(dados);
-
-        localStorage.setItem("usuario", dadosJson);
-
-
-        router.push("/cliente/home");
     }
 
     return (
@@ -56,12 +75,12 @@ export default function Login() {
             <Form>
                 <Form.Field>
                     <Form.Label>Email</Form.Label>
-                    <Form.Input/>
+                    <Form.Input value={ email } onChange={ handleEmail }/>
                 </Form.Field>
                 
                 <Form.Field>
                     <Form.Label>Senha</Form.Label>
-                    <Form.Input/>
+                    <Form.Input value={ senha } onChange={ handleSenha }/>
                 </Form.Field>
 
                 <Form.Button onClick={ authenticate }>Entrar</Form.Button>
