@@ -9,22 +9,21 @@ import { useContext, useEffect, useState } from "react";
 export default function NavbarSuperiorCliente() {
 
     const [ativo, setAtivo] = useState(false);
-    const [nome, setNome] = useState("");
     const { usuario } = useContext(AuthContext);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        request.get(`cliente/${usuario.id}`)
-            .then((res) => {
-                const dados = res.data;
+    //     // request.get(`cliente/${usuario.id}`)
+    //     //     .then((res) => {
+    //     //         const dados = res.data;
 
-                setNome(dados.nome);
-            })
-            .catch((err) => {
+    //     //         setNome(dados.nome);
+    //     //     })
+    //     //     .catch((err) => {
 
-                setNome("Joelma");
-            });
-    }, [usuario.id])
+    //     //         setNome("Joelma");
+    //     //     });
+    // }, [usuario.id])
 
     return (
         <>
@@ -33,7 +32,7 @@ export default function NavbarSuperiorCliente() {
 
                 
                 <NavbarSuperior.Botao onClick={ () => { setAtivo(prev => !prev) } }>
-                    { nome }
+                    { usuario.nome }
                 </NavbarSuperior.Botao>
 
 

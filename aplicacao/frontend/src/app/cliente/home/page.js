@@ -16,31 +16,31 @@ export default function Home() {
   
     const { usuario } = useContext(AuthContext);
   
-    const listByName = (valor) => {
-      request
-        .get(`restaurante/list/${valor}`)
-        .then((response) => {
-          const dados = response.data;
-          setRestaurantes(dados);
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-        .finally(() => {
-          console.warn("Entrou no finally: ");
-        });
-    };
+    // const listByName = (valor) => {
+    //   request
+    //     .get(`restaurante/list/${valor}`)
+    //     .then((response) => {
+    //       const dados = response.data;
+    //       setRestaurantes(dados);
+    //     })
+    //     .catch((error) => {
+    //       console.error(error);
+    //     })
+    //     .finally(() => {
+    //       console.warn("Entrou no finally: ");
+    //     });
+    // };
   
     useEffect(() => {
-      request
-        .get("restaurante/list")
-        .then((response) => {
-          const dados = response.data;
-          setRestaurantes(dados);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      // request
+      //   .get("restaurante/list")
+      //   .then((response) => {
+      //     const dados = response.data;
+      //     setRestaurantes(dados);
+      //   })
+      //   .catch((error) => {
+      //     console.error(error);
+      //   });
     }, []);
   
     const handleBusca = (valor) => {
