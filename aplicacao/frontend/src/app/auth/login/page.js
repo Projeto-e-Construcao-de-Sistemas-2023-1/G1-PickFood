@@ -19,6 +19,7 @@ import Logo from "@/components/Logo";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/app/layout";
 import request from "@/services/axios";
+import MeusDados from "@/app/cliente/meu-perfil/meus-dados/page";
 
 export default function Login() {
 
@@ -52,19 +53,23 @@ export default function Login() {
         for (const user of usuariosJaCadastrados) {
             if (user.senha == senha && user.email == email) {
 
-
                 definirUsuario({
                     id: user.id,
                     email: user.email,
-                    nome: user.nome
+                    nome: user.nome,
+                    tipo: user.tipo
                 });
+                if(email != "" || senha != ""){
+                    if (user.tipo == "cliente") {
+                        router.push("/cliente/home")
+                    } else {
+                        router.push("/restaurante/home")
+                    }
+                } 
                 break;
             }
         }
-        if(email != "" || senha != ""){
-            router.push("/cliente/home")
-        }
-   
+        
         // request.post("user/login", {
         //     email,
         //     senha

@@ -3,6 +3,8 @@
 import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Link from "next/link";
+
+
 import {
   title,
   center,
@@ -12,6 +14,8 @@ import {
   opcoes,
   link,
 } from "./styles.module.scss";
+
+
 import Modal from "@/components/Modal";
 import { useContext, useEffect, useState } from "react";
 import request from "@/services/axios";
@@ -75,15 +79,16 @@ export default function RestaurantePerfil() {
         break;
       }
     }
-    setNomeFantasia(dados.nome_fantasia);
+    setNomeFantasia(dados.nomeFantasia);
     setRestaurante(dados);
     setEmail(dados.email);
     setCnpj(dados.cnpj);
-    setRazaoSocial(dados.razao_social);
-    setHorarioAbertura(dados.horario_abertura);
-    setTaxaEntrega(dados.taxa_entrega);
+    setRazaoSocial(dados.razaoSocial);
+    setHorarioAbertura(dados.horarioAbertura);
+    setTaxaEntrega(dados.taxaEntrega);
     setTelefone(dados.telefone);
-    setHorarioFechamento(dados.horario_fechamento);
+    setHorarioFechamento(dados.horarioFechamento);
+    setCep(dados.cep)
   }, []);
 
   return (
