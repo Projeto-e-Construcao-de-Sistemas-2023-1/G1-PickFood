@@ -9,5 +9,8 @@ import br.pickfood.service.BaseServiceImpl;
 
 @Service
 public class UserService extends BaseServiceImpl<UserDTO, User, IUserRepository>{
-
+	
+	public UserDTO login(User user) {
+		return baseRepository.findByEmailAndSenha(user.getEmail(), user.getSenha()).convertToDto();
+	}
 }

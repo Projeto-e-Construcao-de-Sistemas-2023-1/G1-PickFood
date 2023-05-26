@@ -19,14 +19,18 @@ public class Item extends BaseEntity {
 
     @Column(name = "preco")
     private Float preco;
+
     @Column(name = "nome")
     private String nome;
+
     @Column(name = "tipo")
     private String tipo;
+
     @Column(name = "descricao")
     private String descricao;
-    //@Column(name = "foto")
-    //private String foto;
+
+    @Column(name = "foto")
+    private String foto;
 
     @Override
     public ItemDTO convertToDto() {
@@ -34,6 +38,7 @@ public class Item extends BaseEntity {
                 .preco(this.preco)
                 .tipo(this.tipo)
                 .descricao(this.descricao)
+                .foto(this.foto)
                 .build();
     }
 }
