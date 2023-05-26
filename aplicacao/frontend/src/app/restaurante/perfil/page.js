@@ -17,7 +17,7 @@ import { useContext, useEffect, useState } from "react";
 import request from "@/services/axios";
 import { AuthContext } from "@/app/layout";
 
-export default function Perfil() {
+export default function RestaurantePerfil() {
 
     const [ativo, setAtivo] = useState(false);
 

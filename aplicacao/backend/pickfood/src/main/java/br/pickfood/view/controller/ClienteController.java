@@ -30,7 +30,7 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
-
+    @Autowired
     private EnderecoService enderecoService;
 
     @GetMapping
@@ -102,19 +102,13 @@ public class ClienteController {
     @PostMapping("{id}/enderecos") //associa endereco ao cliente
     public ResponseEntity<EnderecoDTO> cadastrarEnderecoCliente(@PathVariable Integer id, @RequestBody EnderecoDTO enderecoDTO) {
         Cliente cliente = clienteService.findEntityById(id);
+        Endereco endereco = enderecoDTO.convertToEntity();
+        cliente.getEndereco().add(endereco);
+        EnderecoDTO enderecoCadastrado = enderecoService.create(endereco);
+        return ResponseEntity.status(HttpStatus.CREATED).body(enderecoCadastrado);
 
 
-        if (cliente != null) {
 
-            Endereco endereco = enderecoDTO.convertToEntity();
-            cliente.getEndereco().add(endereco);
-
-            EnderecoDTO enderecoCadastrado = enderecoService.create(endereco);
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(enderecoCadastrado);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
 }
