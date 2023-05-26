@@ -11,6 +11,7 @@ import lombok.*;
 @Table
 @Entity
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -38,6 +39,7 @@ public class Item extends BaseEntity {
     @Override
     public ItemDTO convertToDto() {
         return ItemDTO.builder()
+                .nome(this.nome)
                 .preco(this.preco)
                 .tipo(this.tipo)
                 .descricao(this.descricao)
