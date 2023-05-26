@@ -20,4 +20,6 @@ public class ItemService extends BaseServiceImpl<ItemDTO, Item, IItemRepository>
     public List<ItemDTO> listAll(){
         return baseRepository.findAll().stream().map(Item::convertToDto).collect(Collectors.toList());
     }
+
+
 }
