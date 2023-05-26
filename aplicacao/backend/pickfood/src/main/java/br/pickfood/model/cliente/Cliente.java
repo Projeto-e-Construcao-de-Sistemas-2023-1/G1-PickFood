@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.pickfood.model.BaseEntity;
 import br.pickfood.model.dto.cliente.ClienteDTO;
+import br.pickfood.model.dto.user.UserDTO;
 import br.pickfood.model.endereco.Endereco;
 import br.pickfood.model.pedido.Pedido;
 import br.pickfood.model.user.User;
@@ -52,6 +53,13 @@ public class Cliente extends BaseEntity {
     @Override
     public ClienteDTO convertToDto() {
         return ClienteDTO.builder()
+                .id(this.id)
+                .user(UserDTO.builder()
+                        .id(this.user.getId())
+                        .senha(this.user.getSenha())
+                        .email(this.user.getEmail())
+                        .type("restaurante")
+                        .build())
                 .nome(this.nome)
                 .cpf(this.cpf)
                 .telefone(this.telefone)
