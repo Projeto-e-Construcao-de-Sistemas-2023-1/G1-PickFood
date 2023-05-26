@@ -6,6 +6,7 @@ import java.sql.Time;
 import br.pickfood.model.BaseEntity;
 import br.pickfood.model.cliente.Cliente;
 import br.pickfood.model.dto.restaurante.RestauranteDTO;
+import br.pickfood.model.dto.user.UserDTO;
 import br.pickfood.model.endereco.Endereco;
 import br.pickfood.model.user.User;
 import jakarta.persistence.*;
@@ -54,7 +55,12 @@ public class Restaurante extends BaseEntity{
     public RestauranteDTO convertToDto() {
         return RestauranteDTO.builder()
         		.id(this.id)
-        		.user_id(this.getUser().getId())
+        		.user(UserDTO.builder()
+        				.id(this.user.getId())
+        				.senha(this.user.getSenha())
+        				.email(this.user.getEmail())
+        				.type("restaurante")
+        				.build())
         		.cnpj(this.cnpj)
         		.nome_fantasia(this.nomeFantasia)
         		.razao_social(this.razaoSocial)

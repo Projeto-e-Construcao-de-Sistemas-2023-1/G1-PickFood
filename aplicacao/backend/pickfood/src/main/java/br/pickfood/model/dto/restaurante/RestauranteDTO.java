@@ -6,6 +6,7 @@ import br.pickfood.groups.ICreation;
 import br.pickfood.groups.IUpdate;
 import br.pickfood.model.dto.BaseDTO;
 import br.pickfood.model.dto.endereco.EnderecoDTO;
+import br.pickfood.model.dto.user.UserDTO;
 import br.pickfood.model.restaurante.Restaurante;
 import br.pickfood.model.user.User;
 import jakarta.validation.constraints.NotNull;
@@ -23,7 +24,7 @@ public class RestauranteDTO extends BaseDTO<Restaurante> {
     @NotNull(groups = {IUpdate.class}, message = "{field.not.null}")
 	private Integer id;
 	
-	private Integer user_id;
+	private UserDTO user;
 	
     private String nome_fantasia;
     
@@ -43,7 +44,10 @@ public class RestauranteDTO extends BaseDTO<Restaurante> {
     public Restaurante convertToEntity() {
         return Restaurante.builder()
         		.id(this.id)
-        		.user(User.builder().id(this.user_id).build())
+        		.user(User.builder().id(this.user.getId())
+        				.email(this.user.getEmail())
+        				.senha(this.user.getSenha())
+        				.build())
         		.cnpj(this.cnpj)
         		.nomeFantasia(this.nome_fantasia)
         		.razaoSocial(this.razao_social)
