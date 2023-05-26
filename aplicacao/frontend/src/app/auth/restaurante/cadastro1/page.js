@@ -1,13 +1,16 @@
 'use client';
+
 import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import { 
     title,
     center,
     forms,
-    arrow
+    arrow,
+    logo
 } from "./styles.module.scss"
 
 export default function Cadastro1() {
@@ -26,10 +29,11 @@ export default function Cadastro1() {
                 className={ arrow }
                 alt="Icone de seta apontando para trás."
             />
-                 
             </Link>
-            
 
+            <Logo className={ logo }/>
+                 
+            
             <h2 className={ [center, title].join(' ') }>Informações do restaurante</h2>
 
             <div className={forms}>

@@ -42,6 +42,7 @@ export default function Login() {
 
     return (
         <>
+        <Link href={ "" }>
             <Image
                 src="/icons/back.svg"
                 width={ 21 }
@@ -49,6 +50,8 @@ export default function Login() {
                 className={ arrow }
                 alt="Icone de seta apontando para trás."
             />
+        </Link>
+            
            <Logo className={ logo }/>
             <Form>
                 <Form.Field>
@@ -77,7 +80,7 @@ export default function Login() {
                     Entrar com Google
                 </button>
 
-                <Link href={ "" } className={ [link, center].join(' ') }>Quero me tornar um parceiro</Link>
+                <Link href={ "/auth/restaurante/cadastro1" } className={ [link, center].join(' ') }>Quero me tornar um parceiro</Link>
             </div>
         </>
     )
