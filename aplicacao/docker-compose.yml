@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8080:8080
+    volumes:
+      - ./backend/pickfood:/app
     depends_on:
       - database # n sei se a gnt iria precisar passar algo do database aq... mas talvez si
   frontend:
@@ -14,6 +16,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
+    volumes:
+      - ./frontend:/app  
     depends_on:
       - backend
   database:
