@@ -1,11 +1,11 @@
 import Form from "@/components/Form";
 import { tituloPagina } from "../../../../styles/componentes.module.scss";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function MeusDados() {
     return(
         <>
-            <Image width={21} height={21} src="/icons/back.svg"/>
             <h2 className={ tituloPagina }>Meus Dados</h2>
             <Form>
                 <Form.Field>
@@ -24,7 +24,10 @@ export default function MeusDados() {
                     <Form.Label>CPF</Form.Label>
                     <Form.Input/>
                 </Form.Field>
-                <Form.Button>Salvar alterações</Form.Button>
+                <Link href={ "/cliente/meu-perfil" }>
+                    <Form.Button>Salvar alterações</Form.Button>
+                </Link>
+                
             </Form>
         </>
     )

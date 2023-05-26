@@ -8,7 +8,7 @@ import {
     imagem
 } from "./styles.module.scss"
 
-export default function Cadastro1() {
+export default function EditarPrato() {
 
     const authenticate = () => {
         // request

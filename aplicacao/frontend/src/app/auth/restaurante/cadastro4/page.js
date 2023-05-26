@@ -11,7 +11,8 @@ import {
     checkbox,
     checkboxes,
     arrow,
-    logo
+    logo,
+    link
 } from "./styles.module.scss"
 
 export default function Cadastro4() {
@@ -87,7 +88,7 @@ export default function Cadastro4() {
                     </div>
                     
                 </div>
-                <Link href={"restaurante/home"}>
+                <Link href={"restaurante/home"} className={ "link" }>
                      <div className={ center }><Form.Button onClick={ () => authenticate() }>Continuar</Form.Button></div>
                 </Link>
                

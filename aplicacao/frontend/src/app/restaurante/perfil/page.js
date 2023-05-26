@@ -15,7 +15,7 @@ import {
 import Modal from "@/components/Modal";
 import { useState } from "react";
 
-export default function Cadastro1() {
+export default function RestaurantePerfil() {
 
     const [ativo, setAtivo] = useState(false);
 
