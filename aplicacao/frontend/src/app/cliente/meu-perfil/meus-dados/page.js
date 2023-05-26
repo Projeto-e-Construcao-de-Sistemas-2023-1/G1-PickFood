@@ -85,12 +85,11 @@ export default function MeusDados() {
 
         console.log(usuariosJaCadastrados)
 
-        usuariosJaCadastrados = usuariosJaCadastrados.splice(indexBuscado, 1);
-        usuariosJaCadastrados.push(userBuscado);
+        usuariosJaCadastrados.splice(indexBuscado, 1);
+       
 
-        console.log(usuariosJaCadastrados);
 
-        localStorage.setItem("usuarios", usuariosJaCadastrados);
+        localStorage.setItem("usuarios", JSON.stringify([userBuscado, ...usuariosJaCadastrados]));
         
     }
 
