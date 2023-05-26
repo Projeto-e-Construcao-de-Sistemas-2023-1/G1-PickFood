@@ -15,6 +15,10 @@ public class UserDTO extends BaseDTO<User>{
 	
 	private Integer id;
 	
+	private Integer idRestaurante;
+	
+	private Integer idCliente;
+	
 	private String email;
 	
 	private String senha;
