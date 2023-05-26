@@ -14,4 +14,6 @@ public class ClienteService extends BaseServiceImpl<ClienteDTO, Cliente, IClient
     public List<ClienteDTO> listarTodos() {
         return baseRepository.findAll().stream().map(Cliente::convertToDto).collect(Collectors.toList());
     }
+
+
 }
