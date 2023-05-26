@@ -62,6 +62,36 @@ export default function MeusDados() {
     
     const alterar = () => {
 
+        let usuariosJaCadastrados = JSON.parse(localStorage.getItem("usuarios"));
+
+        let userBuscado = {};
+        let indexBuscado = -1;
+
+        for (const index in usuariosJaCadastrados) {
+            if (usuariosJaCadastrados[index].id === usuario.id) {
+                userBuscado = usuariosJaCadastrados[index];
+                indexBuscado = index;
+                break;
+            }
+        }
+
+        userBuscado = {
+            ...userBuscado,
+            nome,
+            email,
+            cpf,
+            telefone
+        }
+
+        console.log(usuariosJaCadastrados)
+
+        usuariosJaCadastrados = usuariosJaCadastrados.splice(indexBuscado, 1);
+        usuariosJaCadastrados.push(userBuscado);
+
+        console.log(usuariosJaCadastrados);
+
+        localStorage.setItem("usuarios", usuariosJaCadastrados);
+        
     }
 
     return(
@@ -85,7 +115,7 @@ export default function MeusDados() {
                     <Form.Input value={ cpf } onChange={ handleCpf }/>
                 </Form.Field>
 
-                <Form.Button onClick={ "" }>Salvar alterações</Form.Button>
+                <Form.Button onClick={ alterar }>Salvar alterações</Form.Button>
             </Form>
         </>
     )
