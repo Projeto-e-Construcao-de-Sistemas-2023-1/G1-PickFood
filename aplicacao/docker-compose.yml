@@ -8,8 +8,7 @@ services:
       - 8080:8080
     volumes:
       - ./backend/pickfood:/app
-    depends_on:
-      - database # n sei se a gnt iria precisar passar algo do database aq... mas talvez si
+
   frontend:
     build:
       context: ./frontend
@@ -20,12 +19,3 @@ services:
       - ./frontend:/app  
     depends_on:
       - backend
-  database:
-    image: mysql:latest
-    environment:
-      - MYSQL_DATABASE=${mysqldatabase}
-      - MYSQL_ROOT_PASSWORD=${mysqlpassword}
-      - MYSQL_USER=${mysqluser}
-      - MYSQL_PASSWORD=${mysqlpassword}
-      - MYSQL_HOST=${mysqlhost}
-      - MYSQL_PORT=${mysqlport} # botamos as creds aq ou a gnt da export qnd dermos o up?
