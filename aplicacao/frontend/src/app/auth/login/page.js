@@ -77,7 +77,7 @@ export default function Login() {
                     Entrar com Google
                 </button>
 
-                <Link href={ "" } className={ [link, center].join(' ') }>Quero me tornar um parceiro</Link>
+                <Link href={ "/auth/restaurante/cadastro1" } className={ [link, center].join(' ') }>Quero me tornar um parceiro</Link>
             </div>
         </>
     )

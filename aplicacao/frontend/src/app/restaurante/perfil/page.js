@@ -1,6 +1,5 @@
 'use client';
 
-import Image from "next/image";
 import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Link from "next/link";
@@ -10,7 +9,8 @@ import {
     forms,
     excluirConta,
     textoExcluirConta,
-    opcoes
+    opcoes,
+    link
 } from "./styles.module.scss"
 import Modal from "@/components/Modal";
 import { useState } from "react";
@@ -21,7 +21,6 @@ export default function Cadastro1() {
 
     return (
         <Container>
-
             <Modal ativo={ ativo }>
                 <Modal.Cabecalho>
                     <Modal.Icone svg="/icons/aviso.svg"/>
@@ -37,44 +36,42 @@ export default function Cadastro1() {
             <h2 className={ [center, title].join(' ') }>Minhas informações</h2>
 
             <div className={forms}>
-            <Form>
-                <Form.Field>
-                    <Form.Label>Nome do estabelecimento</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
-                
-                <Form.Field>
-                    <Form.Label>E-mail</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
+                <Form>
+                    <Form.Field>
+                        <Form.Label>Nome do estabelecimento</Form.Label>
+                        <Form.Input/>
+                    </Form.Field>
+                    
+                    <Form.Field>
+                        <Form.Label>E-mail</Form.Label>
+                        <Form.Input/>
+                    </Form.Field>
 
-                <Form.Field>
-                    <Form.Label>Telefone</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
-                
-                <Form.Field>
-                    <Form.Label>CNPJ</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
+                    <Form.Field>
+                        <Form.Label>Telefone</Form.Label>
+                        <Form.Input/>
+                    </Form.Field>
+                    
+                    <Form.Field>
+                        <Form.Label>CNPJ</Form.Label>
+                        <Form.Input/>
+                    </Form.Field>
 
-                <Form.Field>
-                    <Form.Label>Endereço</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
+                    <Form.Field>
+                        <Form.Label>Endereço</Form.Label>
+                        <Form.Input/>
+                    </Form.Field>
 
-                <Link href={"/restaurante/perfil"}>
-                <div className={ opcoes }>
-                    <Form.Button>Salvar alterações</Form.Button>
-                    <div className={ excluirConta } onClick={ () => { setAtivo(prev => !prev) } }>
-                    <div className={ textoExcluirConta }>Excluir conta</div>
-                    </div>
-                </div>
-                </Link>
-            
-            </Form>
+                    <Link href={"/restaurante/perfil"} className={ link }>
+                        <div className={ opcoes }>
+                            <Form.Button>Salvar alterações</Form.Button>
+                                <div className={ excluirConta } onClick={ () => { setAtivo(prev => !prev) } }>
+                                <div className={ textoExcluirConta }>Excluir conta</div>
+                                </div>
+                        </div>
+                    </Link>
+                </Form>
             </div>
-
         </Container>
     )
 }
