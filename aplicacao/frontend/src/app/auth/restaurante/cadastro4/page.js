@@ -4,12 +4,14 @@ import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import { 
     center,
     title,
     checkbox,
     checkboxes,
-    arrow
+    arrow,
+    logo
 } from "./styles.module.scss"
 
 export default function Cadastro4() {
@@ -29,6 +31,8 @@ export default function Cadastro4() {
                 alt="Icone de seta apontando para trás."
                 />
             </Link>
+            
+            <Logo className={ logo }/>
             
             <h2 className={ title }>Risco de Contaminação Cruzada</h2>
 

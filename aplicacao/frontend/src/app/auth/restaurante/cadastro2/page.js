@@ -4,11 +4,13 @@ import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import { 
     title,
     center,
     forms,
-    arrow
+    arrow,
+    logo
 } from "./styles.module.scss"
 
 export default function Cadastro2() {
@@ -28,8 +30,9 @@ export default function Cadastro2() {
                 alt="Icone de seta apontando para trás."
                 />
             </Link>
-            
 
+            <Logo className={ logo }/>
+            
             <h2 className={ [center, title].join(' ') }>Informações Adicionais</h2>
 
             <div className={forms}>

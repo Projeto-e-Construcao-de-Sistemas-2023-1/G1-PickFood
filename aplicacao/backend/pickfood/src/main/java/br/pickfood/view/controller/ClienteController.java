@@ -3,8 +3,10 @@ package br.pickfood.view.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.pickfood.model.dto.restaurante.RestauranteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,10 +34,8 @@ public class ClienteController {
     private EnderecoService enderecoService;
 
     @GetMapping
-    public ResponseEntity<Object> getAllClientes() {
-        List<ClienteDTO> clienteDTOList = clienteService.listarTodos();
-
-       return clienteDTOList.isEmpty()? ResponseEntity.notFound().build() : ResponseEntity.ok(clienteDTOList);
+    public ResponseEntity<ClienteDTO> getAllClientes() {
+       return new ResponseEntity(clienteService.listarTodos(), HttpStatusCode.valueOf(200));
 
     }
 

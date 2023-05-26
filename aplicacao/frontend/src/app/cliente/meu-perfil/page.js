@@ -1,5 +1,6 @@
 'use client';
-
+import Form from "@/components/Form";
+import { tituloPagina } from "../../../styles/componentes.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -14,7 +15,6 @@ import {
 } from "./styles.module.scss";
 import Modal from "@/components/Modal";
 import { useState } from "react";
-import { tituloPagina } from "../../../styles/componentes.module.scss";
 
 export default function MeuPerfil() {
 
@@ -44,7 +44,7 @@ export default function MeuPerfil() {
                     </Link>
                 </li>
                 <li className={ item }>
-                    <Link href={ "" } className={ link }>
+                    <Link href={ "/cliente/meu-perfil/meus-enderecos" } className={ link }>
                         <Image className={ icone } src="/icons/meus-enderecos.svg" alt="Icone de 'Meus Endereços'." width={15} height={15}/>
                         <div>Meus endereços</div>
                     </Link>

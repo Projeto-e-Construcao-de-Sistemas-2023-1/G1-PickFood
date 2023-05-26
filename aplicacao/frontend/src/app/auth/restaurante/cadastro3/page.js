@@ -1,13 +1,16 @@
 'use client';
+
 import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import { 
     title,
     center,
     forms,
-    arrow
+    arrow,
+    logo
 } from "./styles.module.scss"
 
 export default function Cadastro3() {
@@ -28,6 +31,7 @@ export default function Cadastro3() {
                 />
             </Link>
             
+            <Logo className={ logo }/>
 
             <h2 className={ [center, title].join(' ') }>Informações de Endereço</h2>
 
