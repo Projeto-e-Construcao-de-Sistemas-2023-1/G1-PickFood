@@ -15,7 +15,6 @@ export default function Cadastro1() {
 
     return (
         <Container>
-
             <Image
                 src="/icons/foto.svg"
                 width={ 21 }
@@ -25,31 +24,32 @@ export default function Cadastro1() {
             />
 
             <div className={forms}>
-            <Form>
-                <Form.Field>
-                    <Form.Label>Nome</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
-                
-                <Form.Field>
-                    <Form.Label>Tipo</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
+                <Form>
+                    <Form.Field>
+                        <Form.Label>Nome</Form.Label>
+                        <Form.Input/>
+                    </Form.Field>
+                    
+                    <Form.Field>
+                        <Form.Label>Tipo</Form.Label>
+                        <Form.Input/>
+                    </Form.Field>
 
-                <Form.Field>
-                    <Form.Label>Preço</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
-                
-                <Form.Field>
-                    <Form.Label>Descrição</Form.Label>
-                    <Form.Input/>
-                </Form.Field>
+                    <Form.Field>
+                        <Form.Label>Preço</Form.Label>
+                        <Form.Input/>
+                    </Form.Field>
+                    
+                    <Form.Field>
+                        <Form.Label>Descrição</Form.Label>
+                        <Form.Input/>
+                    </Form.Field>
 
-                <Form.Button onClick={ () => authenticate() }>Continuar</Form.Button>
-            </Form>
+                    <Link href={"/restaurante/cardapio"}>
+                        <Form.Button onClick={ () => authenticate() }>Continuar</Form.Button>
+                    </Link>
+                </Form>
             </div>
-
         </Container>
     )
 }

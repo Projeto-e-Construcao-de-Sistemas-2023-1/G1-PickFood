@@ -1,5 +1,6 @@
 import styles from "./styles.module.scss"
 import Image from "next/image";
+import Link from "next/link";
 
 import {
     lista,
@@ -23,7 +24,7 @@ export default function CardapioRestaurante() {
         <Modal ativo={ ativo }>
         <Modal.Cabecalho>
             <Modal.Icone svg="/icons/aviso.svg"/>
-            <Modal.Titulo>Tem certeza que deseja excluir sua conta?</Modal.Titulo>
+            <Modal.Titulo>Tem certeza que deseja excluir esse item?</Modal.Titulo>
         </Modal.Cabecalho>
 
         <Modal.Rodape>
@@ -43,13 +44,16 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Image
+                <Link href={"/restaurante/editar-prato"}>
+                    <Image
                     src="/icons/editar.svg"
                     className={ editar }
                     width={ 14 }
                     height={ 14 }
                     alt="Icone de editar."
                     />
+                </Link>
+                
                 <Image
                     src="/icons/lixo.svg"
                     className={ lixo }
@@ -70,13 +74,15 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Image
+                <Link href={"/restaurante/editar-prato"}>
+                    <Image
                     src="/icons/editar.svg"
                     className={ editar }
                     width={ 14 }
                     height={ 14 }
                     alt="Icone de editar."
-                />
+                    />
+                </Link>
                 <Image
                     src="/icons/lixo.svg"
                     className={ lixo }
@@ -96,13 +102,15 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Image
+                <Link href={"/restaurante/editar-prato"}>
+                    <Image
                     src="/icons/editar.svg"
                     className={ editar }
                     width={ 14 }
                     height={ 14 }
                     alt="Icone de editar."
-                />
+                    />
+                </Link>
                 <Image
                     src="/icons/lixo.svg"
                     className={ lixo }
@@ -122,13 +130,15 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Image
+                <Link href={"/restaurante/editar-prato"}>
+                    <Image
                     src="/icons/editar.svg"
                     className={ editar }
                     width={ 14 }
                     height={ 14 }
                     alt="Icone de editar."
-                />
+                    />
+                </Link>
                 <Image
                     src="/icons/lixo.svg"
                     className={ lixo }
@@ -148,13 +158,15 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Image
+                <Link href={"/restaurante/editar-prato"}>
+                    <Image
                     src="/icons/editar.svg"
                     className={ editar }
                     width={ 14 }
                     height={ 14 }
-                    alt="Icone de edtar."
-                /> 
+                    alt="Icone de editar."
+                    />
+                </Link>
                <Image
                     src="/icons/lixo.svg"
                     className={ lixo }
@@ -174,13 +186,15 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Image
+                <Link href={"/restaurante/editar-prato"}>
+                    <Image
                     src="/icons/editar.svg"
                     className={ editar }
                     width={ 14 }
                     height={ 14 }
                     alt="Icone de editar."
-                />
+                    />
+                </Link>
                 <Image
                     src="/icons/lixo.svg"
                     className={ lixo }
@@ -200,13 +214,15 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Image
+                <Link href={"/restaurante/editar-prato"}>
+                    <Image
                     src="/icons/editar.svg"
                     className={ editar }
                     width={ 14 }
                     height={ 14 }
                     alt="Icone de editar."
-                />
+                    />
+                </Link>
                 <Image
                     src="/icons/lixo.svg"
                     className={ lixo }
@@ -226,13 +242,15 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Image
+                <Link href={"/restaurante/editar-prato"}>
+                    <Image
                     src="/icons/editar.svg"
                     className={ editar }
                     width={ 14 }
                     height={ 14 }
                     alt="Icone de editar."
-                />
+                    />
+                </Link>
                 <Image
                     src="/icons/lixo.svg"
                     className={ lixo }
@@ -252,13 +270,15 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Image
+                <Link href={"/restaurante/editar-prato"}>
+                    <Image
                     src="/icons/editar.svg"
                     className={ editar }
                     width={ 14 }
                     height={ 14 }
                     alt="Icone de editar."
-                />
+                    />
+                </Link>
                 <Image
                     src="/icons/lixo.svg"
                     className={ lixo }
@@ -278,13 +298,15 @@ export default function CardapioRestaurante() {
                 <div className={ nome }>Nome do prato
                 <div className={ preco }>R$ 99,99</div>
                 </div>
-                <Image
+                <Link href={"/restaurante/editar-prato"}>
+                    <Image
                     src="/icons/editar.svg"
                     className={ editar }
                     width={ 14 }
                     height={ 14 }
                     alt="Icone de editar."
-                />
+                    />
+                </Link>
                 <Image
                     src="/icons/lixo.svg"
                     className={ lixo }

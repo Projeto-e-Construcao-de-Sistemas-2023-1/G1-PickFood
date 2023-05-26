@@ -9,11 +9,12 @@
 .title {
 
     font-weight: 700;
+
     font-size: utils.converterPxParaRem(14px);
     margin-top: utils.converterPxParaRem(30px);
     margin-bottom: utils.converterPxParaRem(30px);
+    
     justify-content: center;
-
     text-align: center;
 
     color: cores.$preto;
@@ -31,6 +32,7 @@
 .excluirConta {
     display: flex;
     align-items: center;
+
     font-size: utils.converterPxParaRem(12px);
 }
 
@@ -40,6 +42,11 @@
 
 .textoExcluirConta {
     margin-left: utils.converterPxParaRem(60px);
+    text-decoration:none;
     
     color: cores.$vermelho;
+}
+
+.link {
+    text-decoration:none;
 }

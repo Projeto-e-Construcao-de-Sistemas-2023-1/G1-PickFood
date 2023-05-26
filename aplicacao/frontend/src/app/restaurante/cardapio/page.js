@@ -2,6 +2,7 @@
 
 import CardapioRestaurante from "@/components/CardapioRestaurante";
 import Pesquisa from "@/components/Pesquisa";
+import Link from "next/link";
 
 import { 
     titulo,
@@ -13,26 +14,21 @@ import Image from "next/image";
 
 export default function Login() {
 
-    const router = useRouter();
-
-    const authenticate = (e) => {
-        e.preventDefault();
-
-        // request
-     
-        router.push("/cliente/home");
-    }         
+    const router = useRouter();      
 
     return (
         <>
             <div className={ pesquisa }>
                 <Pesquisa/> 
-                <Image className= { adicionar }
+                <Link href= "{/restaurante/criar-prato}">
+                    <Image className= { adicionar }
                     src="/icons/adicionar.svg"
                     width={ 21 }
                     height={ 21 }
                     alt="Icone de círculo com um + no centro."
-                /> 
+                    /> 
+                </Link>
+                
             </div>
             
             <h2 className= { titulo }>Cardápio</h2>

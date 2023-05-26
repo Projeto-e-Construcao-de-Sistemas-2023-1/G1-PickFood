@@ -3,7 +3,9 @@ package br.pickfood.model.dto.cliente;
 import br.pickfood.model.cliente.Cliente;
 import br.pickfood.model.dto.BaseDTO;
 import lombok.Builder;
+import lombok.Data;
 
+@Data
 @Builder
 public class ClienteDTO extends BaseDTO<Cliente> {
     private String nome;
