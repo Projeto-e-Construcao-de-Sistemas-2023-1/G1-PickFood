@@ -14,25 +14,29 @@ import request from "@/services/axios";
 export default function Home() {
 
     const [busca, setBusca] = useState("");
+    const [restaurantes, setRestaurantes] = useState([]);
 
     const { usuario } = useContext(AuthContext);
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     request.get("restaurante/list")
-    //         .then((response) => {
-    //             console.log("Entrou no then: ")
-    //             console.log(response);
-    //         })
-    //         .catch((error) => {
-    //             console.error("Entrou no catch: ");
-    //             console.error(error);
-    //         })
-    //         .finally(() => {
-    //             console.warn("Entrou no finally: ");
+        request.get("restaurante/list")
+            .then((response) => {
+                console.log("Entrou no then: ")
+
+                const dados = response.data;
+                setRestaurantes(dados);
+                console.log(dados);
+            })
+            .catch((error) => {
+                console.error("Entrou no catch: ");
+                console.error(error);
+            })
+            .finally(() => {
+                console.warn("Entrou no finally: ");
                 
-    //         });
-    // })
+            });
+    }, [])
 
     return(
         <>
@@ -44,7 +48,7 @@ export default function Home() {
 
             {
                 busca.length == 0 ?
-                <ListaRestaurantes restaurantes={ {} }/>
+                <ListaRestaurantes restaurantes={ restaurantes }/>
                 :
                 busca
             }

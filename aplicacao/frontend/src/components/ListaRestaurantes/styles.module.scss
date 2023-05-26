@@ -24,10 +24,15 @@
 }
 
 .restricoes {
-    font-size: utils.converterPxParaRem(12px);
+    font-size: utils.converterPxParaRem(9px);
     display: flex;
     margin-top: utils.converterPxParaRem(3px);
 
+
+}
+
+.restricao {
+    margin-right: utils.converterPxParaRem(5px);
 }
 
 .estrela {
