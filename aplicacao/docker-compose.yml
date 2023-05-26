@@ -17,6 +17,11 @@ services:
     depends_on:
       - backend
   database:
-    image: postgres:latest
+    image: mysql:latest
     environment:
-      # pera vou pensar
+      MYSQL_DATABASE=${mysqldatabase}
+      MYSQL_ROOT_PASSWORD=${mysqlpassword}
+      MYSQL_USER=${mysqluser}
+      MYSQL_PASSWORD=${mysqlpassword}
+      MYSQL_HOST=${mysqlhost}
+      MYSQL_PORT=${mysqlport}
