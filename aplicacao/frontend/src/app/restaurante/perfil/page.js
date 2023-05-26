@@ -3,7 +3,7 @@
 import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Link from "next/link";
-import { 
+import {
     title,
     center,
     forms,
@@ -40,6 +40,29 @@ export default function RestaurantePerfil() {
     const [complemento, setComplemento] = useState("");
     const [bairro, setBairro] = useState("");
 
+    const save = () => {
+        request.put("restaurante", {
+            id: usuario.id,
+            nome_fantasia: nomeFantasia,
+            user: {
+                email: email,
+            },
+            cnpj: cnpj,
+            razao_social: razaoSocial,
+            horario_abertura: horarioAbertura,
+            horario_fechamento: horarioFechamento,
+            taxa_entrega: taxaEntrega,
+            telefone: telefone,
+            endereco: {
+                rua: rua,
+                numero: numero,
+                complemento: complemento,
+                bairro: bairro,
+                cep: cep
+            }
+        })
+    }
+
     const handleEmail = () => {
 
     }
@@ -52,101 +75,114 @@ export default function RestaurantePerfil() {
 
                 console.log(dados);
 
+                setNomeFantasia(dados.nome_fantasia);
                 setRestaurante(dados);
+                setEmail(dados.user.email);
+                setCnpj(dados.cnpj);
+                setBairro(dados.endereco.bairro)
+                setRazaoSocial(dados.razao_social)
+                setHorarioAbertura(dados.horario_abertura)
+                setTaxaEntrega(dados.taxa_entrega);
+                setRua(dados.endereco.rua);
+                setCep(dados.endereco.cep);
+                setTelefone(dados.telefone);
+                setHorarioFechamento(dados.horario_fechamento);
+                setNumero(dados.endereco.numero);
+                setComplemento(dados.endereco.complemento);
             })
             .catch((err) => {
                 console.error(err);
             })
-    })
+    }, [])
 
     return (
         <Container>
-            <Modal ativo={ ativo }>
+            <Modal ativo={ativo}>
                 <Modal.Cabecalho>
-                    <Modal.Icone svg="/icons/aviso.svg"/>
+                    <Modal.Icone svg="/icons/aviso.svg" />
                     <Modal.Titulo>Tem certeza que deseja excluir sua conta?</Modal.Titulo>
                 </Modal.Cabecalho>
 
                 <Modal.Rodape>
-                    <Modal.BotaoConfirmar/>
-                    <Modal.BotaoCancelar onClick={ () => setAtivo(false) }/>
+                    <Modal.BotaoConfirmar />
+                    <Modal.BotaoCancelar onClick={() => setAtivo(false)} />
                 </Modal.Rodape>
             </Modal>
 
-            <h2 className={ [center, title].join(' ') }>Minhas informações</h2>
+            <h2 className={[center, title].join(' ')}>Minhas informações</h2>
 
             <div className={forms}>
                 <Form>
                     <Form.Field>
                         <Form.Label>Nome Fantasia</Form.Label>
-                        <Form.Input value={ nomeFantasia }/>
+                        <Form.Input value={nomeFantasia} onChange={(e) => setNomeFantasia(e.target.value)} />
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Razão Social</Form.Label>
-                        <Form.Input value={ razaoSocial }/>
+                        <Form.Input value={razaoSocial} onChange={(e) => setRazaoSocial(e.target.value)} />
                     </Form.Field>
-                    
+
                     <Form.Field>
                         <Form.Label>E-mail</Form.Label>
-                        <Form.Input value={ email }/>
+                        <Form.Input value={email} onChange={(e) => setEmail(e.target.value)} />
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Telefone</Form.Label>
-                        <Form.Input value={ telefone }/>
+                        <Form.Input value={telefone} onChange={(e) => setTelefone(e.target.value)} />
                     </Form.Field>
-                    
+
                     <Form.Field>
                         <Form.Label>CNPJ</Form.Label>
-                        <Form.Input value={ cnpj }/>
+                        <Form.Input value={cnpj} onChange={(e) => setCnpj(e.target.value)} />
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Horário de Abertura</Form.Label>
-                        <Form.Input value={ horarioAbertura }/>
+                        <Form.Input value={horarioAbertura} onChange={(e) => setHorarioAbertura(e.target.value)} />
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Horário de Fechamento</Form.Label>
-                        <Form.Input value={ horarioFechamento }/>
+                        <Form.Input value={horarioFechamento} onChange={(e) => setHorarioFechamento(e.target.value)} />
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Taxa de Entrega</Form.Label>
-                        <Form.Input value={ taxaEntrega } type={ "number" }/>
+                        <Form.Input value={taxaEntrega} type="number" onChange={(e) => setTaxaEntrega(e.target.value)} />
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Rua</Form.Label>
-                        <Form.Input value={ rua }/>
+                        <Form.Input value={rua} onChange={(e) => setRua(e.target.value)} />
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Cep</Form.Label>
-                        <Form.Input value={ cep }/>
+                        <Form.Input value={cep} onChange={(e) => setCep(e.target.value)} />
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Número</Form.Label>
-                        <Form.Input value={ numero } type={"number"}/>
+                        <Form.Input value={numero} type="number" onChange={(e) => setNumero(e.target.value)} />
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Complemento</Form.Label>
-                        <Form.Input value={ complemento }/>
+                        <Form.Input value={complemento} onChange={(e) => setComplemento(e.target.value)} />
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Bairro</Form.Label>
-                        <Form.Input value={ bairro }/>
+                        <Form.Input value={bairro} onChange={(e) => setBairro(e.target.value)} />
                     </Form.Field>
 
-                    <div className={ opcoes }>
-                        <Form.Button>Salvar alterações</Form.Button>
-                            <div className={ excluirConta } onClick={ () => { setAtivo(prev => !prev) } }>
-                                <div className={ textoExcluirConta }>Excluir conta</div>
-                            </div>
+                    <div className={opcoes}>
+                        <Form.Button onClick={save}>Salvar alterações</Form.Button>
+                        <div className={excluirConta} onClick={() => { setAtivo(prev => !prev) }}>
+                            <div className={textoExcluirConta}>Excluir conta</div>
+                        </div>
                     </div>
                 </Form>
             </div>
