@@ -1,6 +1,6 @@
 'use client';
 
-import Form from "@/components/form";
+import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
