@@ -4,5 +4,5 @@
       "name": "api.security.token.secret",
       "type": "java.lang.String",
       "description": "Description for api.security.token.secret."
-  }
-] }
+    }
+  ] }
