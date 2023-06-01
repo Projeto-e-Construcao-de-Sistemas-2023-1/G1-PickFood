@@ -128,6 +128,10 @@ export default function CadastroCliente() {
                     <Form.Input value={ senha } onChange={ handleSenha } type={"password"}/>
                 </Form.Field>
                 <Form.Field>
+                    <Form.Label>Confirme sua senha</Form.Label>
+                    <Form.Input /*value={ ConfirmacaoSenha } onChange={ handleSenha }*/ type={"password"}/>
+                </Form.Field>
+                <Form.Field>
                     <Form.Label>CPF</Form.Label>
                     <Form.Input value={ cpf } onChange={ handleCpf }/>
                 </Form.Field>

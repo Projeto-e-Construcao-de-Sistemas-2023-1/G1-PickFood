@@ -94,7 +94,10 @@ export default function Cadastro1() {
                     <Form.Label>Senha</Form.Label>
                     <Form.Input value={ senha } type={ "password" } onChange={ handleSenha }/>
                 </Form.Field>
-
+                <Form.Field>
+                    <Form.Label>Confirme sua senha</Form.Label>
+                    <Form.Input /*value={ ConfirmacaoSenha } onChange={ handleSenha }*/ type={"password"}/>
+                </Form.Field>
                 <Form.Field>
                     <Form.Label>Nome Fantasia</Form.Label>
                     <Form.Input value={ nomeFantasia } onChange={ handleNomeFantasia }/>
