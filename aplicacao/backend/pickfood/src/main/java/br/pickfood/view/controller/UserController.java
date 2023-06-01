@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,13 +26,14 @@ public class UserController {
 	@Autowired
 	UserService service;
 
+	@Autowired
+	PasswordEncoder encoder;
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Object> insertUser(
 			@RequestBody UserDTO dto){
-		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
-		dto.setSenha(pwdEncoder.encode(dto.getSenha()));
+		dto.setSenha(encoder.encode(dto.getSenha()));
 		User entity = dto.convertToEntity();
 
 		return new ResponseEntity(service.create(entity), HttpStatusCode.valueOf(200));
@@ -39,9 +41,9 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<Object> login(@RequestBody UserDTO dto){
-		
+
+
 		User entity = dto.convertToEntity();
-		
-		return new ResponseEntity(service.login(entity), HttpStatusCode.valueOf(200));
+		return new ResponseEntity(service.iniciarSessao(entity), HttpStatusCode.valueOf(200));
 	}
 }
