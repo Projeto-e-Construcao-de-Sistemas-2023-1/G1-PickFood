@@ -3,7 +3,7 @@
 import Logo from "@/components/Logo";
 import { logo, arrow } from "./styles.module.scss";
 import Image from "next/image";
-import Form from "@/components/Form";
+import Form from "@/components/Form"; 
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/app/layout";
@@ -102,9 +102,10 @@ export default function CadastroCliente() {
         
         router.push("/cliente/home");
     }
-
+            
     return(
         <>
+        
             <Image
                 src="/icons/back.svg"
                 width={ 21 }
@@ -125,6 +126,10 @@ export default function CadastroCliente() {
                 <Form.Field>
                     <Form.Label>Senha</Form.Label>
                     <Form.Input value={ senha } onChange={ handleSenha } type={"password"}/>
+                </Form.Field>
+                <Form.Field>
+                    <Form.Label>Confirme sua senha</Form.Label>
+                    <Form.Input /*value={ ConfirmacaoSenha } onChange={ handleSenha }*/ type={"password"}/>
                 </Form.Field>
                 <Form.Field>
                     <Form.Label>CPF</Form.Label>
