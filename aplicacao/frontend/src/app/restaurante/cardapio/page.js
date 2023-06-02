@@ -20,7 +20,7 @@ export default function Cardapio() {
         <>
             <div className={ pesquisa }>
                 <Pesquisa/> 
-                <Link href= "{/restaurante/criar-prato}">
+                <Link href={"/restaurante/criar-prato"}>
                     <Image className= { adicionar }
                     src="/icons/adicionar.svg"
                     width={ 21 }

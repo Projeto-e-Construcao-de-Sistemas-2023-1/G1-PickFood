@@ -1,11 +1,10 @@
 'use client'
-import { useContext, useState } from "react";
-import { CadastroRestauranteContext } from "../layout";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Form from "@/components/Form";
 import {
-  cadastrar,
+  
   margin
 } from "./styles.module.scss";
 
