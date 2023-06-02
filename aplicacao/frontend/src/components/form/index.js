@@ -1,21 +1,45 @@
 import styles from "./styles.module.scss"
 import Button from "../Button"
-export default function Form({ children }) {
-    return <form className={ styles.form }>{ children }</form>
+export default function Form({ onSubmit, children, ...restProps }) {
+
+    
+
+    return(
+        <form 
+            onSubmit={ onSubmit } 
+            className={ styles.form } 
+            { ...restProps }
+        >
+            { children }
+        </form>
+    ) 
 }
 
-Form.Field = function FormField({ children }) {
-    return <div className={ styles.field }>{ children }</div>
+Form.Field = function FormField({ children, ...restProps }) {
+    return <div className={ styles.field } { ...restProps }>{ children }</div>
 }
 
-Form.Label = function InputLabel({ children }) {
-    return <label className={ styles.label }>{ children }</label>
+Form.Label = function InputLabel({ children, ...restProps }) {
+    return <label className={ styles.label } { ...restProps }>{ children }</label>
 }
 
-Form.Input = function FormInput({ type, value, onChange}) {
-    return <input className={ styles.input } value={ value } onChange={ onChange } type={ type }/>
+Form.Input = function FormInput({ type, value, onChange, registrar }) {
+    return <input 
+        type={ type }
+        value={ value } 
+        onChange={ onChange } 
+        className={ styles.input } 
+        
+        { ...registrar }
+    />
 } 
 
-Form.Button = function FormButton({ children, ...restProps }) {
-    return <Button { ...restProps }>{ children }</Button>
+Form.Button = function FormButton({ onClick, children, ...restProps }) {
+    return <Button 
+        onClick={ onClick } 
+        type={ "submit "}
+        { ...restProps }
+    >
+        { children }
+    </Button>
 } 
