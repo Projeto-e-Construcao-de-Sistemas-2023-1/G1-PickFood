@@ -90,7 +90,7 @@ export default function CadastroCliente() {
                 alt="Icone de seta apontando para trás."
             />
             <Logo className={ logo }/>
-            <div>{ Object.keys(erros).length !== 0 && "Dádos inválidos" }</div>
+            <div>{ Object.keys(erros).length !== 0 && "Dados inválidos" }</div>
             <Form onSubmit={ tratarFormulario(cadastrar) }>
                 <Form.Field>
                     <Form.Label>Nome e sobrenome</Form.Label>
