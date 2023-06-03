@@ -56,8 +56,8 @@ export default function Cadastro1() {
 
             <Logo className={ logo }/>
              
-            
             <h2 className={ [center, title].join(' ') }>Informações do restaurante</h2>
+            
             { Object.keys(errors).length !== 0 && <div style={{ color: "red" }}> Dados inválidos </div> }
             
             <div className={forms}>         
@@ -90,7 +90,6 @@ export default function Cadastro1() {
                     <Form.Button type= "submit">Continuar</Form.Button> 
                 </Form>
             </div>
-        
         </Container>
     )
 }
