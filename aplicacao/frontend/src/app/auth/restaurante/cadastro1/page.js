@@ -48,8 +48,7 @@ export default function Cadastro1() {
 
     return (
         <Container>
-
-            <Link href={""}>
+            <Link href={"/auth/login"}>
             <Image
                 src="/icons/back.svg"
                 width={ 21 }
@@ -60,6 +59,7 @@ export default function Cadastro1() {
             </Link>
 
             <Logo className={ logo }/>
+             
             
             <h2 className={ [center, title].join(' ') }>Informações do restaurante</h2>
             { Object.keys(errors).length !== 0 && <div style={{ color: "red" }}> Dados inválidos </div> }

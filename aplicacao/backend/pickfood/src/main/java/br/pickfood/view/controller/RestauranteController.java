@@ -3,12 +3,14 @@ package br.pickfood.view.controller;
 import java.util.HashSet;
 import java.util.Set;
 
+import br.pickfood.model.dto.user.UserDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,10 +37,14 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteService service;
 
+    @Autowired
+    PasswordEncoder encoder;
+
     @PostMapping
     public ResponseEntity<RestauranteDTO> cadastrar(@RequestBody @Validated(ICreation.class)
     	RestauranteDTO dto){
-    	
+    	UserDTO user = dto.getUser();
+        user.setSenha(encoder.encode(user.getSenha()));
     	Restaurante entity = dto.convertToEntity();
     	
     	return new ResponseEntity(service.create(entity), HttpStatusCode.valueOf(201));
