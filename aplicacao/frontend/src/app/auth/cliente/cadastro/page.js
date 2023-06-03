@@ -11,6 +11,7 @@ import request from "@/services/axios";
 import { v4 as uuid } from "uuid";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import rotas from "../../../../rotas"
 
 export default function CadastroCliente() {
 
@@ -27,6 +28,8 @@ export default function CadastroCliente() {
 
 
         console.log(data);
+
+        router.push(rotas.cliente.home.url());
 
         // request.post("user", {
         //     nome,
