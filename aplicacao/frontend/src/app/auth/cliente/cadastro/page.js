@@ -94,7 +94,7 @@ export default function CadastroCliente() {
                 <Form.Field>
                     <Form.Label>Nome e sobrenome</Form.Label>
                     <Form.Input 
-                        registrar={{ ...registrar("nome", { required: true, minLength: 3 }) }} 
+                    registrar={{ ...registrar("nome", { required: true, minLength: 3 }) }} 
                         type={ "text" }/>
                 </Form.Field>
 

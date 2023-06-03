@@ -29,21 +29,17 @@ export default function Cadastro1() {
 
         const { email, senha, razao_social, nome_fantasia, cnpj} = data;
 
-        // request.post("restaurantes", {
-        //      email,
-        //      senha,
-        //      razao_Social,
-        //      nome_Fantasia,
-        //      cnpj
-        //  })
-    
-       definirDados({
+        console.log(data);
+        
+        definirDados({
             email,
             senha,
             razao_social,
             nome_fantasia,
             cnpj
          })
+
+         router.push("/auth/restaurante/cadastro2");
     }
 
     return (
@@ -65,30 +61,30 @@ export default function Cadastro1() {
             { Object.keys(errors).length !== 0 && <div style={{ color: "red" }}> Dados inválidos </div> }
             
             <div className={forms}>         
-                <Form onSubmit={ handleSubmit }>
+                <Form onSubmit={ submit(handleSubmit) }>
                     <Form.Field>
                         <Form.Label>Email</Form.Label>
-                        <Form.Input type="email" { ...register("email", { required: true }) }/>
+                        <Form.Input type="email" registrar = {{ ...register("email", { required: true }) }}/>
                     </Form.Field>
                     
                     <Form.Field>
                         <Form.Label>Senha</Form.Label>
-                        <Form.Input type="senha" { ...register("senha", { required: true }) }/>
+                        <Form.Input type="password" registrar = {{ ...register("senha", { required: true }) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Nome Fantasia</Form.Label>
-                        <Form.Input type="nome_fantasia" { ...register("nome_fantasia", { required: true }) }/>
+                        <Form.Input type="text" registrar = {{ ...register("nome_fantasia", { required: true }) }}/>
                     </Form.Field>
                     
                     <Form.Field>
                         <Form.Label>Razão Social</Form.Label>
-                        <Form.Input type="razao_social" { ...register("razao_social", { required: true }) }/>
+                        <Form.Input type="text" registrar = {{ ...register("razao_social", { required: true }) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>CNPJ</Form.Label>
-                        <Form.Input type="cnpj" { ...register("cnpj", { required: true }) }/>
+                        <Form.Input type="text" registrar = {{ ...register("cnpj", { required: true }) }}/>
                     </Form.Field>
 
                     <Form.Button type= "submit">Continuar</Form.Button> 

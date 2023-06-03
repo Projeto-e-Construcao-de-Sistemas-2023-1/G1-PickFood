@@ -15,11 +15,7 @@
     "next": "13.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-<<<<<<< HEAD
-    "react-hook-form": "^7.44.2",
-=======
     "react-hook-form": "^7.44.3",
->>>>>>> bd6b9c608cf6425e821dde9784a731f4716d108d
     "uuid": "^9.0.0"
   },
   "devDependencies": {
