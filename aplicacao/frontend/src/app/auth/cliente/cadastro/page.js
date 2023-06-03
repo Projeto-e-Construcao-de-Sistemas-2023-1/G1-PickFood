@@ -74,10 +74,6 @@ export default function CadastroCliente() {
         
         // router.push("/cliente/home");
     }
-
-    useEffect(() => {
-        console.error(erros)
-    }, [erros])
             
     return(
         <>
@@ -94,27 +90,79 @@ export default function CadastroCliente() {
             <Form onSubmit={ tratarFormulario(cadastrar) }>
                 <Form.Field>
                     <Form.Label>Nome e sobrenome</Form.Label>
-                    <Form.Input registrar={{ ...registrar("nome", { required: true, minLength: 3 }) }} type={ "text" }/>
+                    <Form.Input 
+                        registrar={{ ...registrar("nome", { required: true, minLength: 3 }) }} 
+                        type={ "text" }/>
                 </Form.Field>
+
                 <Form.Field>
                     <Form.Label>Email</Form.Label>
-                    <Form.Input registrar={{ ...registrar("email", { required: true })} } type={ "email" }/>
+                    <Form.Input 
+                        registrar={{ ...registrar("email", { required: true })} } 
+                        type={ "email" }/>
                 </Form.Field>
+
                 <Form.Field>
                     <Form.Label>Senha</Form.Label>
-                    <Form.Input registrar={{ ...registrar("senha", { required: true }) }} type={ "password" }/>
+                    <Form.Input 
+                        registrar={{ ...registrar("senha", { required: true, minLength: 8 }) }} 
+                        type={ "password" }/>
                 </Form.Field>
+
                 <Form.Field>
                     <Form.Label>Confirme sua senha</Form.Label>
-                    <Form.Input registrar={{ ...registrar("confirmacao_senha", { required: true, minLength: 8 }) }} type={ "password" }/>
+                    <Form.Input 
+                        registrar={{ ...registrar("confirmacao_senha", { required: true, minLength: 8, validate: (value) => {
+                            const senha = watch("senha");
+
+                            return senha === value;
+                        } }) }} 
+                        type={ "password" }/>
                 </Form.Field>
+
                 <Form.Field>
                     <Form.Label>CPF</Form.Label>
-                    <Form.Input registrar={{ ...registrar("cpf", { required: true, pattern: /^\d{1,11}$/ }) }} type={ "text" }/>
+                    <Form.Input 
+                        registrar={{ ...registrar("cpf", { required: true, minLength: 11, maxLength: 11, onChange: (e) => {
+                            const valor = e.target.value;
+                            
+                            const regex = /^\d+$/;
+
+                            for (const indice in valor) {
+                                if (!regex.test(valor[indice])) {
+                                    e.target.value = valor.substring(0, indice);
+                                }
+                            }
+
+                            if (valor.length > 11) {
+                                e.target.value = valor.substring(0, 11);
+                            }
+                        } }) }} 
+                        type={ "text" }/>
                 </Form.Field>
+
                 <Form.Field>
                     <Form.Label>Celular (DDD + número)</Form.Label>
-                    <Form.Input registrar={{ ...registrar("telefone", { required: true }) }} type={ "text" }/>
+                    <Form.Input 
+                        registrar={{ ...registrar("telefone", { required: true, minLength: 11, maxLength: 11, onChange: (e) => {
+
+                            const valor = e.target.value;
+
+                            const regex = /^\d+$/;
+
+                            for (const indice in valor) {
+                                if (!regex.test(valor[indice])) {
+                                    e.target.value = valor.substring(0, indice);
+                                }
+                            }
+
+                            
+
+                            if (valor.length > 11) {
+                                e.target.value = valor.substring(0, 11);
+                            }
+                        } }) }} 
+                        type={ "text" }/>
                 </Form.Field> 
                 
                 <Form.Button>Cadastrar</Form.Button>
