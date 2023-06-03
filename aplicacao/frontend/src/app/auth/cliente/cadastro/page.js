@@ -10,6 +10,7 @@ import { AuthContext } from "@/app/layout";
 import request from "@/services/axios";
 import { v4 as uuid } from "uuid";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 
 export default function CadastroCliente() {
 
@@ -81,7 +82,7 @@ export default function CadastroCliente() {
             
     return(
         <>
-        
+            <Link href={"/auth/login"}>
             <Image
                 src="/icons/back.svg"
                 width={ 21 }
@@ -89,6 +90,8 @@ export default function CadastroCliente() {
                 className={ arrow }
                 alt="Icone de seta apontando para trás."
             />
+            </Link>
+
             <Logo className={ logo }/>
             <div>{ Object.keys(erros).length !== 0 && "Dados inválidos" }</div>
             <Form onSubmit={ tratarFormulario(cadastrar) }>

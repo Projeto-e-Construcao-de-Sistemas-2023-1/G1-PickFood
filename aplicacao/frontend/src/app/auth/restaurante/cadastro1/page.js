@@ -68,7 +68,7 @@ export default function Cadastro1() {
 
     return (
         <Container>
-            <Link href={""}>
+            <Link href={"/auth/login"}>
             <Image
                 src="/icons/back.svg"
                 width={ 21 }
