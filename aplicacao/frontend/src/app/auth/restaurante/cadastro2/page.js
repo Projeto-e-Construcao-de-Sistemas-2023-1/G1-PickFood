@@ -5,6 +5,7 @@ import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import { useForm } from "react-hook-form";
 import { 
     title,
     center,
@@ -22,32 +23,20 @@ export default function Cadastro2() {
 
     const router = useRouter();
 
-    const [telefone, setTelefone] = useState("");
-    const [taxaEntrega, setTaxaEntrega] = useState("");
-    const [horarioFuncionamento, setHorarioFuncionamento] = useState("");
+    const { register, handleSubmit: submit, formState: { errors } } = useForm(); 
 
-    const handleTelefone = (e) => {
+    const handleSubmit = (data) => {
 
-        setTelefone(e.target.value);
-    }
+        const { telefone, taxaEntrega, horarioAbertura, horarioFechamento} = data;
 
-    const handleTaxaEntrega = (e) => {
-
-        setTaxaEntrega(e.target.value);
-    } 
-
-    const handleHorarioFuncionament = (e) => {
-
-        setHorarioFuncionamento(e.target.value);
-    }
-
-    const cadastrar = () => {
+        console.log(data);
 
         definirDados({
             ...dados,
             telefone,
             taxaEntrega,
-            horarioFuncionamento
+            horarioAbertura,
+            horarioFechamento
         });
 
         router.push("/auth/restaurante/cadastro3");
@@ -69,29 +58,33 @@ export default function Cadastro2() {
             
             <h2 className={ [center, title].join(' ') }>Informações Adicionais</h2>
 
+            { Object.keys(errors).length !== 0 && <div style={{ color: "red" }}> Dados inválidos </div> }
+
             <div className={forms}>
-            <Form>
-                <Form.Field>
-                    <Form.Label>DDD + Número</Form.Label>
-                    <Form.Input value={ telefone } onChange={ handleTelefone }/>
-                </Form.Field>
-                
-                <Form.Field>
-                    <Form.Label>Horário de Funcionamento</Form.Label>
-                    <Form.Input value={ horarioFuncionamento } onChange={ handleHorarioFuncionament }/>
-                </Form.Field>
+                <Form onSubmit={ submit(handleSubmit) }>
+                    <Form.Field>
+                        <Form.Label>DDD + Número</Form.Label>
+                        <Form.Input type="tel" registrar = {{ ...register("telefone", { required: true }) }}/>
+                    </Form.Field>
+                    
+                    <Form.Field>
+                        <Form.Label>Horário de Abertura</Form.Label>
+                        <Form.Input type="string" registrar = {{ ...register("horarioAbertura", { required: true }) }}/>
+                    </Form.Field>
 
-                <Form.Field>
-                    <Form.Label>Taxa de Entrega</Form.Label>
-                    <Form.Input value={ taxaEntrega } type={"number"} onChange={ handleTaxaEntrega }/>
-                </Form.Field>
-                
-                <Form.Button onClick={ cadastrar }>Continuar</Form.Button>
-                
-                
-            </Form>
+                    <Form.Field>
+                        <Form.Label>Horário de Fechamento</Form.Label>
+                        <Form.Input type="string" registrar = {{ ...register("horarioFechamento", { required: true }) }}/>
+                    </Form.Field>
+
+                    <Form.Field>
+                        <Form.Label>Taxa de Entrega</Form.Label>
+                        <Form.Input type="number" registrar = {{ ...register("taxaEntrega", { required: true }) }}/>
+                    </Form.Field>
+                    
+                    <Form.Button type="submit">Continuar</Form.Button>  
+                </Form>
             </div>
-
         </Container>
     )
 }
