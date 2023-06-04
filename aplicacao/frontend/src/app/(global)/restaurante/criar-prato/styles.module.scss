@@ -1,0 +1,26 @@
+@use "@/styles/cores.module.scss";
+@use "@/styles/utils.module.scss";
+
+
+.logo {
+    margin: 0 auto;
+    display: flex;
+    margin-bottom: 2.188rem;
+}
+
+.imagem {
+    width: 100%;
+    margin: 0 auto;
+    height: 87px;
+    width: 87px;
+    display: flex;
+    align-items: center;
+    margin-top: 27px;
+    margin-bottom: 48px;
+    color: cores.$preto;
+    opacity: 0.7;
+}
+
+.botao {
+    margin-top: utils.converterPxParaRem(90px);
+}

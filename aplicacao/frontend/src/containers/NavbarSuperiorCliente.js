@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthContext } from "@/app/layout";
+import { AuthContext } from "@/contexts";
 import NavbarSuperior from "@/components/NavbarSuperior";
 import Overlay from "@/components/Overlay";
 import request from "@/services/axios";

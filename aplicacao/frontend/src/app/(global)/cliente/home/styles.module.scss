@@ -1,0 +1,20 @@
+@use "../../../../styles/utils.module.scss";
+
+.titulo {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: utils.converterPxParaRem(16px);
+}
+
+.banner {
+    background-image: url("../../../../../public/banner.png");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    width: 100%;
+    height: 200px;
+    border-radius: utils.converterPxParaRem(10px);
+    margin-bottom: utils.converterPxParaRem(31.57px);
+    display: flex;
+    align-items: center;
+}

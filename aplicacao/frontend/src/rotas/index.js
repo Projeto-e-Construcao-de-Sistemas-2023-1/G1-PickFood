@@ -11,17 +11,17 @@ const rotas = {
         login: {
             url: () => "/auth/login/"
         },
-        retaurante: {
-            cadastra1: {
+        restaurante: {
+            cadastro1: {
                 url: () => "/auth/cadastro1/"
             },
-            cadastra2: {
+            cadastro2: {
                 url: () => "/auth/cadastro2/"
             },
-            cadastra3: {
+            cadastro3: {
                 url: () => "/auth/cadastro3/"
             },
-            cadastra4: {
+            cadastro4: {
                 url: () => "/auth/cadastro4/"
             }
         }
