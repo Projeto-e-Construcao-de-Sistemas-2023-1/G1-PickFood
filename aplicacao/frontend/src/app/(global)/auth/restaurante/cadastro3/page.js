@@ -5,6 +5,7 @@ import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import { useForm } from "react-hook-form";
 import { 
     title,
     center,
@@ -15,16 +16,10 @@ import {
 import { useContext, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { CadastroRestauranteContext } from "../layout";
-import { AuthContext } from "@/app/layout";
+import { AuthContext } from "@/contexts";
 import { useRouter } from "next/navigation";
 
 export default function Cadastro3() {
-
-    const [cep, setCep] = useState("");
-    const [rua, setRua] = useState("");
-    const [bairro, setBairro] = useState("");
-    const [numero, setNumero] = useState("");
-    const [complemento, setComplemento] = useState("");
 
     const { dados } = useContext(CadastroRestauranteContext);
 
@@ -32,51 +27,35 @@ export default function Cadastro3() {
 
     const router = useRouter()
 
-    const handleCep = (e) => {
-        setCep(e.target.value);
-    }
+    const { register, handleSubmit: submit, formState: { errors } } = useForm();
 
-    const handleRua = (e) => {
-        setRua(e.target.value);
-    }
-
-    const handleBairro = (e) => {
-        setBairro(e.target.value);
-    }
-
-    const handleNumero = (e) => {
-        setNumero(e.target.value);
-    }
-
-    const handleComplemento = (e) => {
-        setComplemento(e.target.value);
-    }
-
-    const cadastrar = () => {
+    const handleSubmit = (data) => {
         const id = uuid();
 
-        const { razaoSocial, nomeFantasia, email, senha, cnpj, telefone, horarioFuncionamento, taxaEntrega } = dados;
-
+        const { razao_social, nome_fantasia, email, senha, cnpj, telefone, horarioAbertura, horarioFechamento, taxaEntrega } = dados;
 
         const user = {
             id, 
-            nome: nomeFantasia,
+            nome: nome_fantasia,
             email,
         } 
 
-
         const dadosRestaurante = {
+            ...data,
             id,
-            razaoSocial,
+            razao_social,
             email,
             senha,
             cnpj,
             telefone,
-            horarioFuncionamento,
-            nomeFantasia,
+            horarioAbertura,
+            horarioFechamento,
+            nome_fantasia,
             taxaEntrega,
             tipo: "restaurante"
         }
+
+        console.log(dadosRestaurante);
 
         const restaurantesJaCadastratos = JSON.parse(localStorage.getItem("usuarios"));
 
@@ -87,8 +66,7 @@ export default function Cadastro3() {
         }
         
         definirUsuario(user);
-
-        
+       
         router.push("/restaurante/home");
     }
 
@@ -109,37 +87,36 @@ export default function Cadastro3() {
             <h2 className={ [center, title].join(' ') }>Informações de Endereço</h2>
 
             <div className={forms}>
-            <Form>
+            <Form onSubmit={ submit(handleSubmit) }>
                 <Form.Field>
                     <Form.Label>CEP</Form.Label>
-                    <Form.Input value={ cep } onChange={ handleCep }/>
+                    <Form.Input type="string" registrar = {{ ...register("cep", { required: true }) }}/>
                 </Form.Field>
                 
                 <Form.Field>
                     <Form.Label>Bairro</Form.Label>
-                    <Form.Input value={ bairro } onChange={ handleBairro }/>
+                    <Form.Input type="string" registrar = {{ ...register("bairro", { required: true }) }}/>
                 </Form.Field>
 
                 <Form.Field>
                     <Form.Label>Rua</Form.Label>
-                    <Form.Input value={ rua } onChange={ handleRua }/>
+                    <Form.Input type="string" registrar = {{ ...register("rua", { required: true }) }}/>
                 </Form.Field>
 
                 <Form.Field>
                     <Form.Label>Número</Form.Label>
-                    <Form.Input value={ numero } onChange={ handleNumero }/>
+                    <Form.Input type="number" registrar = {{ ...register("numero", { required: true }) }}/>
                 </Form.Field>
 
                 <Form.Field>
                     <Form.Label>Complemento</Form.Label>
-                    <Form.Input value={ complemento } onChange={ handleComplemento }/>
+                    <Form.Input type="string" registrar = {{ ...register("complemento") }}/>
                 </Form.Field>
 
-                <Form.Button onClick={ cadastrar }>Continuar</Form.Button>
+                <Form.Button type="submit">Continuar</Form.Button>
                 
             </Form>
             </div>
-
         </Container>
     )
 }
