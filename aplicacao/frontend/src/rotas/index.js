@@ -13,16 +13,16 @@ const rotas = {
         },
         restaurante: {
             cadastro1: {
-                url: () => "/auth/cadastro1/"
+                url: () => "/auth/restaurante/cadastro1/"
             },
             cadastro2: {
-                url: () => "/auth/cadastro2/"
+                url: () => "/auth/restaurante/cadastro2/"
             },
             cadastro3: {
-                url: () => "/auth/cadastro3/"
+                url: () => "/auth/restaurante/cadastro3/"
             },
             cadastro4: {
-                url: () => "/auth/cadastro4/"
+                url: () => "/auth/restaurante/cadastro4/"
             }
         }
     },

@@ -64,7 +64,7 @@ export default function Cadastro2() {
                 <Form onSubmit={ submit(handleSubmit) }>
                     <Form.Field>
                         <Form.Label>DDD + Número</Form.Label>
-                        <Form.Input type="tel" registrar = {{ ...register("telefone", { required: true }) }}/>
+                        <Form.Input type="string" registrar = {{ ...register("telefone", { required: true }) }}/>
                     </Form.Field>
                     
                     <Form.Field>
