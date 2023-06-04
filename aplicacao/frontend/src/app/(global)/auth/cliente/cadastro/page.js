@@ -6,12 +6,13 @@ import Image from "next/image";
 import Form from "@/components/Form"; 
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "@/app/layout";
+import { AuthContext } from "@/contexts";
 import request from "@/services/axios";
 import { v4 as uuid } from "uuid";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-import rotas from "../../../../rotas"
+import rotas from "@/rotas"
+import { mensagens } from "@/erros/mensagens";
 
 export default function CadastroCliente() {
 
@@ -23,6 +24,10 @@ export default function CadastroCliente() {
         watch
     } = useForm();
     const router = useRouter();
+
+    useEffect(() => {
+        console.log(erros);
+    })
 
     const cadastrar = (data) => {
 
@@ -92,33 +97,35 @@ export default function CadastroCliente() {
             </Link>
 
             <Logo className={ logo }/>
-            <div>{ Object.keys(erros).length !== 0 && "Dados inválidos" }</div>
             <Form onSubmit={ tratarFormulario(cadastrar) }>
+
+                <Form.Erros erros={ erros } />
+
                 <Form.Field>
                     <Form.Label>Nome e sobrenome</Form.Label>
                     <Form.Input 
-                    registrar={{ ...registrar("nome", { required: true, minLength: 3 }) }} 
+                    registrar={{ ...registrar("nome", { required: mensagens.required("nome"), minLength: { message: mensagens.minLength("nome", 3), value: 3} }) }} 
                         type={ "text" }/>
                 </Form.Field>
 
                 <Form.Field>
                     <Form.Label>Email</Form.Label>
                     <Form.Input 
-                        registrar={{ ...registrar("email", { required: true })} } 
+                        registrar={{ ...registrar("email", { required: mensagens.required("email") })} } 
                         type={ "email" }/>
                 </Form.Field>
 
                 <Form.Field>
                     <Form.Label>Senha</Form.Label>
                     <Form.Input 
-                        registrar={{ ...registrar("senha", { required: true, minLength: 8 }) }} 
+                        registrar={{ ...registrar("senha", { required: mensagens.required("senha"), minLength: 8 }) }} 
                         type={ "password" }/>
                 </Form.Field>
 
                 <Form.Field>
-                    <Form.Label>Confirme sua senha</Form.Label>
+                    <Form.Label>Confirmar senha</Form.Label>
                     <Form.Input 
-                        registrar={{ ...registrar("confirmacao_senha", { required: true, minLength: 8, validate: (value) => {
+                        registrar={{ ...registrar("confirmacao_senha", { required: mensagens.required("confirmar senha"), minLength: 8, validate: (value) => {
                             const senha = watch("senha");
 
                             return senha === value;
@@ -129,7 +136,7 @@ export default function CadastroCliente() {
                 <Form.Field>
                     <Form.Label>CPF</Form.Label>
                     <Form.Input 
-                        registrar={{ ...registrar("cpf", { required: true, minLength: 11, maxLength: 11, onChange: (e) => {
+                        registrar={{ ...registrar("cpf", { required: mensagens.required("cpf"), minLength: 11, maxLength: 11, onChange: (e) => {
                             const valor = e.target.value;
                             
                             const apenasNumeros = /^\d+$/;
@@ -150,7 +157,7 @@ export default function CadastroCliente() {
                 <Form.Field>
                     <Form.Label>Celular (DDD + número)</Form.Label>
                     <Form.Input 
-                        registrar={{ ...registrar("telefone", { required: true, minLength: 11, maxLength: 11, onChange: (e) => {
+                        registrar={{ ...registrar("telefone", { required: mensagens.required("telefone"), minLength: 11, maxLength: 11, onChange: (e) => {
 
                             const valor = e.target.value;
 

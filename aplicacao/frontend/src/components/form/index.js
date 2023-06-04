@@ -1,5 +1,6 @@
 import styles from "./styles.module.scss"
 import Button from "../Button"
+
 export default function Form({ onSubmit, children, ...restProps }) {
 
     
@@ -43,3 +44,27 @@ Form.Button = function FormButton({ onClick, children, ...restProps }) {
         { children }
     </Button>
 } 
+
+Form.Erros = function FormErros({ erros }) {
+
+    const tratarErros = () => {
+
+    }
+
+    return (
+        Object.keys(erros).length !== 0 ?
+            <div className={ styles.erros }>
+                {
+                    
+                    Object.entries(erros).map((erro) => {
+                        return(
+                            <li className={ styles.erro }>{ erro[1]["message"] }</li>
+                        )
+                    })
+                }
+            </div>
+            :
+            null
+    )
+}
+

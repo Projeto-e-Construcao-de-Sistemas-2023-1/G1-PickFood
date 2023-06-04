@@ -16,58 +16,59 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Logo from "@/components/Logo";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/contexts";
 import request from "@/services/axios";
+import { useForm } from "react-hook-form";
+import { mensagens } from "@/erros/mensagens";
 
 export default function Login() {
 
     const router = useRouter();
 
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-
-    const handleEmail = (e) => {
-        const valor = e.target.value;
-
-        setEmail(valor);
-    }
-
-    const handleSenha = (e) => {
-        const valor = e.target.value;
-
-        setSenha(valor);
-    }
+    const { 
+        register: registrar, 
+        handleSubmit: tratarFormulario, 
+        setError,
+        formState: { errors: erros } 
+    } = useForm();
 
     const { definirUsuario } = useContext(AuthContext);
 
-    const authenticate = (e) => {
-        e.preventDefault();
+    useEffect(() => {
+        console.log(erros)
+    })
 
-        const usuariosJaCadastrados = JSON.parse(localStorage.getItem("usuarios"));
+    const autenticar = (data) => {
 
-        console.log(email);
-        console.log(senha)
+        console.log(data);
+        
+        // e.preventDefault();
 
-        for (const user of usuariosJaCadastrados) {
-            if (user.senha == senha && user.email == email) {
+        // const usuariosJaCadastrados = JSON.parse(localStorage.getItem("usuarios"));
 
-                definirUsuario({
-                    id: user.id,
-                    email: user.email,
-                    nome: user.nome,
-                    tipo: user.tipo
-                });
-                if(email != "" || senha != ""){
-                    if (user.tipo == "cliente") {
-                        router.push("/cliente/home")
-                    } else {
-                        router.push("/restaurante/home")
-                    }
-                } 
-                break;
-            }
-        }
+        // console.log(email);
+        // console.log(senha)
+
+        // for (const user of usuariosJaCadastrados) {
+        //     if (user.senha == senha && user.email == email) {
+
+        //         definirUsuario({
+        //             id: user.id,
+        //             email: user.email,
+        //             nome: user.nome,
+        //             tipo: user.tipo
+        //         });
+        //         if(email != "" || senha != ""){
+        //             if (user.tipo == "cliente") {
+        //                 router.push("/cliente/home")
+        //             } else {
+        //                 router.push("/restaurante/home")
+        //             }
+        //         } 
+        //         break;
+        //     }
+        // }
         
         // request.post("user/login", {
         //     email,
@@ -108,29 +109,33 @@ export default function Login() {
 
     return (
         <>
-        <Link href={ "" }>
-            <Image
-                src="/icons/back.svg"
-                width={ 21 }
-                height={ 21 }
-                className={ arrow }
-                alt="Icone de seta apontando para trás."
-            />
-        </Link>
+            <Link href={ "" }>
+                <Image
+                    src="/icons/back.svg"
+                    width={ 21 }
+                    height={ 21 }
+                    className={ arrow }
+                    alt="Icone de seta apontando para trás."
+                />
+            </Link>
             
-           <Logo className={ logo }/>
-            <Form>
+            <Logo className={ logo }/>
+            <Form onSubmit={ tratarFormulario(autenticar) }>
+
+                <Form.Erros erros={ erros }/>
+                
+
                 <Form.Field>
                     <Form.Label>Email</Form.Label>
-                    <Form.Input value={ email } onChange={ handleEmail }/>
+                    <Form.Input registrar={{ ...registrar("email", { required: mensagens.required("email") } ) }} type={ "email" }/>
                 </Form.Field>
                 
                 <Form.Field>
                     <Form.Label>Senha</Form.Label>
-                    <Form.Input value={ senha } onChange={ handleSenha } type={ "password" }/>
+                    <Form.Input registrar={{ ...registrar("senha", { required: mensagens.required("senha") }) }} type={ "password" }/>
                 </Form.Field>
 
-                <Form.Button onClick={ authenticate }>Entrar</Form.Button>
+                <Form.Button>Entrar</Form.Button>
             </Form>
 
             <div className={ links }>
