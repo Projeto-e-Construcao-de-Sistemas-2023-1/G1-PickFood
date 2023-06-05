@@ -1,5 +1,6 @@
-import styles from "./styles.module.scss"
-import Button from "../Button"
+import styles from "./styles.module.scss";
+import Button from "../Button";
+import { v4 as uuid } from "uuid";
 
 export default function Form({ onSubmit, children, ...restProps }) {
 
@@ -24,14 +25,14 @@ Form.Label = function InputLabel({ children, ...restProps }) {
     return <label className={ styles.label } { ...restProps }>{ children }</label>
 }
 
-Form.Input = function FormInput({ type, value, onChange, registrar }) {
+Form.Input = function FormInput({ type, value, onChange, registrar, ...restProps }) {
     return <input 
         type={ type }
         value={ value } 
         onChange={ onChange } 
         className={ styles.input } 
-        
         { ...registrar }
+        { ...restProps }
     />
 } 
 
@@ -47,10 +48,6 @@ Form.Button = function FormButton({ onClick, children, ...restProps }) {
 
 Form.Erros = function FormErros({ erros }) {
 
-    const tratarErros = () => {
-
-    }
-
     return (
         Object.keys(erros).length !== 0 ?
             <div className={ styles.erros }>
@@ -58,7 +55,7 @@ Form.Erros = function FormErros({ erros }) {
                     
                     Object.entries(erros).map((erro) => {
                         return(
-                            <li className={ styles.erro }>{ erro[1]["message"] }</li>
+                            <li key={ uuid() } className={ styles.erro }>{ erro[1]["message"] }</li>
                         )
                     })
                 }
