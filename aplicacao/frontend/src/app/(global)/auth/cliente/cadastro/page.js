@@ -104,7 +104,10 @@ export default function CadastroCliente() {
                 <Form.Field>
                     <Form.Label>Nome e sobrenome</Form.Label>
                     <Form.Input 
-                    registrar={{ ...registrar("nome", { required: mensagens.required("nome"), minLength: { message: mensagens.minLength("nome", 3), value: 3} }) }} 
+                        registrar={{ ...registrar("nome", { 
+                            required: mensagens.required("nome"), 
+                            minLength: { message: mensagens.minLength("nome", 3), value: 3} 
+                        }) }} 
                         type={ "text" }/>
                 </Form.Field>
 
@@ -118,17 +121,27 @@ export default function CadastroCliente() {
                 <Form.Field>
                     <Form.Label>Senha</Form.Label>
                     <Form.Input 
-                        registrar={{ ...registrar("senha", { required: mensagens.required("senha"), minLength: 8 }) }} 
+                        registrar={{ ...registrar("senha", { 
+                            required: mensagens.required("senha"), 
+                            minLength: { message: mensagens.minLength("senha", 8), value: 8}
+                        }) }} 
                         type={ "password" }/>
                 </Form.Field>
 
                 <Form.Field>
                     <Form.Label>Confirmar senha</Form.Label>
                     <Form.Input 
-                        registrar={{ ...registrar("confirmacao_senha", { required: mensagens.required("confirmar senha"), minLength: 8, validate: (value) => {
-                            const senha = watch("senha");
+                        registrar={{ ...registrar("confirmacao_senha", { 
+                            required: mensagens.required("confirmar senha"), 
+                            minLength: { message: mensagens.minLength("senha", 8), value: 8}, 
+                            validate: (value) => {
+                                const senha = watch("senha");
 
-                            return senha === value;
+                                if (senha !== value) {
+                                    return "As senhas nao coincidem"
+                                }
+
+                                return true;
                         } }) }} 
                         type={ "password" }/>
                 </Form.Field>
@@ -136,20 +149,23 @@ export default function CadastroCliente() {
                 <Form.Field>
                     <Form.Label>CPF</Form.Label>
                     <Form.Input 
-                        registrar={{ ...registrar("cpf", { required: mensagens.required("cpf"), minLength: 11, maxLength: 11, onChange: (e) => {
-                            const valor = e.target.value;
-                            
-                            const apenasNumeros = /^\d+$/;
+                        registrar={{ ...registrar("cpf", { 
+                            required: mensagens.required("cpf"), 
+                            minLength: { message: mensagens.minLength("cpf", 11), value: 11}, 
+                            onChange: (e) => {
+                                const valor = e.target.value;
+                                
+                                const apenasNumeros = /^\d+$/;
 
-                            for (const indice in valor) {
-                                if (!apenasNumeros.test(valor[indice])) {
-                                    e.target.value = valor.substring(0, indice);
+                                for (const indice in valor) {
+                                    if (!apenasNumeros.test(valor[indice])) {
+                                        e.target.value = valor.substring(0, indice);
+                                    }
                                 }
-                            }
 
-                            if (valor.length > 11) {
-                                e.target.value = valor.substring(0, 11);
-                            }
+                                if (valor.length > 11) {
+                                    e.target.value = valor.substring(0, 11);
+                                }
                         } }) }} 
                         type={ "text" }/>
                 </Form.Field>
@@ -157,23 +173,26 @@ export default function CadastroCliente() {
                 <Form.Field>
                     <Form.Label>Celular (DDD + número)</Form.Label>
                     <Form.Input 
-                        registrar={{ ...registrar("telefone", { required: mensagens.required("telefone"), minLength: 11, maxLength: 11, onChange: (e) => {
+                        registrar={{ ...registrar("telefone", { 
+                            required: mensagens.required("telefone"), 
+                            minLength: { message: mensagens.minLength("telefone", 11), value: 11 }, 
+                            onChange: (e) => {
 
-                            const valor = e.target.value;
+                                const valor = e.target.value;
 
-                            const apenasNumeros = /^\d+$/;
+                                const apenasNumeros = /^\d+$/;
 
-                            for (const indice in valor) {
-                                if (!apenasNumeros.test(valor[indice])) {
-                                    e.target.value = valor.substring(0, indice);
+                                for (const indice in valor) {
+                                    if (!apenasNumeros.test(valor[indice])) {
+                                        e.target.value = valor.substring(0, indice);
+                                    }
                                 }
-                            }
 
-                            
+                                
 
-                            if (valor.length > 11) {
-                                e.target.value = valor.substring(0, 11);
-                            }
+                                if (valor.length > 11) {
+                                    e.target.value = valor.substring(0, 11);
+                                }
                         } }) }} 
                         type={ "text" }/>
                 </Form.Field> 

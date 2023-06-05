@@ -4,7 +4,11 @@ const mensagens = {
     },
 
     minLength: (campo, min) => {
-        return `O campo '${campo}' deve possuir no mínimo ${min} caracteres`
+        return `O campo "${campo}" deve possuir no mínimo ${min} caracteres`
+    },
+
+    maxLength: (campo, max) => {
+        return `O campo "${campo}" deve possuir no máximo ${max} caracteres`
     }
 }
 
