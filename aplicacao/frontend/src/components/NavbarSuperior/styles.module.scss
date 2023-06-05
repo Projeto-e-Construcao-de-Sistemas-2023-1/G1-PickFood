@@ -26,6 +26,8 @@
 }
 
 .dropdown {
+    animation: slide 0.5s ease-in-out;
+
     //display: none;
     position: absolute;
     width: utils.converterPxParaRem(160px);
@@ -53,3 +55,17 @@
     margin-right: utils.converterPxParaRem(7px);
 }
 
+@keyframes slide {
+
+    0% {
+        opacity: 0;
+        top: 55px;
+    }
+
+    50% {
+        opacity: 100%;
+    }
+
+    100% {
+    }
+}

@@ -1,7 +1,10 @@
 @use "../../styles/utils.module.scss";
 @use "../../styles/cores.module.scss";
 
+
 .modal {
+   
+
     position: absolute;
     left: 50%;
     top: 35%;
@@ -52,3 +55,4 @@
 .botaoCancelar {
     background-color: cores.$verdeClaro;
 }
+
