@@ -16,78 +16,75 @@ export default function MeusDados() {
       register,
       handleSubmit,
       formState: { errors },
-      setValue
     } = useForm();
   
-    useEffect(() => {
-      const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+    // useEffect(() => {
+    //   const usuarios = JSON.parse(localStorage.getItem("usuarios"));
   
-      let userBuscado = {};
+    //   let userBuscado = {};
   
-      for (const user of usuarios) {
-        if (user.id === usuario.id) {
-          userBuscado = user;
-          break;
-        }
-      }
+    //   for (const user of usuarios) {
+    //     if (user.id === usuario.id) {
+    //       userBuscado = user;
+    //       break;
+    //     }
+    //   }
   
-      setValue("nome", userBuscado.nome);
-      setValue("email", userBuscado.email);
-      setValue("cpf", userBuscado.cpf);
-      setValue("telefone", userBuscado.telefone);
-    }, [usuario.id, setValue]);
-  
-    const onSubmit = (data) => {
-      console.log(data);
-      alterar(data);
-    };
+    //   setValue("nome", userBuscado.nome);
+    //   setValue("email", userBuscado.email);
+    //   setValue("cpf", userBuscado.cpf);
+    //   setValue("telefone", userBuscado.telefone);
+    // }, [usuario.id, setValue]);
+
   
     const alterar = (data) => {
-      let usuariosJaCadastrados = JSON.parse(localStorage.getItem("usuarios"));
+
+      console.log(data);
+      // let usuariosJaCadastrados = JSON.parse(localStorage.getItem("usuarios"));
   
-      let userBuscado = {};
-      let indexBuscado = -1;
+      // let userBuscado = {};
+      // let indexBuscado = -1;
   
-      for (const index in usuariosJaCadastrados) {
-        if (usuariosJaCadastrados[index].id === usuario.id) {
-          userBuscado = usuariosJaCadastrados[index];
-          indexBuscado = index;
-          break;
-        }
-      }
+      // for (const index in usuariosJaCadastrados) {
+      //   if (usuariosJaCadastrados[index].id === usuario.id) {
+      //     userBuscado = usuariosJaCadastrados[index];
+      //     indexBuscado = index;
+      //     break;
+      //   }
+      // }
   
-      userBuscado = {
-        ...userBuscado,
-        nome: data.nome,
-        email: data.email,
-        cpf: data.cpf,
-        telefone: data.telefone
-      };
+      // userBuscado = {
+      //   ...userBuscado,
+      //   nome: data.nome,
+      //   email: data.email,
+      //   cpf: data.cpf,
+      //   telefone: data.telefone
+      // };
   
-      usuariosJaCadastrados.splice(indexBuscado, 1);
-      localStorage.setItem("usuarios", JSON.stringify([userBuscado, ...usuariosJaCadastrados]));
+      // usuariosJaCadastrados.splice(indexBuscado, 1);
+      // localStorage.setItem("usuarios", JSON.stringify([userBuscado, ...usuariosJaCadastrados]));
     };
   
     return (
       <>
         <h2 className={tituloPagina}>Meus Dados</h2>
   
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={ handleSubmit(alterar) }>
           <Form.Field>
             <Form.Label>Nome</Form.Label>
-            <Form.Input {...register("nome", { required: true })} />
+            <Form.Input registrar={{ ...register("nome", { required: true }) }} />
           </Form.Field>
           <Form.Field>
             <Form.Label>Email</Form.Label>
-            <Form.Input {...register("email", { required: true })} />
+            <Form.Input registrar={{ ...register("email", { required: true }) }} />
           </Form.Field>
           <Form.Field>
             <Form.Label>Telefone</Form.Label>
-            <Form.Input {...register("telefone", { required: true })} />
+            <Form.Input registrar={{ ...register("telefone", { required: true }) }} />
           </Form.Field>
           <Form.Field>
             <Form.Label>CPF</Form.Label>
-            <Form.Input {...register("cpf", { required: true })} />
+            <Form.Input registrar={{ ...register("cpf", { required: true }) }} />
           </Form.Field>
   
           <Form.Button type="submit">Salvar alterações</Form.Button>
