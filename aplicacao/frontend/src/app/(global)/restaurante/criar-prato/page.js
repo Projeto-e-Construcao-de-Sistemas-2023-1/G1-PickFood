@@ -1,4 +1,5 @@
 'use client';
+
 import Form from "@/components/Form";
 import Container from "@/components/Container";
 import Image from "next/image";
@@ -7,12 +8,11 @@ import {
     imagem
 } from "./styles.module.scss"
 import Link from "next/link";
+import { useForm } from "react-hook-form";
 
 export default function CriarPrato() {
 
-    const authenticate = () => {
-        // request
-    }
+    const { register: registrar, handleSubmit: tratarFormulario } = useForm();
 
     return (
         <Container>
