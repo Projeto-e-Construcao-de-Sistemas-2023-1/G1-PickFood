@@ -16,35 +16,38 @@ export default function CriarPrato() {
     const { register: registrar, handleSubmit: tratarFormulario, watch } = useForm();
     const imagemValida = /^https:\/\/[\w.-]+\/.*\.(jpg|png|jpeg)$/i
 
-    useEffect(() => {
-        console.log(watch("imagem"));
-    })
-
     const criar = (data) => {
         console.log(data);
     }
 
     return (
         <Container>
-           
-
-            <div className={forms}>
-                <Form onSubmit={ tratarFormulario(criar) }>
-
+            {
+                !imagemValida.test(watch("imagem")) ?
                     <Image
-                        src={ 
-                            imagemValida.test(watch("imagem")) ? 
-                                watch("imagem") 
-                                : 
-                                "/icons/foto.svg" 
-                        }
-                        width={ 21 }
-                        height={ 21 }
+                        src={ "/icons/foto.svg" }
+                        width={ 87 }
+                        height={ 87 }
                         className={ imagem }
                         
                         alt="."
                     />
-                    
+                    :
+                    <div>
+                        <Image
+                            src={ watch("imagem") }
+                            width={ 120 }
+                            height={ 120 }
+                            objectFit={ "cover" }
+                            className={ imagem }
+                            alt="."
+                        />
+                    </div>
+            }
+
+            <div className={forms}>
+                <Form onSubmit={ tratarFormulario(criar) }>
+
                     <Form.Field>
                         <Form.Label>Nome</Form.Label>
                         <Form.Input registrar={{ ...registrar("nome") }}/>
