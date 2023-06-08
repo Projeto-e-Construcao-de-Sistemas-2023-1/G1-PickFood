@@ -18,6 +18,7 @@ import { v4 as uuid } from "uuid";
 import { CadastroRestauranteContext } from "../layout";
 import { AuthContext } from "@/contexts";
 import { useRouter } from "next/navigation";
+import { mensagens } from "@/erros/mensagens";
 
 export default function Cadastro3() {
 
@@ -88,9 +89,28 @@ export default function Cadastro3() {
 
             <div className={forms}>
                 <Form onSubmit={ submit(handleSubmit) }>
+                    <Form.Erros erros = { errors }/>
                     <Form.Field>
                         <Form.Label>CEP</Form.Label>
-                        <Form.Input type="string" registrar = {{ ...register("cep", { required: true }) }}/>
+                            <Form.Input registrar={{ ...register("cep", { 
+                                required: mensagens.required("cep"),
+                                minLength: { message: mensagens.minLength("cep", 8), value: 8 },
+                                onChange: (e) => {
+                                    const valor = e.target.value;
+                                                    
+                                    const apenasNumeros = /^\d+$/;
+
+                                    for (const indice in valor) {
+                                        if (!apenasNumeros.test(valor[indice])) {
+                                            e.target.value = valor.substring(0, indice);
+                                        }
+                                    }
+
+                                    if (valor.length > 8) {
+                                        e.target.value = valor.substring(0, 8);
+                                    }
+                                }
+                                }) }} type={ "text" }/>
                     </Form.Field>
                     
                     <Form.Field>

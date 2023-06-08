@@ -21,7 +21,7 @@ import { mensagens } from "@/erros/mensagens";
 
 export default function Cadastro1() {
 
-    const { register, handleSubmit: submit, formState: { errors: erros } } = useForm();
+    const { watch, register, handleSubmit: submit, formState: { errors: erros } } = useForm();
 
     const { definirDados } = useContext(CadastroRestauranteContext);
 
