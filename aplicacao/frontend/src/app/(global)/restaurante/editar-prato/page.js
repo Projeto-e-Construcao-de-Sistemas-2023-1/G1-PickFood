@@ -7,8 +7,11 @@ import {
     forms,
     imagem
 } from "./styles.module.scss"
+import { useForm } from "react-hook-form";
 
 export default function EditarPrato() {
+
+    const { register: registrar } = useForm();
 
     const authenticate = () => {
         // request
@@ -28,7 +31,7 @@ export default function EditarPrato() {
                 <Form>
                     <Form.Field>
                         <Form.Label>Nome</Form.Label>
-                        <Form.Input/>
+                        <Form.Input registrar={{  }}/>
                     </Form.Field>
                     
                     <Form.Field>
