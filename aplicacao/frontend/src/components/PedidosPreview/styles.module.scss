@@ -1,0 +1,23 @@
+@use "../../styles/cores.module.scss";
+@use "../../styles/utils.module.scss";
+
+
+.texto {
+    font-weight: 400;
+    font-size: utils.converterPxParaRem(12px);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    color: cores.$preto;
+    margin-bottom: utils.converterPxParaRem(12px);
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.status {
+    margin-left: utils.converterPxParaRem(45px);
+}

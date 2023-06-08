@@ -8,10 +8,11 @@ import {
     divider,
     titulo,
     botao,
-    link
+    link,
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
 import { createContext, useState } from "react";
+import PedidosPreview from "@/components/PedidosPreview";
 
 export default function RestauranteHome() {        
 
@@ -27,8 +28,16 @@ export default function RestauranteHome() {
                 <Button>Exibir cardápio</Button>
                 </div>
             </Link>
-            
+
             <div className={ divider }></div>
+
+            <PedidosPreview/>
+
+            <Link href={"restaurante/pedidos"} className={ link }>
+                <div className= { botao }>
+                <Button>Exibir pedidos</Button>
+                </div>
+            </Link>
 
         </>
     )
