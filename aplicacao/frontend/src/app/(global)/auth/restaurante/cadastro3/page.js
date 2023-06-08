@@ -18,6 +18,7 @@ import { v4 as uuid } from "uuid";
 import { CadastroRestauranteContext } from "../layout";
 import { AuthContext } from "@/contexts";
 import { useRouter } from "next/navigation";
+import { mensagens } from "@/erros/mensagens";
 
 export default function Cadastro3() {
 
@@ -87,35 +88,53 @@ export default function Cadastro3() {
             <h2 className={ [center, title].join(' ') }>Informações de Endereço</h2>
 
             <div className={forms}>
-            <Form onSubmit={ submit(handleSubmit) }>
-                <Form.Field>
-                    <Form.Label>CEP</Form.Label>
-                    <Form.Input type="string" registrar = {{ ...register("cep", { required: true }) }}/>
-                </Form.Field>
-                
-                <Form.Field>
-                    <Form.Label>Bairro</Form.Label>
-                    <Form.Input type="string" registrar = {{ ...register("bairro", { required: true }) }}/>
-                </Form.Field>
+                <Form onSubmit={ submit(handleSubmit) }>
+                    <Form.Erros erros = { errors }/>
+                    <Form.Field>
+                        <Form.Label>CEP</Form.Label>
+                            <Form.Input registrar={{ ...register("cep", { 
+                                required: mensagens.required("cep"),
+                                minLength: { message: mensagens.minLength("cep", 8), value: 8 },
+                                onChange: (e) => {
+                                    const valor = e.target.value;
+                                                    
+                                    const apenasNumeros = /^\d+$/;
 
-                <Form.Field>
-                    <Form.Label>Rua</Form.Label>
-                    <Form.Input type="string" registrar = {{ ...register("rua", { required: true }) }}/>
-                </Form.Field>
+                                    for (const indice in valor) {
+                                        if (!apenasNumeros.test(valor[indice])) {
+                                            e.target.value = valor.substring(0, indice);
+                                        }
+                                    }
 
-                <Form.Field>
-                    <Form.Label>Número</Form.Label>
-                    <Form.Input type="number" registrar = {{ ...register("numero", { required: true }) }}/>
-                </Form.Field>
+                                    if (valor.length > 8) {
+                                        e.target.value = valor.substring(0, 8);
+                                    }
+                                }
+                                }) }} type={ "text" }/>
+                    </Form.Field>
+                    
+                    <Form.Field>
+                        <Form.Label>Bairro</Form.Label>
+                        <Form.Input type="string" registrar = {{ ...register("bairro", { required: mensagens.required("bairro") }) }}/>
+                    </Form.Field>
 
-                <Form.Field>
-                    <Form.Label>Complemento</Form.Label>
-                    <Form.Input type="string" registrar = {{ ...register("complemento") }}/>
-                </Form.Field>
+                    <Form.Field>
+                        <Form.Label>Rua</Form.Label>
+                        <Form.Input type="string" registrar = {{ ...register("rua", { required: mensagens.required("rua") }) }}/>
+                    </Form.Field>
 
-                <Form.Button type="submit">Continuar</Form.Button>
-                
-            </Form>
+                    <Form.Field>
+                        <Form.Label>Número</Form.Label>
+                        <Form.Input type="number" registrar = {{ ...register("numero", { required: mensagens.required("numero") }) }}/>
+                    </Form.Field>
+
+                    <Form.Field>
+                        <Form.Label>Complemento</Form.Label>
+                        <Form.Input type="string" registrar = {{ ...register("complemento") }}/>
+                    </Form.Field>
+
+                    <Form.Button type="submit">Continuar</Form.Button>
+                </Form>
             </div>
         </Container>
     )
