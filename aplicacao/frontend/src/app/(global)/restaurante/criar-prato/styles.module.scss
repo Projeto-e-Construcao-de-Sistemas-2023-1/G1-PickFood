@@ -9,16 +9,13 @@
 }
 
 .imagem {
-    width: 100%;
+    display: block;
     margin: 0 auto;
-    height: 87px;
-    width: 87px;
-    display: flex;
-    align-items: center;
     margin-top: 27px;
     margin-bottom: 48px;
     color: cores.$preto;
     opacity: 0.7;
+    border-radius: utils.converterPxParaRem(10px);
 }
 
 .botao {
