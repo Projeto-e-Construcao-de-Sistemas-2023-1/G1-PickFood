@@ -17,10 +17,11 @@ import { useContext, useState } from "react";
 import { CadastroRestauranteContext } from "../layout";
 import { useRouter } from "next/navigation";
 import rotas from "@/rotas";
+import { mensagens } from "@/erros/mensagens";
 
 export default function Cadastro1() {
 
-    const { register, handleSubmit: submit, formState: { errors } } = useForm();
+    const { register, handleSubmit: submit, formState: { errors: erros } } = useForm();
 
     const { definirDados } = useContext(CadastroRestauranteContext);
 
@@ -59,10 +60,9 @@ export default function Cadastro1() {
              
             <h2 className={ [center, title].join(' ') }>Informações do restaurante</h2>
             
-            { Object.keys(errors).length !== 0 && <div style={{ color: "red" }}> Dados inválidos </div> }
-            
             <div className={forms}>         
                 <Form onSubmit={ submit(handleSubmit) }>
+                    <Form.Erros erros={erros}/>
                     <Form.Field>
                         <Form.Label>Email</Form.Label>
                         <Form.Input type="email" registrar = {{ ...register("email", { required: true }) }}/>
@@ -71,6 +71,17 @@ export default function Cadastro1() {
                     <Form.Field>
                         <Form.Label>Senha</Form.Label>
                         <Form.Input type="password" registrar = {{ ...register("senha", { required: true }) }}/>
+                    </Form.Field>
+
+                    <Form.Field>
+                        <Form.Label>Confirme sua senha</Form.Label>
+                        <Form.Input 
+                            registrar={{ ...register("confirmacao_senha", { required: mensagens.required("Confirme sua senha"), minLength: {value: 8, message: mensagens.minLength("Confirme sua senha", 8)}, validate: (value) => {
+                                const senha = watch("senha");
+
+                                return senha === value;
+                            } }) }} 
+                            type={ "password" }/>
                     </Form.Field>
 
                     <Form.Field>

@@ -87,35 +87,34 @@ export default function Cadastro3() {
             <h2 className={ [center, title].join(' ') }>Informações de Endereço</h2>
 
             <div className={forms}>
-            <Form onSubmit={ submit(handleSubmit) }>
-                <Form.Field>
-                    <Form.Label>CEP</Form.Label>
-                    <Form.Input type="string" registrar = {{ ...register("cep", { required: true }) }}/>
-                </Form.Field>
-                
-                <Form.Field>
-                    <Form.Label>Bairro</Form.Label>
-                    <Form.Input type="string" registrar = {{ ...register("bairro", { required: true }) }}/>
-                </Form.Field>
+                <Form onSubmit={ submit(handleSubmit) }>
+                    <Form.Field>
+                        <Form.Label>CEP</Form.Label>
+                        <Form.Input type="string" registrar = {{ ...register("cep", { required: true }) }}/>
+                    </Form.Field>
+                    
+                    <Form.Field>
+                        <Form.Label>Bairro</Form.Label>
+                        <Form.Input type="string" registrar = {{ ...register("bairro", { required: true }) }}/>
+                    </Form.Field>
 
-                <Form.Field>
-                    <Form.Label>Rua</Form.Label>
-                    <Form.Input type="string" registrar = {{ ...register("rua", { required: true }) }}/>
-                </Form.Field>
+                    <Form.Field>
+                        <Form.Label>Rua</Form.Label>
+                        <Form.Input type="string" registrar = {{ ...register("rua", { required: true }) }}/>
+                    </Form.Field>
 
-                <Form.Field>
-                    <Form.Label>Número</Form.Label>
-                    <Form.Input type="number" registrar = {{ ...register("numero", { required: true }) }}/>
-                </Form.Field>
+                    <Form.Field>
+                        <Form.Label>Número</Form.Label>
+                        <Form.Input type="number" registrar = {{ ...register("numero", { required: true }) }}/>
+                    </Form.Field>
 
-                <Form.Field>
-                    <Form.Label>Complemento</Form.Label>
-                    <Form.Input type="string" registrar = {{ ...register("complemento") }}/>
-                </Form.Field>
+                    <Form.Field>
+                        <Form.Label>Complemento</Form.Label>
+                        <Form.Input type="string" registrar = {{ ...register("complemento") }}/>
+                    </Form.Field>
 
-                <Form.Button type="submit">Continuar</Form.Button>
-                
-            </Form>
+                    <Form.Button type="submit">Continuar</Form.Button>
+                </Form>
             </div>
         </Container>
     )
