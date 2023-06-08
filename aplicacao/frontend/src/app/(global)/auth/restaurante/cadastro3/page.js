@@ -115,17 +115,17 @@ export default function Cadastro3() {
                     
                     <Form.Field>
                         <Form.Label>Bairro</Form.Label>
-                        <Form.Input type="string" registrar = {{ ...register("bairro", { required: true }) }}/>
+                        <Form.Input type="string" registrar = {{ ...register("bairro", { required: mensagens.required("bairro") }) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Rua</Form.Label>
-                        <Form.Input type="string" registrar = {{ ...register("rua", { required: true }) }}/>
+                        <Form.Input type="string" registrar = {{ ...register("rua", { required: mensagens.required("rua") }) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Número</Form.Label>
-                        <Form.Input type="number" registrar = {{ ...register("numero", { required: true }) }}/>
+                        <Form.Input type="number" registrar = {{ ...register("numero", { required: mensagens.required("numero") }) }}/>
                     </Form.Field>
 
                     <Form.Field>

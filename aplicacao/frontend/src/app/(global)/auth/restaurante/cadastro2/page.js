@@ -59,8 +59,6 @@ export default function Cadastro2() {
             
             <h2 className={ [center, title].join(' ') }>Informações Adicionais</h2>
 
-            { Object.keys(errors).length !== 0 && <div style={{ color: "red" }}> Dados inválidos </div> }
-
             <div className={forms}>
                 <Form onSubmit={ submit(handleSubmit) }>
                     <Form.Erros erros = { errors }/>
@@ -90,17 +88,17 @@ export default function Cadastro2() {
                     
                     <Form.Field>
                         <Form.Label>Horário de Abertura</Form.Label>
-                            <Form.Input type="string" registrar = {{ ...register("horarioAbertura", { required: true }) }}/>
+                            <Form.Input type="string" registrar = {{ ...register("horarioAbertura", { required: mensagens.required("horarioAbertura")}) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Horário de Fechamento</Form.Label>
-                            <Form.Input type="string" registrar = {{ ...register("horarioFechamento", { required: true }) }}/>
+                            <Form.Input type="string" registrar = {{ ...register("horarioFechamento", { required: mensagens.required("horarioFechamento") }) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Taxa de Entrega</Form.Label>
-                            <Form.Input type="number" registrar = {{ ...register("taxaEntrega", { required: true }) }}/>
+                            <Form.Input type="number" registrar = {{ ...register("taxaEntrega", { required: mensagens.required("taxaEntrega") }) }}/>
                     </Form.Field>
                     
                     <Form.Button type="submit">Continuar</Form.Button>  
