@@ -38,7 +38,7 @@ export default function CriarPrato() {
                             src={ watch("imagem") }
                             width={ 120 }
                             height={ 120 }
-                            objectFit={ "cover" }
+                            style={ { objectFit: "cover" } }
                             className={ imagem }
                             alt="."
                         />
