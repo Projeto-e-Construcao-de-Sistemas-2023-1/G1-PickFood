@@ -35,10 +35,6 @@ export default function Login() {
 
     const { definirUsuario } = useContext(AuthContext);
 
-    useEffect(() => {
-        console.log(erros)
-    })
-
     const autenticar = (data) => {
 
         console.log(data);
