@@ -26,7 +26,7 @@ export default function CriarPrato() {
     const criar = (data) => {
         console.log(data);
     }
-
+    // Falta só colocar o input de seleção de restrição
     return (
         <Container>
             {
