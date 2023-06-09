@@ -25,12 +25,13 @@ Form.Label = function InputLabel({ children, ...restProps }) {
     return <label className={ styles.label } { ...restProps }>{ children }</label>
 }
 
-Form.Input = function FormInput({ type, value, onChange, registrar, ...restProps }) {
+Form.Input = function FormInput({ type, value, defaultValue, onChange, registrar, ...restProps }) {
     return <input 
         type={ type }
         value={ value } 
         onChange={ onChange } 
-        className={ styles.input } 
+        className={ styles.input }
+        defaultValue={ defaultValue } 
         { ...registrar }
         { ...restProps }
     />
