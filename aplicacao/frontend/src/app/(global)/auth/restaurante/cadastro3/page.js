@@ -115,12 +115,12 @@ export default function Cadastro3() {
                     
                     <Form.Field>
                         <Form.Label>Bairro</Form.Label>
-                        <Form.Input type="string" registrar = {{ ...register("bairro", { required: mensagens.required("bairro") }) }}/>
+                        <Form.Input type="text" registrar = {{ ...register("bairro", { required: mensagens.required("bairro") }) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Rua</Form.Label>
-                        <Form.Input type="string" registrar = {{ ...register("rua", { required: mensagens.required("rua") }) }}/>
+                        <Form.Input type="text" registrar = {{ ...register("rua", { required: mensagens.required("rua") }) }}/>
                     </Form.Field>
 
                     <Form.Field>
@@ -130,7 +130,7 @@ export default function Cadastro3() {
 
                     <Form.Field>
                         <Form.Label>Complemento</Form.Label>
-                        <Form.Input type="string" registrar = {{ ...register("complemento") }}/>
+                        <Form.Input type="text" registrar = {{ ...register("complemento") }}/>
                     </Form.Field>
 
                     <Form.Button type="submit">Continuar</Form.Button>

@@ -83,17 +83,17 @@ export default function Cadastro2() {
                                         e.target.value = valor.substring(0, 11);
                                     }
                             } }) }} 
-                            type={ "string" }/>
+                            type={ "text" }/>
                     </Form.Field>
                     
                     <Form.Field>
                         <Form.Label>Horário de Abertura</Form.Label>
-                            <Form.Input type="string" registrar = {{ ...register("horarioAbertura", { required: mensagens.required("horarioAbertura")}) }}/>
+                            <Form.Input type="text" registrar = {{ ...register("horarioAbertura", { required: mensagens.required("horarioAbertura")}) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Horário de Fechamento</Form.Label>
-                            <Form.Input type="string" registrar = {{ ...register("horarioFechamento", { required: mensagens.required("horarioFechamento") }) }}/>
+                            <Form.Input type="text" registrar = {{ ...register("horarioFechamento", { required: mensagens.required("horarioFechamento") }) }}/>
                     </Form.Field>
 
                     <Form.Field>

@@ -84,7 +84,7 @@ export default function Cadastro4() {
                     </div>
                     <div className={checkbox}>
                         <input type= "checkbox" name ="h"/>
-                        <label for="h">Restrição #12</label>
+                        <label for="l">Restrição #12</label>
                     </div>
                     
                 </div>
