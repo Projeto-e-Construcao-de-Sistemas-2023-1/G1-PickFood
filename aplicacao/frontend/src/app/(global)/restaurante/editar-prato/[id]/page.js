@@ -1,14 +1,13 @@
 'use client';
-import Form from "@/components/Form";
 import Container from "@/components/Container";
+import Form from "@/components/Form";
+import { mensagens } from "@/erros/mensagens";
 import Image from "next/image";
-import Link from "next/link";
-import { 
+import { useForm } from "react-hook-form";
+import {
     forms,
     imagem
-} from "./styles.module.scss"
-import { useForm } from "react-hook-form";
-import { mensagens } from "@/erros/mensagens";
+} from "./styles.module.scss";
 
 export default function EditarPrato() {
 
@@ -45,7 +44,7 @@ export default function EditarPrato() {
 
             <div className={forms}>
                 <Form onSubmit={ tratarFormulario(editar) }> 
-                    
+                    <Form.Erros erros={ erros } />
 
                     <Form.Field>
                         <Form.Label>Nome</Form.Label>
