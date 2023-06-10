@@ -26,7 +26,7 @@ public class RestauranteDTO extends BaseDTO<Restaurante> {
     @NotNull(groups = {IUpdate.class}, message = "{field.not.null}")
 	private Integer id;
 	
-	private UserDTO user;
+	private Integer userId;
 	
 	@JsonProperty(value = "nome_fantasia")
     private String nomeFantasia;
@@ -53,10 +53,7 @@ public class RestauranteDTO extends BaseDTO<Restaurante> {
     public Restaurante convertToEntity() {
         return Restaurante.builder()
         		.id(this.id)
-        		.user(User.builder().id(this.user.getId())
-        				.email(this.user.getEmail())
-        				.senha(this.user.getSenha())
-        				.build())
+        		.user(User.builder().id(this.userId).build())
         		.cnpj(this.cnpj)
         		.nomeFantasia(this.nomeFantasia)
         		.razaoSocial(this.razaoSocial)

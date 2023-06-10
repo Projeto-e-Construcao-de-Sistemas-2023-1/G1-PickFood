@@ -70,12 +70,7 @@ public class Restaurante extends BaseEntity{
     public RestauranteDTO convertToDto() {
         return RestauranteDTO.builder()
         		.id(this.id)
-        		.user(UserDTO.builder()
-        				.id(this.user.getId())
-        				.senha(this.user.getSenha())
-        				.email(this.user.getEmail())
-        				.type("restaurante")
-        				.build())
+        		.userId(this.user.getId())
         		.cnpj(this.cnpj)
         		.nomeFantasia(this.nomeFantasia)
         		.razaoSocial(this.razaoSocial)

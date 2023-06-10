@@ -15,7 +15,7 @@ public class ItemDTO extends BaseDTO<Item> {
     private float preco;
     private String nome;
     private String tipo;
-    private RestauranteDTO restaurante;
+    private Integer restauranteId;
     private String descricao;
     private String foto;
 
@@ -24,6 +24,7 @@ public class ItemDTO extends BaseDTO<Item> {
         return Item.builder()
                 .preco(this.preco)
                 .nome(this.nome)
+                .restaurante(Restaurante.builder().id(restauranteId).build())
                 .descricao(this.descricao)
                 .foto(this.foto)
                 .tipo(this.tipo)

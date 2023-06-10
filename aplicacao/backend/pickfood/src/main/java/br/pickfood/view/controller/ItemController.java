@@ -39,11 +39,8 @@ public class ItemController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ItemDTO> cadastrarItem(@PathVariable Integer id, @RequestBody ItemDTO dto){
         Item entity = dto.convertToEntity();
-        RestauranteDTO restaurante = restauranteService.findById(id);
-        entity.setRestaurante(restaurante.convertToEntity());
 
         service.create(entity);
-        dto.setRestaurante(restaurante);
 
         return new ResponseEntity(dto, HttpStatusCode.valueOf(201));
     }

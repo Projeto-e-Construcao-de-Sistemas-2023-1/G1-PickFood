@@ -19,7 +19,7 @@ public class ClienteDTO extends BaseDTO<Cliente> {
     @Null(groups = {ICreation.class}, message = "{field.null}")
     @NotNull(groups = {IUpdate.class}, message = "{field.not.null}")
     private Integer id;
-    private UserDTO user;
+    private Integer userId;
     private String nome;
     private String cpf;
     private String telefone;
@@ -28,9 +28,7 @@ public class ClienteDTO extends BaseDTO<Cliente> {
     public Cliente convertToEntity() {
         return Cliente.builder()
                 .user(User.builder()
-                        .id(this.user.getId())
-                        .email(this.user.getEmail())
-                        .senha(this.user.getSenha())
+                        .id(this.userId)
                         .build())
                 .nome(this.nome)
                 .cpf(this.cpf)

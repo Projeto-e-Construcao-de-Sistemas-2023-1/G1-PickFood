@@ -49,12 +49,7 @@ public class Cliente extends BaseEntity {
     public ClienteDTO convertToDto() {
         return ClienteDTO.builder()
                 .id(this.id)
-                .user(UserDTO.builder()
-                        .id(this.user.getId())
-                        .senha(this.user.getSenha())
-                        .email(this.user.getEmail())
-                        .type("cliente")
-                        .build())
+                .userId(this.getUser().getId())
                 .nome(this.nome)
                 .cpf(this.cpf)
                 .telefone(this.telefone)

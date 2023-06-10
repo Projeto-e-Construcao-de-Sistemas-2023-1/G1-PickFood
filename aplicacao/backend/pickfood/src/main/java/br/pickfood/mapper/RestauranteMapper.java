@@ -13,6 +13,5 @@ import br.pickfood.model.restaurante.Restaurante;
 public interface RestauranteMapper {
 	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 	@Mapping(target = "endereco", source = "endereco")
-	@Mapping(target = "user", source = "user")
 	void updateRestauranteFromDto(RestauranteDTO dto, @MappingTarget Restaurante entity);
 }
