@@ -2,7 +2,7 @@ package br.pickfood.model.favoritos;
 
 import br.pickfood.model.BaseEntity;
 import br.pickfood.model.cliente.Cliente;
-import br.pickfood.model.dto.favoritos.FavoritosPratoDTO;
+import br.pickfood.model.dto.favoritos.FavoritosItemDTO;
 import br.pickfood.model.item.Item;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "favoritos_prato")
-public class FavoritosPrato extends BaseEntity{
+public class FavoritosItem extends BaseEntity{
 
     @ManyToOne
 	@JoinColumn(name = "cliente")
@@ -30,8 +30,8 @@ public class FavoritosPrato extends BaseEntity{
 	private Item item;
 	
 	@Override
-	public FavoritosPratoDTO convertToDto() {
-		return FavoritosPratoDTO.builder()
+	public FavoritosItemDTO convertToDto() {
+		return FavoritosItemDTO.builder()
 				.id(this.id)
 				.clienteId(this.cliente.getId())
 				.itemId(this.item.getId())
