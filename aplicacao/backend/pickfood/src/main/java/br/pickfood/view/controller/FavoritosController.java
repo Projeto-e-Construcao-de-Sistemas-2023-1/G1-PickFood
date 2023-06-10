@@ -15,30 +15,30 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.pickfood.groups.ICreation;
-import br.pickfood.model.dto.favoritos.FavoritosDTO;
+import br.pickfood.model.dto.favoritos.FavoritosRestauranteDTO;
 import br.pickfood.model.dto.restaurante.RestauranteDTO;
-import br.pickfood.model.favoritos.Favoritos;
-import br.pickfood.service.favoritos.FavoritosService;
+import br.pickfood.model.favoritos.FavoritosRestaurante;
+import br.pickfood.service.favoritos.FavoritosRestauranteService;
 
 @RestController
 @RequestMapping("/favoritos")
 public class FavoritosController {
 	
 	@Autowired
-	FavoritosService service;
+	FavoritosRestauranteService service;
 	
     @PostMapping
     public ResponseEntity<Object> cadastrar(@RequestBody @Validated(ICreation.class)
-    	FavoritosDTO dto){
+    	FavoritosRestauranteDTO dto){
     	
-    	Favoritos entity = dto.convertToEntity();
+    	FavoritosRestaurante entity = dto.convertToEntity();
     	
     	return new ResponseEntity(service.createAndReturnRestaurante(entity), HttpStatusCode.valueOf(200));
     }
     
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Object> delete(@RequestBody FavoritosDTO dto){
+    public ResponseEntity<Object> delete(@RequestBody FavoritosRestauranteDTO dto){
         service.deleteByClienteIdAndRestauranteId(dto);
         return ResponseEntity.noContent().build();
     }

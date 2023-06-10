@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "favoritosprato")
+@Table(name = "favoritos_prato")
 public class FavoritosPrato extends BaseEntity{
 
     @ManyToOne

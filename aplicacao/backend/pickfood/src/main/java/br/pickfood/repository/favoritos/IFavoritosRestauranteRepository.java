@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import br.pickfood.model.favoritos.Favoritos;
+import br.pickfood.model.favoritos.FavoritosRestaurante;
 import br.pickfood.repository.IBaseRepository;
 
 @Repository
-public interface IFavoritosRepository extends IBaseRepository<Favoritos>{
+public interface IFavoritosRestauranteRepository extends IBaseRepository<FavoritosRestaurante>{
 	
-	List<Favoritos> findByCliente_Id(Integer clienteId);
+	List<FavoritosRestaurante> findByCliente_Id(Integer clienteId);
 	void deleteByCliente_IdAndRestaurante_Id(Integer clienteId, Integer restauranteId);
 }
