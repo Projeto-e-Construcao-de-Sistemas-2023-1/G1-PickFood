@@ -2,19 +2,24 @@ package br.pickfood.model.item;
 
 import br.pickfood.model.BaseEntity;
 import br.pickfood.model.dto.item.ItemDTO;
-import br.pickfood.model.dto.user.UserDTO;
 import br.pickfood.model.restaurante.Restaurante;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 
 @Table
 @Entity
-@Builder
+@SuperBuilder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Item extends BaseEntity {
 
     @Column(name = "preco")
