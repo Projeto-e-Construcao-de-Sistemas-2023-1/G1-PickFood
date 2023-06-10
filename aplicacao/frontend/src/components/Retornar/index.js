@@ -9,6 +9,7 @@ const Retornar = ({ navigate, ...restProps }) => {
             onClick={ navigate }
             width={ 21 }
             height={ 21 }
+            style={{ margin: "30px auto 20px auto" }}
             { ...restProps }
         />
     )
