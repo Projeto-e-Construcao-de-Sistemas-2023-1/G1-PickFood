@@ -1,0 +1,54 @@
+@use "@/styles/utils.module";
+@use "@/styles/cores.module";
+
+.container {
+
+    margin: 0 auto;
+
+    min-width: utils.converterPxParaRem(200px);
+    border: utils.converterPxParaRem(2px) solid cores.$verdeClaro;
+    border-radius: utils.converterPxParaRem(5px);
+
+    padding: utils.converterPxParaRem(17px) utils.converterPxParaRem(12px);
+
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.cabecalho {
+    margin-bottom: utils.converterPxParaRem(21px);
+}
+
+.nomeRestaurante {
+    margin-bottom: utils.converterPxParaRem(8px);
+}
+
+.adicionarMaisItens {
+
+    color: cores.$verdeClaro;
+    font-style: italic;
+}
+
+
+.prato {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nomePrato {
+    margin-bottom: utils.converterPxParaRem(8px);
+}
+
+.precoPrato {
+    font-weight: bold;
+}
+
+.interacoes {
+    display: flex;
+    align-items: center;
+
+}
+
+.addCarrinho, .quantidade {
+    margin-right: utils.converterPxParaRem(15px);
+}

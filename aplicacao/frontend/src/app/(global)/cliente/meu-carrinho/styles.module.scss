@@ -1,0 +1,16 @@
+@use "@/styles/cores.module";
+@use "@/styles/utils.module";
+
+.info {
+    margin-top: utils.converterPxParaRem(21px);
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.textoPrimario {
+    color: cores.$verdeClaro;
+    margin-bottom: utils.converterPxParaRem(6px);
+}
+
+.textoSecundario {
+
+}
