@@ -51,15 +51,16 @@ public class RestauranteController {
     	return new ResponseEntity(service.update(dto), HttpStatusCode.valueOf(200));
     }
     
-    @GetMapping(path = "/list/{name}")
+  
+    @GetMapping
+    public ResponseEntity<RestauranteDTO> listAll(){
+    	return new ResponseEntity(service.listAll(), HttpStatusCode.valueOf(200));
+    }
+
+    @GetMapping(path = "/{name}")
     public ResponseEntity<RestauranteDTO> listByName(@PathVariable String name){
 
     	return new ResponseEntity(service.listByName(name), HttpStatusCode.valueOf(200));
-    }
-    
-    @GetMapping(path = "/list")
-    public ResponseEntity<RestauranteDTO> listAll(){
-    	return new ResponseEntity(service.listAll(), HttpStatusCode.valueOf(200));
     }
     
     @GetMapping(path = "/{id}")
