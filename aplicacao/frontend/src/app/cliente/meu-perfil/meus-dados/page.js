@@ -1,6 +1,6 @@
 'use client'
 
-import Form from "@/components/Form";
+import Form from "@/components/form";
 import { tituloPagina } from "../../../../styles/componentes.module.scss";
 import Image from "next/image";
 import Link from "next/link";
