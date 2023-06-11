@@ -8,6 +8,8 @@ import br.pickfood.model.BaseEntity;
 import br.pickfood.model.cliente.Cliente;
 import br.pickfood.model.dto.pedido.PedidoDTO;
 import br.pickfood.model.item.pedido.ItemPedido;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,19 +22,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Builder
-@Table
+@Table(name = "pedido")
 public class Pedido extends BaseEntity {
 
-
+	@Column(name = "codigo")
     public Integer codigo;
+	
+	@Column(name = "valor_total")
     public Float valorTotal;
+	
+	@Column(name = "data")
     public Date data;
+	
+	@Column(name = "status")
+    public String status;
+	
+	@Column(name = "forma_pagamento")
+    public String formaPagamento;
 
     @ManyToOne
     @JoinColumn(name = "cliente")
     private Cliente cliente;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<ItemPedido> itemPedidoList;
 
     public Cliente getCliente() {

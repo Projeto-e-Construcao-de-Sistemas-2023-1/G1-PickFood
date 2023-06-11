@@ -6,7 +6,7 @@ import br.pickfood.model.item.pedido.ItemPedido;
 public class ItemPedidoDTO extends BaseDTO<ItemPedido>{
 
 	@Override
-	public <E> E convertToEntity() {
+	public ItemPedido convertToEntity() {
 		// TODO Auto-generated method stub
 		return null;
 	}
