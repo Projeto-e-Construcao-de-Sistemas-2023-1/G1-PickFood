@@ -1,15 +1,21 @@
 package br.pickfood.model.pedido;
 
 
+import java.util.Date;
+import java.util.List;
+
 import br.pickfood.model.BaseEntity;
 import br.pickfood.model.cliente.Cliente;
 import br.pickfood.model.dto.pedido.PedidoDTO;
-import jakarta.persistence.*;
+import br.pickfood.model.item.pedido.ItemPedido;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -25,6 +31,9 @@ public class Pedido extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "cliente")
     private Cliente cliente;
+    
+    @OneToMany
+    private List<ItemPedido> itemPedidoList;
 
     public Cliente getCliente() {
         return cliente;
