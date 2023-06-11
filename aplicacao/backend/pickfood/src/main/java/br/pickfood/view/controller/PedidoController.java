@@ -29,12 +29,10 @@ public class PedidoController {
     
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ItemDTO> cadastrarItem(@RequestBody PedidoDTO dto){
+    public ResponseEntity<PedidoDTO> realizarPedido(@RequestBody PedidoDTO dto){
         Pedido entity = dto.convertToEntity();
 
-        pedidoService.create(entity);
-
-        return new ResponseEntity(dto, HttpStatusCode.valueOf(201));
+        return new ResponseEntity(pedidoService.create(entity), HttpStatusCode.valueOf(201));
     }
     
     @PutMapping("/{codigo}/cancelar")

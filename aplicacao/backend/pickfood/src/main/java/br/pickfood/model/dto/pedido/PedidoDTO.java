@@ -11,6 +11,7 @@ import br.pickfood.model.cliente.Cliente;
 import br.pickfood.model.dto.BaseDTO;
 import br.pickfood.model.dto.item.pedido.ItemPedidoDTO;
 import br.pickfood.model.pedido.Pedido;
+import br.pickfood.model.restaurante.Restaurante;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import lombok.Builder;
@@ -29,6 +30,7 @@ public class PedidoDTO  extends BaseDTO<Pedido> {
     private Date data;
     private List<ItemPedidoDTO> itemPedidoList;
     private Integer clienteId;
+    private Integer restauranteId;
 
     @Override
     public Pedido convertToEntity() {
@@ -36,6 +38,7 @@ public class PedidoDTO  extends BaseDTO<Pedido> {
                 .codigo(this.codigo)
                 .valorTotal(this.valorTotal)
                 .cliente(Cliente.builder().id(clienteId).build())
+                .restaurante(Restaurante.builder().id(restauranteId).build())
                 .itemPedidoList(itemPedidoList.stream().map(ItemPedidoDTO::convertToEntity).collect(Collectors.toList()))
                 .data(this.data)
                 .build();

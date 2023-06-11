@@ -8,6 +8,7 @@ import br.pickfood.model.BaseEntity;
 import br.pickfood.model.cliente.Cliente;
 import br.pickfood.model.dto.pedido.PedidoDTO;
 import br.pickfood.model.item.pedido.ItemPedido;
+import br.pickfood.model.restaurante.Restaurante;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,6 +44,10 @@ public class Pedido extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "cliente")
     private Cliente cliente;
+    
+    @ManyToOne
+    @JoinColumn(name = "restaurante")
+    private Restaurante restaurante;
     
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<ItemPedido> itemPedidoList;
