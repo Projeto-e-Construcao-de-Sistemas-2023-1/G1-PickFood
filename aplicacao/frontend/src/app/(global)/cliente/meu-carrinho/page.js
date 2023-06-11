@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import Carrinho from "@/components/Carrinho";
-import { tituloPagina } from "@/styles/componentes.module.scss";
+import TituloPagina from "@/components/TituloPagina";
 import {
     info,
     textoPrimario,
@@ -16,7 +16,7 @@ const MeuCarrinho = () => {
     
     return(
         <>
-            <h2 className={ tituloPagina }>Meu carrinho</h2>
+            <TituloPagina>Meu carrinho</TituloPagina>
             
             <Carrinho/>
             
