@@ -1,5 +1,6 @@
 import Image from "next/image";
 import {
+    link,
     itens,
     item,
     cabecalho,
@@ -12,6 +13,7 @@ import {
     restricao_nome,
     divider
 } from "./styles.module.scss";
+import Link from "next/link";
 
 const CardapioCliente = ({ pratos }) => {
     return(
@@ -20,36 +22,38 @@ const CardapioCliente = ({ pratos }) => {
                 pratos.map(prato => {
                     return(
                         <>
-                            <li key={ prato.id } className={ item }>
-                                <div className={ cabecalho }>
-                                    <div className={ cabecalho_prato }>
-                                        <Image
-                                            width={ 21 }
-                                            height={ 21 }
-                                            src={ prato.foto !== "" ? prato.foto : "/icons/foto.svg" }
-                                            alt="Foto do prato"
-                                            className={ foto }
-                                        />
-                                        <p className={ nome }>{ prato.nome }</p>
+                            <Link href={ `/cliente/restaurante/1/prato/${prato.id}` } key={ prato.id } className={ link }>
+                                <li className={ item }>
+                                    <div className={ cabecalho }>
+                                        <div className={ cabecalho_prato }>
+                                            <Image
+                                                width={ 21 }
+                                                height={ 21 }
+                                                src={ prato.foto !== "" ? prato.foto : "/icons/foto.svg" }
+                                                alt="Foto do prato"
+                                                className={ foto }
+                                            />
+                                            <p className={ nome }>{ prato.nome }</p>
+                                        </div>
+                                        
+                                        <div className={ preco }>{ prato.preco }</div>
                                     </div>
-                                    
-                                    <div className={ preco }>{ prato.preco }</div>
-                                </div>
-                                <p className={ descricao }>{ prato.descricao }</p>
-                                <div className={ restricoes }>
-                                    {
-                                        prato.restricoes.map(restricao => {
+                                    <p className={ descricao }>{ prato.descricao }</p>
+                                    <div className={ restricoes }>
+                                        {
+                                            prato.restricoes.map(restricao => {
 
-                                            return(
-                                                <span key={ restricao.id } className={ restricao_nome }>
-                                                    { restricao.nome }
-                                                </span>
-                                            )
-                                        })
-                                    }
-                                </div>
-                            </li>
+                                                return(
+                                                    <span key={ restricao.id } className={ restricao_nome }>
+                                                        { restricao.nome }
+                                                    </span>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                </li>
 
+                            </Link>
                             <div className={ divider }></div>
                         </>
                     )

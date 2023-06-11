@@ -1,6 +1,11 @@
 @use "@/styles/utils.module";
 @use "@/styles/cores.module";
 
+
+.link {
+    text-decoration: none !important;
+}
+
 .itens {
     font-size: utils.converterPxParaRem(12px);
 }
