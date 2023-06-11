@@ -1,0 +1,11 @@
+@use "@/styles/utils.module";
+
+.titulo {
+    text-align: center;
+}
+
+.subtitulo {
+    font-size: utils.converterPxParaRem(13px);
+    font-weight: bold;
+    margin-bottom: utils.converterPxParaRem(20px);
+}

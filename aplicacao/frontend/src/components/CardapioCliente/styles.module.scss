@@ -1,0 +1,50 @@
+@use "@/styles/utils.module";
+@use "@/styles/cores.module";
+
+.itens {
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.item {
+    margin-bottom: utils.converterPxParaRem(30px);
+}
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: utils.converterPxParaRem(14px);
+
+}
+
+.cabecalho_prato {
+    display: flex;
+    align-items: center;
+}
+
+.preco {
+    color: cores.$verdeEscuro;
+}
+
+.foto {
+    margin-right: utils.converterPxParaRem(12px);
+}
+
+.descricao {
+    margin-bottom: utils.converterPxParaRem(20px);
+}
+
+.restricao_nome {
+    color: cores.$verdeEscuro;
+    margin-right: utils.converterPxParaRem(17px);
+    background-color: cores.$cinza;
+    padding: utils.converterPxParaRem(4px) utils.converterPxParaRem(6px);
+    border-radius: utils.converterPxParaRem(5px);
+    font-size: utils.converterPxParaRem(11px);
+}
+
+.divider:not(:last-child) {
+    border-top: 1px solid cores.$cinza;
+    width: 13.938rem;
+    margin: utils.converterPxParaRem(18px) auto utils.converterPxParaRem(21px) auto;
+}

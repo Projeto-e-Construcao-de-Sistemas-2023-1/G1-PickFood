@@ -7,33 +7,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
-    width: utils.converterPxParaRem(200px);
+    margin: 0 auto utils.converterPxParaRem(30px) auto;
+    min-width: utils.converterPxParaRem(200px);
 }
 
 .input{
     border: none;
-    size: 100%;
+    width: 100%;
 
-    margin-top: utils.converterPxParaRem(20px);
-    margin-bottom: utils.converterPxParaRem(20px);
-    margin-right: utils.converterPxParaRem(8px);
-    
-
-    background: #E7E7E7;
+    background: cores.$cinza;
     opacity: 0.95;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-    border-radius: utils.converterPxParaRem(5px);
+    border-radius: utils.converterPxParaRem(2px);
     width: 100%;
     height: utils.converterPxParaRem(26px);
     padding-left: utils.converterPxParaRem(25px);
+
+    &:focus {
+        outline: none;
+    }
 }
 
 .buscar {
-    width: utils.converterPxParaRem(15px);
-    height: utils.converterPxParaRem(15px);
+
     position: absolute;
     left: utils.converterPxParaRem(5px);
     top: 50%;
     transform:translateY(-50%);
+    color: cores.$verdeEscuro;
 }

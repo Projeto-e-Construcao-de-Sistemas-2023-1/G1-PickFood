@@ -11,12 +11,12 @@ import { useRouter } from "next/navigation";
 
 export default function Pedidos() {
 
-    const router = useRouter();      
+    const router = useRouter();
 
     return (
         <>
             <div className={ pesquisa }>
-                <Pesquisa/>                 
+                <Pesquisa/>
             </div>
             
             <h2 className= { titulo }>Pedidos</h2>

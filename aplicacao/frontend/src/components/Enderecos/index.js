@@ -63,7 +63,7 @@ export default function CardapioRestaurante() {
                     height={ 14 }
                     alt="Icone de editar."
                 />
-               </li>
+            </li>
         </ul>
     </>
     )

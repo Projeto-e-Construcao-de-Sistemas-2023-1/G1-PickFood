@@ -8,9 +8,11 @@ import {
     input, 
     buscar
 } from "./styles.module.scss";
+import Icone from "../Icone";
 export default function Pesquisa({ setBusca }){
     
     const [valor, setValor] = useState("");
+
 
     const handleChange = (e) => {
         const input = e.target;
@@ -27,14 +29,9 @@ export default function Pesquisa({ setBusca }){
 
     return (
         <form className={ pesquisa } onSubmit={ handleSubmit }>
-            <input onChange={ handleChange } value= { valor } className={ input } placeholder="      Busque aqui..."/>
-           
-            <Image className= { buscar }
-                src="/icons/busca.svg"
-                width={ 21 }
-                height={ 21 }
-                alt="Icone de uma lupa."
-            />
+            <input onChange={ handleChange } value= { valor } className={ input } placeholder="Busque aqui..."/>
+
+            <Icone src={ "/icons/lupa.svg"} className={ buscar }/>
         </form>
     )
 }

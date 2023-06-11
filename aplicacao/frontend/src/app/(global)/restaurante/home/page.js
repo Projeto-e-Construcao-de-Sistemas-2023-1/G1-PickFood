@@ -13,15 +13,16 @@ import {
 import { useRouter } from "next/navigation";
 import { createContext, useState } from "react";
 import PedidosPreview from "@/components/PedidosPreview";
+import pratos from "@/fixtures/pratos";
 
-export default function RestauranteHome() {        
+export default function RestauranteHome() {
 
     return (
         <>
 
-           <h2 className= { titulo } >Cardápio</h2>
+            <h2 className= { titulo } >Cardápio</h2>
 
-            <CardapioPreview/>
+            <CardapioPreview pratos={ pratos }/>
 
             <Link href={"restaurante/cardapio"} className={ link }>
                 <div className= { botao }>
