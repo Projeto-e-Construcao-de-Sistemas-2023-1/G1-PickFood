@@ -15,17 +15,17 @@ export default function CardapioPreview({ pratos }) {
             {
                 pratos.map(prato => {
 
-                return(
-                    <li className={texto} key={ prato.id }>
-                        <Image className={foto}
-                            src="/icons/foto.svg"
-                            width={ 21 }
-                            height={ 21 }
-                            alt="Icone de seta apontando para trás."
-                        />
-                        <p>{ prato.nome }</p>
-                        <div className={ preco }>{ prato.preco }</div>
-                    </li>
+                    return(
+                        <li className={texto} key={ prato.id }>
+                            <Image className={foto}
+                                src="/icons/foto.svg"
+                                width={ 21 }
+                                height={ 21 }
+                                alt="Icone de seta apontando para trás."
+                            />
+                            <p>{ prato.nome }</p>
+                            <div className={ preco }>{ prato.preco }</div>
+                        </li>
                 )
                 })
             }

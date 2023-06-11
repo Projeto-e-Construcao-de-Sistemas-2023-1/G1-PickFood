@@ -52,51 +52,49 @@ export default function CriarPrato() {
                     </div>
             }
 
-            <div className={forms}>
-                <Form onSubmit={tratarFormulario(criar)}>
+            <Form onSubmit={tratarFormulario(criar)}>
 
-                    <Form.Erros erros={erros} />
+                <Form.Erros erros={erros} />
 
-                    <Form.Field>
-                        <Form.Label>Nome</Form.Label>
-                        <Form.Input type={"text"} registrar={{
-                            ...registrar("nome",
-                                { required: mensagens.required("Nome") })
-                        }} />
-                    </Form.Field>
+                <Form.Field>
+                    <Form.Label>Nome</Form.Label>
+                    <Form.Input type={"text"} registrar={{
+                        ...registrar("nome",
+                            { required: mensagens.required("Nome") })
+                    }} />
+                </Form.Field>
 
-                    <Form.Field>
-                        <Form.Label>Tipo</Form.Label>
-                        <Form.Input type={"text"} registrar={{
-                            ...registrar("tipo",
-                                { required: mensagens.required("Tipo") })
-                        }} />
-                    </Form.Field>
+                <Form.Field>
+                    <Form.Label>Tipo</Form.Label>
+                    <Form.Input type={"text"} registrar={{
+                        ...registrar("tipo",
+                            { required: mensagens.required("Tipo") })
+                    }} />
+                </Form.Field>
 
-                    <Form.Field>
-                        <Form.Label>Preço</Form.Label>
-                        <Form.Input type={"number"} registrar={{
-                            ...registrar("preco",
-                                { required: mensagens.required("Preço") })
-                        }} />
-                    </Form.Field>
+                <Form.Field>
+                    <Form.Label>Preço</Form.Label>
+                    <Form.Input type={"number"} registrar={{
+                        ...registrar("preco",
+                            { required: mensagens.required("Preço") })
+                    }} />
+                </Form.Field>
 
-                    <Form.Field>
-                        <Form.Label>Descrição</Form.Label>
-                        <Form.Input type={"text"} registrar={{
-                            ...registrar("descricao",
-                                { required: mensagens.required("Descrição") })
-                        }} />
-                    </Form.Field>
+                <Form.Field>
+                    <Form.Label>Descrição</Form.Label>
+                    <Form.Input type={"text"} registrar={{
+                        ...registrar("descricao",
+                            { required: mensagens.required("Descrição") })
+                    }} />
+                </Form.Field>
 
-                    <Form.Field>
-                        <Form.Label>Link da imagem</Form.Label>
-                        <Form.Input registrar={{ ...registrar("imagem") }} type={"text"}></Form.Input>
-                    </Form.Field>
+                <Form.Field>
+                    <Form.Label>Link da imagem</Form.Label>
+                    <Form.Input registrar={{ ...registrar("imagem") }} type={"text"}></Form.Input>
+                </Form.Field>
 
-                    <Form.Button>Continuar</Form.Button>
-                </Form>
-            </div>
+                <Form.Button>Continuar</Form.Button>
+            </Form>
         </Container>
     )
 }

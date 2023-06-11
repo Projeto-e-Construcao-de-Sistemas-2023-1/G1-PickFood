@@ -34,7 +34,8 @@ const pratos = [
                 nome: "Restriçao 2"
             },
         ]
-    },{
+    },
+    {
         id: 3,
         nome: "Nome do prato 3",
         preco: 99.99,
