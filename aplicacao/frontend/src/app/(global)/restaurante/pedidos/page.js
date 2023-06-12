@@ -8,6 +8,7 @@ import {
     pesquisa
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
+import TituloPagina from "@/components/TituloPagina";
 
 export default function Pedidos() {
 
@@ -19,7 +20,7 @@ export default function Pedidos() {
                 <Pesquisa/>
             </div>
             
-            <h2 className= { titulo }>Pedidos</h2>
+            <TituloPagina>Pedidos</TituloPagina>
 
             <PedidosRestaurante/>
 

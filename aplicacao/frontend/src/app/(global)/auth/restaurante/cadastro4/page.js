@@ -5,6 +5,10 @@ import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import { useRouter } from "next/navigation";
+import { mensagens } from "@/erros/mensagens";
+import { useForm } from "react-hook-form";
+
 import { 
     center,
     title,
@@ -17,8 +21,21 @@ import {
 
 export default function Cadastro4() {
 
-    const authenticate = () => {
-        // request
+    const router = useRouter();
+
+    const { register, handleSubmit: submit, formState: { errors } } = useForm();
+
+    const handleSubmit = (data) => {
+
+        const { restricao, id } = data;
+
+        console.log(data);
+
+        definirDados({
+            ...dados,
+        });
+
+        router.push("/restaurante/home");
     }
 
     return (
@@ -35,9 +52,11 @@ export default function Cadastro4() {
             
             <Logo className={ logo }/>
             
-            <h2 className={ title }>Risco de Contaminação Cruzada</h2>
+            <TituloPagina>Risco de Contaminação Cruzada</TituloPagina>
 
-                <div className={ checkboxes }>
+                <Form onSubmit={ submit(handleSubmit) }>
+                    <Form.Erros erros = { errors }/>
+                    <div className={ checkboxes }>
                     <div className={checkbox}>
                         <input type= "checkbox" name ="a"/>
                         <label for="a">Restrição #1</label>
@@ -85,13 +104,15 @@ export default function Cadastro4() {
                     <div className={checkbox}>
                         <input type= "checkbox" name ="h"/>
                         <label for="l">Restrição #12</label>
-                    </div>
-                    
+                    </div> 
                 </div>
+
                 <Link href={"restaurante/home"} className={ "link" }>
-                     <div className={ center }><Form.Button onClick={ () => authenticate() }>Continuar</Form.Button></div>
+                    <Form.Button type="submit">Continuar</Form.Button>
                 </Link>
-               
+ 
+                </Form>
+                              
            
 
         </Container>

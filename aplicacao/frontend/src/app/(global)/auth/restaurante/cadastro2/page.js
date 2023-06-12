@@ -17,6 +17,7 @@ import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CadastroRestauranteContext } from "../layout";
 import { mensagens } from "@/erros/mensagens";
+import TituloPagina from "@/components/TituloPagina";
 
 export default function Cadastro2() {
 
@@ -57,7 +58,8 @@ export default function Cadastro2() {
 
             <Logo className={ logo }/>
             
-            <h2 className={ [center, title].join(' ') }>Informações Adicionais</h2>
+            <TituloPagina>Informações Adicionais</TituloPagina>
+             
 
             <div className={forms}>
                 <Form onSubmit={ submit(handleSubmit) }>

@@ -19,6 +19,7 @@ import { CadastroRestauranteContext } from "../layout";
 import { AuthContext } from "@/contexts";
 import { useRouter } from "next/navigation";
 import { mensagens } from "@/erros/mensagens";
+import TituloPagina from "@/components/TituloPagina";
 
 export default function Cadastro3() {
 
@@ -85,7 +86,7 @@ export default function Cadastro3() {
             
             <Logo className={ logo }/>
 
-            <h2 className={ [center, title].join(' ') }>Informações de Endereço</h2>
+            <TituloPagina>Informações de Endereço</TituloPagina>
 
             <div className={forms}>
                 <Form onSubmit={ submit(handleSubmit) }>

@@ -20,6 +20,7 @@ import request from "@/services/axios";
 import { AuthContext } from "@/contexts";
 import { useForm } from "react-hook-form";
 import { mensagens } from "@/erros/mensagens";
+import TituloPagina from "@/components/TituloPagina";
 
 export default function RestaurantePerfil() {
 
@@ -94,7 +95,7 @@ export default function RestaurantePerfil() {
         </Modal.Rodape>
       </Modal>
 
-      <h2 className={[center, title].join(" ")}>Minhas informações</h2>
+      <TituloPagina>Meus dados</TituloPagina>
 
       <div className={forms}>
         <Form onSubmit={ tratarFormulario(alterar) }>

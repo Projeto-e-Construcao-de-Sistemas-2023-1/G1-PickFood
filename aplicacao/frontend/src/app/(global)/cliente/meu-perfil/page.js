@@ -18,6 +18,7 @@ import Modal from "@/components/Modal";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/contexts";
 import { useRouter } from "next/navigation";
+import TituloPagina from "@/components/TituloPagina";
 
 export default function MeuPerfil() {
 
@@ -60,7 +61,7 @@ export default function MeuPerfil() {
                 </Modal.Rodape>
             </Modal>
 
-            <h2 className={ tituloPagina }>Meu Perfil</h2>
+            <TituloPagina>Meus Endereços</TituloPagina>
             <ul className={ lista }>
                 <li className={ item }>
                     <Link className={ link } href={ "/cliente/meu-perfil/meus-dados" }>
