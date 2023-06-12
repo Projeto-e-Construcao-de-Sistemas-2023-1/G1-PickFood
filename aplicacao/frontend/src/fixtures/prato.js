@@ -1,5 +1,5 @@
 const prato = {
-    id: 1,
+    id: 2,
     nome: "Nome do prato",
     preco: 99.99,
     tipo: "Tipo do prato",

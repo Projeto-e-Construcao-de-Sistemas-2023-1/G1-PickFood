@@ -19,6 +19,7 @@ import restaurante from "@/fixtures/restaurante";
 import { useEffect } from "react";
 import Button from "@/components/Button";
 import { v4 as uuid } from "uuid";
+import { adicionarItem } from "@/services/carrinho";
 
 const Prato = ({ params }) => {
 
@@ -26,53 +27,9 @@ const Prato = ({ params }) => {
 
     const addCarrinho = () => {
 
-        let carrinho = JSON.parse(localStorage.getItem("carrinho"));
+        adicionarItem(prato);
 
-        const itemCarrinho = {
-            id: uuid(),
-            quantidade: 1,
-            valor: prato.preco,
-            prato: {
-                ...prato
-            }
-        }
-
-        if (carrinho === null || carrinho.length === 0) {
-        
-            localStorage.setItem("carrinho", JSON.stringify([itemCarrinho]));
-
-        } else {
-
-            let itemEncontrado = false;
-
-            for (const indice in carrinho) {
-                
-                if (carrinho[indice].prato.id === prato.id) {
-                    carrinho[indice].quantidade += 1;
-                    carrinho[indice].valor += prato.preco;
-
-                    console.log(carrinho[indice])
-
-                    
-                    carrinho.push(carrinho[indice]);
-
-                    carrinho.splice(indice, 1);
-
-                    itemEncontrado = true;
-
-                    break;
-                }
-            }
-
-            if (!itemEncontrado) {
-                carrinho.push(itemCarrinho);
-            }
-
-            localStorage.setItem("carrinho", JSON.stringify(carrinho));
-            
-        }
-
-        //router.push("/cliente/meu-carrinho");
+        router.push("/cliente/meu-carrinho");
     }
 
     return(

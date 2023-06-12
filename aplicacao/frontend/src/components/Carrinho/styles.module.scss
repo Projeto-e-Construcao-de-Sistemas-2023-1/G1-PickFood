@@ -33,6 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: utils.converterPxParaRem(15px);
 }
 
 .nomePrato {

@@ -1,3 +1,5 @@
+'use client';
+
 import Button from "@/components/Button";
 import Carrinho from "@/components/Carrinho";
 import TituloPagina from "@/components/TituloPagina";
@@ -11,8 +13,12 @@ import {
     textoTotal,
     valorTotal
 } from "./styles.module.scss";
+import { useEffect, useState } from "react";
+
 
 const MeuCarrinho = () => {
+
+    
     
     return(
         <>
