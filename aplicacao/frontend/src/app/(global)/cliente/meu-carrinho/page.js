@@ -14,12 +14,13 @@ import {
     valorTotal
 } from "./styles.module.scss";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 
 const MeuCarrinho = () => {
 
+    const router = useRouter();
 
-    
     return(
         <>
             <TituloPagina>Meu carrinho</TituloPagina>
@@ -38,7 +39,7 @@ const MeuCarrinho = () => {
                 <p className={ valorTotal }>Valor total</p>
             </div>
 
-            <Button className={ botao }>Continuar</Button>
+            <Button className={ botao } onClick={ () => router.push("/cliente/meu-pedido") }>Continuar</Button>
         </>
     )
 }

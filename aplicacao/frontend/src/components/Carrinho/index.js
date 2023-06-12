@@ -17,18 +17,12 @@ import {
     removerCarrinho
 } from "./styles.module.scss";
 import Icone from "../Icone";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CarrinhoContext } from "@/contexts";
 
 const Carrinho = () => {
 
     const { itens, setItens } = useContext(CarrinhoContext);
-
-    useEffect(() => {
-        
-        setItens(JSON.parse(localStorage.getItem("carrinho")));
-
-    }, [setItens])
 
 
     const incrementarItem = (id) => {

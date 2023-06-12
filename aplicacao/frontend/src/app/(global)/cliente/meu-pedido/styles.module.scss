@@ -1,0 +1,15 @@
+@use "@/styles/utils.module";
+@use "@/styles/cores.module";
+
+.container {
+
+    margin: 0 auto;
+
+    min-width: utils.converterPxParaRem(200px);
+    border: utils.converterPxParaRem(2px) solid cores.$verdeClaro;
+    border-radius: utils.converterPxParaRem(5px);
+
+    padding: utils.converterPxParaRem(17px) utils.converterPxParaRem(12px);
+
+    font-size: utils.converterPxParaRem(12px);
+}

@@ -1,5 +1,5 @@
 const prato = {
-    id: 2,
+    id: 1,
     nome: "Nome do prato",
     preco: 99.99,
     tipo: "Tipo do prato",
@@ -14,4 +14,3 @@ const prato = {
 }
 
 export default prato;
-//export { prato }

@@ -53,4 +53,5 @@ const buscarItemPorPrato = (carrinho, idPrato) => {
 
 export {
     adicionarItem,
+    pegarCarrinho
 }
