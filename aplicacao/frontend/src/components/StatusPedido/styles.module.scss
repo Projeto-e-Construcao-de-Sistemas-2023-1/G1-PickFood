@@ -38,6 +38,11 @@
     font-weight: 600;
 }
 
+.precoPrato {
+    color: cores.$preto;
+    font-weight: 600;
+}
+
 .prato {
     display: flex;
     align-items: center;
@@ -49,14 +54,4 @@
 .interacoes {
     display: flex;
     align-items: center;
-}
-
-.info {
-    margin-top: utils.converterPxParaRem(32px);
-    font-size: utils.converterPxParaRem(12px);
-}
-
-.textoPrimario {
-    color: cores.$verdeClaro;
-    margin-bottom: utils.converterPxParaRem(6px);
 }

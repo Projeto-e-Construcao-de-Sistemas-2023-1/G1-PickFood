@@ -40,11 +40,6 @@ const StatusPedido = () => {
                 </div>
         </div>
 
-            <div className={ info }>
-                <p className={ textoPrimario }>Entregar em:</p>
-                <p className={ textoSecundario }>Endereço</p>
-            </div>
-
             <div className={ valorTotal }>
                 <p className={ valor }>Total: R$ valor total</p>
             </div>

@@ -28,24 +28,7 @@
     color: cores.$preto;
 }
 
-.title {
-
-    font-weight: 700;
-    font-size: utils.converterPxParaRem(14px);
-    margin-top: utils.converterPxParaRem(20px);
-    margin-bottom: utils.converterPxParaRem(30px);
-
-    text-align: center;
-
+.input {
+    font-size: utils.converterPxParaRem(12px);
     color: cores.$preto;
-}
-
-.center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.link {
-    text-decoration: none;
 }

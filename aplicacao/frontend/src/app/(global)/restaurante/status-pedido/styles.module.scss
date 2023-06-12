@@ -4,7 +4,7 @@
 .divider {
     border-top: 1px solid cores.$cinza;
     width: utils.converterPxParaRem(232px);
-    margin: utils.converterPxParaRem(27px) auto utils.converterPxParaRem(24px) auto;
+    margin: utils.converterPxParaRem(25px) auto utils.converterPxParaRem(24px) auto;
 }
 
 .botao {
@@ -45,4 +45,26 @@
     font-weight: 400;
     font-size: utils.converterPxParaRem(12px);
     color: cores.$preto;
+}
+
+.input {
+    font-size: utils.converterPxParaRem(12px);
+    color: cores.$preto;
+}
+
+.info {
+    margin-top: utils.converterPxParaRem(32px);
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.textoPrimario {
+    color: cores.$verdeClaro;
+    margin-bottom: utils.converterPxParaRem(6px);
+}
+
+.checkboxes { 
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        margin-bottom: utils.converterPxParaRem(15px);  
 }

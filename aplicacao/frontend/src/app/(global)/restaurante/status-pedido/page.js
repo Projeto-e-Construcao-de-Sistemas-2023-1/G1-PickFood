@@ -2,20 +2,41 @@
 
 import { 
     divider,
-    botao,
     texto,
     nome,
     codigo,
     status,
-    checkbox
+    checkbox,
+    info,
+    textoPrimario,
+    textoSecundario,
+    input,
+    label,
+    checkboxes
 } from "./styles.module.scss"
+import { useForm } from "react-hook-form";
+import Form from "@/components/Form";
 import { useRouter } from "next/navigation";
 import StatusPedido from "@/components/StatusPedido";
-import Button from "@/components/Button";
 
 export default function Pedidos() {
 
-    const router = useRouter();      
+    const router = useRouter();
+
+    const { register, handleSubmit: submit, formState: { errors } } = useForm();
+
+    const handleSubmit = (data) => {
+
+        const { status } = data;
+
+        console.log(data);
+
+        definirDados({
+            ...dados,
+        });
+
+        router.push("/restaurante/pedidos");
+    }     
 
     return (
         <>
@@ -25,31 +46,45 @@ export default function Pedidos() {
                 </div>
                     <div className={ status }>Status atual:
                     <div className={ codigo }>status</div>
-                    </div>
+                </div>
             </div>
 
             <StatusPedido/>
 
             <div className={ divider }></div>
 
-            <div className={checkbox}>
-                <input type= "checkbox" name ="b"/>
-                <label for="b">Confirmar pedido</label>
-            </div>
-            <div className={checkbox}>
-                <input type= "checkbox" name ="c"/>
-                <label for="c">Em preparação</label>
-            </div>
-            <div className={checkbox}>
-                <input type= "checkbox" name ="d"/>
-                <label for="d">A caminho</label>
-            </div>
-            <div className={checkbox}>
-                <input type= "checkbox" name ="e"/>
-                <label for="e">Entregue</label>
+            <div className={ info }>
+                <p className={ textoPrimario }>Entregar em:</p>
+                <p className={ textoSecundario }>Endereço</p>
             </div>
 
-            <Button className={ botao }>Atualizar Status</Button>
+            <div className={ divider }></div>
+
+            <Form onSubmit={ submit(handleSubmit) }>
+                <Form.Erros erros = { errors }/>
+                <div className={ checkboxes }>
+                    <Form.Field className={ checkbox }>
+                        <Form.Input type= "checkbox" name ="a" className={ input }/>
+                        <Form.Label for="a" className= { label }>Confirmar pedido</Form.Label>
+                    </Form.Field>
+                    <Form.Field className={ checkbox }>
+                        <Form.Input type= "checkbox" name ="b" className={ input }/>
+                        <Form.Label for="b" className= { label }>Em preparação</Form.Label>
+                    </Form.Field>
+                    <Form.Field className={ checkbox }>
+                        <Form.Input type= "checkbox" name ="c" className={ input }/>
+                        <Form.Label for="c" className= { label }>A caminho</Form.Label>
+                    </Form.Field>
+                    <Form.Field className={ checkbox }>
+                        <Form.Input type= "checkbox" name ="d" className={ input }/>
+                        <Form.Label for="d" className= { label }>Entregue</Form.Label>
+                    </Form.Field>
+                </div>
+                
+                
+                <Form.Button type="submit">Atualizar Status</Form.Button>
+            </Form>
+            
         </>
     )
 }
