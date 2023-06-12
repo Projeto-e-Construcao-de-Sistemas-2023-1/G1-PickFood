@@ -2,7 +2,7 @@
 @use "@/styles/utils.module";
 
 .info {
-    margin-top: utils.converterPxParaRem(21px);
+    margin-top: utils.converterPxParaRem(27px);
     font-size: utils.converterPxParaRem(12px);
 }
 
@@ -20,7 +20,7 @@
 .total {
     display: flex;
     justify-content: space-between;
-    margin-bottom: utils.converterPxParaRem(32px);
+    margin-bottom: utils.converterPxParaRem(48px);
     font-size: utils.converterPxParaRem(12px);
     font-weight: bold;
 }

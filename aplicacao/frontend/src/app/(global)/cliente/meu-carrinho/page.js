@@ -18,21 +18,14 @@ import { useEffect, useState } from "react";
 
 const MeuCarrinho = () => {
 
-    
+
     
     return(
         <>
             <TituloPagina>Meu carrinho</TituloPagina>
             
             <Carrinho/>
-            
-            <div className={ info }>
-                <p className={ textoPrimario }>Entregar em:</p>
-                <p className={ textoSecundario }>Endereço</p>
-            </div>
-
-            <div className={ divider }></div>
-
+        
             <div className={ info }>
                 <p className={ textoPrimario }>Hoje, 30 - 45 minutos</p>
                 <p className={ textoSecundario }>Taxa: R$10,00</p>
