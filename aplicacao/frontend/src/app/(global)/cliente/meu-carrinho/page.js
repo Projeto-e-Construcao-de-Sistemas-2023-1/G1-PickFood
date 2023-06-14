@@ -15,6 +15,7 @@ import {
 } from "./styles.module.scss";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Retornar from "@/components/Retornar";
 
 
 const MeuCarrinho = () => {
@@ -23,6 +24,7 @@ const MeuCarrinho = () => {
 
     return(
         <>
+            <Retornar navigate={ () => router.back() } />
             <TituloPagina>Meu carrinho</TituloPagina>
             
             <Carrinho/>

@@ -11,14 +11,19 @@ import {
     item_nome,
     item_preco
 } from "./styles.module.scss";
+import Retornar from "@/components/Retornar";
+import { useRouter } from "next/navigation";
 
 const MeuPedido = () => {
+
+    const router = useRouter();
 
     const { itens } = useContext(CarrinhoContext);
 
     return(
         <>
             <div className={ container }>
+             
                 <p>Nome do restaurante</p>
                 <div className={ itens_lista }>
                     {
