@@ -1,9 +1,6 @@
 'use client'
 
 import Form from "@/components/Form";
-import { tituloPagina } from "@/styles/componentes.module.scss";
-import Image from "next/image";
-import Link from "next/link";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "@/contexts";
 import { useForm } from "react-hook-form";
