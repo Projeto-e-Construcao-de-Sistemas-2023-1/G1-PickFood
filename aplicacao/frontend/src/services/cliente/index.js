@@ -42,4 +42,20 @@ const buscarClientes = () => {
     return JSON.parse(localStorage.getItem("clientes"));
 }
 
-export { criarCliente }
+const buscarClientePorEmail = (email) => {
+
+    const clientes = buscarClientes();
+
+    for (const clienteExiste of clientes) {
+        if(clienteExiste.email === email) {
+            return clienteExiste;
+        }
+    }
+
+    throw Error("Cliente não cadastrado.");
+}
+
+export {
+    criarCliente,
+    buscarClientePorEmail
+}

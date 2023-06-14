@@ -45,9 +45,6 @@ export default function CadastroCliente() {
 
             return;
         }
-        
-
-        //router.push(rotas.cliente.home.url());
 
         // request.post("user", {
         //     nome,
@@ -68,7 +65,8 @@ export default function CadastroCliente() {
         setUsuario(usuario);
 
         localStorage.setItem("usuario", JSON.stringify(usuario));
-            
+
+        router.push(rotas.cliente.home.url());
     }
             
     return(
