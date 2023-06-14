@@ -16,18 +16,20 @@ import {
 } from "./styles.module.scss";
 import prato from "@/fixtures/prato";
 import restaurante from "@/fixtures/restaurante";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Button from "@/components/Button";
 import { v4 as uuid } from "uuid";
 import { adicionarItem } from "@/services/carrinho";
+import { CarrinhoContext } from "@/contexts";
 
 const Prato = ({ params }) => {
 
     const router = useRouter();
+    const { setItens } = useContext(CarrinhoContext);
 
     const addCarrinho = () => {
 
-        adicionarItem(prato);
+        adicionarItem(prato, setItens);
 
         router.push("/cliente/meu-carrinho");
     }

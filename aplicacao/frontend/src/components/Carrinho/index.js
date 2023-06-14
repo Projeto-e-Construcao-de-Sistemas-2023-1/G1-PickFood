@@ -7,6 +7,7 @@ import {
     nomeRestaurante,
     adicionarMaisItens,
     pratos,
+    limpar,
     prato,
     info,
     nomePrato,
@@ -17,18 +18,13 @@ import {
     removerCarrinho
 } from "./styles.module.scss";
 import Icone from "../Icone";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CarrinhoContext } from "@/contexts";
+import { limpar as limpaCarrinho } from "@/services/carrinho";
 
 const Carrinho = () => {
 
     const { itens, setItens } = useContext(CarrinhoContext);
-
-    useEffect(() => {
-        
-        setItens(JSON.parse(localStorage.getItem("carrinho")));
-
-    }, [setItens])
 
 
     const incrementarItem = (id) => {
@@ -72,31 +68,42 @@ const Carrinho = () => {
             }
         }
     }
+
+    const limparCarrinho = () => {
+
+        limpaCarrinho();
+        setItens([]);
+    }
     
     return(
         <div className={ container }>
             <div className={ cabecalho }>
-                <p className={ nomeRestaurante }>Nome do restaurante</p>
-                <p className={ adicionarMaisItens }>Adicionar mais itens</p>
+                <div>
+                    <p className={ nomeRestaurante }>Nome do restaurante</p>
+                    <p className={ adicionarMaisItens }>Adicionar mais itens</p>
+                </div>
+                <p className={ limpar } onClick={ limparCarrinho }>Limpar carrinho</p>
             </div>
             <div className={ pratos }>
             {
-                itens?.map((item) => {
+                
+                    itens?.map((item) => {
 
-                    return(
-                        <div className={ prato } key={ item.id }>
-                            <div className={ info }>
-                                <p className={ nomePrato }>{ item.prato.nome }</p>
-                                <p className={ precoPrato }>{ item.valor }</p>
+                        return(
+                            <div className={ prato } key={ item.id }>
+                                <div className={ info }>
+                                    <p className={ nomePrato }>{ item.prato.nome }</p>
+                                    <p className={ precoPrato }>{ item.valor }</p>
+                                </div>
+                                <div className={ interacoes }>
+                                    <Icone src={ "/icons/add_item_carrinho.svg" } className={ addCarrinho } onClick={ () => incrementarItem(item.id) } />
+                                    <p className={ quantidade }>{ item.quantidade }</p>
+                                    <Icone src={ "/icons/remover_item_carrinho.svg" } className={ removerCarrinho } onClick={ () => decrementarItem(item.id) }/>
+                                </div>
                             </div>
-                            <div className={ interacoes }>
-                                <Icone src={ "/icons/add_item_carrinho.svg" } className={ addCarrinho } onClick={ () => incrementarItem(item.id) } />
-                                <p className={ quantidade }>{ item.quantidade }</p>
-                                <Icone src={ "/icons/remover_item_carrinho.svg" } className={ removerCarrinho } onClick={ () => decrementarItem(item.id) }/>
-                            </div>
-                        </div>
-                    )
-                })
+                        )
+                    })
+                    
             }
             </div>
         </div>

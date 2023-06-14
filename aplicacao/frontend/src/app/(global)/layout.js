@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { AuthContext, CarrinhoContext } from "@/contexts";
+import { pegarCarrinho } from "@/services/carrinho";
 
 const AutenticadoLayout = ({ children }) => {
 
     const [usuario, setUsuario] = useState({});
-    const [itens, setItens] = useState([]);
+    const [itens, setItens] = useState(pegarCarrinho());
 
     return(
         <AuthContext.Provider value={{ usuario, setUsuario }}>

@@ -14,14 +14,17 @@ import {
     valorTotal
 } from "./styles.module.scss";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Retornar from "@/components/Retornar";
 
 
 const MeuCarrinho = () => {
 
+    const router = useRouter();
 
-    
     return(
         <>
+            <Retornar navigate={ () => router.back() } />
             <TituloPagina>Meu carrinho</TituloPagina>
             
             <Carrinho/>
@@ -38,7 +41,7 @@ const MeuCarrinho = () => {
                 <p className={ valorTotal }>Valor total</p>
             </div>
 
-            <Button className={ botao }>Continuar</Button>
+            <Button className={ botao } onClick={ () => router.push("/cliente/meu-pedido") }>Continuar</Button>
         </>
     )
 }

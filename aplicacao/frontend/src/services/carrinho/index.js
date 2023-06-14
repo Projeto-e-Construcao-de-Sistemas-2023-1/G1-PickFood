@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 
-const adicionarItem = (prato) => {
+const adicionarItem = (prato, setItens) => {
 
     let carrinho = pegarCarrinho();
 
@@ -16,6 +16,9 @@ const adicionarItem = (prato) => {
     if (carrinho === null || carrinho.length === 0) {
         
         localStorage.setItem("carrinho", JSON.stringify([itemCarrinho]));
+        setItens([
+            itemCarrinho
+        ]);
 
         return;
     }
@@ -30,6 +33,7 @@ const adicionarItem = (prato) => {
         item.valor += prato.preco
     }
 
+    setItens(carrinho)
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 
@@ -50,7 +54,13 @@ const buscarItemPorPrato = (carrinho, idPrato) => {
     return null;
 }
 
+const limpar = () => {
+    localStorage.setItem("carrinho", JSON.stringify([]));
+}
+
 
 export {
     adicionarItem,
+    pegarCarrinho,
+    limpar
 }
