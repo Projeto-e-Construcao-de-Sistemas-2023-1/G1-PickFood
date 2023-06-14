@@ -1,0 +1,70 @@
+@use "@/styles/cores.module";
+@use "@/styles/utils.module";
+
+.divider {
+    border-top: 1px solid cores.$cinza;
+    width: utils.converterPxParaRem(232px);
+    margin: utils.converterPxParaRem(25px) auto utils.converterPxParaRem(24px) auto;
+}
+
+.botao {
+    display: block;
+    margin: 0 auto;
+}
+
+.texto {
+    font-weight: 400;
+    font-size: utils.converterPxParaRem(12px);
+    display: flex;
+    color: cores.$preto;
+    margin-bottom: utils.converterPxParaRem(30px);
+    margin-top: utils.converterPxParaRem(20px);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.codigo {
+    color: cores.$preto;
+}
+
+.nome {
+    color: cores.$preto;
+}
+
+.status {
+    margin-left: utils.converterPxParaRem(80px);
+    color: cores.$preto;
+    
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: utils.converterPxParaRem(10px);
+
+    font-weight: 400;
+    font-size: utils.converterPxParaRem(12px);
+    color: cores.$preto;
+}
+
+.input {
+    font-size: utils.converterPxParaRem(12px);
+    color: cores.$preto;
+}
+
+.info {
+    margin-top: utils.converterPxParaRem(32px);
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.textoPrimario {
+    color: cores.$verdeClaro;
+    margin-bottom: utils.converterPxParaRem(6px);
+}
+
+.checkboxes { 
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        margin-bottom: utils.converterPxParaRem(15px);  
+}

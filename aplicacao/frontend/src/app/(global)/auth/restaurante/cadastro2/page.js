@@ -17,6 +17,7 @@ import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CadastroRestauranteContext } from "../layout";
 import { mensagens } from "@/erros/mensagens";
+import TituloPagina from "@/components/TituloPagina";
 
 export default function Cadastro2() {
 
@@ -57,7 +58,8 @@ export default function Cadastro2() {
 
             <Logo className={ logo }/>
             
-            <h2 className={ [center, title].join(' ') }>Informações Adicionais</h2>
+            <TituloPagina>Informações Adicionais</TituloPagina>
+             
 
             <div className={forms}>
                 <Form onSubmit={ submit(handleSubmit) }>
@@ -83,17 +85,17 @@ export default function Cadastro2() {
                                         e.target.value = valor.substring(0, 11);
                                     }
                             } }) }} 
-                            type={ "string" }/>
+                            type={ "text" }/>
                     </Form.Field>
                     
                     <Form.Field>
                         <Form.Label>Horário de Abertura</Form.Label>
-                            <Form.Input type="string" registrar = {{ ...register("horarioAbertura", { required: mensagens.required("horarioAbertura")}) }}/>
+                            <Form.Input type="text" registrar = {{ ...register("horarioAbertura", { required: mensagens.required("horarioAbertura")}) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Horário de Fechamento</Form.Label>
-                            <Form.Input type="string" registrar = {{ ...register("horarioFechamento", { required: mensagens.required("horarioFechamento") }) }}/>
+                            <Form.Input type="text" registrar = {{ ...register("horarioFechamento", { required: mensagens.required("horarioFechamento") }) }}/>
                     </Form.Field>
 
                     <Form.Field>

@@ -1,0 +1,57 @@
+@use "@/styles/utils.module";
+@use "@/styles/cores.module";
+
+.container {
+
+    margin: 0 auto;
+
+    min-width: utils.converterPxParaRem(200px);
+    border: utils.converterPxParaRem(2px) solid cores.$verdeClaro;
+    border-radius: utils.converterPxParaRem(5px);
+
+    padding: utils.converterPxParaRem(17px) utils.converterPxParaRem(12px);
+
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.valorTotal {
+    margin-top: utils.converterPxParaRem(20px);
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: utils.converterPxParaRem(8px);
+}
+
+.quantidade {
+    display: flex;
+    align-items: center;
+    margin-right: utils.converterPxParaRem(6px);
+    background: cores.$cinza;
+    border-radius: utils.converterPxParaRem(2px);
+    padding: utils.converterPxParaRem(2px);
+}
+
+.valor {
+    color: cores.$preto;
+    font-weight: 600;
+}
+
+.precoPrato {
+    color: cores.$preto;
+    font-weight: 600;
+}
+
+.prato {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    margin-bottom: utils.converterPxParaRem(12px);
+}
+
+.interacoes {
+    display: flex;
+    align-items: center;
+}

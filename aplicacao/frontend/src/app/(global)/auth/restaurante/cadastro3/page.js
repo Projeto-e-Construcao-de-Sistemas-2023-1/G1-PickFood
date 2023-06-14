@@ -19,6 +19,7 @@ import { CadastroRestauranteContext } from "../layout";
 import { AuthContext } from "@/contexts";
 import { useRouter } from "next/navigation";
 import { mensagens } from "@/erros/mensagens";
+import TituloPagina from "@/components/TituloPagina";
 
 export default function Cadastro3() {
 
@@ -85,7 +86,7 @@ export default function Cadastro3() {
             
             <Logo className={ logo }/>
 
-            <h2 className={ [center, title].join(' ') }>Informações de Endereço</h2>
+            <TituloPagina>Informações de Endereço</TituloPagina>
 
             <div className={forms}>
                 <Form onSubmit={ submit(handleSubmit) }>
@@ -115,12 +116,12 @@ export default function Cadastro3() {
                     
                     <Form.Field>
                         <Form.Label>Bairro</Form.Label>
-                        <Form.Input type="string" registrar = {{ ...register("bairro", { required: mensagens.required("bairro") }) }}/>
+                        <Form.Input type="text" registrar = {{ ...register("bairro", { required: mensagens.required("bairro") }) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Rua</Form.Label>
-                        <Form.Input type="string" registrar = {{ ...register("rua", { required: mensagens.required("rua") }) }}/>
+                        <Form.Input type="text" registrar = {{ ...register("rua", { required: mensagens.required("rua") }) }}/>
                     </Form.Field>
 
                     <Form.Field>
@@ -130,7 +131,7 @@ export default function Cadastro3() {
 
                     <Form.Field>
                         <Form.Label>Complemento</Form.Label>
-                        <Form.Input type="string" registrar = {{ ...register("complemento") }}/>
+                        <Form.Input type="text" registrar = {{ ...register("complemento") }}/>
                     </Form.Field>
 
                     <Form.Button type="submit">Continuar</Form.Button>

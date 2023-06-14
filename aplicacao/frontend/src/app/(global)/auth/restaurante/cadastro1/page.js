@@ -18,6 +18,7 @@ import { CadastroRestauranteContext } from "../layout";
 import { useRouter } from "next/navigation";
 import rotas from "@/rotas";
 import { mensagens } from "@/erros/mensagens";
+import TituloPagina from "@/components/TituloPagina";
 
 export default function Cadastro1() {
 
@@ -57,9 +58,9 @@ export default function Cadastro1() {
             </Link>
 
             <Logo className={ logo }/>
+
+            <TituloPagina>Informações do Restaurante</TituloPagina>
              
-            <h2 className={ [center, title].join(' ') }>Informações do restaurante</h2>
-            
             <div className={forms}>         
                 <Form onSubmit={ submit(handleSubmit) }>
                     <Form.Erros erros={erros}/>

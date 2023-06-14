@@ -8,6 +8,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "@/contexts";
 import { useForm } from "react-hook-form";
 import { mensagens } from "@/erros/mensagens";
+import TituloPagina from "@/components/TituloPagina";
 
 export default function MeusDados() {
 
@@ -71,7 +72,8 @@ export default function MeusDados() {
 
   return (
     <>
-      <h2 className={tituloPagina}>Meus Dados</h2>
+
+    <TituloPagina>Meus Dados</TituloPagina>
 
       <Form onSubmit={handleSubmit(alterar)}>
 

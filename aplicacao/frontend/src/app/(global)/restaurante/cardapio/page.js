@@ -11,6 +11,7 @@ import {
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import TituloPagina from "@/components/TituloPagina";
 
 export default function Cardapio() {
 
@@ -31,7 +32,7 @@ export default function Cardapio() {
                 
             </div>
             
-            <h2 className= { titulo }>Cardápio</h2>
+            <TituloPagina>Cardápio</TituloPagina>
 
             <CardapioRestaurante/>
 

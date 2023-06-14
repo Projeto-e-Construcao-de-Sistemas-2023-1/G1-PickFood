@@ -21,24 +21,12 @@ export default function PedidosRestaurante() {
 
     return(
         <>
-        <Modal ativo={ ativo }>
-        <Modal.Cabecalho>
-            <Modal.Icone svg="/icons/aviso.svg"/>
-            <Modal.Titulo>Tem certeza que deseja excluir esse item?</Modal.Titulo>
-        </Modal.Cabecalho>
-
-        <Modal.Rodape>
-            <Modal.BotaoConfirmar/>
-            <Modal.BotaoCancelar onClick={ () => setAtivo(false) }/>
-        </Modal.Rodape>
-    </Modal>
-
         <ul className= {lista}>
             <li className={texto}>
                 <div className={ nome }>Pedido #1234
                 <div className={ status }>status</div>
                 </div>
-                <Link href={"/restaurante/pedidos"}>
+                <Link href={"/restaurante/status-pedido"}>
                     <Image
                     src="/icons/pontinhos.svg"
                     className={ editar }
@@ -83,7 +71,7 @@ export default function PedidosRestaurante() {
                 <div className={ nome }>Pedido #1234
                 <div className={ status }>status</div>
                 </div>
-                <Link href={"/restaurante/pedidos"}>
+                <Link href={"/restaurante/status-pedido"}>
                     <Image
                     src="/icons/pontinhos.svg"
                     className={ editar }
@@ -98,7 +86,7 @@ export default function PedidosRestaurante() {
                 <div className={ nome }>Pedido #1234
                 <div className={ status }>status</div>
                 </div>
-                <Link href={"/restaurante/pedidos"}>
+                <Link href={"/restaurante/status-pedido"}>
                     <Image
                     src="/icons/pontinhos.svg"
                     className={ editar }
@@ -113,7 +101,7 @@ export default function PedidosRestaurante() {
                 <div className={ nome }>Pedido #1234
                 <div className={ status }>status</div>
                 </div>
-                <Link href={"/restaurante/pedidos"}>
+                <Link href={"/restaurante/status-pedido"}>
                     <Image
                     src="/icons/pontinhos.svg"
                     className={ editar }

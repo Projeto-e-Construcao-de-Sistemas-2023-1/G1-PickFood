@@ -9,6 +9,7 @@ import Pesquisa from "@/components/Pesquisa";
 import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/contexts";
 import request from "@/services/axios";
+import TituloPagina from "@/components/TituloPagina";
 
 export default function Home() {
     const [busca, setBusca] = useState("");
@@ -53,7 +54,8 @@ export default function Home() {
         <div className={banner}>
           <Pesquisa setBusca={handleBusca} />
         </div>
-        <h2 className={titulo}>Restaurantes disponíveis</h2>
+
+        <TituloPagina>Restaurantes Disponíveis</TituloPagina>
   
         {busca.length === 0 ? (
           <ListaRestaurantes restaurantes={restaurantes} />
