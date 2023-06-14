@@ -93,7 +93,7 @@ export default function Cadastro3() {
                     <Form.Erros erros = { errors }/>
                     <Form.Field>
                         <Form.Label>CEP</Form.Label>
-                            <Form.Input registrar={{ ...register("cep", { 
+                            <Form.Input registrar={{ ...register("cep", {
                                 required: mensagens.required("cep"),
                                 minLength: { message: mensagens.minLength("cep", 8), value: 8 },
                                 onChange: (e) => {

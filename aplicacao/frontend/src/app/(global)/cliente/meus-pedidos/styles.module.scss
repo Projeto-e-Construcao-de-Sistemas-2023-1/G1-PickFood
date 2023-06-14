@@ -1,0 +1,32 @@
+@use "@/styles/utils.module";
+@use "@/styles/cores.module";
+
+.pedidos_lista {
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.pedidos_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.pedidos_info {
+    display: flex;
+    align-items: center;
+}
+
+.pedidos_numero {
+    margin-left: utils.converterPxParaRem(5px);
+}
+
+.pedidos_cancelar {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    color: cores.$vermelho;
+    background-color: cores.$cinza;
+    padding: 5px;
+    border-radius: 5px;
+}

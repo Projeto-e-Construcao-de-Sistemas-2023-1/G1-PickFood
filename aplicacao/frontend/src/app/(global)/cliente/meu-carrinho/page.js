@@ -41,7 +41,7 @@ const MeuCarrinho = () => {
                 <p className={ valorTotal }>Valor total</p>
             </div>
 
-            <Button className={ botao } onClick={ () => router.push("/cliente/meu-pedido") }>Continuar</Button>
+            <Button className={ botao } onClick={ () => router.push("/cliente/meu-pedido") }>Finalizar compra</Button>
         </>
     )
 }
