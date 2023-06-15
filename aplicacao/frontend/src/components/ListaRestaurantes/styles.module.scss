@@ -3,6 +3,8 @@
 
 .item {
     margin-bottom: utils.converterPxParaRem(21px);
+    display: flex;
+    align-items: center;
 }
 
 .link {

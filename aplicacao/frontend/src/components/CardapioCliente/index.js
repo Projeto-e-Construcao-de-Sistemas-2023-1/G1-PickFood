@@ -19,29 +19,29 @@ const CardapioCliente = ({ pratos }) => {
     return(
         <ul className={ itens }>
             {
-                pratos.map(prato => {
+                pratos?.map(prato => {
                     return(
                         <>
-                            <Link href={ `/cliente/restaurante/1/prato/${prato.id}` } key={ prato.id } className={ link }>
+                            <Link href={ `/cliente/restaurante/${prato.idRestaurante}/prato/${prato.id}` } key={ prato.id } className={ link }>
                                 <li className={ item }>
                                     <div className={ cabecalho }>
                                         <div className={ cabecalho_prato }>
                                             <Image
                                                 width={ 21 }
                                                 height={ 21 }
-                                                src={ prato.foto !== "" ? prato.foto : "/icons/foto.svg" }
+                                                src={ prato.foto !== "" ? "/icons/foto.svg" : "/icons/foto.svg" }
                                                 alt="Foto do prato"
                                                 className={ foto }
                                             />
                                             <p className={ nome }>{ prato.nome }</p>
                                         </div>
                                         
-                                        <div className={ preco }>{ prato.preco }</div>
+                                        <div className={ preco }>R$ { prato.preco }</div>
                                     </div>
                                     <p className={ descricao }>{ prato.descricao }</p>
                                     <div className={ restricoes }>
                                         {
-                                            prato.restricoes.map(restricao => {
+                                            prato?.restricoes?.map(restricao => {
 
                                                 return(
                                                     <span key={ restricao.id } className={ restricao_nome }>

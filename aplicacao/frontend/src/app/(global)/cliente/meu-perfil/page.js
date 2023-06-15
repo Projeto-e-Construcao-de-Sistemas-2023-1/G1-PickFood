@@ -64,7 +64,7 @@ export default function MeuPerfil() {
                     </Link>
                 </li>
                 <li className={ item }>
-                    <Link href={ "" } className={ link }>
+                    <Link href={ "/cliente/home" } className={ link }>
                         <Image className={ icone } src="/icons/meus-favoritos.svg" alt="Icone de 'Meus Favoritos'." width={15} height={15}/>
                         <div>Meus favoritos</div>
                     </Link>
