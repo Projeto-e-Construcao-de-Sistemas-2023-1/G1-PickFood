@@ -9,22 +9,32 @@ import {
 } from "./styles.module.scss"
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { mensagens } from "@/erros/mensagens";
+import { criarPrato } from "@/services/prato";
+import { AuthContext } from "@/contexts";
+import { useRouter } from "next/navigation";
 
 export default function CriarPrato() {
 
     const { register: registrar, handleSubmit: tratarFormulario, watch,
         formState: { errors: erros } } = useForm();
 
-    const imagemValida = /^https:\/\/[\w.-]+\/.*\.(jpg|png|jpeg)$/i
+    const { usuario } = useContext(AuthContext);
 
-    useEffect(() => {
-        console.log(erros);
-    })
+    const imagemValida = /^https:\/\/[\w.-]+\/.*\.(jpg|png|jpeg)$/i;
+
+    const router = useRouter();
 
     const criar = (data) => {
         console.log(data);
+
+        criarPrato({
+            idRestaurante: usuario.id,
+            ...data
+        });
+
+        router.push("/restaurante/cardapio");
     }
     // Falta só colocar o input de seleção de restrição
     return (
@@ -90,7 +100,7 @@ export default function CriarPrato() {
 
                 <Form.Field>
                     <Form.Label>Link da imagem</Form.Label>
-                    <Form.Input registrar={{ ...registrar("imagem") }} type={"text"}></Form.Input>
+                    <Form.Input registrar={{ ...registrar("foto") }} type={"text"}></Form.Input>
                 </Form.Field>
 
                 <Form.Button>Continuar</Form.Button>

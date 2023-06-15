@@ -12,10 +12,22 @@ import {
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import TituloPagina from "@/components/TituloPagina";
+import { useContext, useEffect, useState } from "react";
+import { buscarPratos, buscarPratosPorRestaurante } from "@/services/prato";
+import { AuthContext } from "@/contexts";
 
 export default function Cardapio() {
 
-    const router = useRouter();      
+    const router = useRouter();
+    const [pratos, setPratos] = useState();
+    const { usuario } = useContext(AuthContext);
+
+    useEffect(() => {
+        const pratosExistentes = buscarPratosPorRestaurante(usuario.id);
+        console.log(pratosExistentes);
+
+        setPratos(pratosExistentes);
+    }, [usuario.id]);
 
     return (
         <>
@@ -34,7 +46,7 @@ export default function Cardapio() {
             
             <TituloPagina>Cardápio</TituloPagina>
 
-            <CardapioRestaurante/>
+            <CardapioRestaurante pratos={ pratos }/>
 
         </>
     )

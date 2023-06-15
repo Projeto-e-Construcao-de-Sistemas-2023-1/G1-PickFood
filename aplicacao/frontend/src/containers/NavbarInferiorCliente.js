@@ -16,7 +16,7 @@ export default function NavbarInferiorCliente() {
                 </NavbarInferior.Link>
             </NavbarInferior.Item>
             <NavbarInferior.Item>
-                <NavbarInferior.Link href={ "/cliente/carrinho" }>
+                <NavbarInferior.Link href={ "/cliente/meu-carrinho" }>
                     <NavbarInferior.Icone src="/icons/carrinho.svg"/>
                     <NavbarInferior.Label>Carrinho</NavbarInferior.Label>
                 </NavbarInferior.Link>

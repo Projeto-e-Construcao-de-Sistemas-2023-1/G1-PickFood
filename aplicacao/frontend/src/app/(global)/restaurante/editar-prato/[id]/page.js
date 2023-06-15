@@ -8,20 +8,41 @@ import {
     forms,
     imagem
 } from "./styles.module.scss";
-import prato from "@/fixtures/prato";
+import { atualizarPrato, buscarPratoPorId } from "@/services/prato";
+import Retornar from "@/components/Retornar";
+import { useRouter } from "next/navigation";
 
-export default function EditarPrato() {
+export default function EditarPrato({ params: { id } }) {
 
-    const { register: registrar, handleSubmit: tratarFormulario, watch, formState: { errors: erros } } = useForm();
+    const router = useRouter();
+
+    const { register: registrar, handleSubmit: tratarFormulario, watch, formState: { errors: erros } } = useForm({
+        defaultValues: async () => {
+
+            const prato = buscarPratoPorId(id);
+
+            return {
+                nome: prato.nome,
+                tipo: prato.tipo,
+                preco: prato.preco,
+                descricao: prato.descricao,
+                foto: prato.foto
+            }
+        }
+    });
 
     const imagemValida = /^https:\/\/[\w.-]+\/.*\.(jpg|png|jpeg)$/i;
 
     const editar = (data) => {
+
+        atualizarPrato(id, data);
+
         console.log(data);
     }
 
     return (
         <Container>
+            <Retornar navigate={ () => router.back() } />
                 {
                     !imagemValida.test(watch("imagem")) ?
                     <Image
@@ -49,35 +70,35 @@ export default function EditarPrato() {
 
                     <Form.Field>
                         <Form.Label>Nome</Form.Label>
-                        <Form.Input defaultValue={ prato.nome } type={ "text" } registrar={{ ...registrar("nome", {
+                        <Form.Input  type={ "text" } registrar={{ ...registrar("nome", {
                             required: mensagens.required("nome")
                         }) }}/>
                     </Form.Field>
                     
                     <Form.Field>
                         <Form.Label>Tipo</Form.Label>
-                        <Form.Input defaultValue={ prato.tipo } type={ "text" } registrar={{ ...registrar("tipo", {
+                        <Form.Input type={ "text" } registrar={{ ...registrar("tipo", {
                             required: mensagens.required("tipo")
                         }) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Preço</Form.Label>
-                        <Form.Input defaultValue={ prato.preco } type={ "number" } registrar={{ ...registrar("preco", {
+                        <Form.Input type={ "number" } registrar={{ ...registrar("preco", {
                             required: mensagens.required("preco")
                         }) }}/>
                     </Form.Field>
                 
                     <Form.Field>
                         <Form.Label>Descrição</Form.Label>
-                        <Form.Input defaultValue={ prato.descricao } type={ "text" } registrar={{ ...registrar("descricao", {
+                        <Form.Input  type={ "text" } registrar={{ ...registrar("descricao", {
                             required: mensagens.required("descricao")
                         }) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Url da imagem</Form.Label>
-                        <Form.Input defaultValue={ prato.foto } type={ "text" } registrar={{ ...registrar("imagem") }}/>
+                        <Form.Input type={ "text" } registrar={{ ...registrar("foto") }}/>
                     </Form.Field>
 
                     <Form.Button >Continuar</Form.Button>

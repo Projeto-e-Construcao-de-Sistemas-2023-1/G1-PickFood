@@ -10,7 +10,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/contexts";
 import request from "@/services/axios";
 import TituloPagina from "@/components/TituloPagina";
-import { buscarRestaurantes } from "@/services/restaurante";
+import { buscarRestaurantes, buscarTodosRestaurantes } from "@/services/restaurante";
 
 export default function Home() {
     const [busca, setBusca] = useState("");
@@ -35,7 +35,7 @@ export default function Home() {
   
     useEffect(() => {
 
-      const restaurantes = buscarRestaurantes();
+      const restaurantes = buscarTodosRestaurantes();
 
       setRestaurantes(restaurantes)
       // request
@@ -51,7 +51,9 @@ export default function Home() {
   
     const handleBusca = (valor) => {
       setBusca(valor);
-      listByName(valor);
+
+      //listByName(valor);
+      console.log(buscarRestaurantes({nome: busca}));
     };
   
     return (

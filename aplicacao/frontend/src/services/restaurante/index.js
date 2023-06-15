@@ -19,7 +19,7 @@ const criarRestaurante = ({
     numero
 }) => {
 
-    const restaurantes = buscarRestaurantes();
+    const restaurantes = buscarTodosRestaurantes();
 
     const restaurante = {
         id: uuid(),
@@ -65,7 +65,7 @@ const criarRestaurante = ({
 
 const buscarRestaurantePorEmail = (email) => {
 
-    const restaurantes = buscarRestaurantes();
+    const restaurantes = buscarTodosRestaurantes();
 
     if (restaurantes === null || restaurantes.length === 0) {
         return null;
@@ -82,7 +82,7 @@ const buscarRestaurantePorEmail = (email) => {
 
 const buscarRestaurantePorId = (id) => {
 
-    const restaurantes = buscarRestaurantes();
+    const restaurantes = buscarTodosRestaurantes();
 
     if (restaurantes === null || restaurantes.length === 0) {
         return null;
@@ -97,7 +97,7 @@ const buscarRestaurantePorId = (id) => {
     return null;
 }
 
-const buscarRestaurantes = () => {
+const buscarTodosRestaurantes = () => {
     return JSON.parse(localStorage.getItem("restaurantes"));
 }
 
@@ -119,7 +119,7 @@ const atualizarRestaurante = (id, {
     numero
 }) => {
 
-    let restaurantes = buscarRestaurantes();
+    let restaurantes = buscarTodosRestaurantes();
     let indice;
 
     for (const i in restaurantes) {
@@ -154,7 +154,7 @@ const atualizarRestaurante = (id, {
 }
 
 const excluirRestaurante = (id) => {
-    let restaurantes = buscarRestaurantes();
+    let restaurantes = buscarTodosRestaurantes();
     let indice;
 
     for (const i in restaurantes) {
@@ -169,11 +169,28 @@ const excluirRestaurante = (id) => {
     localStorage.setItem("restaurantes", JSON.stringify(restaurantes));
 }
 
+const buscarRestaurantes = ({
+    nome
+}) => {
+    const restaurantes = buscarTodosRestaurantes();
+    let restaurantesBuscados = [];
+
+    for (const restaurante of restaurantes) {
+        
+        if (restaurante.nome_fantasia.includes(nome)) {
+            restaurantesBuscados.push(restaurante);
+        }
+    }
+
+    return restaurantesBuscados;
+}
+
 export {
     criarRestaurante,
     buscarRestaurantePorEmail,
     buscarRestaurantePorId,
     atualizarRestaurante,
     excluirRestaurante,
+    buscarTodosRestaurantes,
     buscarRestaurantes
 }
