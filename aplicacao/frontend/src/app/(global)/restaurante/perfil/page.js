@@ -159,6 +159,7 @@ export default function RestaurantePerfil() {
             <Form.Label>CNPJ</Form.Label>
             <Form.Input type={"number"} registrar={{ ...register("cnpj", { 
               required: mensagens.required("CNPJ"),
+              disabled: true,
               minLength: { message: mensagens.minLength("cnpj", 14), value: 14}, 
               onChange: (e) => {
                   const valor = e.target.value;

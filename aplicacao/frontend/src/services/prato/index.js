@@ -89,6 +89,7 @@ const buscarPratosPorRestaurante = (idRestaurante) => {
     const pratos = buscarPratos();
     let pratosRestaurante = [];
 
+    if( pratos === null) return;
     for (const prato of pratos) {
         if (prato.idRestaurante === idRestaurante) {
             pratosRestaurante.push(prato);
