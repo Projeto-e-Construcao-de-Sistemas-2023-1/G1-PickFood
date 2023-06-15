@@ -10,10 +10,21 @@ import {
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { buscarEnderecos } from "@/services/endereco";
 
 export default function MeusEnderecos() {
 
-    const router = useRouter();      
+    const router = useRouter();
+    const [enderecos, setEnderecos] = useState([]);
+
+    useEffect(() => {
+
+        const enderecos = buscarEnderecos();
+
+        setEnderecos(enderecos);
+
+    }, [])
 
     return (
         <>
@@ -28,7 +39,7 @@ export default function MeusEnderecos() {
                 </Link>  
             </h2>
 
-           <Enderecos/>  
+           <Enderecos enderecos={ enderecos }/>  
         </>
     )
 }

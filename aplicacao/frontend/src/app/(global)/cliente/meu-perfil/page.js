@@ -18,6 +18,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "@/contexts";
 import { useRouter } from "next/navigation";
 import TituloPagina from "@/components/TituloPagina";
+import { excluirCliente } from "@/services/cliente";
 
 export default function MeuPerfil() {
 
@@ -28,20 +29,8 @@ export default function MeuPerfil() {
     const router = useRouter();
 
     const excluir = () => {
-        let usuariosJaCadastrados = JSON.parse(localStorage.getItem("usuarios"));
-
-        let indexBuscado = -1;
-
-        for (const index in usuariosJaCadastrados) {
-            if (usuariosJaCadastrados[index].id === usuario.id) {
-                indexBuscado = index;
-                break;
-            }
-        }
-
-        usuariosJaCadastrados.splice(indexBuscado, 1);
-
-        localStorage.setItem("usuarios", JSON.stringify([...usuariosJaCadastrados]));
+        
+        excluirCliente(usuario.id);
 
         router.push("/auth/login");
     }

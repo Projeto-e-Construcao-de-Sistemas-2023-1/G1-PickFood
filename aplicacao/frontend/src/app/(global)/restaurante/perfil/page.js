@@ -21,14 +21,47 @@ import { AuthContext } from "@/contexts";
 import { useForm } from "react-hook-form";
 import { mensagens } from "@/erros/mensagens";
 import TituloPagina from "@/components/TituloPagina";
+import { buscarRestaurantePorId, excluirRestaurante } from "@/services/restaurante";
+import { useRouter } from "next/navigation";
 
 export default function RestaurantePerfil() {
 
   const [ativo, setAtivo] = useState(false);
 
+  const router = useRouter()
+
   const { usuario } = useContext(AuthContext);
 
-  const { register, handleSubmit: tratarFormulario, formState: { errors: erros },} = useForm();
+
+  const { register, handleSubmit: tratarFormulario, formState: { errors: erros }} = useForm({
+    defaultValues: async () => {
+      const restaurante = buscarRestaurantePorId(usuario.id);
+
+      return {
+        nomeFantasia: restaurante.nome_fantasia,
+        razaoSocial: restaurante.razao_social,
+        email: restaurante.email,
+        telefone: restaurante.telefone,
+        cnpj: restaurante.cnpj,
+        horarioAbertura: restaurante.horario_abertura,
+        horarioFechamento: restaurante.horario_fechamento,
+        taxaEntrega: restaurante.taxa_entrega,
+        rua: restaurante.endereco?.rua,
+        cep: restaurante.endereco?.cep,
+        bairro: restaurante.endereco?.bairro,
+        cidade: restaurante.endereco?.cidade,
+        estado: restaurante.endereco?.estado,
+        complemento: restaurante.endereco?.complemento,
+        numero: restaurante.endereco?.numero
+      }
+    }
+  });
+
+  const excluirConta = () => {
+    excluirRestaurante(usuario.id);
+
+    router.push("/auth/login")
+  }
 
   const alterar = (data) => {
 
@@ -203,6 +236,16 @@ export default function RestaurantePerfil() {
             <Form.Input type={"text"} registrar={{ ...register("bairro", { required: mensagens.required("Bairro") }) }}/>
           </Form.Field>
 
+          <Form.Field>
+            <Form.Label>Cidade</Form.Label>
+            <Form.Input type={"text"} registrar={{ ...register("cidade", { required: mensagens.required("Bairro") }) }}/>
+          </Form.Field>
+
+          <Form.Field>
+            <Form.Label>Estado</Form.Label>
+            <Form.Input type={"text"} registrar={{ ...register("estado", { required: mensagens.required("Bairro") }) }}/>
+          </Form.Field>
+
           <div className={opcoes}>
             <Form.Button>Salvar alterações</Form.Button>
             <div
@@ -211,7 +254,7 @@ export default function RestaurantePerfil() {
                 setAtivo((prev) => !prev);
               }}
             >
-              <div className={textoExcluirConta}>Excluir conta</div>
+              <div className={textoExcluirConta} onClick={() => excluirConta() }>Excluir conta</div>
             </div>
           </div>
         </Form>

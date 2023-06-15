@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Form from "@/components/Form";
@@ -10,16 +10,24 @@ import {
 import { useForm } from "react-hook-form";
 import rotas from "@/rotas";
 import { mensagens } from "@/erros/mensagens";
+import { criarEndereco } from "@/services/endereco";
+import { AuthContext } from "@/contexts";
 
 export default function CriarEndereco() {
 
   const router = useRouter();
 
   const { register: registrar, handleSubmit: tratarFormulario, formState: { errors: erros } } = useForm();
+  const { usuario } = useContext(AuthContext);
 
   const cadastrar = (data) => {
     
     console.log(data);
+
+    criarEndereco({
+      idCliente: usuario.id,
+      ...data
+    });
 
     // const enderecosCadastrados = JSON.parse(localStorage.getItem("enderecos")) || [];
     // const novoEnderecos = [...enderecosCadastrados, endereco];

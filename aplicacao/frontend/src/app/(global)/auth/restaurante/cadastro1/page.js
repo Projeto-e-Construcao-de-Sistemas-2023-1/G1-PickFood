@@ -24,7 +24,7 @@ export default function Cadastro1() {
 
     const { watch, register, handleSubmit: submit, formState: { errors: erros } } = useForm();
 
-    const { definirDados } = useContext(CadastroRestauranteContext);
+    const { dados, definirDados } = useContext(CadastroRestauranteContext);
 
     const router = useRouter();
 
@@ -41,6 +41,8 @@ export default function Cadastro1() {
             nome_fantasia,
             cnpj
         })
+
+        console.log(dados);
 
         router.push(rotas.auth.restaurante.cadastro2.url());
     }

@@ -27,7 +27,7 @@ const criarCliente = ({
 
     for (const clienteExistente of clientes) {
         if (clienteExistente.cpf === cliente.cpf || clienteExistente.email === cliente.email) {
-            throw Error("Cliente já cadastrado.");
+            throw Error("Usuário já cadastrado.");
         }
     }
 
@@ -46,16 +46,84 @@ const buscarClientePorEmail = (email) => {
 
     const clientes = buscarClientes();
 
+    if (clientes === null || clientes.length === 0) {
+        return null;
+    }
+
     for (const clienteExiste of clientes) {
         if(clienteExiste.email === email) {
             return clienteExiste;
         }
     }
 
-    throw Error("Cliente não cadastrado.");
+    return null;
+}
+
+const buscarClientePorId = (id) => {
+    const clientes = buscarClientes();
+
+    if (clientes === null || clientes.length === 0) {
+        return null;
+    }
+
+    for (const clienteExiste of clientes) {
+        if(clienteExiste.id === id) {
+            return clienteExiste;
+        }
+    }
+
+    return null;
+}
+
+const atualizarCliente = (id, {
+    nome,
+    email,
+    telefone,
+    cpf,
+}) => {
+
+    let clientes = buscarClientes();
+    let indice;
+
+    for (const i in clientes) {
+
+        if (clientes[i].id === id) {
+            indice = i;
+        }
+    }
+
+    clientes[indice] = {
+        ...clientes[indice],
+        nome,
+        email,
+        telefone,
+        cpf
+    }
+
+    localStorage.setItem("clientes", JSON.stringify(clientes));
+}
+
+const excluirCliente = (id) => {
+
+    let clientes = buscarClientes();
+    let indice;
+
+    for (const i in clientes) {
+
+        if (clientes[i].id === id) {
+            indice = i;
+        }
+    }
+
+    clientes.splice(indice, 1);
+
+    localStorage.setItem("clientes", JSON.stringify(clientes));
 }
 
 export {
     criarCliente,
-    buscarClientePorEmail
+    buscarClientePorEmail,
+    buscarClientePorId,
+    atualizarCliente,
+    excluirCliente
 }

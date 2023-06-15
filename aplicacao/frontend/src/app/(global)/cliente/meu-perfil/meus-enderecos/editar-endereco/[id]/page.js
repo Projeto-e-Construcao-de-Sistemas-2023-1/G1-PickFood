@@ -4,22 +4,65 @@ import Form from "@/components/Form";
 import Link from "next/link";
 import {
     cadastrar,
-    margin
+    margin,
+    excluir
 } from "./styles.module.scss";
 import { useForm } from "react-hook-form";
 import { mensagens } from "@/erros/mensagens";
+import { atualizarEndereco, buscarEnderecoPorId, excluirEndereco } from "@/services/endereco";
+import { useRouter } from "next/navigation";
+import Retornar from "@/components/Retornar";
 
 
-export default function EditarEndereco() {
+export default function EditarEndereco({ params: { id } }) {
 
-    const { register: registrar, handleSubmit: tratarFormulario, formState: { errors: erros } } = useForm();
+    const router = useRouter();
+
+    const { register: registrar, handleSubmit: tratarFormulario, formState: { errors: erros } } = useForm({
+        defaultValues: async () => {
+
+            const {
+                apelido,
+                cep,
+                bairro,
+                rua,
+                numero,
+                complemento,
+                estado,
+                cidade
+            } = buscarEnderecoPorId(id);
+
+            return {
+                apelido,
+                cep,
+                bairro,
+                rua,
+                numero,
+                complemento,
+                estado,
+                cidade
+            }
+        }
+    });
 
     const editar = (data) => {
+
         console.log(data);
+        
+        atualizarEndereco(id, data);
+
+        router.push("/cliente/meu-perfil/meus-enderecos");
+    }
+
+    const removerEndereco = () => {
+        excluirEndereco(id);
+
+        router.push("/cliente/meu-perfil/meus-enderecos");
     }
 
     return(
-      
+      <>
+        <Retornar navigate={ () => router.back() } />
         <Form onSubmit={ tratarFormulario(editar) }>
             <Form.Erros erros={ erros } />
 
@@ -83,8 +126,10 @@ export default function EditarEndereco() {
 
             <div className={ margin }>
                 <Form.Button onClick={ cadastrar }>Salvar alterações</Form.Button>
+                <div className={ excluir } onClick={() => removerEndereco() }>Excluir endereco</div>
             </div>
         </Form>
+    </>
        
     )
 }
