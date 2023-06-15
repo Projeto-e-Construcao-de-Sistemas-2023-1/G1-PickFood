@@ -38,7 +38,7 @@ const Carrinho = () => {
                 
                 
                 itens[indice].quantidade += 1;
-                itens[indice].valor += item.prato.preco;
+                itens[indice].valor += Number.parseFloat(item.prato.preco);
 
                 setItens([ ...itens ]);
                 

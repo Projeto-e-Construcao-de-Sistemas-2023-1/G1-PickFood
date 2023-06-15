@@ -24,7 +24,7 @@ import { CarrinhoContext } from "@/contexts";
 import { buscarPratoPorId } from "@/services/prato";
 import { buscarRestaurantePorId } from "@/services/restaurante";
 
-const Prato = ({ params: { idPrato } }) => {
+const Prato = ({ params: { idPrato, idRestaurante } }) => {
 
     const router = useRouter();
     const { setItens } = useContext(CarrinhoContext);

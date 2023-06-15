@@ -11,19 +11,44 @@ import {
     pedidos_numero,
     pedidos_cancelar
 } from "./styles.module.scss";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { buscarPedidosPorCliente, cancelarPedido } from "@/services/pedido";
+import { AuthContext } from "@/contexts";
 
 const HistoricoPedidos = () => {
     
+    const { usuario } = useContext(AuthContext);
     const router = useRouter();
     const [cancelar, setCancelar] = useState(false)
+    const [pedidos, setPedidos] = useState([]);
+
+    useEffect(() => {
+        const pedidosExistentes = buscarPedidosPorCliente(usuario.id);
+
+        setPedidos(pedidosExistentes);
+    }, [usuario.id]);
 
     const exibirCancelar = () => {
         setCancelar(prev => !prev);
     }
 
-    const cancelarPedido = () => {
+    const exibirStatus = (pedido) => {
 
+        const opcoesStatus = {
+            1: "Aguardando confirmação",
+            2: "Confirmado",
+            3: "Em preparo",
+            4: "A caminho",
+            5: "Entregue",
+            6: "Cancelado"
+        };
+
+        return opcoesStatus[pedido.status];
+    }
+
+    const cancelaPedido = (idPedido) => {
+
+        cancelarPedido(idPedido);
     }
     
     return(
@@ -31,17 +56,30 @@ const HistoricoPedidos = () => {
             <Retornar navigate={ () => router.back() }/>
             <TituloPagina>Meus pedidos</TituloPagina>
             <ul className={ pedidos_lista }>
-                <li className={ pedidos_item }>
-                    <div className={ pedidos_info }>
-                        <p>Pedido número: </p>
-                        <p className={ pedidos_numero }>numero</p>
-                    </div>
-                    <Icone src={ "/icons/mais.svg" } onClick={ exibirCancelar }/>
+                {
+                    pedidos?.map(pedido => {
 
-                    <div className={ pedidos_cancelar } style={{ display: cancelar ? "block" : "none" }} onClick={ cancelarPedido }>
-                        Cancelar pedido
-                    </div>
-                </li>
+                        return(
+                            <li className={ pedidos_item } key={ pedido.codigo }>
+                                <div className={ pedidos_info }>
+                                    <p>Pedido número: </p>
+                                    <p className={ pedidos_numero }>{ pedido.codigo }</p>
+                                    <div style={{ marginTop: "10px" }}>
+                                        {
+                                            exibirStatus(pedido)
+                                        }
+                                    </div>
+                                </div>
+                                <Icone src={ "/icons/mais.svg" } onClick={ exibirCancelar }/>
+
+                                <div className={ pedidos_cancelar } style={{ display: cancelar ? "block" : "none" }} onClick={ () => cancelaPedido(pedido.id) }>
+                                    Cancelar pedido
+                                </div>
+                            </li>
+                        )
+                    })
+                }
+                
             </ul>
         </div>
     )

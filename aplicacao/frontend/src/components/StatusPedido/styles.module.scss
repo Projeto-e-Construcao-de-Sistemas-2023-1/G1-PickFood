@@ -15,7 +15,11 @@
 }
 
 .valorTotal {
+    display: flex;
+    align-items: center;
     margin-top: utils.converterPxParaRem(20px);
+    font-weight: bold;
+    justify-content: space-between;
 }
 
 .item {

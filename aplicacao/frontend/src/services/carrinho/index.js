@@ -7,7 +7,7 @@ const adicionarItem = (prato, setItens) => {
     const itemCarrinho = {
         id: uuid(),
         quantidade: 1,
-        valor: prato.preco,
+        valor: Number.parseInt(prato.preco),
         prato: {
             ...prato
         }

@@ -15,102 +15,54 @@ import { useRouter } from "next/navigation";
 import Modal from "@/components/Modal";
 import { useState } from "react";
 
-export default function PedidosRestaurante() {
+export default function PedidosRestaurante({ pedidos }) {
 
     const [ativo, setAtivo] = useState(false);
+
+    const exibirStatus = (pedido) => {
+
+        const opcoesStatus = {
+            1: "Aguardando confirmação",
+            2: "Confirmado",
+            3: "Em preparo",
+            4: "A caminho",
+            5: "Entregue",
+            6: "Cancelado"
+        };
+
+        return opcoesStatus[pedido.status];
+    }
 
     return(
         <>
         <ul className= {lista}>
-            <li className={texto}>
-                <div className={ nome }>Pedido #1234
-                <div className={ status }>status</div>
-                </div>
-                <Link href={"/restaurante/status-pedido"}>
-                    <Image
-                    src="/icons/pontinhos.svg"
-                    className={ editar }
-                    width={ 14 }
-                    height={ 14 }
-                    alt="Icone de tres pontinhos."
-                    />
-                </Link>
-            </li>
+            {
+                pedidos?.map(pedido => {
 
-            <li className={texto}>
-                <div className={ nome }>Pedido #1234
-                <div className={ status }>status</div>
-                </div>
-                <Link href={"/restaurante/pedidos"}>
-                    <Image
-                    src="/icons/pontinhos.svg"
-                    className={ editar }
-                    width={ 14 }
-                    height={ 14 }
-                    alt="Icone de tres pontinhos."
-                    />
-                </Link>
-            </li>
+                    return(
 
-            <li className={texto}>
-                <div className={ nome }>Pedido #1234
-                <div className={ status }>status</div>
-                </div>
-                <Link href={"/restaurante/pedidos"}>
-                    <Image
-                    src="/icons/pontinhos.svg"
-                    className={ editar }
-                    width={ 14 }
-                    height={ 14 }
-                    alt="Icone de tres pontinhos."
-                    />
-                </Link>
-            </li>
+                        <li className={texto} key={ pedido.codigo }>
+                            <div >
+                                <div className={ nome }>Pedido</div>
+                                <div>{ pedido.codigo }</div>
+                                <div className={ status }>{ exibirStatus(pedido) }</div>
+                            </div>
+                            <Link href={"/restaurante/status-pedido/" + pedido.codigo }>
+                                <Image
+                                src="/icons/pontinhos.svg"
+                                className={ editar }
+                                width={ 14 }
+                                height={ 14 }
+                                alt="Icone de tres pontinhos."
+                                />
+                            </Link>
+                        </li>
+                    )
+                })
+            }
+            
 
-            <li className={texto}>
-                <div className={ nome }>Pedido #1234
-                <div className={ status }>status</div>
-                </div>
-                <Link href={"/restaurante/status-pedido"}>
-                    <Image
-                    src="/icons/pontinhos.svg"
-                    className={ editar }
-                    width={ 14 }
-                    height={ 14 }
-                    alt="Icone de tres pontinhos."
-                    />
-                </Link>
-            </li>
-
-            <li className={texto}>
-                <div className={ nome }>Pedido #1234
-                <div className={ status }>status</div>
-                </div>
-                <Link href={"/restaurante/status-pedido"}>
-                    <Image
-                    src="/icons/pontinhos.svg"
-                    className={ editar }
-                    width={ 14 }
-                    height={ 14 }
-                    alt="Icone de tres pontinhos."
-                    />
-                </Link>
-            </li>
-
-            <li className={texto}>
-                <div className={ nome }>Pedido #1234
-                <div className={ status }>status</div>
-                </div>
-                <Link href={"/restaurante/status-pedido"}>
-                    <Image
-                    src="/icons/pontinhos.svg"
-                    className={ editar }
-                    width={ 14 }
-                    height={ 14 }
-                    alt="Icone de tres pontinhos."
-                    />
-                </Link>
-            </li>
+            
         </ul>
     </>
     )
