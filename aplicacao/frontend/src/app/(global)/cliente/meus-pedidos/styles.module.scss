@@ -13,18 +13,16 @@
 }
 
 .pedidos_info {
-    display: flex;
-    align-items: center;
 }
 
 .pedidos_numero {
-    margin-left: utils.converterPxParaRem(5px);
+    margin-top: utils.converterPxParaRem(5px);
 }
 
 .pedidos_cancelar {
     position: absolute;
     right: 0;
-    top: 30px;
+    top: 40px;
     color: cores.$vermelho;
     background-color: cores.$cinza;
     padding: 5px;

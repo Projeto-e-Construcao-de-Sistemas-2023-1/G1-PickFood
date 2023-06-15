@@ -1,8 +1,8 @@
 'use client';
 
 import Button from "@/components/Button";
-import { CarrinhoContext } from "@/contexts";
-import { useContext, useEffect } from "react";
+import { AuthContext, CarrinhoContext } from "@/contexts";
+import { useContext, useEffect, useState } from "react";
 import {
     container,
     pedido,
@@ -28,21 +28,45 @@ import {
 import Retornar from "@/components/Retornar";
 import { useRouter } from "next/navigation";
 import Icone from "@/components/Icone";
+import { criarItemPedido } from "@/services/itemPedido";
+import { criarPedido } from "@/services/pedido";
 
 const ConfirmarPedido = () => {
 
     const router = useRouter();
 
     const { itens } = useContext(CarrinhoContext);
+    const { usuario } = useContext(AuthContext);
+
+    const [formaPagamento, setFormaPagamento] = useState("Pix");
+    const [formaEntrega, setFormaEntrega] = useState("Entregar");
 
     const calcularTotalPedido = () => {
         let total = 0;
 
         for (const item of itens) {
-            total += item.valor;
+            total += Number.parseFloat(item.valor);
         }
 
         return total;
+    }
+
+    const confirmarPedido = () => {
+
+        console.log(formaPagamento);
+        console.log(itens);
+
+
+        
+        criarPedido({
+            idCliente: usuario.id,
+            idRestaurante: itens[0].prato.idRestaurante,
+            formaPagamento,
+            totalPedido: calcularTotalPedido(),
+            itens
+        });
+
+        router.push("/cliente/meus-pedidos");
     }
 
     return(
@@ -71,34 +95,47 @@ const ConfirmarPedido = () => {
                     <p>{ calcularTotalPedido() }</p>
                 </div>
             </div>
-            <div className={ dados_entrega }>
+            <div style={{ marginTop: 20 }}>
+                <form>
+                    <div>
+                        <input type="radio" value="Retirar no local" name="formaEntrega" onChange={(e) => setFormaEntrega(e.target.value)}/>
+                        <label>Retirar no local</label>
+                    </div>
+                    <div>
+                        <input type="radio" value="Entregar" name="formaEntrega" defaultChecked onChange={(e) => setFormaEntrega(e.target.value)}/>
+                        <label>Entregar</label>
+                    </div>
+                </form>
+            </div>
+            <div className={ divider }></div>
+            <div className={ dados_entrega } style={{ display: formaEntrega === "Entregar" ? "block" : "none" }}>
                 <p className={ dados_entrega_texto }>Entregar em:</p>
                 <p className={ dados_entrega_endereco }>Endereço de entrega</p>
             </div>
-            <div className={ divider }></div>
+            <div className={ divider } style={{ display: formaEntrega === "Entregar" ? "block" : "none" }}></div>
             <div className={ pagamento }>
                 <p className={ pagamento_titulo }>Pagamento</p>
                 <ul className={ pagamento_lista }>
-                    <li className={ pagamento_item }>
+                    <li className={ pagamento_item } onClick={() => setFormaPagamento("Cartão de Débito")}>
                         <Icone/>
                         <p className={ pagamento_texto }>Cartão de Débito</p>
                     </li>
-                    <li className={ pagamento_item }>
+                    <li className={ pagamento_item } onClick={() => setFormaPagamento("Cartão de Crédito")}>
                         <Icone/>
                         <p className={ pagamento_texto }>Cartão de Crédito</p>
                     </li>
-                    <li className={ pagamento_item }>
+                    <li className={ pagamento_item } onClick={() => setFormaPagamento("Pix")}>
                         <Icone/>
                         <p className={ pagamento_texto }>Pix</p>
                     </li>
-                    <li className={ pagamento_item }>
+                    <li className={ pagamento_item } onClick={() => setFormaPagamento("Dinheiro")}>
                         <Icone/>
                         <p className={ pagamento_texto }>Dinheiro</p>
                     </li>
                 </ul>
 
             </div>
-            <Button className={ botao_confirmar }>Confirmar pedido</Button>
+            <Button className={ botao_confirmar } onClick={ () => confirmarPedido() }>Confirmar pedido</Button>
         </div>
     )
 }

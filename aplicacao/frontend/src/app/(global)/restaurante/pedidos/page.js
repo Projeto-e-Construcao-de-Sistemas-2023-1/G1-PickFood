@@ -9,10 +9,23 @@ import {
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
 import TituloPagina from "@/components/TituloPagina";
+import { useContext, useEffect, useState } from "react";
+import { buscarPedidosPorRestaurante } from "@/services/pedido";
+import { AuthContext } from "@/contexts";
 
 export default function Pedidos() {
 
     const router = useRouter();
+    const [pedidos, setPedidos] = useState([]);
+    const { usuario } = useContext(AuthContext);
+
+    useEffect(() => {
+        const pedidosExistentes = buscarPedidosPorRestaurante(usuario.id);
+
+        setPedidos(pedidosExistentes);
+
+       
+    }, [usuario.id]);
 
     return (
         <>
@@ -22,7 +35,7 @@ export default function Pedidos() {
             
             <TituloPagina>Pedidos</TituloPagina>
 
-            <PedidosRestaurante/>
+            <PedidosRestaurante pedidos={ pedidos }/>
 
         </>
     )

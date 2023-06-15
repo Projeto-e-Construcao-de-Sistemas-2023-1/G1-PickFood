@@ -11,34 +11,43 @@ import {
     precoPrato,
 } from "./styles.module.scss";
 
-const StatusPedido = () => {
+const StatusPedido = ({ itensPedido }) => {
     
+    const calcularTotalPedido = () => {
+        let total = 0;
+
+        for (const item of itensPedido) {
+            total += Number.parseFloat(item.valor);
+        }
+
+        return total;
+    }
+
     return(
         <div className={ container }>
             <div className={ pratos }>
-                <div className={ prato }>
-                    <div className={ item }>
-                        <div className= { quantidade }>1</div>
-                        <p className={ nomePrato }>Strogonoff de Frango</p>
-                    </div>
-                    <div className={ interacoes }>
-                        <p className={ precoPrato }>R$ 10,00</p>
-                    </div>
-                </div>
+                {
+                    itensPedido?.map(itemPedido => {
 
-                <div className={ prato }>
-                    <div className={ item }>
-                        <div className= { quantidade }>1</div>
-                        <p className={ nomePrato }>Strogonoff de Frango</p>
-                    </div>
-                    <div className={ interacoes }>
-                        <p className={ precoPrato }>R$ 10,00</p>
-                    </div>
-                </div>
-        </div>
+                        return(
+
+                            <div className={ prato } key={ itemPedido.id }>
+                                <div className={ item }>
+                                    <div className= { quantidade }>{ itemPedido.quantidade }</div>
+                                    <p className={ nomePrato }>{ itemPedido.prato.nome }</p>
+                                </div>
+                                <div className={ interacoes }>
+                                    <p className={ precoPrato }>{ itemPedido.valor }</p>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
 
             <div className={ valorTotal }>
-                <p className={ valor }>Total: R$ valor total</p>
+                <p className={ valor }>Total: </p>
+                <p>{ calcularTotalPedido() }</p>
             </div>
                 
         </div>
