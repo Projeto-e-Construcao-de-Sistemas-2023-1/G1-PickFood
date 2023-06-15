@@ -11,11 +11,52 @@ import {
     descricao,
     restricoes,
     restricao_nome,
-    divider
+    divider,
+    favorito
 } from "./styles.module.scss";
 import Link from "next/link";
+import { useContext, useState } from "react";
+import { buscarTodosFavoritosPratoCliente, criarFavoritoPratoClinete, excluirFavoritoPorClienteEPrato } from "@/services/favoritos_prato_cliente";
+import { AuthContext } from "@/contexts";
 
 const CardapioCliente = ({ pratos }) => {
+
+    const [ehFavorito, setEhFavorito] = useState(false);
+    const { usuario } = useContext(AuthContext);
+
+    const ehFavoritado = (idPrato) => {
+        
+        const favoritosExistentes = buscarTodosFavoritosPratoCliente();
+
+        if (favoritosExistentes === null) {
+            return false;
+        }
+
+        for (const favoritoExistente of favoritosExistentes) {
+            if (favoritoExistente.idCliente === usuario.id && favoritoExistente.idPrato === idPrato) {
+
+                
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    const addFavoritos = (idPrato) => {
+
+        criarFavoritoPratoClinete({idCliente: usuario.id, idPrato});
+
+        setEhFavorito(true);
+    }
+
+    const removerFavoritos = (idPrato) => {
+
+        excluirFavoritoPorClienteEPrato({ idCliente: usuario.id , idPrato });
+
+        setEhFavorito(false);
+    }
+
     return(
         <ul className={ itens }>
             {
@@ -36,7 +77,10 @@ const CardapioCliente = ({ pratos }) => {
                                             <p className={ nome }>{ prato.nome }</p>
                                         </div>
                                         
-                                        <div className={ preco }>R$ { prato.preco }</div>
+                                        <div style={{ display: "flex", alignItems: "center"}}>
+                                            <div className={ preco }>R$ { prato.preco }</div>
+                                            
+                                        </div>
                                     </div>
                                     <p className={ descricao }>{ prato.descricao }</p>
                                     <div className={ restricoes }>
@@ -51,9 +95,35 @@ const CardapioCliente = ({ pratos }) => {
                                             })
                                         }
                                     </div>
+                                    
                                 </li>
 
                             </Link>
+                            <div style={{ display: "flex", justifyContent: "flex-end"}}>
+                                {
+                                        ehFavorito || ehFavoritado(prato.id) ?
+                                        <Image
+                                        className={ favorito } 
+                                            width={10} 
+                                            height={15} 
+                                            src="/icons/favorito_marcado.svg" 
+                                            alt="Icone de favorito quando o restaurante ainda não foi favoritado."
+                                            onClick={ () => removerFavoritos(prato.id) }
+                                        />
+                                        :
+                                        <Image
+                                        className={ favorito } 
+                                            width={10} 
+                                            height={15} 
+                                            src="/icons/favorito_desmarcado.svg" 
+                                            alt="Icone de favorito quando o restaurante ainda não foi favoritado."
+                                            onClick={ (e) => {
+                                                e.stopPropagation();
+                                                addFavoritos(prato.id)
+                                            } }
+                                        />
+                                }
+                            </div>
                             <div className={ divider }></div>
                         </>
                     )

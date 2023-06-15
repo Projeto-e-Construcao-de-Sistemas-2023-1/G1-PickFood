@@ -178,6 +178,7 @@ const buscarRestaurantes = ({
     for (const restaurante of restaurantes) {
         
         if (restaurante.nome_fantasia.includes(nome)) {
+        
             restaurantesBuscados.push(restaurante);
         }
     }

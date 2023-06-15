@@ -13,11 +13,8 @@ import {
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
 import Modal from "@/components/Modal";
-import { useState } from "react";
 
 export default function PedidosRestaurante({ pedidos }) {
-
-    const [ativo, setAtivo] = useState(false);
 
     const exibirStatus = (pedido) => {
 

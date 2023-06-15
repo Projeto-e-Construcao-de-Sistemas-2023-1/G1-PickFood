@@ -10,6 +10,7 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
+    margin-bottom: utils.converterPxParaRem(25px);
 }
 
 .pedidos_info {
