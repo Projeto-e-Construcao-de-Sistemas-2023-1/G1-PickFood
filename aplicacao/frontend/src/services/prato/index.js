@@ -1,3 +1,5 @@
+import { v4 as uuid } from "uuid";
+
 const criarPrato = ({
     idRestaurante,
     nome,
@@ -7,6 +9,31 @@ const criarPrato = ({
     foto
 }) => {
 
+    const prato = {
+        id: uuid(),
+        idRestaurante,
+        nome,
+        tipo,
+        preco,
+        descricao,
+        foto
+    }
+
+    console.log("entrei");
+
+    let pratos = buscarPratos();
+
+    if (pratos === null || pratos.length === 0) {
+        localStorage.setItem("pratos", JSON.stringify([ prato ]));
+
+        return prato;
+    }
+
+    pratos.push(prato);
+
+    localStorage.setItem("pratos", JSON.stringify(pratos));
+
+    return prato;
 }
 
 const buscarPratos = () => {
@@ -20,16 +47,78 @@ const atualizarPrato = (id, {
     descricao,
     foto
 }) => {
+    let pratos = buscarPratos();
+    let indice;
 
+    for (const i in pratos) {
+
+        if (pratos[i].id === id) {
+            indice = i;
+        }
+    }
+
+    pratos[indice] = {
+        ...pratos[indice],
+        nome,
+        tipo,
+        preco,
+        descricao,
+        foto
+    }
+
+    localStorage.setItem("pratos", JSON.stringify(pratos));
 }
 
 const excluirPrato = (id) => {
+    let pratos = buscarPratos();
+    let indice;
 
+    for (const i in pratos) {
+
+        if (pratos[i].id === id) {
+            indice = i;
+        }
+    }
+
+    pratos.splice(indice, 1);
+
+    localStorage.setItem("pratos", JSON.stringify(pratos));
+}
+
+const buscarPratosPorRestaurante = (idRestaurante) => {
+    const pratos = buscarPratos();
+    let pratosRestaurante = [];
+
+    for (const prato of pratos) {
+        if (prato.idRestaurante === idRestaurante) {
+            pratosRestaurante.push(prato);
+        }
+    }
+
+    return pratosRestaurante;
+}
+
+const buscarPratoPorId = (id) => {
+    const pratos = buscarPratos();
+
+    if (pratos === null || pratos.length === 0) {
+        return null;
+    }
+
+    for (const pratoExistente of pratos) {
+        if(pratoExistente.id === id) {
+            return pratoExistente;
+        }
+    }
+
+    return null;
 }
 
 export {
     criarPrato,
     buscarPratos,
     atualizarPrato,
-    excluirPrato
+    excluirPrato,
+    buscarPratosPorRestaurante,
+    buscarPratoPorId
 }
