@@ -9,9 +9,6 @@ import {
     nomePrato,
     interacoes,
     precoPrato,
-    info,
-    textoPrimario,
-    textoSecundario
 } from "./styles.module.scss";
 
 const StatusPedido = () => {

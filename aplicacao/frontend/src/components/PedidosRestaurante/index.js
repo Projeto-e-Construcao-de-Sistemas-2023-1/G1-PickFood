@@ -5,19 +5,12 @@ import Link from "next/link";
 import {
     lista,
     texto,
-    foto,
     editar,
-    lixo,
     status,
     nome
 } from "./styles.module.scss"
-import { useRouter } from "next/navigation";
-import Modal from "@/components/Modal";
-import { useState } from "react";
 
 export default function PedidosRestaurante() {
-
-    const [ativo, setAtivo] = useState(false);
 
     return(
         <>

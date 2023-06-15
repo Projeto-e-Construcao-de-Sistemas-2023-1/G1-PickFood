@@ -5,7 +5,6 @@ import { tituloPagina } from "@/styles/componentes.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import {
-    titulo,
     lista,
     item,
     link,
