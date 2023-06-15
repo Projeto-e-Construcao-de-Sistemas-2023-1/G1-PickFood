@@ -1,7 +1,9 @@
 import { createContext } from "react"
 
 const AuthContext = createContext({});
+const CarrinhoContext = createContext([]);
 
-export { 
-    AuthContext 
+export {
+    AuthContext,
+    CarrinhoContext
 }

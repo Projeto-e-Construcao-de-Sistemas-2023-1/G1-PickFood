@@ -16,10 +16,17 @@
 
 .cabecalho {
     margin-bottom: utils.converterPxParaRem(21px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .nomeRestaurante {
     margin-bottom: utils.converterPxParaRem(8px);
+}
+
+.limpar {
+    color: cores.$vermelho;
 }
 
 .adicionarMaisItens {
@@ -33,6 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: utils.converterPxParaRem(15px);
 }
 
 .nomePrato {

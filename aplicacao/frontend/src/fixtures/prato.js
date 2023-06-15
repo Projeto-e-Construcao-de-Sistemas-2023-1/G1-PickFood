@@ -14,4 +14,3 @@ const prato = {
 }
 
 export default prato;
-//export { prato }

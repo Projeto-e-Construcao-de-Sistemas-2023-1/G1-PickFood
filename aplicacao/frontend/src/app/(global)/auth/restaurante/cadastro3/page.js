@@ -20,27 +20,22 @@ import { AuthContext } from "@/contexts";
 import { useRouter } from "next/navigation";
 import { mensagens } from "@/erros/mensagens";
 import TituloPagina from "@/components/TituloPagina";
+import { criarRestaurante } from "@/services/restaurante";
 
 export default function Cadastro3() {
 
     const { dados } = useContext(CadastroRestauranteContext);
 
-    const { definirUsuario } = useContext(AuthContext);
+    const { setUsuario } = useContext(AuthContext);
 
     const router = useRouter()
 
-    const { register, handleSubmit: submit, formState: { errors } } = useForm();
+    const { register, handleSubmit: submit, formState: { errors }, setError, clearErrors } = useForm();
 
     const handleSubmit = (data) => {
         const id = uuid();
 
         const { razao_social, nome_fantasia, email, senha, cnpj, telefone, horarioAbertura, horarioFechamento, taxaEntrega } = dados;
-
-        const user = {
-            id, 
-            nome: nome_fantasia,
-            email,
-        } 
 
         const dadosRestaurante = {
             ...data,
@@ -59,15 +54,26 @@ export default function Cadastro3() {
 
         console.log(dadosRestaurante);
 
-        const restaurantesJaCadastratos = JSON.parse(localStorage.getItem("usuarios"));
+        let restaurante;
 
-        if (restaurantesJaCadastratos === null || restaurantesJaCadastratos.length === 0) {
-            localStorage.setItem("usuarios", JSON.stringify([dadosRestaurante]))
-        } else {
-            localStorage.setItem("usuarios", JSON.stringify([dadosRestaurante, ...restaurantesJaCadastratos]))
+        try {
+            restaurante = criarRestaurante(dadosRestaurante);
+
+        } catch (e) {
+            setError("EntidadeDuplicada", { message: "Dados inválidos" });
+
+            return;
         }
+
+        const usuario = {
+            id: restaurante.id,
+            nome: restaurante.nome_fantasia,
+            token: ""
+        };
         
-        definirUsuario(user);
+        setUsuario(usuario);
+        
+        localStorage.setItem("usuario", JSON.stringify(usuario));
        
         router.push("/restaurante/home");
     }
@@ -93,7 +99,7 @@ export default function Cadastro3() {
                     <Form.Erros erros = { errors }/>
                     <Form.Field>
                         <Form.Label>CEP</Form.Label>
-                            <Form.Input registrar={{ ...register("cep", { 
+                            <Form.Input registrar={{ ...register("cep", {
                                 required: mensagens.required("cep"),
                                 minLength: { message: mensagens.minLength("cep", 8), value: 8 },
                                 onChange: (e) => {
@@ -134,7 +140,17 @@ export default function Cadastro3() {
                         <Form.Input type="text" registrar = {{ ...register("complemento") }}/>
                     </Form.Field>
 
-                    <Form.Button type="submit">Continuar</Form.Button>
+                    <Form.Field>
+                        <Form.Label>Estado</Form.Label>
+                        <Form.Input type="text" registrar = {{ ...register("estado", { required: mensagens.required("estado") }) }}/>
+                    </Form.Field>
+
+                    <Form.Field>
+                        <Form.Label>Cidade</Form.Label>
+                        <Form.Input type="text" registrar = {{ ...register("cidade", { required: mensagens.required("cidade") }) }}/>
+                    </Form.Field>
+
+                    <Form.Button type="submit" onClick={ () => clearErrors() }>Continuar</Form.Button>
                 </Form>
             </div>
         </Container>

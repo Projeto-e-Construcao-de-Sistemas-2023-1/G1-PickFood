@@ -20,7 +20,7 @@ const Restaurante = () => {
         <>
             <Retornar navigate={ () => router.back() }/>
             <TituloPagina className={ titulo }>Nome do Restaurante</TituloPagina>
-            <h2 className={ subtitulo }>Cardápio</h2>
+            {/* <h2 className={ subtitulo }>Cardápio</h2> */}
             <Pesquisa/>
             <CardapioCliente pratos={ pratos } />
         </>

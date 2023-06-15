@@ -1,3 +1,5 @@
+'use client';
+
 import Button from "@/components/Button";
 import Carrinho from "@/components/Carrinho";
 import TituloPagina from "@/components/TituloPagina";
@@ -11,22 +13,22 @@ import {
     textoTotal,
     valorTotal
 } from "./styles.module.scss";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Retornar from "@/components/Retornar";
+
 
 const MeuCarrinho = () => {
-    
+
+    const router = useRouter();
+
     return(
         <>
+            <Retornar navigate={ () => router.back() } />
             <TituloPagina>Meu carrinho</TituloPagina>
             
             <Carrinho/>
-            
-            <div className={ info }>
-                <p className={ textoPrimario }>Entregar em:</p>
-                <p className={ textoSecundario }>Endereço</p>
-            </div>
-
-            <div className={ divider }></div>
-
+        
             <div className={ info }>
                 <p className={ textoPrimario }>Hoje, 30 - 45 minutos</p>
                 <p className={ textoSecundario }>Taxa: R$10,00</p>
@@ -39,7 +41,7 @@ const MeuCarrinho = () => {
                 <p className={ valorTotal }>Valor total</p>
             </div>
 
-            <Button className={ botao }>Continuar</Button>
+            <Button className={ botao } onClick={ () => router.push("/cliente/meu-pedido") }>Finalizar compra</Button>
         </>
     )
 }

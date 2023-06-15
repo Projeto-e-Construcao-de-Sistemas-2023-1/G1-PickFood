@@ -31,7 +31,6 @@ export default function Cadastro2() {
 
         const { telefone, taxaEntrega, horarioAbertura, horarioFechamento} = data;
 
-        console.log(data);
 
         definirDados({
             ...dados,
@@ -40,6 +39,8 @@ export default function Cadastro2() {
             horarioAbertura,
             horarioFechamento
         });
+
+        console.log(dados);
 
         router.push("/auth/restaurante/cadastro3");
     }

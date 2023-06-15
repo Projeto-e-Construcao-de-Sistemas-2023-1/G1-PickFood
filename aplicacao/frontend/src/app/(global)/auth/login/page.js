@@ -21,6 +21,8 @@ import { AuthContext } from "@/contexts";
 import request from "@/services/axios";
 import { useForm } from "react-hook-form";
 import { mensagens } from "@/erros/mensagens";
+import { buscarClientePorEmail } from "@/services/cliente";
+import { buscarRestaurantePorEmail } from "@/services/restaurante";
 
 export default function Login() {
 
@@ -30,17 +32,84 @@ export default function Login() {
         register: registrar, 
         handleSubmit: tratarFormulario, 
         setError,
+        clearErrors,
         formState: { errors: erros } 
     } = useForm();
 
-    const { definirUsuario } = useContext(AuthContext);
+    const { setUsuario } = useContext(AuthContext);
 
     const autenticar = (data) => {
 
         console.log(data);
-        
-        // e.preventDefault();
 
+        let usuario;
+        let restaurante;
+        let cliente;
+        
+        
+        cliente = buscarClientePorEmail(data.email);
+        
+
+        restaurante = buscarRestaurantePorEmail(data.email);
+
+        if (cliente === null && restaurante === null) {
+
+            setError("EntidadeNaoEncontrada", {
+                message: "Dádos inválidos"
+            });
+
+            return;
+        }
+
+        if (restaurante === null) {
+            if (cliente.senha !== data.senha) {
+                setError("SenhaIncorreta", {
+                    message: "Dádos inválidos"
+                });
+    
+                return;
+            }
+
+            usuario = {
+                id: cliente.id,
+                nome: cliente.nome,
+                token: ""
+            };
+
+            setUsuario(usuario)
+            localStorage.setItem("usuario", JSON.stringify(usuario));
+
+            router.push("/cliente/home");
+
+            return;
+        }
+
+        if (restaurante.senha !== data.senha) {
+            setError("SenhaIncorreta", {
+                message: "Dádos inválidos"
+            });
+
+            return;
+        }
+
+        usuario = {
+            id: restaurante.id,
+            nome: restaurante.nome_fantasia,
+            token: ""
+        };
+
+        setUsuario(usuario)
+        localStorage.setItem("usuario", JSON.stringify(usuario));
+
+        router.push("/restaurante/home");
+
+        return;
+
+        
+
+        
+
+        
         // const usuariosJaCadastrados = JSON.parse(localStorage.getItem("usuarios"));
 
         // console.log(email);
@@ -131,7 +200,7 @@ export default function Login() {
                     <Form.Input registrar={{ ...registrar("senha", { required: mensagens.required("senha") }) }} type={ "password" }/>
                 </Form.Field>
 
-                <Form.Button>Entrar</Form.Button>
+                <Form.Button onClick={() => clearErrors()}>Entrar</Form.Button>
             </Form>
 
             <div className={ links }>

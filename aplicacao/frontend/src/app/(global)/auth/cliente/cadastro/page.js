@@ -13,13 +13,16 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import rotas from "@/rotas"
 import { mensagens } from "@/erros/mensagens";
+import { criarCliente } from "@/services/cliente";
 
 export default function CadastroCliente() {
 
-    const { definirUsuario } = useContext(AuthContext);
+    const { setUsuario } = useContext(AuthContext);
     const { 
         register: registrar, 
         handleSubmit: tratarFormulario, 
+        setError,
+        clearErrors,
         formState: { errors: erros }, 
         watch
     } = useForm();
@@ -33,8 +36,15 @@ export default function CadastroCliente() {
 
 
         console.log(data);
+        let cliente;
 
-        router.push(rotas.cliente.home.url());
+        try {
+            cliente = criarCliente(data);
+        } catch (e) {
+            setError("EntidadeDuplicada", { message: "Dados inválidos" });
+
+            return;
+        }
 
         // request.post("user", {
         //     nome,
@@ -45,43 +55,18 @@ export default function CadastroCliente() {
         // })
         // .then((res) => {
         //     const dados = res.data;
-            
-            
 
-        //     router.push("/cliente/home")
-            
-        // })
+        const usuario = {
+            id: cliente.id,
+            nome: cliente.nome,
+            token: ""
+        }
 
-        // const id = uuid();
+        setUsuario(usuario);
 
-        // const user = {
-        //     id, 
-        //     nome,
-        //     email,
-        // } 
+        localStorage.setItem("usuario", JSON.stringify(usuario));
 
-        // const dados = {
-        //     id,
-        //     nome,
-        //     email,
-        //     senha,
-        //     cpf,
-        //     telefone,
-        //     tipo: "cliente"
-        // }
-
-        // const clientesJaCadastratos = JSON.parse(localStorage.getItem("usuarios"));
-
-        // if (clientesJaCadastratos === null || clientesJaCadastratos.length === 0) {
-        //     localStorage.setItem("usuarios", JSON.stringify([dados]))
-        // } else {
-        //     localStorage.setItem("usuarios", JSON.stringify([dados, ...clientesJaCadastratos]))
-        // }
-        
-        // definirUsuario(user);
-
-        
-        // router.push("/cliente/home");
+        router.push(rotas.cliente.home.url());
     }
             
     return(
@@ -197,7 +182,7 @@ export default function CadastroCliente() {
                         type={ "text" }/>
                 </Form.Field> 
                 
-                <Form.Button>Cadastrar</Form.Button>
+                <Form.Button onClick={ () => clearErrors() }>Cadastrar</Form.Button>
             </Form>
         </>
     )

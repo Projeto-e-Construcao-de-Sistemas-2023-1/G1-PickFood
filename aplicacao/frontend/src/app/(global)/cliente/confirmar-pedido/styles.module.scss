@@ -1,0 +1,91 @@
+@use "@/styles/utils.module";
+@use "@/styles/cores.module";
+
+.container {
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.pedido {
+
+    margin: 0 auto;
+
+    min-width: utils.converterPxParaRem(200px);
+    border: utils.converterPxParaRem(2px) solid cores.$verdeClaro;
+    border-radius: utils.converterPxParaRem(5px);
+
+    padding: utils.converterPxParaRem(17px) utils.converterPxParaRem(12px);
+
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.restaurante_nome {
+    margin-bottom: utils.converterPxParaRem(26px);
+}
+
+.item_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item_info {
+    display: flex;
+    align-items: center;
+}
+
+.item_quantidade {
+    background-color: cores.$cinza;
+    padding: utils.converterPxParaRem(2px);
+    border-radius: 2px;
+    margin-right: utils.converterPxParaRem(7px);
+}
+
+.item_preco {
+    font-weight: bold;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: utils.converterPxParaRem(26px);
+    font-weight: bold;
+}
+
+.dados_entrega {
+    margin: utils.converterPxParaRem(16px) 0;
+}
+
+.dados_entrega_texto {
+    color: cores.$verdeClaro;
+    margin-bottom: utils.converterPxParaRem(6px);
+}
+
+.pagamento_titulo {
+    font-weight: bold;
+    margin-bottom: utils.converterPxParaRem(26px);
+}
+
+.pagamento {
+    margin-bottom: utils.converterPxParaRem(20px)
+}
+
+.pagamento_item {
+    display: flex;
+    margin-bottom: utils.converterPxParaRem(18px);
+    align-items: center;
+}
+
+.pagamento_texto {
+    margin-left: utils.converterPxParaRem(15px);
+}
+
+.botao_confirmar {
+    display: block;
+    margin: 0 auto;
+}
+
+.divider {
+    border-top: 1px solid cores.$cinza;
+    width: utils.converterPxParaRem(232px);
+    margin: utils.converterPxParaRem(17px) auto utils.converterPxParaRem(24px) auto;
+}

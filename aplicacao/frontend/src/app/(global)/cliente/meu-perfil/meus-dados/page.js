@@ -1,24 +1,41 @@
 'use client'
 
 import Form from "@/components/Form";
-import { tituloPagina } from "@/styles/componentes.module.scss";
-import Image from "next/image";
-import Link from "next/link";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/contexts";
 import { useForm } from "react-hook-form";
 import { mensagens } from "@/erros/mensagens";
 import TituloPagina from "@/components/TituloPagina";
+import { atualizarCliente, buscarClientePorId } from "@/services/cliente";
 
 export default function MeusDados() {
 
   const { usuario } = useContext(AuthContext);
+  const [cliente, setCliente] = useState({});
+
+  useEffect(() => {
+    
+    const clienteExistente = buscarClientePorId(usuario.id);
+
+    console.log(clienteExistente);
+
+    setCliente(clienteExistente);
+  }, [usuario.id])
 
   const {
     register,
     handleSubmit,
     formState: { errors: erros },
-  } = useForm();
+  } = useForm({
+    defaultValues: async () => {
+      return {
+        nome: cliente.nome,
+        email: cliente.email,
+        cpf: cliente.cpf,
+        telefofne: cliente.telefone
+      }
+    }
+  });
 
   // useEffect(() => {
   //   const usuarios = JSON.parse(localStorage.getItem("usuarios"));
@@ -37,14 +54,11 @@ export default function MeusDados() {
   //   setValue("cpf", userBuscado.cpf);
   //   setValue("telefone", userBuscado.telefone);
   // }, [usuario.id, setValue]);
-
-  useEffect(() => {
-    console.log(erros);
-  })
-
   const alterar = (data) => {
 
     console.log(data);
+
+    atualizarCliente(usuario.id, data);
     // let usuariosJaCadastrados = JSON.parse(localStorage.getItem("usuarios"));
 
     // let userBuscado = {};
@@ -84,6 +98,7 @@ export default function MeusDados() {
           <Form.Input type={"text"} registrar={{
             ...register("nome",
               {
+                value: cliente.nome,
                 required: mensagens.required("Nome"), minLength:
                   { message: mensagens.minLength("Nome", 3), value: 3 }
               })
@@ -93,7 +108,7 @@ export default function MeusDados() {
           <Form.Label>E-mail</Form.Label>
           <Form.Input type={"email"} registrar={{
             ...register("email",
-              { required: mensagens.required("E-mail") })
+              { value: cliente.email, required: mensagens.required("E-mail") })
           }} />
         </Form.Field>
         <Form.Field>
@@ -101,6 +116,7 @@ export default function MeusDados() {
           <Form.Input type={"text"} registrar={{
             ...register("telefone",
               {
+                value: cliente.telefone,
                 required: mensagens.required("Telefone"),
                 minLength: { message: mensagens.minLength("Telefone", 11), value: 11 },
                 onChange: (e) => {
@@ -127,6 +143,7 @@ export default function MeusDados() {
           <Form.Input type={"text"} registrar={{
             ...register("cpf",
               {
+                value: cliente.cpf,
                 required: mensagens.required("CPF"),
                 minLength: { message: mensagens.minLength("CPF", 11), value: 11 },
                 onChange: (e) => {
