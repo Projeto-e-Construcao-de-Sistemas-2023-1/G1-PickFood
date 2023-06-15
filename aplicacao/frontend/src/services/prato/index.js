@@ -14,7 +14,7 @@ const criarPrato = ({
         idRestaurante,
         nome,
         tipo,
-        preco,
+        preco: Number.parseFloat(preco),
         descricao,
         foto
     }
@@ -61,7 +61,7 @@ const atualizarPrato = (id, {
         ...pratos[indice],
         nome,
         tipo,
-        preco,
+        preco: Number.parseFloat(preco),
         descricao,
         foto
     }

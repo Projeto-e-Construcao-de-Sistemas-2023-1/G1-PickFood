@@ -36,6 +36,7 @@ const Carrinho = () => {
                 
             if (item.id === id) {
                 
+                
                 itens[indice].quantidade += 1;
                 itens[indice].valor += item.prato.preco;
 
