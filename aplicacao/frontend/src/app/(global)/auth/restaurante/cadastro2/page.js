@@ -91,12 +91,12 @@ export default function Cadastro2() {
                     
                     <Form.Field>
                         <Form.Label>Horário de Abertura</Form.Label>
-                            <Form.Input type="text" registrar = {{ ...register("horarioAbertura", { required: mensagens.required("horarioAbertura")}) }}/>
+                            <Form.Input type="time" registrar = {{ ...register("horarioAbertura", { required: mensagens.required("horarioAbertura")}) }}/>
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Label>Horário de Fechamento</Form.Label>
-                            <Form.Input type="text" registrar = {{ ...register("horarioFechamento", { required: mensagens.required("horarioFechamento") }) }}/>
+                            <Form.Input type="time" registrar = {{ ...register("horarioFechamento", { required: mensagens.required("horarioFechamento") }) }}/>
                     </Form.Field>
 
                     <Form.Field>

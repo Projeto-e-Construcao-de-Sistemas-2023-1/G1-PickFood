@@ -5,6 +5,7 @@ import Pesquisa from "@/components/Pesquisa";
 import { buscarRestaurantes } from "@/services/restaurante";
 import { useEffect, useState } from "react";
 import {
+    container,
     filtrar,
     filtros,
     filtro
@@ -13,38 +14,48 @@ import {
 const Busca = () => {
     const [busca, setBusca] = useState("");
     const [restaurantes, setRestaurantes] = useState([]);
+    const [tipoFiltro, setTipoFiltro] = useState("restaurante");
+    const [exibirFiltros, setExibirFiltros] = useState(false);
 
 
     useEffect(() => {
+
+        
         const restaurantesExistente = buscarRestaurantes({nome: busca});
 
-        console.log(busca);
+        //console.log(busca);
+        console.log(tipoFiltro);
 
         setRestaurantes(restaurantesExistente);
-    }, [busca]);
+    }, [busca, tipoFiltro, exibirFiltros]);
 
     return(
-        <>
-            <Pesquisa setBusca={ setBusca }/>
-            <div className={ filtrar }>
+        <div className={ container }>
+            <Pesquisa setBusca={ setBusca } style={{ margin: "0" }}/>
+            <div className={ filtrar } onClick={() => setExibirFiltros(prev => !prev)}>
                 <p>Filtrar</p>
             </div>
-            <div className={ filtros }>
+            {
+                tipoFiltro === "prato" ?
+                    ""
+                    :
+                    <ListaRestaurantes restaurantes={ restaurantes }/>
+            }
+            <div className={ filtros } style={{ display: exibirFiltros ? "block" : "none" }}>
                 <div className={ filtro }>
-                    <input type="radio" value={"prato"} name="filtro" onSelect={() => {
-
+                    <input type="radio" value={"prato"} name="filtro" onChange={() => {
+                        setTipoFiltro("prato");
                     }}/>
                     <label>Prato</label>
                 </div>
                 <div>
-                <input type="radio" value={"prato"} name="filtro" onSelect={() => {
-
-                }}/>
-                <label>Restaurante</label>
+                    <input type="radio" value={"prato"} name="filtro" defaultChecked onChange={() => {
+                        setTipoFiltro("restaurante");
+                    }}/>
+                    <label>Restaurante</label>
                 </div>
             </div>
-            <ListaRestaurantes restaurantes={ restaurantes }/>
-        </>
+        </div>
     )
 }
 

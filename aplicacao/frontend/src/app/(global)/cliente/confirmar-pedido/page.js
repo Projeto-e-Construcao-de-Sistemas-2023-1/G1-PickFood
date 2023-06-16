@@ -30,6 +30,7 @@ import { useRouter } from "next/navigation";
 import Icone from "@/components/Icone";
 import { criarItemPedido } from "@/services/itemPedido";
 import { criarPedido } from "@/services/pedido";
+import { limpar } from "@/services/carrinho";
 
 const ConfirmarPedido = () => {
 
@@ -65,6 +66,8 @@ const ConfirmarPedido = () => {
             totalPedido: calcularTotalPedido(),
             itens
         });
+
+        limpar();
 
         router.push("/cliente/meus-pedidos");
     }
