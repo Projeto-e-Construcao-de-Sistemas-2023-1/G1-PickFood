@@ -5,9 +5,7 @@ import Link from "next/link";
 import {
     lista,
     texto,
-    foto,
     editar,
-    lixo,
     status,
     nome
 } from "./styles.module.scss"
@@ -57,9 +55,6 @@ export default function PedidosRestaurante({ pedidos }) {
                     )
                 })
             }
-            
-
-            
         </ul>
     </>
     )

@@ -16,7 +16,7 @@ export default function NavbarInferiorRestaurante() {
             </NavbarInferior.Link>
             </NavbarInferior.Item>
             <NavbarInferior.Item>
-            <NavbarInferior.Link href={ "" }>
+            <NavbarInferior.Link href={ "restaurante/pedidos" }>
                 <NavbarInferior.Icone src="/icons/pedidos.svg"/>
                 <NavbarInferior.Label>Pedidos</NavbarInferior.Label>
             </NavbarInferior.Link>
