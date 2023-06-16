@@ -1,0 +1,18 @@
+@use "@/styles/utils.module";
+@use "@/styles/cores.module";
+
+.filtrar {
+    display: flex;
+    justify-content: center;
+    font-size: utils.converterPxParaRem(12px);
+    background-color: cores.$cinza;
+    margin-top: utils.converterPxParaRem(5px);
+    margin-bottom: utils.converterPxParaRem(20px);
+    border-radius: utils.converterPxParaRem(3px);
+    padding: utils.converterPxParaRem(4px);
+}
+
+.filtros {
+    
+    font-size: utils.converterPxParaRem(12px);
+}
