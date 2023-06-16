@@ -99,6 +99,23 @@ const buscarPratosPorRestaurante = (idRestaurante) => {
     return pratosRestaurante;
 }
 
+const buscarPratosPorNome = ({
+    nome
+}) => {
+    const pratos = buscarPratos();
+    let pratosBuscados = [];
+
+    for (const prato of pratos) {
+        
+        if (prato.nome.includes(nome)) {
+        
+            pratosBuscados.push(prato);
+        }
+    }
+
+    return pratosBuscados;
+}
+
 const buscarPratoPorId = (id) => {
     const pratos = buscarPratos();
 
@@ -121,5 +138,6 @@ export {
     atualizarPrato,
     excluirPrato,
     buscarPratosPorRestaurante,
-    buscarPratoPorId
+    buscarPratoPorId,
+    buscarPratosPorNome
 }

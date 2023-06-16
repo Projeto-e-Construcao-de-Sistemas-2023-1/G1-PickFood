@@ -6,32 +6,39 @@ import {
     status
 } from "./styles.module.scss"
 
-export default function PedidosPreview() {
+export default function PedidosPreview({ pedidos }) {
+
+    const exibirStatus = (pedido) => {
+
+        const opcoesStatus = {
+            1: "Aguardando confirmação",
+            2: "Confirmado",
+            3: "Em preparo",
+            4: "A caminho",
+            5: "Entregue",
+            6: "Cancelado"
+        };
+
+        return opcoesStatus[pedido.status];
+    }
+
     return(
         <ul className= {lista}>
-            <li className={texto}>Pedido #1234
-            <div className={ status }>status</div>
-            </li>
+            {
+                pedidos?.map(pedido => {
 
-            <li className={texto}>Pedido #1234
-            <div className={ status }>status</div>
-            </li>
-
-            <li className={texto}>Pedido #1234
-            <div className={ status }>status</div>
-            </li>
-
-            <li className={texto}>Pedido #1234
-            <div className={ status }>status</div>
-            </li>
-
-            <li className={texto}>Pedido #1234
-            <div className={ status }>status</div>
-            </li>
-
-            <li className={texto}>Pedido #1234
-            <div className={ status }>status</div>
-            </li>
+                    return(
+                        <li className={texto} key={ pedido.codigo }>
+                            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
+                                <p>Pedido</p>
+                                <p style={{ textAlign: "start"}}>{ pedido.codigo }</p>
+                            </div>
+                            
+                            <div className={ status }>{ exibirStatus(pedido) }</div>
+                        </li>
+                    )
+                })
+            }
         </ul>
     )
 }

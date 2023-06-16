@@ -9,11 +9,14 @@ import {
 } from "./styles.module.scss"
 
 export default function CardapioPreview({ pratos }) {
+
+    
+
     return(
         <ul className= {lista}>
 
             {
-                pratos.map(prato => {
+                pratos?.map(prato => {
 
                     return(
                         <li className={texto} key={ prato.id }>
@@ -24,7 +27,7 @@ export default function CardapioPreview({ pratos }) {
                                 alt="Icone de seta apontando para trás."
                             />
                             <p>{ prato.nome }</p>
-                            <div className={ preco }>{ prato.preco }</div>
+                            <div className={ preco }>R$ { prato.preco }</div>
                         </li>
                 )
                 })
