@@ -145,32 +145,6 @@ LOCK TABLES `endereco` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `endereco_cliente`
---
-
-DROP TABLE IF EXISTS `endereco_cliente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `endereco_cliente` (
-  `endereco` int NOT NULL,
-  `cliente` varchar(255) NOT NULL,
-  KEY `fk_endereco_endereco_cliente_idx` (`endereco`),
-  KEY `fk_cliente_endereco_cliente_idx` (`cliente`),
-  CONSTRAINT `fk_cliente_endereco_cliente` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`cpf`),
-  CONSTRAINT `fk_endereco_endereco_cliente` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `endereco_cliente`
---
-
-LOCK TABLES `endereco_cliente` WRITE;
-/*!40000 ALTER TABLE `endereco_cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `endereco_cliente` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `favoritos_prato`
 --
 
