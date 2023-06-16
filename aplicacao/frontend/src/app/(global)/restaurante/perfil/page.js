@@ -21,12 +21,13 @@ import { AuthContext } from "@/contexts";
 import { useForm } from "react-hook-form";
 import { mensagens } from "@/erros/mensagens";
 import TituloPagina from "@/components/TituloPagina";
-import { buscarRestaurantePorId, excluirRestaurante } from "@/services/restaurante";
+import { atualizarRestaurante, buscarRestaurantePorId, excluirRestaurante } from "@/services/restaurante";
 import { useRouter } from "next/navigation";
 
 export default function RestaurantePerfil() {
 
   const [ativo, setAtivo] = useState(false);
+  const [ativoSucesso, setAtivoSucesso] = useState(false);
 
   const router = useRouter()
 
@@ -43,9 +44,9 @@ export default function RestaurantePerfil() {
         email: restaurante.email,
         telefone: restaurante.telefone,
         cnpj: restaurante.cnpj,
-        horarioAbertura: restaurante.horario_abertura,
-        horarioFechamento: restaurante.horario_fechamento,
-        taxaEntrega: restaurante.taxa_entrega,
+        horarioAbertura: restaurante.horarioAbertura,
+        horarioFechamento: restaurante.horarioFechamento,
+        taxaEntrega: restaurante.taxaEntrega,
         rua: restaurante.endereco?.rua,
         cep: restaurante.endereco?.cep,
         bairro: restaurante.endereco?.bairro,
@@ -66,6 +67,10 @@ export default function RestaurantePerfil() {
   const alterar = (data) => {
 
     console.log(data);
+
+    atualizarRestaurante(usuario.id, data);
+
+    setAtivoSucesso(true)
     // request.put("restaurante", {
     //   id: usuario.id,
     //   nome_fantasia: nomeFantasia,
@@ -132,6 +137,8 @@ export default function RestaurantePerfil() {
 
       <div className={forms}>
         <Form onSubmit={ tratarFormulario(alterar) }>
+
+        <Form.Sucesso ativo={ ativoSucesso }>Perfil atualizado com sucesso</Form.Sucesso>
 
           <Form.Erros erros={ erros } />
 

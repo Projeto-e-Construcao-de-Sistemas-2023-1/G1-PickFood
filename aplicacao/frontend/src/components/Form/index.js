@@ -65,3 +65,12 @@ Form.Erros = function FormErros({ erros }) {
             null
     )
 }
+
+Form.Sucesso = function FormSucesso({ ativo, children }) {
+
+    return(
+        <div className={ styles.sucesso } style={{ display: ativo ? "block" : "none" }}>
+            { children }
+        </div>
+    )
+}

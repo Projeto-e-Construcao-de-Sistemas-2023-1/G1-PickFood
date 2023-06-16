@@ -80,7 +80,6 @@ const atualizarCliente = (id, {
     nome,
     email,
     telefone,
-    cpf,
 }) => {
 
     let clientes = buscarClientes();
@@ -98,7 +97,6 @@ const atualizarCliente = (id, {
         nome,
         email,
         telefone,
-        cpf
     }
 
     localStorage.setItem("clientes", JSON.stringify(clientes));

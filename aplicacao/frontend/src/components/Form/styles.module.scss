@@ -63,3 +63,18 @@
         margin-bottom: 0;
     }
 }
+
+.sucesso {
+
+    text-align: center;
+    font-size: utils.converterPxParaRem(12px);
+    list-style: disc;
+    box-sizing: border-box;
+    width: 15rem;
+    border-radius: 5px;
+    color: cores.$branco;
+    border: utils.converterPxParaRem(1px) solid cores.$verdeEscuro;
+    background-color: cores.$verdeClaro;
+    padding: utils.converterPxParaRem(10px) utils.converterPxParaRem(12px);
+    margin-bottom: utils.converterPxParaRem(40px);
+}

@@ -12,11 +12,13 @@ import { mensagens } from "@/erros/mensagens";
 import { atualizarEndereco, buscarEnderecoPorId, excluirEndereco } from "@/services/endereco";
 import { useRouter } from "next/navigation";
 import Retornar from "@/components/Retornar";
+import { useState } from "react";
 
 
 export default function EditarEndereco({ params: { id } }) {
 
     const router = useRouter();
+    const [ativo, setAtivo] = useState(false);
 
     const { register: registrar, handleSubmit: tratarFormulario, formState: { errors: erros } } = useForm({
         defaultValues: async () => {
@@ -51,7 +53,7 @@ export default function EditarEndereco({ params: { id } }) {
         
         atualizarEndereco(id, data);
 
-        router.push("/cliente/meu-perfil/meus-enderecos");
+        setAtivo(true);
     }
 
     const removerEndereco = () => {
@@ -64,6 +66,8 @@ export default function EditarEndereco({ params: { id } }) {
       <>
         <Retornar navigate={ () => router.back() } />
         <Form onSubmit={ tratarFormulario(editar) }>
+
+        <Form.Sucesso ativo={ ativo }>Endereço atualizado com sucesso</Form.Sucesso>
             <Form.Erros erros={ erros } />
 
             <Form.Field>

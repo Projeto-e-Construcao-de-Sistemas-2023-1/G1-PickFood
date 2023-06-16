@@ -11,10 +11,12 @@ import {
 import { atualizarPrato, buscarPratoPorId } from "@/services/prato";
 import Retornar from "@/components/Retornar";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function EditarPrato({ params: { id } }) {
 
     const router = useRouter();
+    const [ativo, setAtivo] = useState(false);
 
     const { register: registrar, handleSubmit: tratarFormulario, watch, formState: { errors: erros } } = useForm({
         defaultValues: async () => {
@@ -36,6 +38,8 @@ export default function EditarPrato({ params: { id } }) {
     const editar = (data) => {
 
         atualizarPrato(id, data);
+
+        setAtivo(true);
 
         console.log(data);
     }
@@ -66,6 +70,8 @@ export default function EditarPrato({ params: { id } }) {
 
             <div className={forms}>
                 <Form onSubmit={ tratarFormulario(editar) }> 
+
+                <Form.Sucesso ativo={ ativo }>Perfil atualizado com sucesso</Form.Sucesso>
                     <Form.Erros erros={ erros } />
 
                     <Form.Field>

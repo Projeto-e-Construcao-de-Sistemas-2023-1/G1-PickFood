@@ -103,9 +103,8 @@ const buscarTodosRestaurantes = () => {
 
 const atualizarRestaurante = (id, {
     email,
-    nome_fantasia,
-    cnpj,
-    razao_social,
+    nomeFantasia,
+    razaoSocial,
     taxaEntrega,
     telefone,
     horarioAbertura,
@@ -132,9 +131,8 @@ const atualizarRestaurante = (id, {
     restaurantes[indice] = {
         ...restaurantes[indice],
         email,
-        nome_fantasia,
-        cnpj,
-        razao_social,
+        nome_fantasia: nomeFantasia,
+        razao_social: razaoSocial,
         taxaEntrega,
         telefone,
         horarioAbertura,
