@@ -54,6 +54,8 @@ const buscarPedidosPorCliente = (idCliente) => {
     const pedidos = buscarTodosPedidos();
     let pedidosCliente = [];
 
+    if (pedidos === null) return;
+
     for (const pedido of pedidos) {
 
         if (pedido.idCliente === idCliente) {
@@ -67,6 +69,9 @@ const buscarPedidosPorCliente = (idCliente) => {
 const buscarPedidosPorRestaurante = (idRestaurante) => {
     const pedidos = buscarTodosPedidos();
     let pedidosRestaurante = [];
+
+    if (pedidos === null) return;
+
 
     for (const pedido of pedidos) {
 

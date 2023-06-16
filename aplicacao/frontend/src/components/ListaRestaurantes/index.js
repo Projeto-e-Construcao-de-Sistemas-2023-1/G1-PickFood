@@ -57,8 +57,6 @@ export default function ListaRestaurantes({ restaurantes }) {
 
     return(
         <ul className={ lista }>
-            
-
             {
                 restaurantes?.map(restaurante => {
                     return(
