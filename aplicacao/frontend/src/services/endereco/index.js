@@ -48,7 +48,7 @@ const buscarEnderecosPorCliente = (id) => {
     let enderecosCliente = [];
 
     for (const endereco of enderecos) {
-        if (endereco.clienteId === id) {
+        if (endereco.idCliente === id) {
             enderecosCliente.push(endereco);
         }
     }
@@ -134,5 +134,6 @@ export {
     buscarEnderecos,
     buscarEnderecoPorId,
     atualizarEndereco,
-    excluirEndereco
+    excluirEndereco,
+    buscarEnderecosPorCliente
 }

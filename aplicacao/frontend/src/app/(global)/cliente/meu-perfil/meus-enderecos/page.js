@@ -10,21 +10,24 @@ import {
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { buscarEnderecos } from "@/services/endereco";
+import { useContext, useEffect, useState } from "react";
+import { buscarEnderecosPorCliente } from "@/services/endereco";
+import { AuthContext } from "@/contexts";
 
 export default function MeusEnderecos() {
 
-    const router = useRouter();
     const [enderecos, setEnderecos] = useState([]);
+    const { usuario } = useContext(AuthContext);
 
     useEffect(() => {
 
-        const enderecos = buscarEnderecos();
+        const enderecosExistentes = buscarEnderecosPorCliente(usuario.id);
 
-        setEnderecos(enderecos);
+        console.log(enderecosExistentes);
 
-    }, [])
+        setEnderecos(enderecosExistentes);
+
+    }, [usuario.id])
 
     return (
         <>

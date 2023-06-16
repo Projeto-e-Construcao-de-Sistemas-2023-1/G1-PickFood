@@ -28,6 +28,7 @@
 
     margin-top: utils.converterPxParaRem(20px);
     margin-bottom: utils.converterPxParaRem(70px);
+    align-items: center;
 }
 
 .excluirConta {
@@ -42,10 +43,9 @@
 }
 
 .textoExcluirConta {
-    margin-left: utils.converterPxParaRem(60px);
-    text-decoration:none;
-    
     color: cores.$vermelho;
+    margin-left: utils.converterPxParaRem(30px);
+    font-size: utils.converterPxParaRem(12px);
 }
 
 .link {
