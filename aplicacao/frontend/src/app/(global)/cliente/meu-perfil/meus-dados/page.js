@@ -143,6 +143,7 @@ export default function MeusDados() {
           <Form.Input type={"text"} registrar={{
             ...register("cpf",
               {
+                disabled: true,
                 value: cliente.cpf,
                 required: mensagens.required("CPF"),
                 minLength: { message: mensagens.minLength("CPF", 11), value: 11 },

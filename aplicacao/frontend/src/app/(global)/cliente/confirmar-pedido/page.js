@@ -23,7 +23,8 @@ import {
     pagamento_lista,
     pagamento_item,
     pagamento_texto,
-    divider
+    divider,
+    icone
 } from "./styles.module.scss";
 import Retornar from "@/components/Retornar";
 import { useRouter } from "next/navigation";
@@ -117,19 +118,19 @@ const ConfirmarPedido = () => {
                 <p className={ pagamento_titulo }>Pagamento</p>
                 <ul className={ pagamento_lista }>
                     <li className={ pagamento_item } onClick={() => setFormaPagamento("Cartão de Débito")}>
-                        <Icone/>
+                        <Icone className={ icone } src="/icons/credit-card-outline.svg" alt="Icone de 'cartão de crédito'." width={15} height={15}/>
                         <p className={ pagamento_texto }>Cartão de Débito</p>
                     </li>
                     <li className={ pagamento_item } onClick={() => setFormaPagamento("Cartão de Crédito")}>
-                        <Icone/>
+                        <Icone className={ icone } src="/icons/credit-card-outline.svg" alt="Icone de 'cartão de débio'." width={15} height={15}/>
                         <p className={ pagamento_texto }>Cartão de Crédito</p>
                     </li>
                     <li className={ pagamento_item } onClick={() => setFormaPagamento("Pix")}>
-                        <Icone/>
+                        <Icone className={ icone } src="/icons/swap-horizontal.svg" alt="Icone de 'pix'." width={15} height={15}/>
                         <p className={ pagamento_texto }>Pix</p>
                     </li>
                     <li className={ pagamento_item } onClick={() => setFormaPagamento("Dinheiro")}>
-                        <Icone/>
+                        <Icone className={ icone } src="/icons/cash.svg" alt="Icone de 'dinheiro'." width={15} height={15}/>
                         <p className={ pagamento_texto }>Dinheiro</p>
                     </li>
                 </ul>
