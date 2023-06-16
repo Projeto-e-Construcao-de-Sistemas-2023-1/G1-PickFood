@@ -9,11 +9,10 @@ import {
     status,
     nome
 } from "./styles.module.scss"
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Modal from "@/components/Modal";
 
 export default function PedidosRestaurante({ pedidos }) {
-
-    const [ativo, setAtivo] = useState(false);
 
     const exibirStatus = (pedido) => {
 

@@ -9,7 +9,7 @@ import {
     buscar
 } from "./styles.module.scss";
 import Icone from "../Icone";
-export default function Pesquisa({ setBusca }){
+export default function Pesquisa({ setBusca, ...restProps }){
     
     const [valor, setValor] = useState("");
 
@@ -28,7 +28,7 @@ export default function Pesquisa({ setBusca }){
     }
 
     return (
-        <form className={ pesquisa } onSubmit={ handleSubmit }>
+        <form className={ pesquisa } onSubmit={ handleSubmit } { ...restProps }>
             <input onChange={ handleChange } value= { valor } className={ input } placeholder="Busque aqui..."/>
 
             <Icone src={ "/icons/lupa.svg"} className={ buscar }/>

@@ -11,11 +11,13 @@ import { AuthContext } from "@/contexts";
 import request from "@/services/axios";
 import TituloPagina from "@/components/TituloPagina";
 import { buscarRestaurantes, buscarTodosRestaurantes } from "@/services/restaurante";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
     const [busca, setBusca] = useState("");
     const [restaurantes, setRestaurantes] = useState([]);
-  
+    const router = useRouter();
+
     const { usuario } = useContext(AuthContext);
   
     // const listByName = (valor) => {
@@ -49,26 +51,19 @@ export default function Home() {
       //   });
     }, []);
   
-    const handleBusca = (valor) => {
-      setBusca(valor);
-
-      //listByName(valor);
-      console.log(buscarRestaurantes({nome: busca}));
-    };
+    
   
     return (
       <>
         <div className={banner}>
-          <Pesquisa setBusca={handleBusca} />
+          <Pesquisa onClick={ () => router.push("/cliente/busca") }/>
         </div>
 
         <TituloPagina>Restaurantes Disponíveis</TituloPagina>
   
-        {busca.length === 0 ? (
-          <ListaRestaurantes restaurantes={restaurantes} />
-        ) : (
-          busca
-        )}
+        
+        <ListaRestaurantes restaurantes={restaurantes} />
+
       </>
     );
   }
