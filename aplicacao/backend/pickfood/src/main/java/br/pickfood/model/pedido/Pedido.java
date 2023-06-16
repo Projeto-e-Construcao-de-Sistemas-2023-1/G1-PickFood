@@ -26,8 +26,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "pedido")
 public class Pedido extends BaseEntity {
 
-	@Column(name = "codigo")
-    public Integer codigo;
 	
 	@Column(name = "valor_total")
     public Float valorTotal;

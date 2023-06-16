@@ -12,7 +12,7 @@ import javax.print.DocFlavor;
 public class PedidoService extends BaseServiceImpl<PedidoDTO, Pedido, IPedidoRepository> {
 
     public Pedido cancelarPedido(String codigo) {
-       Pedido pedido = baseRepository.findByCodigo(codigo);
+       
        return null;
     }
 

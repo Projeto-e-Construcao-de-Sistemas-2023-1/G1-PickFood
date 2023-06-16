@@ -26,25 +26,20 @@ public class PedidoController {
 
     @Autowired
     private PedidoService pedidoService;
-    
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<PedidoDTO> realizarPedido(@RequestBody PedidoDTO dto){
+    public ResponseEntity<PedidoDTO> realizarPedido(@RequestBody PedidoDTO dto) {
         Pedido entity = dto.convertToEntity();
 
         return new ResponseEntity(pedidoService.create(entity), HttpStatusCode.valueOf(201));
     }
-    
+
     @PutMapping("/{codigo}/cancelar")
     public ResponseEntity<String> cancelarPedido(@PathVariable String codigo) {
-        try {
-            pedidoService.cancelarPedido(codigo);
-            return ResponseEntity.ok("Pedido cancelado com sucesso.");
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.notFound().build();
-        } catch (IllegalStateException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+
+        pedidoService.cancelarPedido(codigo);
+        return ResponseEntity.ok("Pedido cancelado com sucesso.");
     }
 
     @GetMapping("/{codigo}/status")
