@@ -29,8 +29,8 @@ NavbarSuperior.Dropdown = function NavbarSuperiorDropdown({ ativo = false, child
     return <div className={ dropdown } { ...restProps } style={{ display: ativo ? "block" : "none"}}>{ children }</div>
 }
 
-NavbarSuperior.LinkDropdown = function NavbarSuperiorLinkDropdown({ children, ...restProps }) {
-    return <Link className={ linkDropdown } { ...restProps }>{ children }</Link>
+NavbarSuperior.LinkDropdown = function NavbarSuperiorLinkDropdown({ href = "/auth/login", children, ...restProps }) {
+    return <Link href={ href } className={ linkDropdown } { ...restProps }>{ children }</Link>
 }
 
 NavbarSuperior.IconeDropdown = function NavbarSuperiorIconeDropDown({ ...restProps  }) {

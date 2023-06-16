@@ -15,7 +15,7 @@
 }
 
 .botao {
-    width: utils.converterPxParaRem(89px);
+    min-width: utils.converterPxParaRem(89px);
     height: utils.converterPxParaRem(25px);
     border: none;
     background-color: cores.$verdeClaro;

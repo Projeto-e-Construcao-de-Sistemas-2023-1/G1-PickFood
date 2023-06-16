@@ -34,7 +34,7 @@ const Restaurante = ({ params: { idRestaurante } }) => {
 
     return(
         <>
-            <Retornar navigate={ () => router.back() }/>
+            <Retornar navigate={ () => router.push("/cliente/home") }/>
             <TituloPagina className={ titulo }>{ restaurante.nome_fantasia }</TituloPagina>
             <Pesquisa/>
             <CardapioCliente pratos={ pratos } />

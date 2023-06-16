@@ -49,7 +49,6 @@ export default function Cadastro3() {
             horarioFechamento,
             nome_fantasia,
             taxaEntrega,
-            tipo: "restaurante"
         }
 
         console.log(dadosRestaurante);

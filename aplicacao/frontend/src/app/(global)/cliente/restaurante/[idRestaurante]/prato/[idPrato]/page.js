@@ -48,7 +48,7 @@ const Prato = ({ params: { idPrato, idRestaurante } }) => {
 
     return(
         <div className={ container }>
-            <Retornar navigate={ () => router.back() }/>
+            <Retornar navigate={ () => router.push("/cliente/restaurante/" + idRestaurante) }/>
             <div className={ prato_container }>
                 <Image
                     className={ prato_foto }

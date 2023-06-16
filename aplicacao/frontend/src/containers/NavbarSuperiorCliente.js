@@ -5,11 +5,20 @@ import NavbarSuperior from "@/components/NavbarSuperior";
 import Overlay from "@/components/Overlay";
 import request from "@/services/axios";
 import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function NavbarSuperiorCliente() {
 
     const [ativo, setAtivo] = useState(false);
     const { usuario } = useContext(AuthContext);
+    const router = useRouter();
+
+    const logout = () => {
+
+        localStorage.setItem("usuario", JSON.stringify({}))
+
+        router.push("/auth/home");
+    }
 
     // useEffect(() => {
 
@@ -45,7 +54,7 @@ export default function NavbarSuperiorCliente() {
                         <NavbarSuperior.IconeDropdown src="/icons/meus-pedidos.svg"/>
                         <NavbarSuperior.LabelDropdown>Meus Pedidos</NavbarSuperior.LabelDropdown>
                     </NavbarSuperior.LinkDropdown>
-                    <NavbarSuperior.LinkDropdown href="/auth/login">
+                    <NavbarSuperior.LinkDropdown onClick={() => logout()}>
                         <NavbarSuperior.IconeDropdown src="/icons/sair.svg"/>
                         <NavbarSuperior.LabelDropdown>Sair</NavbarSuperior.LabelDropdown>
                     </NavbarSuperior.LinkDropdown>

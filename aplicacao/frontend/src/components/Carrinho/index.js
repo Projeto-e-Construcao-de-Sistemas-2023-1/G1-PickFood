@@ -21,6 +21,7 @@ import Icone from "../Icone";
 import { useContext } from "react";
 import { CarrinhoContext } from "@/contexts";
 import { limpar as limpaCarrinho } from "@/services/carrinho";
+import Link from "next/link";
 
 const Carrinho = () => {
 
@@ -81,7 +82,7 @@ const Carrinho = () => {
             <div className={ cabecalho }>
                 <div>
                     <p className={ nomeRestaurante }>Nome do restaurante</p>
-                    <p className={ adicionarMaisItens }>Adicionar mais itens</p>
+                    <Link style={{ display: itens === null || itens.length === 0 ? "none" : ""}} href={ "/cliente/restaurante/" + (itens !== null ? itens[0].prato.idRestaurante : "") } className={ adicionarMaisItens }>Adicionar mais itens</Link>
                 </div>
                 <p className={ limpar } onClick={ limparCarrinho }>Limpar carrinho</p>
             </div>

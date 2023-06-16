@@ -32,7 +32,7 @@ export default function Cardapio() {
     return (
         <>
             <div className={ pesquisa }>
-                <Pesquisa/> 
+                <Pesquisa style={{ margin: 0 }}/> 
                 <Link href={"/restaurante/criar-prato"}>
                     <Image className= { adicionar }
                     src="/icons/adicionar.svg"

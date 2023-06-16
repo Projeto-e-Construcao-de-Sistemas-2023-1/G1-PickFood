@@ -105,6 +105,10 @@ const buscarPratosPorNome = ({
     const pratos = buscarPratos();
     let pratosBuscados = [];
 
+    if (pratos === null) {
+        return []
+    }
+
     for (const prato of pratos) {
         
         if (prato.nome.includes(nome)) {

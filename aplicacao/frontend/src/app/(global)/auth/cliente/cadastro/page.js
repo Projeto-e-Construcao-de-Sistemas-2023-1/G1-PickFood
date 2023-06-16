@@ -41,6 +41,8 @@ export default function CadastroCliente() {
         try {
             cliente = criarCliente(data);
         } catch (e) {
+            
+
             setError("EntidadeDuplicada", { message: "Dados inválidos" });
 
             return;
@@ -118,7 +120,6 @@ export default function CadastroCliente() {
                     <Form.Input 
                         registrar={{ ...registrar("confirmacao_senha", { 
                             required: mensagens.required("confirmar senha"), 
-                            minLength: { message: mensagens.minLength("senha", 8), value: 8}, 
                             validate: (value) => {
                                 const senha = watch("senha");
 

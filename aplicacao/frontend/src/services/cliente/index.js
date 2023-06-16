@@ -1,4 +1,5 @@
 import { v4 as uuid } from "uuid";
+import { buscarPedidosPorCliente } from "../pedido";
 
 const criarCliente = ({
     nome,
@@ -107,7 +108,7 @@ const excluirCliente = (id) => {
 
     let clientes = buscarClientes();
     let indice;
-
+    
     for (const i in clientes) {
 
         if (clientes[i].id === id) {

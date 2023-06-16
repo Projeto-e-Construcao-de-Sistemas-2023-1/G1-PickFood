@@ -175,6 +175,10 @@ const buscarRestaurantes = ({
     const restaurantes = buscarTodosRestaurantes();
     let restaurantesBuscados = [];
 
+    if (restaurantes === null) {
+        return [];
+    }
+
     for (const restaurante of restaurantes) {
         
         if (restaurante.nome_fantasia.includes(nome)) {

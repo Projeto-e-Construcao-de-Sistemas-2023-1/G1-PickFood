@@ -11,15 +11,15 @@ export default function RestauranteLayout({ children }) {
     const { usuario } = useContext(AuthContext);
     const router = useRouter();
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     console.log(usuario)
+        console.log(usuario)
         
-    //     if (!usuario || Object.keys(usuario).length === 0) {
-    //         router.push("/auth/login");
-    //     }
+        if (!usuario || Object.keys(usuario).length === 0) {
+            router.push("/auth/login");
+        }
 
-    // }, [usuario, router])
+    }, [usuario, router])
 
     return(
         <>

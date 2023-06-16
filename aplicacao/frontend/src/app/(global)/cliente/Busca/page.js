@@ -10,10 +10,13 @@ import {
     filtros,
     filtro
 } from "./styles.module.scss";
+import ListaPratos from "@/components/ListaPratos";
+import { buscarPratosPorNome } from "@/services/prato";
 
 const Busca = () => {
     const [busca, setBusca] = useState("");
     const [restaurantes, setRestaurantes] = useState([]);
+    const [pratos, setPratos] = useState([]);
     const [tipoFiltro, setTipoFiltro] = useState("restaurante");
     const [exibirFiltros, setExibirFiltros] = useState(false);
 
@@ -22,11 +25,13 @@ const Busca = () => {
 
         
         const restaurantesExistente = buscarRestaurantes({nome: busca});
+        const pratosExistentes = buscarPratosPorNome({nome: busca});
 
         //console.log(busca);
         console.log(tipoFiltro);
 
         setRestaurantes(restaurantesExistente);
+        setPratos(pratosExistentes);
     }, [busca, tipoFiltro, exibirFiltros]);
 
     return(
@@ -34,13 +39,8 @@ const Busca = () => {
             <Pesquisa setBusca={ setBusca } style={{ margin: "0" }}/>
             <div className={ filtrar } onClick={() => setExibirFiltros(prev => !prev)}>
                 <p>Filtrar</p>
+
             </div>
-            {
-                tipoFiltro === "prato" ?
-                    ""
-                    :
-                    <ListaRestaurantes restaurantes={ restaurantes }/>
-            }
             <div className={ filtros } style={{ display: exibirFiltros ? "block" : "none" }}>
                 <div className={ filtro }>
                     <input type="radio" value={"prato"} name="filtro" onChange={() => {
@@ -55,6 +55,13 @@ const Busca = () => {
                     <label>Restaurante</label>
                 </div>
             </div>
+            {
+                tipoFiltro === "prato" ?
+                    <ListaPratos pratos={ pratos }/>
+                    :
+                    <ListaRestaurantes restaurantes={ restaurantes }/>
+            }
+            
         </div>
     )
 }
