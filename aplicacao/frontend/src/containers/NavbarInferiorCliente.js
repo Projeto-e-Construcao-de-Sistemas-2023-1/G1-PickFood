@@ -4,7 +4,7 @@ export default function NavbarInferiorCliente() {
     return(
         <NavbarInferior>
             <NavbarInferior.Item>
-                <NavbarInferior.Link href={ "" }>
+                <NavbarInferior.Link href={ "/cliente/busca" }>
                     <NavbarInferior.Icone src="/icons/buscar.svg"/>
                     <NavbarInferior.Label>Buscar</NavbarInferior.Label>
                 </NavbarInferior.Link>
