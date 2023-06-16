@@ -22,8 +22,11 @@ import br.pickfood.model.dto.cliente.ClienteDTO;
 import br.pickfood.service.cliente.ClienteService;
 
 import br.pickfood.model.dto.endereco.EnderecoDTO;
+import br.pickfood.model.dto.pedido.PedidoDTO;
 import br.pickfood.model.endereco.Endereco;
+import br.pickfood.model.pedido.Pedido;
 import br.pickfood.service.endereco.EnderecoService;
+
 @RestController
 @RequestMapping("/cliente")
 public class ClienteController {
@@ -35,7 +38,7 @@ public class ClienteController {
 
     @GetMapping
     public ResponseEntity<ClienteDTO> getAllClientes() {
-       return new ResponseEntity(clienteService.listarTodos(), HttpStatusCode.valueOf(200));
+        return new ResponseEntity(clienteService.listarTodos(), HttpStatusCode.valueOf(200));
 
     }
 
@@ -49,27 +52,25 @@ public class ClienteController {
         }
     }
 
-
-
     @PostMapping
     public ResponseEntity<ClienteDTO> createCliente(@RequestBody ClienteDTO clienteDTO) {
         Cliente entity = clienteDTO.convertToEntity();
         ClienteDTO createdCliente = clienteService.create(entity);
-
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCliente);
     }
 
     @PutMapping
     public ResponseEntity<ClienteDTO> updateCliente(@RequestBody ClienteDTO clienteDTO) {
-            return ResponseEntity.ok(clienteService.update(clienteDTO));
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCliente(@PathVariable Integer id) {
-            clienteService.delete(id);
-            return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(clienteService.update(clienteDTO));
     }
 
-    @GetMapping("/{id}/enderecos") //lista todos os enderecos so cliente
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCliente(@PathVariable Integer id) {
+        clienteService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/enderecos") // lista todos os enderecos so cliente
     public ResponseEntity<Object> listarEnderecosCliente(@PathVariable Integer id) {
 
         Cliente clienteEntity = clienteService.findEntityById(id);
@@ -79,16 +80,18 @@ public class ClienteController {
 
     }
 
-    @PostMapping("{id}/enderecos") //associa endereco ao cliente
-    public ResponseEntity<EnderecoDTO> cadastrarEnderecoCliente(@PathVariable Integer id, @RequestBody EnderecoDTO enderecoDTO) {
+    @PostMapping("{id}/enderecos") // associa endereco ao cliente
+    public ResponseEntity<EnderecoDTO> cadastrarEnderecoCliente(@PathVariable Integer id,
+            @RequestBody EnderecoDTO enderecoDTO) {
         Cliente cliente = clienteService.findEntityById(id);
         Endereco endereco = enderecoDTO.convertToEntity();
         cliente.getEndereco().add(endereco);
         EnderecoDTO enderecoCadastrado = enderecoService.create(endereco);
         return ResponseEntity.status(HttpStatus.CREATED).body(enderecoCadastrado);
-
-
-
     }
 
+    @GetMapping("/pedido/historico/{clienteID}")
+    public ResponseEntity<List<PedidoDTO>> consultarHistorico(@PathVariable Integer clienteID) {
+        return ResponseEntity.ok(clienteService.consultarHistorico(clienteID));
+    }
 }

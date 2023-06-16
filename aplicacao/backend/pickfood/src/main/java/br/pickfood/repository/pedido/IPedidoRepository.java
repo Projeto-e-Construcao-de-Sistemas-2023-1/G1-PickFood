@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IPedidoRepository extends IBaseRepository<Pedido> {
 
-    Pedido findByCodigo(String codigo);
+
+
+    Pedido findStatusById(Integer id);
 
 }

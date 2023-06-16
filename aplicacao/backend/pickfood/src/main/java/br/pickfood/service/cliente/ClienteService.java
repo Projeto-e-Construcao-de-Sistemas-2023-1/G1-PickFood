@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import br.pickfood.mapper.ClienteMapper;
 import br.pickfood.model.cliente.Cliente;
 import br.pickfood.model.dto.cliente.ClienteDTO;
+import br.pickfood.model.dto.pedido.PedidoDTO;
+import br.pickfood.model.pedido.Pedido;
 import br.pickfood.repository.cliente.IClienteRepository;
 import br.pickfood.service.BaseServiceImpl;
 
@@ -27,5 +29,10 @@ public class ClienteService extends BaseServiceImpl<ClienteDTO, Cliente, IClient
 		mapper.updateClienteFromDto(dto, cliente);
 		return super.update(cliente);
 	}
+
+    public List<PedidoDTO> consultarHistorico(Integer id) {
+		Cliente entity = baseRepository.findById(id).get();
+        return entity.getPedidos().stream().map(Pedido::convertToDto).collect(Collectors.toList());
+    }
 	
 }

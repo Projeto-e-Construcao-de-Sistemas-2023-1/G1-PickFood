@@ -63,7 +63,7 @@ public class Pedido extends BaseEntity {
     public PedidoDTO convertToDto() {
 
         return PedidoDTO.builder()
-                .codigo(this.codigo)
+                .id(id)
                 .valorTotal(this.valorTotal)
                 .data(this.data)
                 .build();

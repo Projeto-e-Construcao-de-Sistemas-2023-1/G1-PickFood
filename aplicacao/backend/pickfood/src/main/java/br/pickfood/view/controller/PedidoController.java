@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,49 +29,30 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @PostMapping
+    @Transactional
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<PedidoDTO> realizarPedido(@RequestBody PedidoDTO dto) {
         Pedido entity = dto.convertToEntity();
-
         return new ResponseEntity(pedidoService.create(entity), HttpStatusCode.valueOf(201));
     }
 
-    @PutMapping("/{codigo}/cancelar")
-    public ResponseEntity<String> cancelarPedido(@PathVariable String codigo) {
-
-        pedidoService.cancelarPedido(codigo);
-        return ResponseEntity.ok("Pedido cancelado com sucesso.");
+    @PutMapping("/{id}/cancelar")
+    @Transactional
+    public ResponseEntity cancelarPedido(@PathVariable Integer id) {
+        pedidoService.cancelarPedido(id);
+        return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{codigo}/status")
-    public ResponseEntity<String> verStatus(@PathVariable String codigo) {
-        try {
-            String status = pedidoService.verStatus(codigo);
-            return ResponseEntity.ok(status);
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/{id}/status")
+    public ResponseEntity<String> verStatus(@PathVariable Integer id) {
+
+        String status = pedidoService.verStatus(id);
+        return ResponseEntity.ok(status);
     }
 
-    @GetMapping("/{codigo}/historico")
-    public ResponseEntity<String> consultarHistorico(@PathVariable String codigo) {
-        try {
-            String historico = pedidoService.consultarHistorico(codigo);
-            return ResponseEntity.ok(historico);
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @PutMapping("/{codigo}/confirmar")
-    public ResponseEntity<String> confirmarPedido(@PathVariable String codigo) {
-        try {
-            pedidoService.confirmarPedido(codigo);
-            return ResponseEntity.ok("Pedido confirmado com sucesso.");
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.notFound().build();
-        } catch (IllegalStateException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+    @PutMapping("/{id}/confirmar")
+    @Transactional
+    public ResponseEntity<String> confirmarPedido(@PathVariable Integer id) {
+        return ResponseEntity.ok(pedidoService.confirmarPedido(id));
     }
 }
