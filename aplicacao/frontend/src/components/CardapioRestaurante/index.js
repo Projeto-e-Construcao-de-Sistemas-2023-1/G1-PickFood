@@ -9,7 +9,8 @@ import {
     editar,
     lixo,
     preco,
-    nome
+    nome,
+    center
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
 import Modal from "@/components/Modal";
@@ -49,7 +50,8 @@ export default function CardapioRestaurante({ pratos }) {
             {
                 pratos?.map(prato => {
                     return(
-                        <li className={texto} key={ prato.id } id={ prato.id} >
+                        
+                          <li className={texto} key={ prato.id } id={ prato.id} >
                             <Image className={foto}
                                 src="/icons/foto.svg"
                                 width={ 21 }
@@ -80,11 +82,10 @@ export default function CardapioRestaurante({ pratos }) {
                                 } }
                                 alt="Icone de lixo."
                             />
-                        </li>
+                        </li>       
                     )
-                })
-            }
-            
+                })    
+            }  
         </ul>
     </>
     )
