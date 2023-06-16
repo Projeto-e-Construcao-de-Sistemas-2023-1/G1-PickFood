@@ -28,7 +28,7 @@ CREATE TABLE `cliente` (
   `nome` varchar(255) DEFAULT NULL,
   `telefone` varchar(255) DEFAULT NULL,
   `user` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`cpf`),
   KEY `FK53p7heiijrywpk2okr7s44ukw` (`user`),
   CONSTRAINT `FK53p7heiijrywpk2okr7s44ukw` FOREIGN KEY (`user`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -83,24 +83,6 @@ CREATE TABLE `endereco` (
   `numero` int DEFAULT NULL,
   `rua` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `favoritos`
---
-
-DROP TABLE IF EXISTS `favoritos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `favoritos` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `quantidade` int DEFAULT NULL,
-  `valor` double DEFAULT NULL,
-  `item` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKpggr0kw3jp2na8i5ucmqrfteq` (`item`),
-  CONSTRAINT `FKpggr0kw3jp2na8i5ucmqrfteq` FOREIGN KEY (`item`) REFERENCES `item` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -172,7 +154,6 @@ DROP TABLE IF EXISTS `pedido`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pedido` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `codigo` int DEFAULT NULL,
   `data` datetime(6) DEFAULT NULL,
   `forma_pagamento` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
