@@ -46,14 +46,13 @@ DROP TABLE IF EXISTS `cliente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `cpf` varchar(255) DEFAULT NULL,
+  `cpf` varchar(255) NOT NULL,
   `nome` varchar(255) DEFAULT NULL,
   `telefone` varchar(255) DEFAULT NULL,
   `user` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK53p7heiijrywpk2okr7s44ukw` (`user`),
-  CONSTRAINT `FK53p7heiijrywpk2okr7s44ukw` FOREIGN KEY (`user`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`cpf`),
+  KEY `fk_user_cliente_idx` (`user`),
+  CONSTRAINT `fk_user_cliente` FOREIGN KEY (`user`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -74,12 +73,12 @@ DROP TABLE IF EXISTS `cliente_endereco`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente_endereco` (
-  `cliente_id` int NOT NULL,
-  `endereco_id` int NOT NULL,
-  UNIQUE KEY `UK_eaijuk6dr5awjv26fvex140lv` (`endereco_id`),
-  KEY `FKb9adyf983n50qn4gqcsuocelc` (`cliente_id`),
-  CONSTRAINT `FKb9adyf983n50qn4gqcsuocelc` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`),
-  CONSTRAINT `FKkaig3neffesoery8mnkive5bq` FOREIGN KEY (`endereco_id`) REFERENCES `endereco` (`id`)
+  `cliente` varchar(255) NOT NULL,
+  `endereco` int NOT NULL,
+  KEY `fk_endereco_cliente_endereco_idx` (`endereco`),
+  KEY `fk_cliente_cliente_endereco_idx` (`cliente`),
+  CONSTRAINT `fk_cliente_cliente_endereco` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`cpf`),
+  CONSTRAINT `fk_endereco_cliente_endereco` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -100,12 +99,12 @@ DROP TABLE IF EXISTS `cliente_pedidos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente_pedidos` (
-  `cliente_id` int NOT NULL,
-  `pedidos_id` int NOT NULL,
-  UNIQUE KEY `UK_5ghbygu6ffc8sd7dnlxud5mox` (`pedidos_id`),
-  KEY `FK3fiiwebwnib50do1jwwdtp2gv` (`cliente_id`),
-  CONSTRAINT `FK3fiiwebwnib50do1jwwdtp2gv` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`),
-  CONSTRAINT `FKprs510oqt9komm63bt9hqn6g` FOREIGN KEY (`pedidos_id`) REFERENCES `pedido` (`id`)
+  `cliente` varchar(255) NOT NULL,
+  `pedido` int NOT NULL,
+  KEY `fk_pedido_cliente_pedidos_idx` (`pedido`),
+  KEY `fk_cliente_cliente_pedidos_idx` (`cliente`),
+  CONSTRAINT `fk_cliente_cliente_pedidos` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`cpf`),
+  CONSTRAINT `fk_pedido_cliente_pedidos` FOREIGN KEY (`pedido`) REFERENCES `pedido` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -154,10 +153,10 @@ DROP TABLE IF EXISTS `endereco_cliente`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `endereco_cliente` (
   `endereco` int NOT NULL,
-  `cliente` int NOT NULL,
+  `cliente` varchar(255) NOT NULL,
   KEY `fk_endereco_endereco_cliente_idx` (`endereco`),
   KEY `fk_cliente_endereco_cliente_idx` (`cliente`),
-  CONSTRAINT `fk_cliente_endereco_cliente` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`user`),
+  CONSTRAINT `fk_cliente_endereco_cliente` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`cpf`),
   CONSTRAINT `fk_endereco_endereco_cliente` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -179,14 +178,12 @@ DROP TABLE IF EXISTS `favoritos_prato`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `favoritos_prato` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `cliente` int DEFAULT NULL,
-  `item` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKfcdpte6rwec6fvdyuquudvhte` (`cliente`),
-  KEY `FK104wfym8fe2ii7vkbyp74v718` (`item`),
-  CONSTRAINT `FK104wfym8fe2ii7vkbyp74v718` FOREIGN KEY (`item`) REFERENCES `item` (`id`),
-  CONSTRAINT `FKfcdpte6rwec6fvdyuquudvhte` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`)
+  `cliente` varchar(255) NOT NULL,
+  `item` int NOT NULL,
+  KEY `fk_cliente_favoritos_prato_idx` (`cliente`),
+  KEY `fk_item_favoritos_prato_idx` (`item`),
+  CONSTRAINT `fk_item_favoritos_prato` FOREIGN KEY (`item`) REFERENCES `item` (`id`),
+  CONSTRAINT `fk_cliente_favoritos_prato` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`cpf`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -207,14 +204,12 @@ DROP TABLE IF EXISTS `favoritos_restaurante`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `favoritos_restaurante` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `cliente` int DEFAULT NULL,
-  `restaurante` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK4diagos7kl6n6c5anq54du1q8` (`cliente`),
-  KEY `FKp0f9hvgtw99x528ym32ubkdgs` (`restaurante`),
-  CONSTRAINT `FK4diagos7kl6n6c5anq54du1q8` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`),
-  CONSTRAINT `FKp0f9hvgtw99x528ym32ubkdgs` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`id`)
+  `cliente` varchar(255) NOT NULL,
+  `restaurante` varchar(255) NOT NULL,
+  KEY `fk_cliente_favoritos_restaurante_idx` (`cliente`),
+  KEY `fk_restaurante_favoritos_restaurante_idx` (`restaurante`),
+  CONSTRAINT `fk_cliente_favoritos_restaurante` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`cpf`),
+  CONSTRAINT `fk_restaurante_favoritos_restaurante` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`cnpj`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -264,10 +259,10 @@ CREATE TABLE `item` (
   `nome` varchar(255) DEFAULT NULL,
   `preco` float DEFAULT NULL,
   `tipo` varchar(255) DEFAULT NULL,
-  `restaurante` int DEFAULT NULL,
+  `restaurante` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKkj3hvuuotq7sv0hp7pxfvfmii` (`restaurante`),
-  CONSTRAINT `FKkj3hvuuotq7sv0hp7pxfvfmii` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`id`)
+  KEY `fk_restaurante_item_idx` (`restaurante`),
+  CONSTRAINT `fk_restaurante_item` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`cnpj`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -291,7 +286,7 @@ CREATE TABLE `item_pedido` (
   `pedido` int NOT NULL,
   `item` int NOT NULL,
   `quantidade` int NOT NULL,
-  `valor` decimal(5,2) NOT NULL,
+  `valor` float NOT NULL,
   KEY `fk_pedido_item_pedido_idx` (`pedido`),
   KEY `fk_item_item_pedido_idx` (`item`),
   CONSTRAINT `fk_item_item_pedido` FOREIGN KEY (`item`) REFERENCES `item` (`id`),
@@ -347,13 +342,13 @@ CREATE TABLE `pedido` (
   `forma_pagamento` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   `valor_total` float DEFAULT NULL,
-  `cliente` int DEFAULT NULL,
-  `restaurante` int DEFAULT NULL,
+  `cliente` varchar(255) NOT NULL,
+  `restaurante` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK3n7g0gf9fttq3pr3rqa76gg54` (`cliente`),
-  KEY `FKnamwd41q2spnkg50v613de4gd` (`restaurante`),
-  CONSTRAINT `FK3n7g0gf9fttq3pr3rqa76gg54` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`),
-  CONSTRAINT `FKnamwd41q2spnkg50v613de4gd` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`id`)
+  KEY `fk_cliente_pedido_idx` (`cliente`),
+  KEY `fk_restaurante_pedido_idx` (`restaurante`),
+  CONSTRAINT `fk_cliente_pedido` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`cpf`),
+  CONSTRAINT `fk_restaurante_pedido` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`cnpj`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -367,32 +362,6 @@ LOCK TABLES `pedido` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `pedido_item_pedido_list`
---
-
-DROP TABLE IF EXISTS `pedido_item_pedido_list`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pedido_item_pedido_list` (
-  `pedido_id` int NOT NULL,
-  `item_pedido_list_id` int NOT NULL,
-  UNIQUE KEY `UK_5h5i7eeg3a42xeiu39cystr8o` (`item_pedido_list_id`),
-  KEY `FKd2t3m6qaljp1r3ub2o11pnilx` (`pedido_id`),
-  CONSTRAINT `FKd2t3m6qaljp1r3ub2o11pnilx` FOREIGN KEY (`pedido_id`) REFERENCES `pedido` (`id`),
-  CONSTRAINT `FKopltohto7hi5up311ocftkcsr` FOREIGN KEY (`item_pedido_list_id`) REFERENCES `favoritos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pedido_item_pedido_list`
---
-
-LOCK TABLES `pedido_item_pedido_list` WRITE;
-/*!40000 ALTER TABLE `pedido_item_pedido_list` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pedido_item_pedido_list` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `restaurante`
 --
 
@@ -400,8 +369,7 @@ DROP TABLE IF EXISTS `restaurante`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `restaurante` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `cnpj` varchar(255) DEFAULT NULL,
+  `cnpj` varchar(255) NOT NULL,
   `horario_abertura` time DEFAULT NULL,
   `horario_fechamento` time DEFAULT NULL,
   `nome_fantasia` varchar(255) DEFAULT NULL,
@@ -410,11 +378,11 @@ CREATE TABLE `restaurante` (
   `telefone` varchar(255) DEFAULT NULL,
   `endereco` int DEFAULT NULL,
   `user` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKf9myap2e002r6lt2hak5qmgvx` (`endereco`),
-  KEY `FKlfh60vht8d02tlqqd6lshajsl` (`user`),
-  CONSTRAINT `FKf9myap2e002r6lt2hak5qmgvx` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`id`),
-  CONSTRAINT `FKlfh60vht8d02tlqqd6lshajsl` FOREIGN KEY (`user`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`cnpj`),
+  KEY `fk_endereco_restaurante_idx` (`endereco`),
+  KEY `fk_user_restaurante_idx` (`user`),
+  CONSTRAINT `fk_endereco_restaurante` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`id`),
+  CONSTRAINT `fk_user_restaurante` FOREIGN KEY (`user`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -435,12 +403,12 @@ DROP TABLE IF EXISTS `restaurante_categoria`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `restaurante_categoria` (
-  `restaurante` int NOT NULL,
+  `restaurante` varchar(255) NOT NULL,
   `categoria` int NOT NULL,
   KEY `fk_categoria_restaurante_categoria_idx` (`categoria`),
   KEY `fk_restaurante_categoria_restaurante_idx` (`restaurante`),
   CONSTRAINT `fk_categoria_restaurante_categoria` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`id`),
-  CONSTRAINT `fk_restaurante_categoria_restaurante` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`user`)
+  CONSTRAINT `fk_restaurante_categoria_restaurante` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`cnpj`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -461,12 +429,12 @@ DROP TABLE IF EXISTS `restaurante_ingrediente_alergenico`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `restaurante_ingrediente_alergenico` (
-  `restaurante` int NOT NULL,
+  `restaurante` varchar(255) NOT NULL,
   `ingrediente_alergenico` int NOT NULL,
   KEY `fk_ingrediente_alergenico_restaurante_ingrediente_alergenico_idx` (`ingrediente_alergenico`),
   KEY `fk_restaurante_ingrediente_alergenico_restaurante_idx` (`restaurante`),
   CONSTRAINT `fk_ingrediente_alergenico_restaurante_ingrediente_alergenico` FOREIGN KEY (`ingrediente_alergenico`) REFERENCES `ingrediente_alergenico` (`id`),
-  CONSTRAINT `fk_restaurante_ingrediente_alergenico_restaurante` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`user`)
+  CONSTRAINT `fk_restaurante_ingrediente_alergenico_restaurante` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`cnpj`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
