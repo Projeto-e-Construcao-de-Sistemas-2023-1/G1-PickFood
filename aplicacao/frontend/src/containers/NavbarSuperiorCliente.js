@@ -41,7 +41,7 @@ export default function NavbarSuperiorCliente() {
                         <NavbarSuperior.IconeDropdown src="/icons/meu-perfil.svg"/>
                         <NavbarSuperior.LabelDropdown>Meu Perfil</NavbarSuperior.LabelDropdown>
                     </NavbarSuperior.LinkDropdown>
-                    <NavbarSuperior.LinkDropdown href="">
+                    <NavbarSuperior.LinkDropdown href="/cliente/meus-pedidos">
                         <NavbarSuperior.IconeDropdown src="/icons/meus-pedidos.svg"/>
                         <NavbarSuperior.LabelDropdown>Meus Pedidos</NavbarSuperior.LabelDropdown>
                     </NavbarSuperior.LinkDropdown>

@@ -9,6 +9,7 @@ import {
     status,
     nome
 } from "./styles.module.scss"
+import { useState } from "react";
 
 export default function PedidosRestaurante({ pedidos }) {
 
