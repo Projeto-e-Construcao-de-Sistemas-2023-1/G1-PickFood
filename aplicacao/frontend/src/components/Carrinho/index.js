@@ -82,7 +82,7 @@ const Carrinho = () => {
             <div className={ cabecalho }>
                 <div>
                     <p className={ nomeRestaurante }>Nome do restaurante</p>
-                    <Link style={{ display: itens === null || itens.length === 0 ? "none" : ""}} href={ "/cliente/restaurante/" + (itens !== null ? itens[0].prato.idRestaurante : "") } className={ adicionarMaisItens }>Adicionar mais itens</Link>
+                    <Link style={{ display: itens === null || itens.length === 0 ? "none" : ""}} href={ "/cliente/restaurante/" + (itens !== null ? itens[0]?.prato?.idRestaurante : "") } className={ adicionarMaisItens }>Adicionar mais itens</Link>
                 </div>
                 <p className={ limpar } onClick={ limparCarrinho }>Limpar carrinho</p>
             </div>
