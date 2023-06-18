@@ -17,7 +17,6 @@ import { buscarTodosFavoritosPratoCliente, criarFavoritoPratoClinete, excluirFav
 
 const ItemListaPratos = ({ prato }) => {
     
-    const [ehFavorito, setEhFavorito] = useState(false);
     const { usuario } = useContext(AuthContext);
 
     const ehFavoritado = () => {
@@ -38,6 +37,8 @@ const ItemListaPratos = ({ prato }) => {
 
         return false;
     }
+
+    const [ehFavorito, setEhFavorito] = useState(() => ehFavoritado());
 
     const addFavoritos = () => {
 

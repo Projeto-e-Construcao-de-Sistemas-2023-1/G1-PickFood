@@ -14,10 +14,10 @@ import {
     estrelas,
     estrela
 } from "./styles.module.scss";
+import Icone from "@/components/Icone";
 
 const ItemListaRestaurantes = ({ restaurante }) => {
     
-    const [ehFavorito, setEhFavorito] = useState(false);
     const { usuario } = useContext(AuthContext);
 
     const ehFavoritado = () => {
@@ -38,6 +38,9 @@ const ItemListaRestaurantes = ({ restaurante }) => {
 
         return false;
     }
+
+    const [ehFavorito, setEhFavorito] = useState(() => ehFavoritado());
+    
 
     const addFavoritos = () => {
 
@@ -85,10 +88,10 @@ const ItemListaRestaurantes = ({ restaurante }) => {
                     </div>
                 </div>
                 <div className={ estrelas }>
-                    <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
-                    <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
-                    <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
-                    <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
+                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
+                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
+                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
+                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
                 </div>
             </Link>
         </li>
