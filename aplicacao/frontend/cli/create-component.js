@@ -29,7 +29,7 @@ const ${componentName} = () => {
 export default ${componentName};
         `;
 
-        const stylesContent = `.class { /* your style */}`
+        const stylesContent = `.className { /* your style */}`
 
         fs.writeFileSync(componentPath, componentContent);
         fs.writeFileSync(stylesPath, stylesContent);
