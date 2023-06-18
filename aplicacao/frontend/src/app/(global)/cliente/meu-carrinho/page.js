@@ -17,26 +17,13 @@ import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Retornar from "@/components/Retornar";
 import { CarrinhoContext } from "@/contexts";
+import { calcularValorTotalItens } from "@/utils";
 
 
 const MeuCarrinho = () => {
 
     const router = useRouter();
     const { itens } = useContext(CarrinhoContext);
-    
-    const calcularTotalPedido = () => {
-        let total = 0;
-
-        if (itens === null) {
-            return 0
-        }
-
-        for (const item of itens) {
-            total += Number.parseFloat(item.valor);
-        }
-
-        return total;
-    }
 
     return(
         <>
@@ -54,12 +41,12 @@ const MeuCarrinho = () => {
 
             <div className={ total }>
                 <p className={ textoTotal }>Total com a entrega:</p>
-                <p className={ valorTotal }>{ calcularTotalPedido() }</p>
+                <p className={ valorTotal }>{ calcularValorTotalItens(itens) }</p>
             </div>
 
             <Button className={ botao } onClick={ () => {
                 if (itens?.length !== 0) {
-                    router.push("/cliente/confirmar-pedido") 
+                    router.push("/cliente/confirmar-pedido")
                 }
             }}>Finalizar compra</Button>
         </>

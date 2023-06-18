@@ -32,6 +32,7 @@ import Icone from "@/components/Icone";
 import { criarItemPedido } from "@/services/itemPedido";
 import { criarPedido } from "@/services/pedido";
 import { limpar } from "@/services/carrinho";
+import { calcularValorTotalItens } from "@/utils";
 
 const ConfirmarPedido = () => {
 
@@ -42,16 +43,6 @@ const ConfirmarPedido = () => {
 
     const [formaPagamento, setFormaPagamento] = useState("Pix");
     const [formaEntrega, setFormaEntrega] = useState("Entregar");
-
-    const calcularTotalPedido = () => {
-        let total = 0;
-
-        for (const item of itens) {
-            total += Number.parseFloat(item.valor);
-        }
-
-        return total;
-    }
 
     const confirmarPedido = () => {
 
@@ -96,7 +87,7 @@ const ConfirmarPedido = () => {
                 </div>
                 <div className={ total }>
                     <p>Total com a entrega: </p>
-                    <p>{ calcularTotalPedido() }</p>
+                    <p>{ calcularValorTotalItens(itens) }</p>
                 </div>
             </div>
             <div style={{ marginTop: 20 }}>
