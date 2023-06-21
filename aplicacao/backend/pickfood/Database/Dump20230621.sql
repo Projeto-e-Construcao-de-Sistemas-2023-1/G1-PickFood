@@ -4,6 +4,9 @@
 -- ------------------------------------------------------
 -- Server version	8.0.33
 
+-- CREATE SCHEMA mydb;
+-- USE mydb;
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -75,8 +78,10 @@ DROP TABLE IF EXISTS `cliente_endereco`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente_endereco` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `cliente` int NOT NULL,
   `endereco` int NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_endereco_cliente_endereco_idx` (`endereco`),
   KEY `fk_cliente_cliente_endereco_idx` (`cliente`),
   CONSTRAINT `fk_cliente_cliente_endereco` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`),
@@ -101,8 +106,10 @@ DROP TABLE IF EXISTS `cliente_pedidos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente_pedidos` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `cliente` int NOT NULL,
   `pedido` int NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_pedido_cliente_pedidos_idx` (`pedido`),
   KEY `fk_cliente_cliente_pedidos_idx` (`cliente`),
   CONSTRAINT `fk_cliente_cliente_pedidos` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`),
@@ -154,8 +161,10 @@ DROP TABLE IF EXISTS `favoritos_prato`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `favoritos_prato` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `cliente` int NOT NULL,
   `item` int NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_cliente_favoritos_prato_idx` (`cliente`),
   KEY `fk_item_favoritos_prato_idx` (`item`),
   CONSTRAINT `fk_cliente_favoritos_prato` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`),
@@ -180,8 +189,10 @@ DROP TABLE IF EXISTS `favoritos_restaurante`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `favoritos_restaurante` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `cliente` int NOT NULL,
   `restaurante` int NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_cliente_favoritos_restaurante_idx` (`cliente`),
   KEY `fk_restaurante_favoritos_restaurante_idx` (`restaurante`),
   CONSTRAINT `fk_cliente_favoritos_restaurante` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`),
@@ -259,10 +270,12 @@ DROP TABLE IF EXISTS `item_pedido`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item_pedido` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `pedido` int NOT NULL,
   `item` int NOT NULL,
   `quantidade` int NOT NULL,
   `valor` float NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_pedido_item_pedido_idx` (`pedido`),
   KEY `fk_item_item_pedido_idx` (`item`),
   CONSTRAINT `fk_item_item_pedido` FOREIGN KEY (`item`) REFERENCES `item` (`id`),
@@ -287,8 +300,10 @@ DROP TABLE IF EXISTS `item_restricao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item_restricao` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `item` int NOT NULL,
   `restricao` int NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_restricao_item_restricao_idx` (`restricao`),
   KEY `fk_item_restricao_item_idx` (`item`),
   CONSTRAINT `fk_item_restricao_item` FOREIGN KEY (`item`) REFERENCES `item` (`id`),
@@ -380,8 +395,10 @@ DROP TABLE IF EXISTS `restaurante_categoria`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `restaurante_categoria` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `restaurante` int NOT NULL,
   `categoria` int NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_categoria_restaurante_categoria_idx` (`categoria`),
   KEY `fk_restaurante_categoria_restaurante_idx` (`restaurante`),
   CONSTRAINT `fk_categoria_restaurante_categoria` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`id`),
@@ -406,8 +423,10 @@ DROP TABLE IF EXISTS `restaurante_ingrediente_alergenico`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `restaurante_ingrediente_alergenico` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `restaurante` int NOT NULL,
   `ingrediente_alergenico` int NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_ingrediente_alergenico_restaurante_ingrediente_alergenico_idx` (`ingrediente_alergenico`),
   KEY `fk_restaurante_ingrediente_alergenico_restaurante_idx` (`restaurante`),
   CONSTRAINT `fk_ingrediente_alergenico_restaurante_ingrediente_alergenico` FOREIGN KEY (`ingrediente_alergenico`) REFERENCES `ingrediente_alergenico` (`id`),
