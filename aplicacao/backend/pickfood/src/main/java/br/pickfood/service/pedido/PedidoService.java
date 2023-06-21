@@ -7,7 +7,6 @@ import br.pickfood.repository.pedido.IPedidoRepository;
 import br.pickfood.service.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
-import javax.print.DocFlavor;
 
 @Service
 public class PedidoService extends BaseServiceImpl<PedidoDTO, Pedido, IPedidoRepository> {

@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="pickfood:war">
+    <output-path>$PROJECT_DIR$/pickfood/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>false</exploded>
+        <module>pickfood</module>
+        <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
+      </options>
+    </properties>
+    <root id="archive" name="pickfood-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="pickfood:war exploded" />
+    </root>
+  </artifact>
+</component>

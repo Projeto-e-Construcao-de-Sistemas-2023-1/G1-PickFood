@@ -35,7 +35,7 @@ public class PedidoDTO  extends BaseDTO<Pedido> {
     @Override
     public Pedido convertToEntity() {
         return Pedido.builder()
-                .codigo(this.codigo)
+
                 .valorTotal(this.valorTotal)
                 .cliente(Cliente.builder().id(clienteId).build())
                 .restaurante(Restaurante.builder().id(restauranteId).build())

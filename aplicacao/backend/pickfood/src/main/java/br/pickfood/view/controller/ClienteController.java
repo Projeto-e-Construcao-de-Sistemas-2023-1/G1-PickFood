@@ -39,17 +39,11 @@ public class ClienteController {
     @GetMapping
     public ResponseEntity<ClienteDTO> getAllClientes() {
         return new ResponseEntity(clienteService.listarTodos(), HttpStatusCode.valueOf(200));
-
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ClienteDTO> getClienteById(@PathVariable Integer id) {
-        ClienteDTO clienteDTO = clienteService.findById(id);
-        if (clienteDTO != null) {
-            return ResponseEntity.ok(clienteDTO);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(clienteService.findById(id));
     }
 
     @PostMapping
