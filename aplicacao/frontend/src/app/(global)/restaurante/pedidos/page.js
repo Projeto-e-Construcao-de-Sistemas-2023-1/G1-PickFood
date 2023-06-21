@@ -1,17 +1,12 @@
 'use client';
 
 import PedidosRestaurante from "@/components/PedidosRestaurante";
-import Pesquisa from "@/components/Pesquisa";
-
-import { 
-    titulo,
-    pesquisa
-} from "./styles.module.scss"
 import { useRouter } from "next/navigation";
 import TituloPagina from "@/components/TituloPagina";
 import { useContext, useEffect, useState } from "react";
 import { buscarPedidosPorRestaurante } from "@/services/pedido";
 import { AuthContext } from "@/contexts";
+import Retornar from "@/components/Retornar";
 
 export default function Pedidos() {
 
@@ -29,11 +24,8 @@ export default function Pedidos() {
 
     return (
         <>
-            <div className={ pesquisa }>
-                <Pesquisa/>
-            </div>
-            
-            <TituloPagina>Pedidos</TituloPagina>
+            <Retornar navigate={ () => router.push("/restaurante/home") } />
+            <TituloPagina textAlign="center">Pedidos</TituloPagina>
 
             <PedidosRestaurante pedidos={ pedidos }/>
 

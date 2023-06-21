@@ -1,0 +1,27 @@
+@use "@/styles/cores.module";
+@use "@/styles.utils.module";
+
+.pedidos_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: utils.converterPxParaRem(25px);
+}
+
+.pedidos_info {
+}
+
+.pedidos_numero {
+    margin-top: utils.converterPxParaRem(5px);
+}
+
+.pedidos_cancelar {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    color: cores.$vermelho;
+    background-color: cores.$cinza;
+    padding: 5px;
+    border-radius: 5px;
+}

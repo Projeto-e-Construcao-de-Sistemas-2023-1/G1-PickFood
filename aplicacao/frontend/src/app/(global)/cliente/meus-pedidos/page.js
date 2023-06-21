@@ -4,7 +4,7 @@ import Icone from "@/components/Icone";
 import Retornar from "@/components/Retornar";
 import TituloPagina from "@/components/TituloPagina";
 import { useRouter } from "next/navigation";
-import { 
+import {
     pedidos_lista,
     pedidos_item,
     pedidos_info,
@@ -15,7 +15,7 @@ import { useContext, useEffect, useState } from "react";
 import { buscarPedidosPorCliente, cancelarPedido } from "@/services/pedido";
 import { AuthContext } from "@/contexts";
 
-const HistoricoPedidos = () => {
+const MeusPedidos = () => {
     
     const { usuario } = useContext(AuthContext);
     const router = useRouter();

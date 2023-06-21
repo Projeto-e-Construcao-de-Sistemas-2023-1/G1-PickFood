@@ -1,7 +1,6 @@
 'use client';
 
 import CardapioRestaurante from "@/components/CardapioRestaurante";
-import Pesquisa from "@/components/Pesquisa";
 import Link from "next/link";
 
 import { 
@@ -15,6 +14,8 @@ import TituloPagina from "@/components/TituloPagina";
 import { useContext, useEffect, useState } from "react";
 import { buscarPratos, buscarPratosPorRestaurante } from "@/services/prato";
 import { AuthContext } from "@/contexts";
+import Icone from "@/components/Icone";
+import Retornar from "@/components/Retornar";
 
 export default function Cardapio() {
 
@@ -31,20 +32,18 @@ export default function Cardapio() {
 
     return (
         <>
+            <Retornar navigate={() => router.push("/restaurante/home")} />
             <div className={ pesquisa }>
-                <Pesquisa style={{ margin: 0 }}/> 
+                <TituloPagina style={{ margin: 0 }}>Cardápio</TituloPagina>
                 <Link href={"/restaurante/criar-prato"}>
-                    <Image className= { adicionar }
-                    src="/icons/adicionar.svg"
-                    width={ 21 }
-                    height={ 21 }
-                    alt="Icone de círculo com um + no centro."
+                    <Icone className= { adicionar }
+                        src="/icons/adicionar.svg"
+                        alt="Icone de círculo com um + no centro."
                     /> 
                 </Link>
                 
             </div>
             
-            <TituloPagina>Cardápio</TituloPagina>
 
             <CardapioRestaurante pratos={ pratos }/>
 

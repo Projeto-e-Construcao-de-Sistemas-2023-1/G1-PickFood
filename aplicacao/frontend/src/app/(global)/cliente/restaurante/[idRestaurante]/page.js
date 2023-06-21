@@ -1,7 +1,6 @@
 
 'use client'
 
-import Pesquisa from "@/components/Pesquisa";
 import Retornar from "@/components/Retornar";
 import TituloPagina from "@/components/TituloPagina";
 import pratos from "@/fixtures/pratos";
@@ -36,7 +35,6 @@ const Restaurante = ({ params: { idRestaurante } }) => {
         <>
             <Retornar navigate={ () => router.push("/cliente/home") }/>
             <TituloPagina className={ titulo }>{ restaurante.nome_fantasia }</TituloPagina>
-            <Pesquisa/>
             <CardapioCliente pratos={ pratos } />
         </>
     )

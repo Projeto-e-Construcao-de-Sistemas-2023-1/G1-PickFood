@@ -2,29 +2,13 @@
 @use "@/styles/utils.module.scss";
 
 .pesquisa {
-    flex-direction:row;
-    position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+   
+    margin: 0 auto utils.converterPxParaRem(42px) auto;
     width: utils.converterPxParaRem(200px);
-    margin-bottom: utils.converterPxParaRem(50px);
-}
-
-.titulo {
-    margin-top: utils.converterPxParaRem(15px);
-    text-align: center;
-    font-size: utils.converterPxParaRem(14px);
-    font-weight: bold;
-    margin-bottom: utils.converterPxParaRem(30px);
-    
-    color: cores.$preto;
 }
 
 .adicionar {
-    width: utils.converterPxParaRem(15px);
-    height: utils.converterPxParaRem(15px);
-    margin-left: utils.converterPxParaRem(5px);
-    color: cores.$preto;
+    margin-left: utils.converterPxParaRem(30px);
 }

@@ -2,9 +2,9 @@ import {
     titulo
 } from "./styles.module.scss";
 
-const TituloPagina = ({ children, className = "", ...restProps }) => {
+const TituloPagina = ({ children, className = "", textAlign = "start", ...restProps }) => {
     return(
-        <h1 className={ [titulo, className].join(" ") }>
+        <h1 className={ [titulo, className].join(" ") } style={{ textAlign }} { ...restProps }>
             { children }
         </h1>
     )
