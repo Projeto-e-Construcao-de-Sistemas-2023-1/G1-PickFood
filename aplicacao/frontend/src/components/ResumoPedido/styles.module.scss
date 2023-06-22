@@ -1,0 +1,49 @@
+@use "@/styles/utils.module";
+@use "@/styles/cores.module";
+
+.pedido {
+    
+
+    margin: 0 auto;
+
+    min-width: utils.converterPxParaRem(200px);
+    border: utils.converterPxParaRem(2px) solid cores.$verdeClaro;
+    border-radius: utils.converterPxParaRem(5px);
+
+    padding: utils.converterPxParaRem(17px) utils.converterPxParaRem(12px);
+
+    font-size: utils.converterPxParaRem(12px);
+}
+
+.restaurante_nome {
+    margin-bottom: utils.converterPxParaRem(26px);
+}
+
+.item_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item_info {
+    display: flex;
+    align-items: center;
+}
+
+.item_quantidade {
+    background-color: cores.$cinza;
+    padding: utils.converterPxParaRem(2px);
+    border-radius: 2px;
+    margin-right: utils.converterPxParaRem(7px);
+}
+
+.item_preco {
+    font-weight: bold;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: utils.converterPxParaRem(26px);
+    font-weight: bold;
+}

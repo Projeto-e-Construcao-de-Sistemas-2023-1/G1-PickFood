@@ -1,0 +1,24 @@
+@use "@/styles/utils.module";
+@use "@/styles/cores.module";
+
+.pagamento {
+    margin-bottom: utils.converterPxParaRem(20px)
+}
+
+.pagamento_item {
+    padding: utils.converterPxParaRem(8px);
+    border-radius: 5px;
+    display: flex;
+    margin-bottom: utils.converterPxParaRem(10px);
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+
+    &:hover {
+        background-color: cores.$cinza;
+    }
+}
+
+.pagamento_texto {
+    margin-left: utils.converterPxParaRem(15px);
+}

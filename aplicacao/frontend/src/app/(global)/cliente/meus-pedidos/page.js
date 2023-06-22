@@ -85,4 +85,4 @@ const MeusPedidos = () => {
     )
 }
 
-export default HistoricoPedidos;
+export default MeusPedidos;

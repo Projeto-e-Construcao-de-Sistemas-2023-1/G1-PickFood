@@ -1,7 +1,7 @@
 const calcularValorTotalItens = (itens) => {
     let total = 0;
 
-    if (itens === null) {
+    if (itens === null || itens === undefined) {
         return 0
     }
 

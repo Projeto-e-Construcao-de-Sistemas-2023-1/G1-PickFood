@@ -33,6 +33,7 @@ import { criarItemPedido } from "@/services/itemPedido";
 import { criarPedido } from "@/services/pedido";
 import { limpar } from "@/services/carrinho";
 import { calcularValorTotalItens } from "@/utils";
+import FormasPagamento from "@/components/FormasPagamento";
 
 const ConfirmarPedido = () => {
 
@@ -110,7 +111,8 @@ const ConfirmarPedido = () => {
             <div className={ divider } style={{ display: formaEntrega === "Entregar" ? "block" : "none" }}></div>
             <div className={ pagamento }>
                 <p className={ pagamento_titulo }>Pagamento</p>
-                <ul className={ pagamento_lista }>
+                <FormasPagamento formaPagamento={ formaPagamento} setFormaPagamento={ setFormaPagamento } />
+                {/* <ul className={ pagamento_lista }>
                     <li className={ pagamento_item } onClick={() => setFormaPagamento("Cartão de Débito")}>
                         <Icone className={ icone } src="/icons/credit-card-outline.svg" alt="Icone de 'cartão de crédito'." width={15} height={15}/>
                         <p className={ pagamento_texto }>Cartão de Débito</p>
@@ -127,7 +129,7 @@ const ConfirmarPedido = () => {
                         <Icone className={ icone } src="/icons/cash.svg" alt="Icone de 'dinheiro'." width={15} height={15}/>
                         <p className={ pagamento_texto }>Dinheiro</p>
                     </li>
-                </ul>
+                </ul> */}
 
             </div>
             <Button className={ botao_confirmar } onClick={ () => confirmarPedido() }>Confirmar pedido</Button>
