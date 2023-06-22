@@ -2,7 +2,7 @@
 @use "@/styles/cores.module";
 
 .pagamento {
-    margin-bottom: utils.converterPxParaRem(20px)
+    margin-bottom: utils.converterPxParaRem(20px);
 }
 
 .pagamento_item {
@@ -12,13 +12,15 @@
     margin-bottom: utils.converterPxParaRem(10px);
     align-items: center;
     cursor: pointer;
-    transition: 0.2s ease-in-out all;
+    transition: 0.5s ease-in-out all;
 
     &:hover {
         background-color: cores.$cinza;
+        
     }
 }
 
 .pagamento_texto {
+    transition: 0.2s ease-in-out all;
     margin-left: utils.converterPxParaRem(15px);
 }
