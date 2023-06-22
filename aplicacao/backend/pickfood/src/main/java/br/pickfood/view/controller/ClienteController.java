@@ -3,7 +3,7 @@ package br.pickfood.view.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.pickfood.model.dto.restaurante.RestauranteDTO;
+import br.pickfood.model.dto.cliente.ClienteCadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -24,7 +24,6 @@ import br.pickfood.service.cliente.ClienteService;
 import br.pickfood.model.dto.endereco.EnderecoDTO;
 import br.pickfood.model.dto.pedido.PedidoDTO;
 import br.pickfood.model.endereco.Endereco;
-import br.pickfood.model.pedido.Pedido;
 import br.pickfood.service.endereco.EnderecoService;
 
 @RestController
@@ -35,6 +34,7 @@ public class ClienteController {
     private ClienteService clienteService;
     @Autowired
     private EnderecoService enderecoService;
+
 
     @GetMapping
     public ResponseEntity<ClienteDTO> getAllClientes() {
@@ -47,10 +47,9 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> createCliente(@RequestBody ClienteDTO clienteDTO) {
-        Cliente entity = clienteDTO.convertToEntity();
-        ClienteDTO createdCliente = clienteService.create(entity);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdCliente);
+    public ResponseEntity<ClienteDTO> createCliente(@RequestBody ClienteCadastroDTO dto) {
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.cadastrar(dto).convertToDto());
     }
 
     @PutMapping

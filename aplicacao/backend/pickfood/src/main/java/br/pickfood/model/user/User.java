@@ -48,7 +48,7 @@ public class User extends BaseEntity implements UserDetails {
     	UserDTO dto = new UserDTO();
     	dto.setId(this.id);
     	dto.setEmail(this.email);
-    	dto.setSenha(this.senha);
+    	//dto.setSenha(this.senha);
     	
     	if(restaurante != null) {
     		String name = restaurante.getClass().getName();

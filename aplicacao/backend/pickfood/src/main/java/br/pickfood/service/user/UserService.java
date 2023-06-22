@@ -11,6 +11,9 @@ import br.pickfood.service.BaseServiceImpl;
 public class UserService extends BaseServiceImpl<UserDTO, User, IUserRepository>{
 	
 	public User login(User user) {
-		return baseRepository.findByEmailAndSenha(user.getEmail(), user.getSenha());
+
+			return baseRepository.findByEmailAndSenha(user.getEmail(), user.getSenha());
+
+
 	}
 }

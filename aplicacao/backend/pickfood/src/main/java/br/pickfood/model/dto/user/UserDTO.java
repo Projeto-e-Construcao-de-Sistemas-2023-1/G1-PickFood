@@ -20,9 +20,9 @@ public class UserDTO extends BaseDTO<User>{
 	private Integer idCliente;
 	
 	private String email;
-	
+
 	private String senha;
-	
+
 	private String type;
 	
 	@Override
@@ -32,5 +32,6 @@ public class UserDTO extends BaseDTO<User>{
 				.senha(this.senha)
 				.build();
 	}
+
 
 }

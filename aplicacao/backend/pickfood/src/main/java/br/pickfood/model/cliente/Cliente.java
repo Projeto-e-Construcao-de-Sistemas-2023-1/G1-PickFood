@@ -3,24 +3,22 @@ package br.pickfood.model.cliente;
 import java.util.List;
 
 import br.pickfood.model.BaseEntity;
+import br.pickfood.model.dto.cliente.ClienteCadastroDTO;
 import br.pickfood.model.dto.cliente.ClienteDTO;
 import br.pickfood.model.dto.user.UserDTO;
 import br.pickfood.model.endereco.Endereco;
 import br.pickfood.model.pedido.Pedido;
 import br.pickfood.model.user.User;
+import ch.qos.logback.core.net.server.Client;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@Getter
-@Setter
 @Entity
+@Data
 @Table(name = "cliente")
 public class Cliente extends BaseEntity {
 
@@ -44,6 +42,14 @@ public class Cliente extends BaseEntity {
     @OneToMany
     private List<Pedido> pedidos;
 
+    public Cliente (ClienteCadastroDTO dto){
+        this.nome = dto.getNome();
+        this.cpf = dto.getCpf();
+        this.telefone = dto.getTelefone();
+        this.user = new User();
+        this.user.setSenha(dto.getLogin().getSenha());
+        this.user.setEmail(dto.getLogin().getEmail());
+    }
 
     @Override
     public ClienteDTO convertToDto() {
@@ -55,6 +61,4 @@ public class Cliente extends BaseEntity {
                 .telefone(this.telefone)
                 .build();
     }
-
-    
 }

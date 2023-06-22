@@ -64,4 +64,6 @@ public class RestauranteDTO extends BaseDTO<Restaurante> {
         		.telefone(this.telefone)
         		.build();
     }
+
+
 }

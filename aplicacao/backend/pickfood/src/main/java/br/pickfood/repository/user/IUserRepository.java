@@ -10,7 +10,8 @@ import br.pickfood.repository.IBaseRepository;
 @Repository
 public interface IUserRepository extends IBaseRepository<User>{
 
-	@Query("select u from User u where u.email = ?1 and u.senha = ?2")
+
+
     User findByEmailAndSenha(String email, String senha);
 	
     UserDetails findByemail(String email);

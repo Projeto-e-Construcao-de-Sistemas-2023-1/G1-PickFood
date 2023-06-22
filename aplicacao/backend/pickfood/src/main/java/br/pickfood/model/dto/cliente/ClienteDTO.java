@@ -23,12 +23,16 @@ public class ClienteDTO extends BaseDTO<Cliente> {
     private String nome;
     private String cpf;
     private String telefone;
+    private String email;
+    private String senha;
 
     @Override
     public Cliente convertToEntity() {
         return Cliente.builder()
                 .user(User.builder()
-                        .id(this.userId)
+                        .id(this.id)
+                        .email(this.email)
+                        .senha(this.senha)
                         .build())
                 .nome(this.nome)
                 .cpf(this.cpf)

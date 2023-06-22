@@ -38,7 +38,9 @@ public class RestauranteController {
     @PostMapping
     public ResponseEntity<RestauranteDTO> cadastrar(@RequestBody @Validated(ICreation.class)
     	RestauranteDTO dto){
+
     	Restaurante entity = dto.convertToEntity();
+      
     	return new ResponseEntity(service.create(entity), HttpStatusCode.valueOf(201));
     }
     

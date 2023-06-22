@@ -3,6 +3,7 @@ package br.pickfood.service.cliente;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.pickfood.model.dto.cliente.ClienteCadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,9 @@ public class ClienteService extends BaseServiceImpl<ClienteDTO, Cliente, IClient
 		Cliente entity = baseRepository.findById(id).get();
         return entity.getPedidos().stream().map(Pedido::convertToDto).collect(Collectors.toList());
     }
-	
+
+    public Cliente cadastrar(ClienteCadastroDTO dto) {
+		Cliente entity = new Cliente(dto);
+		return baseRepository.save(entity);
+    }
 }
