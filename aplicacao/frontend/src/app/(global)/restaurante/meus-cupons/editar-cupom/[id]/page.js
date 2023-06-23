@@ -3,9 +3,13 @@
 import Form from "@/components/Form";
 import Retornar from "@/components/Retornar";
 import TituloPagina from "@/components/TituloPagina";
+import {
+    margin,
+    excluir
+} from "./styles.module.scss";
 import { AuthContext } from "@/contexts";
 import { mensagens } from "@/erros/mensagens";
-import { atualizarCupom, buscarCupomPorId, criarCupom } from "@/services/cupom";
+import { atualizarCupom, buscarCupomPorId, criarCupom, excluirCupom } from "@/services/cupom";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -33,6 +37,12 @@ const EditarCupom = ({ params: { id }}) => {
         setSucesso(true);
     }
 
+    const removerCupom = () => {
+        excluirCupom(id);
+
+        router.push("/restaurante/meus-cupons");
+    }
+
     return(
         <div>
             <Retornar navigate={() => router.push("restaurante/meus-cupons") } />
@@ -52,7 +62,10 @@ const EditarCupom = ({ params: { id }}) => {
                     <Form.Label>Valor</Form.Label>
                     <Form.Input type={ "number" } registrar={{ ...registrar("valor", { required: mensagens.required("valor")}) }}/>
                 </Form.Field>
-                <Form.Button>Editar</Form.Button>
+                <div className={ margin }>
+                    <Form.Button>Editar</Form.Button>
+                    <div className={ excluir } onClick={() => removerCupom() }>Excluir cupom</div>
+                </div>
             </Form>
         </div>
     )

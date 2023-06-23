@@ -1,0 +1,24 @@
+@use "@/styles/utils.module.scss";
+@use "@/styles/cores.module.scss";
+
+.arrow {
+    margin-top: utils.converterPxParaRem(20px);
+}
+
+.logo {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: utils.converterPxParaRem(35px);
+}
+
+.margin {
+    margin-bottom: utils.converterPxParaRem(60px);
+    display: flex;
+    align-items: center;
+}
+
+.excluir {
+    color: cores.$vermelho;
+    margin-left: utils.converterPxParaRem(30px);
+    font-size: utils.converterPxParaRem(12px);
+}

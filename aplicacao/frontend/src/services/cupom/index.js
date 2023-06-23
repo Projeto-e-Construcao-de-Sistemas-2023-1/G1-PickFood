@@ -26,6 +26,22 @@ const criarCupom = ({ titulo, valor, idRestaurante }) => {
     return cupom;
 }
 
+const excluirCupom = (id) => {
+    let cupons = buscarTodosCupons();
+    let indice;
+
+    for (const i in cupons) {
+
+        if (cupons[i].id === id) {
+            indice = i;
+        }
+    }
+
+    cupons.splice(indice, 1);
+
+    localStorage.setItem("cupons", JSON.stringify(cupons));
+}
+
 const buscarCupomPorId = (id) => {
     const cupons = buscarTodosCupons();
 
@@ -84,6 +100,7 @@ const buscarCuponsPorRestaurante = (idRestaurante) => {
 export {
     buscarTodosCupons,
     criarCupom,
+    excluirCupom,
     atualizarCupom,
     buscarCupomPorId,
     buscarCuponsPorRestaurante
