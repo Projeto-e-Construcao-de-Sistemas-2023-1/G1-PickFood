@@ -1,0 +1,41 @@
+'use client';
+
+import Form from "@/components/Form";
+import Image from "next/image";
+import Link from "next/link";
+import {
+    divider,
+    titulo,
+    link,
+    botao
+} from "./styles.module.scss";
+import { useContext, useState } from "react";
+import { AuthContext } from "@/contexts";
+import { useRouter } from "next/navigation";
+import { excluirCliente } from "@/services/cliente";
+import Button from "@/components/Button";
+import RestaurantesFav from "@/components/RestaurantesFav/PratoFav";
+
+export default function MeusFavoritos() {
+
+
+    const [ativo, setAtivo] = useState(false);
+
+    const { usuario } = useContext(AuthContext);
+    const router = useRouter();
+
+    const excluir = () => {
+        
+        excluirCliente(usuario.id);
+
+        router.push("/auth/login");
+    }
+
+    return(
+        <>
+            <h2 className={ titulo }>Pratos</h2>
+           
+           <RestaurantesFav></RestaurantesFav>
+        </>
+    )
+}
