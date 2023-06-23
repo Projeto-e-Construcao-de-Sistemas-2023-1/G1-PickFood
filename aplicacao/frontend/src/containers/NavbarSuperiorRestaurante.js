@@ -36,6 +36,11 @@ export default function NavbarSuperiorRestaurnte() {
                         <NavbarSuperior.LabelDropdown>Meu Perfil</NavbarSuperior.LabelDropdown>
                     </NavbarSuperior.LinkDropdown>
 
+                    <NavbarSuperior.LinkDropdown href={ "/restaurante/meus-cupons" } >
+                        <NavbarSuperior.IconeDropdown src={ "/icons/meu-perfil.svg" }/>
+                        <NavbarSuperior.LabelDropdown>Meus Cupons</NavbarSuperior.LabelDropdown>
+                    </NavbarSuperior.LinkDropdown>
+
                     <NavbarSuperior.LinkDropdown onClick={ () => logout() } >
                         <NavbarSuperior.IconeDropdown src={ "/icons/sair.svg" }/>
                         <NavbarSuperior.LabelDropdown>Sair</NavbarSuperior.LabelDropdown>
