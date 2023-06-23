@@ -31,7 +31,7 @@ const MeusCupons = () => {
     return(
 
         <div>
-            <Retornar navigate={() => router.back()}/>
+            <Retornar navigate={() => router.push("/restaurante/home")}/>
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <TituloPagina textAlign="center">Meus Cupons</TituloPagina>
                 <Icone src={ "/icons/adicionar.svg" } style={{ marginLeft: 20 }} onClick={ () => router.push("restaurante/meus-cupons/criar-cupom") }/>

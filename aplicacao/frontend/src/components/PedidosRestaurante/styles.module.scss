@@ -8,6 +8,8 @@
     display: flex;
     color: cores.$preto;
     margin-bottom: utils.converterPxParaRem(12px);
+    justify-content: space-between;
+    width: 100%;
 }
 
 .lista {

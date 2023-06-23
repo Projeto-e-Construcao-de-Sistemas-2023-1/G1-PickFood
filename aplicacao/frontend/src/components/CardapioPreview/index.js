@@ -20,13 +20,16 @@ export default function CardapioPreview({ pratos }) {
 
                     return(
                         <li className={texto} key={ prato.id }>
-                            <Image className={foto}
-                                src="/icons/foto.svg"
-                                width={ 21 }
-                                height={ 21 }
-                                alt="Icone de seta apontando para trás."
-                            />
-                            <p>{ prato.nome }</p>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+
+                                <Image className={foto}
+                                    src="/icons/foto.svg"
+                                    width={ 21 }
+                                    height={ 21 }
+                                    alt="Icone de seta apontando para trás."
+                                    />
+                                <p>{ prato.nome }</p>
+                            </div>
                             <div className={ preco }>R$ { prato.preco }</div>
                         </li>
                 )

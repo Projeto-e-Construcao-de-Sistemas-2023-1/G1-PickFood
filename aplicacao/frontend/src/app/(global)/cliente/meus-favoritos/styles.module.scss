@@ -9,6 +9,6 @@
 
 .botao {
     display: block;
-    margin: utils.converterPxParaRem(36px) auto 0 auto;
+    margin: utils.converterPxParaRem(36px) auto utils.converterPxParaRem(40px) auto;
 
 }

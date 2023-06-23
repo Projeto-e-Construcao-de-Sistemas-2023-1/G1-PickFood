@@ -43,35 +43,41 @@ const ItemCardapioRestaurante = ({ prato, ...restProps }) => {
             </Modal>
 
             <li className={texto} key={ prato.id } id={ prato.id} { ...restProps } style={{ display: excluido ? "none" : ""}}>
-                <Icone className={foto}
-                    src="/icons/foto.svg"
-                    width={ 21 }
-                    height={ 21 }
-                    alt="Icone de seta apontando para trás."
-                />
-                <div className={ nome }>{ prato.nome }
-                <div className={ preco }>R$ { prato.preco }</div>
+                <div style={{ display: "flex", alignContent: "center"}}>
+
+                    <Icone className={foto}
+                        src="/icons/foto.svg"
+                        width={ 21 }
+                        height={ 21 }
+                        alt="Icone de seta apontando para trás."
+                        />
+                    <div className={ nome }>{ prato.nome }
+                        <div className={ preco }>R$ { prato.preco }</div>
+                    </div>
                 </div>
-                <Link href={"/restaurante/editar-prato/" + prato.id}>
+                <div>
+
+                    <Link href={"/restaurante/editar-prato/" + prato.id}>
+                        <Icone
+                        src="/icons/editar.svg"
+                        className={ editar }
+                        width={ 14 }
+                        height={ 14 }
+                        alt="Icone de editar."
+                        />
+                    </Link>
+                    
                     <Icone
-                    src="/icons/editar.svg"
-                    className={ editar }
-                    width={ 14 }
-                    height={ 14 }
-                    alt="Icone de editar."
+                        src="/icons/lixo.svg"
+                        className={ lixo }
+                        width={ 14 }
+                        height={ 14 }
+                        onClick={ () => {
+                            setAtivo(prev => !prev)
+                        } }
+                        alt="Icone de lixo."
                     />
-                </Link>
-                
-                <Icone
-                    src="/icons/lixo.svg"
-                    className={ lixo }
-                    width={ 14 }
-                    height={ 14 }
-                    onClick={ () => {
-                        setAtivo(prev => !prev)
-                    } }
-                    alt="Icone de lixo."
-                />
+                </div>
             </li>
         </>
     )
