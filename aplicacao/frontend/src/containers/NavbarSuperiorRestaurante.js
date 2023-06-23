@@ -37,7 +37,7 @@ export default function NavbarSuperiorRestaurnte() {
                     </NavbarSuperior.LinkDropdown>
 
                     <NavbarSuperior.LinkDropdown href={ "/restaurante/meus-cupons" } >
-                        <NavbarSuperior.IconeDropdown src={ "/icons/meu-perfil.svg" }/>
+                        <NavbarSuperior.IconeDropdown src={ "/icons/ticket_preto.svg" }/>
                         <NavbarSuperior.LabelDropdown>Meus Cupons</NavbarSuperior.LabelDropdown>
                     </NavbarSuperior.LinkDropdown>
 
