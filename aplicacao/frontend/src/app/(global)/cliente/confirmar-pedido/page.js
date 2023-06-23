@@ -56,7 +56,7 @@ const ConfirmarPedido = () => {
             idCliente: usuario.id,
             idRestaurante: itens[0].prato.idRestaurante,
             formaPagamento,
-            totalPedido: calcularTotalPedido(),
+            totalPedido: calcularValorTotalItens(itens),
             itens
         });
 
