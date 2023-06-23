@@ -26,6 +26,22 @@ const criarCupom = ({ titulo, valor, idRestaurante }) => {
     return cupom;
 }
 
+const buscarCupomPorId = (id) => {
+    const cupons = buscarTodosCupons();
+
+    if (cupons === null || cupons.length === 0) {
+        return null;
+    }
+
+    for (const cuponsExistentes of cupons) {
+        if(cuponsExistentes.id === id) {
+            return cuponsExistentes;
+        }
+    }
+
+    return null;
+}
+
 const buscarTodosCupons = () => {
 
     return JSON.parse(localStorage.getItem("cupons"));
@@ -51,9 +67,25 @@ const atualizarCupom = (id, { titulo, valor }) => {
     localStorage.setItem("cupons", JSON.stringify(cupons));
 }
 
+const buscarCuponsPorRestaurante = (idRestaurante) => {
+
+    const cupons = buscarTodosCupons();
+    let cuponsRestaurante = [];
+
+    for (const cupom of cupons) {
+        if (cupom.idRestaurante === idRestaurante) {
+            cuponsRestaurante.push(cupom);
+        }
+    }
+
+    return cuponsRestaurante;
+}
+
 export {
     buscarTodosCupons,
     criarCupom,
-    atualizarCupom
+    atualizarCupom,
+    buscarCupomPorId,
+    buscarCuponsPorRestaurante
 }
 

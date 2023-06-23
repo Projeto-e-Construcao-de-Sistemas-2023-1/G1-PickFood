@@ -1,0 +1,29 @@
+@use "@/styles/utils.module";
+@use "@/styles/cores.module";
+
+.cupom_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: utils.converterPxParaRem(20px);
+}
+
+.cupom_dados {
+    font-size: utils.converterPxParaRem(13px);
+    display: flex;
+    align-items: center;
+}
+
+.cupom_icone {
+    margin-right: utils.converterPxParaRem(10px);
+}
+
+.cupom_titulo {
+    margin-bottom: utils.converterPxParaRem(2px);
+}
+
+.cupom_valor {
+    font-size: utils.converterPxParaRem(11px);
+    color: cores.$verdeClaro;
+    
+}
