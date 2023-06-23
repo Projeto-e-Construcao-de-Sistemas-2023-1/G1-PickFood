@@ -336,11 +336,14 @@ CREATE TABLE `pedido` (
   `valor_total` float DEFAULT NULL,
   `cliente` int NOT NULL,
   `restaurante` int NOT NULL,
+  `cupom` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_cliente_pedido_idx` (`cliente`),
   KEY `fk_restaurante_pedido_idx` (`restaurante`),
+  KEY `fk_cupom_pedido_idx` (`cupom`),
   CONSTRAINT `fk_cliente_pedido` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`),
-  CONSTRAINT `fk_restaurante_pedido` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`id`)
+  CONSTRAINT `fk_restaurante_pedido` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`id`),
+  CONSTRAINT `fk_cupom_pedido` FOREIGN KEY (`cupom`) REFERENCES `cupom` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -520,40 +523,13 @@ LOCK TABLES `cupom` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `restaurante_cupom`
---
-
-DROP TABLE IF EXISTS `restaurante_cupom`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `restaurante_cupom` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `restaurante` int NOT NULL,
-  `cupom` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_cupom_restaurante_cupom_idx` (`cupom`),
-  KEY `fk_restaurante_cupom_restaurante_idx` (`restaurante`),
-  CONSTRAINT `fk_cupom_restaurante_cupom` FOREIGN KEY (`cupom`) REFERENCES `cupom` (`id`),
-  CONSTRAINT `fk_restaurante_cupom_restaurante` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `restaurante_cupom`
---
-
-LOCK TABLES `restaurante_cupom` WRITE;
-/*!40000 ALTER TABLE `restaurante_cupom` DISABLE KEYS */;
-/*!40000 ALTER TABLE `restaurante_cupom` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping events for database 'mydb'
 --
 
 --
 -- Dumping routines for database 'mydb'
 --
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
