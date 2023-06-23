@@ -49,6 +49,10 @@ const buscarRestaurantesFavoritosPorCliente = (idCliente) => {
     const favoritos = buscarTodosFavoritos();
     let favoritosCliente = [];
 
+    if (favoritos === null) {
+        return;
+    }
+
     for (const favorito of favoritos) {
         if (favorito.idCliente === idCliente) {
             favoritosCliente.push(favorito);
