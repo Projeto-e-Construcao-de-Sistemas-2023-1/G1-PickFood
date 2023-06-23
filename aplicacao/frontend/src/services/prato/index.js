@@ -101,7 +101,7 @@ const buscarPratosPorRestaurante = (idRestaurante) => {
 
 const buscarPratosPorNome = ({
     nome
-}) => {
+}, ordenacao) => {
     const pratos = buscarPratos();
     let pratosBuscados = [];
 
@@ -111,13 +111,41 @@ const buscarPratosPorNome = ({
 
     for (const prato of pratos) {
         
-        if (prato.nome.includes(nome)) {
+        if (prato.nome.toLowerCase().includes(nome.toLowerCase())) {
         
             pratosBuscados.push(prato);
         }
     }
 
+    pratosBuscados.sort((a, b) => {
+
+        return ordenar(a, b, ordenacao);
+    });
+
     return pratosBuscados;
+}
+
+const ordenar = (a, b, criterio) => {
+
+    switch (criterio) {
+        case 0:
+            if (a.nome < b.nome) return -1;
+            if (a.nome > b.nome) return 1;
+            return 0;
+            
+        case 1:
+            if (a.nome < b.nome) return 1;
+            if (a.nome > b.nome) return -1;
+            return 0;
+        case 2:
+            if (a.preco < b.preco) return -1;
+            if (a.preco > b.preco) return 1;
+            return 0;
+        case 3:
+            if (a.preco < b.preco) return 1;
+            if (a.preco > b.preco) return -1;
+            return 0;
+    }
 }
 
 const buscarPratoPorId = (id) => {

@@ -13,7 +13,8 @@ import {
     restricoes,
     restricao,
     estrelas,
-    estrela
+    estrela,
+    preco
 } from "./styles.module.scss";
 import { buscarTodosFavoritosPratoCliente, criarFavoritoPratoClinete, excluirFavoritoPorClienteEPrato } from "@/services/favoritos_prato_cliente";
 import Icone from "@/components/Icone";
@@ -88,6 +89,7 @@ const ItemListaPratos = ({ prato }) => {
                         <div className={ restricao }>Sem lactose</div>
                         <div className={ restricao }>Low carb</div>
                     </div>
+                    <div className={ preco }>R$ { prato.preco }</div>
                 </div>
                 <div className={ estrelas }>
                     <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>

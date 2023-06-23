@@ -169,7 +169,9 @@ const excluirRestaurante = (id) => {
 
 const buscarRestaurantes = ({
     nome
-}) => {
+}, ordenacao) => {
+
+
     const restaurantes = buscarTodosRestaurantes();
     let restaurantesBuscados = [];
 
@@ -179,13 +181,33 @@ const buscarRestaurantes = ({
 
     for (const restaurante of restaurantes) {
         
-        if (restaurante.nome_fantasia.includes(nome)) {
+        if (restaurante.nome_fantasia.toLowerCase().includes(nome.toLowerCase())) {
         
             restaurantesBuscados.push(restaurante);
         }
     }
 
+    restaurantesBuscados.sort((a, b) => {
+
+        return ordenar(a, b, ordenacao);
+    });
+
     return restaurantesBuscados;
+}
+
+const ordenar = (a, b, criterio) => {
+
+    switch (criterio) {
+        case 0:
+            if (a.nome_fantasia < b.nome_fantasia) return -1;
+            if (a.nome_fantasia > b.nome_fantasia) return 1;
+            return 0;
+            
+        case 1:
+            if (a.nome_fantasia < b.nome_fantasia) return 1;
+            if (a.nome_fantasia > b.nome_fantasia) return -1;
+            return 0;
+    }
 }
 
 export {

@@ -33,6 +33,13 @@
 
 }
 
+.preco {
+    color: cores.$verdeClaro;
+    font-size: utils.converterPxParaRem(11px);
+
+    margin-top: utils.converterPxParaRem(10px);
+}
+
 .restricao {
     margin-right: utils.converterPxParaRem(5px);
 }
