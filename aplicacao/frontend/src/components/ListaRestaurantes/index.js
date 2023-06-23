@@ -5,10 +5,10 @@ import {
 } from "./styles.module.scss";
 import ItemListaRestaurantes from "./ItemListaRestaurantes";
 
-export default function ListaRestaurantes({ restaurantes }) {
+export default function ListaRestaurantes({ restaurantes, ...restProps }) {
 
     return(
-        <ul className={ lista }>
+        <ul className={ lista } { ...restProps }>
             {
                 restaurantes?.map(restaurante => {
                     return(

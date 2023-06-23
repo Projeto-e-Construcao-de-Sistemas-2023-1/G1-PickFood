@@ -1,4 +1,5 @@
 import { v4 as uuid } from "uuid";
+import { buscarPratoPorId } from "../prato";
 
 const criarFavoritoPratoClinete = ({ idCliente, idPrato }) => {
 
@@ -43,8 +44,30 @@ const buscarTodosFavoritosPratoCliente = () => {
     return JSON.parse(localStorage.getItem("favoritos_prato_cliente"));
 }
 
+const buscarPratosFavoritosPorCliente = (idCliente) => {
+
+    const favoritos = buscarTodosFavoritosPratoCliente();
+    let favoritosCliente = [];
+
+    for (const favorito of favoritos) {
+        if (favorito.idCliente === idCliente) {
+            favoritosCliente.push(favorito);
+        }
+    }
+
+    const pratosFavoritosCliente = [];
+
+    for (const favoritoCliente of favoritosCliente) {
+        const pratoFavorito = buscarPratoPorId(favoritoCliente.idPrato);
+        pratosFavoritosCliente.push(pratoFavorito);
+    }
+
+    return pratosFavoritosCliente;
+}
+
 export {
     criarFavoritoPratoClinete,
     buscarTodosFavoritosPratoCliente,
-    excluirFavoritoPorClienteEPrato
+    excluirFavoritoPorClienteEPrato,
+    buscarPratosFavoritosPorCliente
 }

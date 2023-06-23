@@ -1,3 +1,5 @@
+'use client';
+
 import { AuthContext } from "@/contexts";
 import { buscarTodosFavoritos, criarFavorito, excluirFavoritoPorClienteERestaurante } from "@/services/favorito";
 import Image from "next/image";

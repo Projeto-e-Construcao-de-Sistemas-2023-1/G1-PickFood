@@ -1,3 +1,5 @@
+'use client';
+
 import { AuthContext } from "@/contexts";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +16,7 @@ import {
     estrela
 } from "./styles.module.scss";
 import { buscarTodosFavoritosPratoCliente, criarFavoritoPratoClinete, excluirFavoritoPorClienteEPrato } from "@/services/favoritos_prato_cliente";
+import Icone from "@/components/Icone";
 
 const ItemListaPratos = ({ prato }) => {
     
@@ -59,6 +62,7 @@ const ItemListaPratos = ({ prato }) => {
             {
                 ehFavorito || ehFavoritado(prato.id) ?
                     <Image
+                
                     className={ favorito } 
                         width={10} 
                         height={15} 
@@ -86,10 +90,10 @@ const ItemListaPratos = ({ prato }) => {
                     </div>
                 </div>
                 <div className={ estrelas }>
-                    <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
-                    <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
-                    <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
-                    <Image className={ estrela } src="/icons/estrela.svg" width={10} height={10} alt="Estrela de avaliaçao"/>
+                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
+                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
+                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
+                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
                 </div>
             </Link>
         </li>
