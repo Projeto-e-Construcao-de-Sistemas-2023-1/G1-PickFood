@@ -30,11 +30,11 @@ const MeusFavoritos = () => {
         console.log(pratosFavoritos);
         console.log(restaurantesFavoritos);
 
-        if (pratosFavoritos.length > 2) {
+        if (pratosFavoritos?.length > 2) {
             pratosFavoritos.splice(2, pratosFavoritos.length - 1);
         }
 
-        if (restaurantesFavoritos.length > 2) {
+        if (restaurantesFavoritos?.length > 2) {
             restaurantesFavoritos.splice(2, restaurantesFavoritos.length - 1);
         }
 

@@ -48,7 +48,7 @@ const buscarRestaurantesFavoritosPorCliente = (idCliente) => {
 
     const favoritos = buscarTodosFavoritos();
     let favoritosCliente = [];
-
+    
     if (favoritos === null) {
         return;
     }
