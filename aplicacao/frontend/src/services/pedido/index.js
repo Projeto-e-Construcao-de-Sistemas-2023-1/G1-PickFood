@@ -99,17 +99,19 @@ const buscarPedidoPorCodigo = (codigo) => {
     return null;
 }
 
-const cancelarPedido = (id) => {
+const cancelarPedido = (codigo) => {
 
     let pedidos = buscarTodosPedidos();
     let indice;
 
     for (const i in pedidos) {
 
-        if (pedidos[i].id === id) {
+        if (pedidos[i].codigo === codigo) {
             indice = i;
         }
     }
+
+    console.log(pedidos[indice]);
 
     pedidos[indice] = {
         ...pedidos[indice],
