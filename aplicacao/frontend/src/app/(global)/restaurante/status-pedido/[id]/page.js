@@ -12,22 +12,24 @@ import {
     textoSecundario,
     input,
     label,
-    checkboxes
+    checkboxes,
+    botao
 } from "./styles.module.scss"
 import { useForm } from "react-hook-form";
 import Form from "@/components/Form";
 import { useRouter } from "next/navigation";
 import StatusPedido from "@/components/StatusPedido";
 import { useEffect, useState } from "react";
-import { buscarPedidoPorCodigo } from "@/services/pedido";
+import { atualizarStatusPedido, buscarPedidoPorCodigo } from "@/services/pedido";
 import { buscarClientePorId } from "@/services/cliente";
 import { buscarItensPedidoPorPedido } from "@/services/itemPedido";
+import { Step, StepLabel, Stepper } from "@mui/material";
+import Button from "@/components/Button";
 
 export default function Pedidos({ params: { id }}) {
 
-    const router = useRouter();
+    const [passoAtivo, setPassoAtivo] = useState(0);
 
-    const { register, handleSubmit: submit, formState: { errors } } = useForm();
     const [pedido, setPedido] = useState({});
     const [cliente, setCliente] = useState({});
     const [itensPedido, setItensPedido] = useState([]);
@@ -44,18 +46,8 @@ export default function Pedidos({ params: { id }}) {
         setItensPedido(itensPedidoExistentes)
         setPedido(pedidoExistente);
         setCliente(clienteExistente);
+        setPassoAtivo(pedidoExistente.status);
     }, [id]);
-
-    const handleSubmit = (data) => {
-
-        const { status } = data;
-
-        console.log(data);
-
-       
-
-        router.push("/restaurante/pedidos");
-    }
 
     const exibirStatus = (pedido) => {
 
@@ -69,6 +61,12 @@ export default function Pedidos({ params: { id }}) {
         };
 
         return opcoesStatus[pedido.status];
+    }
+
+    const atualizarStatus = () => {
+        setPassoAtivo(prev => prev + 1);
+
+        atualizarStatusPedido(id);
     }
 
     return (
@@ -93,31 +91,25 @@ export default function Pedidos({ params: { id }}) {
 
             <div className={ divider }></div>
 
-            <Form onSubmit={ submit(handleSubmit) }>
-                <Form.Erros erros = { errors }/>
-                <div className={ checkboxes }>
-                    <Form.Field className={ checkbox }>
-                        <Form.Input type= "radio" name ="status" className={ input }/>
-                        <Form.Label htmlFor="a" className= { label }>Confirmar pedido</Form.Label>
-                    </Form.Field>
-                    <Form.Field className={ checkbox }>
-                        <Form.Input type= "radio" name ="status" className={ input }/>
-                        <Form.Label htmlFor="b" className= { label }>Em preparação</Form.Label>
-                    </Form.Field>
-                    <Form.Field className={ checkbox }>
-                        <Form.Input type= "radio" name ="status" className={ input }/>
-                        <Form.Label htmlFor="c" className= { label }>A caminho</Form.Label>
-                    </Form.Field>
-                    <Form.Field className={ checkbox }>
-                        <Form.Input type= "radio" name ="status" className={ input }/>
-                        <Form.Label htmlFor="d" className= { label }>Entregue</Form.Label>
-                    </Form.Field>
-                </div>
-                
-                
-                <Form.Button type="submit">Atualizar Status</Form.Button>
-            </Form>
+            <Stepper activeStep={ passoAtivo } orientation="vertical" >
+                <Step>
+                    <StepLabel>Aguardando confirmação</StepLabel>
+                </Step>
+                <Step>
+                    <StepLabel>Confirmado</StepLabel>
+                </Step>
+                <Step>
+                    <StepLabel>Em preparo</StepLabel>
+                </Step>
+                <Step>
+                    <StepLabel>A caminho</StepLabel>
+                </Step>
+                <Step>
+                    <StepLabel>Entregue</StepLabel>
+                </Step>
+            </Stepper>
             
+            <Button className={ botao } onClick={ atualizarStatus }>Atualizar pedido</Button>
         </>
     )
 }

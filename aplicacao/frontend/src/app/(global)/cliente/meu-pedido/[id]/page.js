@@ -46,6 +46,7 @@ const MeuPedido = ({ params: { id }}) => {
                 <p className={ dados_entrega_texto }>Entregar em:</p>
                 <p className={ dados_entrega_endereco }>Endereço de entrega</p>
             </div>
+            <
             <div className={ divider }></div>
             <div className={ pagamento }>
                 <p className={ pagamento_titulo }>Pagamento</p>

@@ -119,11 +119,34 @@ const cancelarPedido = (id) => {
     localStorage.setItem("pedidos", JSON.stringify(pedidos));
 }
 
+const atualizarStatusPedido = (codigo) => {
+
+    let pedidos = buscarTodosPedidos();
+    let indice;
+
+    for (const i in pedidos) {
+
+        if (pedidos[i].codigo === codigo) {
+            indice = i;
+        }
+    }
+
+    const statusAtual = pedidos[indice].status;
+
+    pedidos[indice] = {
+        ...pedidos[indice],
+        status: statusAtual + 1
+    }
+
+    localStorage.setItem("pedidos", JSON.stringify(pedidos));
+}
+
 export {
     buscarTodosPedidos,
     criarPedido,
     buscarPedidosPorCliente,
     cancelarPedido,
     buscarPedidosPorRestaurante,
-    buscarPedidoPorCodigo
+    buscarPedidoPorCodigo,
+    atualizarStatusPedido
 }

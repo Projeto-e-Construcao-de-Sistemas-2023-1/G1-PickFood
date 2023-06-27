@@ -1,0 +1,33 @@
+@use "../../styles/cores.module.scss";
+@use "../../styles/utils.module.scss";
+
+
+.texto {
+    font-weight: 400;
+    font-size: utils.converterPxParaRem(12px);
+    display: flex;
+    color: cores.$preto;
+    margin-bottom: utils.converterPxParaRem(12px);
+    justify-content: space-between;
+    width: 100%;
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.status {
+    margin-top: utils.converterPxParaRem(10px);
+    color: cores.$preto;
+}
+
+.nome {
+    color: cores.$preto;
+}
+
+.editar {
+    margin-left: utils.converterPxParaRem(80px);
+    color: cores.$preto;
+}
