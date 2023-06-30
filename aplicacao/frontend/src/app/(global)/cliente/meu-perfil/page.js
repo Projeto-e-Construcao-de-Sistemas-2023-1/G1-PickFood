@@ -48,7 +48,7 @@ export default function MeuPerfil() {
                 </Modal.Rodape>
             </Modal>
 
-            <TituloPagina>Meus Endereços</TituloPagina>
+            <TituloPagina>Meus Perfil</TituloPagina>
             <ul className={ lista }>
                 <li className={ item }>
                     <Link className={ link } href={ "/cliente/meu-perfil/meus-dados" }>

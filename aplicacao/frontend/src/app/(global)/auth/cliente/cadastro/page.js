@@ -152,8 +152,8 @@ export default function CadastroCliente() {
                     <Form.Label>Celular (DDD + número)</Form.Label>
                     <Form.Input 
                         registrar={{ ...registrar("telefone", { 
-                            required: mensagens.required("telefone"), 
-                            minLength: { message: mensagens.minLength("telefone", 11), value: 11 }, 
+                            required: mensagens.required("Celular"), 
+                            minLength: { message: mensagens.minLength("Celular", 11), value: 11 }, 
                             onChange: (e) => {
 
                                 const valor = e.target.value;

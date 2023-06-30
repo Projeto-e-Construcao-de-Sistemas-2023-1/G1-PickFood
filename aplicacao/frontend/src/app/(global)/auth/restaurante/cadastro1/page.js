@@ -57,7 +57,7 @@ export default function Cadastro1() {
                 <Form onSubmit={ submit(handleSubmit) }>
                     <Form.Erros erros={erros}/>
                     <Form.Field>
-                        <Form.Label>Email</Form.Label>
+                        <Form.Label>E-mail</Form.Label>
                         <Form.Input type="email" registrar = {{ ...register("email", {required: mensagens.required("email")}) }}/>
                     </Form.Field>
                     

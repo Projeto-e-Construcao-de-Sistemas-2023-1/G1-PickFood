@@ -117,7 +117,7 @@ export default function Login() {
                 
 
                 <Form.Field>
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>E-mail</Form.Label>
                     <Form.Input registrar={{ ...registrar("email", { required: mensagens.required("email") } ) }} type={ "email" }/>
                 </Form.Field>
                 
