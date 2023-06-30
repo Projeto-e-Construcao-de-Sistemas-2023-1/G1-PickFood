@@ -2,10 +2,10 @@
 
 .titulo {
     text-align: center;
+    margin-right:  utils.converterPxParaRem(15px);
 }
 
-.subtitulo {
-    font-size: utils.converterPxParaRem(13px);
-    font-weight: bold;
-    margin-bottom: utils.converterPxParaRem(20px);
+.center {
+    display: flex;
+    width: utils.converterPxParaRem(200px);
 }

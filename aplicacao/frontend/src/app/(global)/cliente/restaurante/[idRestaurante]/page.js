@@ -8,11 +8,13 @@ import CardapioCliente from "@/components/CardapioCliente";
 import { useRouter } from "next/navigation";
 import {
     titulo,
-    subtitulo
+    center,
+    icone
 } from "./styles.module.scss";
 import { useEffect, useState } from "react";
 import { buscarRestaurantePorId } from "@/services/restaurante";
 import { buscarPratosPorRestaurante } from "@/services/prato";
+import Icone from "@/components/Icone";
 
 const Restaurante = ({ params: { idRestaurante } }) => {
 
@@ -34,7 +36,14 @@ const Restaurante = ({ params: { idRestaurante } }) => {
     return(
         <>
             <Retornar navigate={ () => router.push("/cliente/home") }/>
-            <TituloPagina className={ titulo }>{ restaurante.nome_fantasia }</TituloPagina>
+            <div className={ center }>
+                <TituloPagina className={ titulo }>{ restaurante.nome_fantasia }</TituloPagina>
+                <Icone className= { icone }                 
+                    src={ "/icons/mensagem.svg" }
+                    alt="Icone de círculo com um + no centro."
+                />
+            </div>
+           
             <CardapioCliente pratos={ pratos } />
         </>
     )
