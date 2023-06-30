@@ -101,6 +101,26 @@ const atualizarCliente = (id, {
     localStorage.setItem("clientes", JSON.stringify(clientes));
 }
 
+const redefinirSenhaCliente= (id, novaSenha) => {
+
+    let clientes = buscarClientes();
+    let indice;
+
+    for (const i in clientes) {
+
+        if (clientes[i].id === id) {
+            indice = i;
+        }
+    }
+
+    clientes[indice] = {
+        ...clientes[indice],
+        senha: novaSenha
+    }
+
+    localStorage.setItem("clientes", JSON.stringify(clientes));
+}
+
 const excluirCliente = (id) => {
 
     let clientes = buscarClientes();
@@ -123,5 +143,6 @@ export {
     buscarClientePorEmail,
     buscarClientePorId,
     atualizarCliente,
-    excluirCliente
+    excluirCliente,
+    redefinirSenhaCliente
 }

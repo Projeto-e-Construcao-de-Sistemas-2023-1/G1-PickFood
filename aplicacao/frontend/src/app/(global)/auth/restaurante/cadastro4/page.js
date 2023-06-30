@@ -39,19 +39,9 @@ export default function Cadastro4() {
 
     return (
         <Container>
-            <Link href={"auth/restaurante/cadastro3"}>
-                <Image
-                src="/icons/back.svg"
-                width={ 21 }
-                height={ 21 }
-                className={ arrow }
-                alt="Icone de seta apontando para trás."
-                />
-            </Link>
+           
             
-            <Logo className={ logo }/>
-            
-            <TituloPagina>Risco de Contaminação Cruzada</TituloPagina>
+                <TituloPagina textAlign="center">Risco de Contaminação Cruzada</TituloPagina>
 
                 <Form onSubmit={ submit(handleSubmit) }>
                     <Form.Erros erros = { errors }/>

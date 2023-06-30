@@ -79,19 +79,9 @@ export default function Cadastro3() {
 
     return (
         <Container>
-            <Link href={"auth/restaurante/cadastro2"}>
-                <Image
-                src="/icons/back.svg"
-                width={ 21 }
-                height={ 21 }
-                className={ arrow }
-                alt="Icone de seta apontando para trás."
-                />
-            </Link>
-            
-            <Logo className={ logo }/>
+           
 
-            <TituloPagina>Informações de Endereço</TituloPagina>
+            <TituloPagina textAlign="center">Informações de Endereço</TituloPagina>
 
             <div className={forms}>
                 <Form onSubmit={ submit(handleSubmit) }>

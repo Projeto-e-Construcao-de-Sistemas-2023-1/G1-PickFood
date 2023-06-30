@@ -210,6 +210,25 @@ const ordenar = (a, b, criterio) => {
     }
 }
 
+const redefinirSenhaRestaurante = (id, novaSenha) => {
+    let restaurantes = buscarTodosRestaurantes();
+    let indice;
+
+    for (const i in restaurantes) {
+
+        if (restaurantes[i].id === id) {
+            indice = i;
+        }
+    }
+
+    restaurantes[indice] = {
+        ...restaurantes[indice],
+        senha: novaSenha
+    }
+
+    localStorage.setItem("restaurantes", JSON.stringify(restaurantes));
+}
+
 export {
     criarRestaurante,
     buscarRestaurantePorEmail,
@@ -217,5 +236,6 @@ export {
     atualizarRestaurante,
     excluirRestaurante,
     buscarTodosRestaurantes,
-    buscarRestaurantes
+    buscarRestaurantes,
+    redefinirSenhaRestaurante
 }

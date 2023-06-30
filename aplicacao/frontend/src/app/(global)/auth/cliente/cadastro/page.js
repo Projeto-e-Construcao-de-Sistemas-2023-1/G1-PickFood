@@ -73,17 +73,8 @@ export default function CadastroCliente() {
             
     return(
         <>
-            <Link href={"/auth/login"}>
-            <Image
-                src="/icons/back.svg"
-                width={ 21 }
-                height={ 21 }
-                className={ arrow }
-                alt="Icone de seta apontando para trás."
-            />
-            </Link>
 
-            <Logo className={ logo }/>
+            
             <Form onSubmit={ tratarFormulario(cadastrar) }>
 
                 <Form.Erros erros={ erros } />
