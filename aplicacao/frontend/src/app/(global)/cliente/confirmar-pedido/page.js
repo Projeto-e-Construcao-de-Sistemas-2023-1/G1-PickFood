@@ -20,11 +20,16 @@ import {
     botao_confirmar,
     pagamento,
     pagamento_titulo,
-    pagamento_lista,
-    pagamento_item,
-    pagamento_texto,
     divider,
-    icone
+    icone,
+    textoCupom,
+    cupom_item,
+    cupom_dados,
+    cupom_icone,
+    cupom_info,
+    cupom_titulo,
+    cupom_valor,
+    botoes
 } from "./styles.module.scss";
 import Retornar from "@/components/Retornar";
 import { useRouter } from "next/navigation";
@@ -34,10 +39,16 @@ import { criarPedido } from "@/services/pedido";
 import { limpar } from "@/services/carrinho";
 import { calcularValorTotalItens } from "@/utils";
 import FormasPagamento from "@/components/FormasPagamento";
+import Modal from "@/components/Modal";
+import { buscarCupomPorId, buscarCuponsPorRestaurante, buscarTodosCupons } from "@/services/cupom";
 
 const ConfirmarPedido = () => {
 
     const router = useRouter();
+
+    const [cupons, setCupons] = useState([]);
+    const [cupom, setCupom] = useState({});
+    const [ativo, setAtivo] = useState(false);
 
     const { itens } = useContext(CarrinhoContext);
     const { usuario } = useContext(AuthContext);
@@ -64,8 +75,53 @@ const ConfirmarPedido = () => {
 
         router.push("/cliente/meus-pedidos");
     }
+    
+        useEffect(() => {
+            const cuponsExistentes = buscarCuponsPorRestaurante(idRestaurante);
+    
+            setCupons(cuponsExistentes);
+        }, [idRestaurante]);
 
     return(
+    <>
+    
+    <Modal ativo={ ativo }>
+                    <Modal.Cabecalho>
+                        <Modal.Icone svg="/icons/ticket_verde.svg"/>
+                        <Modal.Titulo>Cupons disponíveis</Modal.Titulo>
+                    </Modal.Cabecalho>
+                    <ul>
+                {
+                    cupons?.map(cupom => {
+
+                        return (
+                            <li key={ cupom.id } className={ cupom_item } style={{
+                                backgroundColor: cupom === cupom.id ? "#5ED0AE" : "initial"}} onClick={() => {
+                                    <p style={{ color: cupom === cupom.id ? "#F8F8F8" : "initial" }} className={ cupom_titulo }>{ cupom.nome }</p>
+                            }}>
+                                <div className={ cupom_dados }>
+                                    <Icone src={ "/icons/ticket_verde.svg" } className={ cupom_icone }/>
+                                    <div className={ cupom_info }>
+                                        <p className={ cupom_titulo }>{ cupom.titulo }</p>
+                                        <span className={ cupom_valor }>R$ { cupom.valor }</span>
+                                    </div>
+                                    <p style={{ color: cupom === cupom.nome ? "#F8F8F8" : "initial" }} className={ cupom_titulo }>{ cupom.nome }</p>
+                                </div>
+                            </li>
+                        )
+                    })
+                }
+                
+            </ul>
+                    <Modal.Rodape className={ botoes }>
+                        <Modal.BotaoConfirmar onClick={() => {
+                            setAtivo(false);
+                            setCupom(cupom.nome)
+                        }}/>
+                        <Modal.BotaoCancelar onClick={ () => setAtivo(false) }/>
+                    </Modal.Rodape>
+        </Modal>
+
         <div className={ container }>
             <div className={ pedido }>
                 <p className={ restaurante_nome }>Nome do restaurante</p>
@@ -109,6 +165,19 @@ const ConfirmarPedido = () => {
                 <p className={ dados_entrega_endereco }>Endereço de entrega</p>
             </div>
             <div className={ divider } style={{ display: formaEntrega === "Entregar" ? "block" : "none" }}></div>
+            <div className={ cupons }>
+                <Icone className= { cupom_icone }                 
+                    src={ "/icons/ticket_preto.svg" }
+                    alt="Icone cupom preto"
+                    onClick={ () => {
+                        setAtivo(prev => !prev)
+                            
+                        } }
+                />
+                <p className={ textoCupom }>{ cupom.nome }</p>
+            </div>
+
+            <div className={ divider }></div>
             <div className={ pagamento }>
                 <p className={ pagamento_titulo }>Pagamento</p>
                 <FormasPagamento formaPagamento={ formaPagamento} setFormaPagamento={ setFormaPagamento } />
@@ -134,6 +203,7 @@ const ConfirmarPedido = () => {
             </div>
             <Button className={ botao_confirmar } onClick={ () => confirmarPedido() }>Confirmar pedido</Button>
         </div>
+    </>
     )
 }
 

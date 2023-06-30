@@ -7,7 +7,7 @@ import {
     rodape,
     botao,
     botaoConfirmar,
-    botaoCancelar
+    botaoCancelar,
 } from "./styles.module.scss";
 import { createContext } from "react";
 

@@ -89,3 +89,70 @@
     width: utils.converterPxParaRem(232px);
     margin: utils.converterPxParaRem(17px) auto utils.converterPxParaRem(24px) auto;
 }
+
+.textoCupom {
+    text-align: center;
+    margin-left:  utils.converterPxParaRem(15px);
+    font-size: 12;
+}
+
+.cupons {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    flex-direction: row;
+}
+
+.textoCupom {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    flex-direction: row;
+}
+
+.texto {
+    margin: 0 auto;
+    display: flex;
+    font-size: 12;
+}
+
+.cupom_dados {
+    display: flex;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    flex-direction: row;
+}
+
+.cupom_info {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.cupom_icone {
+    margin-right: 15px;
+}
+
+.cupom_titulo {
+    margin-right: 70px;
+    flex-direction: row;
+}
+
+.cupom_item {
+    margin-bottom: utils.converterPxParaRem(10px);
+    padding: utils.converterPxParaRem(8px);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.5s ease-in-out all;
+    margin-right: 15px;
+    flex-direction: row;
+    margin: 0 auto;
+
+        &:hover {
+            background-color: cores.$cinza;
+        }
+}

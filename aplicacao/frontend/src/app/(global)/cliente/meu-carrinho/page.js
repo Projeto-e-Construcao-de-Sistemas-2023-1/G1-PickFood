@@ -11,7 +11,7 @@ import {
     botao,
     total,
     textoTotal,
-    valorTotal
+    valorTotal,
 } from "./styles.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -42,7 +42,7 @@ const MeuCarrinho = () => {
             <div className={ total }>
                 <p className={ textoTotal }>Total com a entrega:</p>
                 <p className={ valorTotal }>{ calcularValorTotalItens(itens) }</p>
-            </div>
+            </div>    
 
             <Button className={ botao } onClick={ () => {
                 if (itens?.length !== 0) {
