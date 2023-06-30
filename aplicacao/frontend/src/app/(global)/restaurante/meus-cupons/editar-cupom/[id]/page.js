@@ -49,7 +49,7 @@ const EditarCupom = ({ params: { id }}) => {
             <TituloPagina textAlign="center">Editar Cupom</TituloPagina>
             <Form onSubmit={ tratarFormulario(editar) }>
                 <Form.Erros erros={ erros }/>
-                <Form.Sucesso ativo={ sucesso }>Cupom criado com sucesso!</Form.Sucesso>
+                <Form.Sucesso ativo={ sucesso }>Cupom editado com sucesso!</Form.Sucesso>
 
                 <Form.Field>
                     <Form.Label>Título</Form.Label>
@@ -60,7 +60,11 @@ const EditarCupom = ({ params: { id }}) => {
                 </Form.Field>
                 <Form.Field>
                     <Form.Label>Valor</Form.Label>
-                    <Form.Input type={ "number" } registrar={{ ...registrar("valor", { required: mensagens.required("valor")}) }}/>
+                    <Form.Input step=".01" type={ "number" } registrar={{ ...registrar("valor", { required: mensagens.required("valor")}) }}/>
+                </Form.Field>
+                <Form.Field>
+                    <Form.Label>Preço mínimo</Form.Label>
+                    <Form.Input step=".01" type={ "number" } registrar={{ ...registrar("precoMinimo", { required: mensagens.required("Preço mínimo")}) }}/>
                 </Form.Field>
                 <div className={ margin }>
                     <Form.Button>Editar</Form.Button>

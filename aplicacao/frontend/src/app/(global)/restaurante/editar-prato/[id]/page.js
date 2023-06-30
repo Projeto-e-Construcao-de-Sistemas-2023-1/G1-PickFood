@@ -103,7 +103,7 @@ export default function EditarPrato({ params: { id } }) {
                     </Form.Field>
 
                     <Form.Field>
-                        <Form.Label>Url da imagem</Form.Label>
+                        <Form.Label>Link da imagem</Form.Label>
                         <Form.Input type={ "text" } registrar={{ ...registrar("foto") }}/>
                     </Form.Field>
 

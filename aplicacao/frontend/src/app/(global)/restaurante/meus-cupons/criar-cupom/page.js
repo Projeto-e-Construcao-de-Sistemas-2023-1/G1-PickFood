@@ -41,7 +41,12 @@ const CriarCupom = () => {
                 </Form.Field>
                 <Form.Field>
                     <Form.Label>Valor</Form.Label>
-                    <Form.Input type={ "number" } registrar={{ ...registrar("valor", { required: mensagens.required("valor")}) }}/>
+                    <Form.Input step=".01" type={ "number" } registrar={{ ...registrar("valor", { required: mensagens.required("valor")}) }}/>
+                </Form.Field>
+
+                <Form.Field>
+                    <Form.Label>Preço mínimo</Form.Label>
+                    <Form.Input step=".01" type={ "number" } registrar={{ ...registrar("precoMinimo", { required: mensagens.required("Preço mínimo")}) }}/>
                 </Form.Field>
                 <Form.Button>Criar</Form.Button>
             </Form>

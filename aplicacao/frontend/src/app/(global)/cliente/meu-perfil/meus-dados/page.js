@@ -104,7 +104,7 @@ export default function MeusDados() {
         <Form.Erros erros={erros} />
 
         <Form.Field>
-          <Form.Label>Nome</Form.Label>
+          <Form.Label>Nome e Sobrenome</Form.Label>
           <Form.Input type={"text"} registrar={{
             ...register("nome",
               {

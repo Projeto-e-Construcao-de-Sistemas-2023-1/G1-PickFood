@@ -1,11 +1,12 @@
 import { v4 as uuid } from "uuid";
 
-const criarCupom = ({ titulo, valor, idRestaurante }) => {
+const criarCupom = ({ titulo, valor, precoMinimo, idRestaurante }) => {
 
     const cupom = {
         id: uuid(),
         titulo,
         valor: Number.parseFloat(valor),
+        precoMinimo: Number.parseFloat(precoMinimo),
         idRestaurante
     };
 
@@ -69,7 +70,7 @@ const buscarTodosCupons = () => {
     return cupons;
 }
 
-const atualizarCupom = (id, { titulo, valor }) => {
+const atualizarCupom = (id, { titulo, valor, precoMinimo }) => {
     let cupons = buscarTodosCupons();
     let indice;
 
@@ -83,7 +84,8 @@ const atualizarCupom = (id, { titulo, valor }) => {
     cupons[indice] = {
         ...cupons[indice],
         titulo,
-        valor
+        valor,
+        precoMinimo
     }
 
     localStorage.setItem("cupons", JSON.stringify(cupons));

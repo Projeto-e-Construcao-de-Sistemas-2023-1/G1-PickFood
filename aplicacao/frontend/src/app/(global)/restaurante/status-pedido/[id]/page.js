@@ -64,6 +64,11 @@ export default function Pedidos({ params: { id }}) {
     }
 
     const atualizarStatus = () => {
+
+        if (passoAtivo >= 5) {
+            return;
+        }
+        
         setPassoAtivo(prev => prev + 1);
 
         atualizarStatusPedido(id);
