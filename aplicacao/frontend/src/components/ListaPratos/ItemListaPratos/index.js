@@ -3,7 +3,7 @@
 import { AuthContext } from "@/contexts";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
     item,
     link,
@@ -18,10 +18,20 @@ import {
 } from "./styles.module.scss";
 import { buscarTodosFavoritosPratoCliente, criarFavoritoPratoClinete, excluirFavoritoPorClienteEPrato } from "@/services/favoritos_prato_cliente";
 import Icone from "@/components/Icone";
+import { calcularNotaMediaPorRestaurante } from "@/services/avaliacao";
 
 const ItemListaPratos = ({ prato }) => {
     
     const { usuario } = useContext(AuthContext);
+    const [nota, setNota] = useState(0);
+
+    useEffect(() => {
+
+        const notaMedia = calcularNotaMediaPorRestaurante(prato.idRestaurante);
+
+        setNota(notaMedia);
+
+    }, [prato.idRestaurante]);
 
     const ehFavoritado = () => {
         
@@ -92,10 +102,11 @@ const ItemListaPratos = ({ prato }) => {
                     <div className={ preco }>R$ { prato.preco }</div>
                 </div>
                 <div className={ estrelas }>
-                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
-                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
-                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
-                    <Icone className={ estrela } src="/icons/estrela.svg" alt="Estrela de avaliaçao"/>
+                    <Icone src={ nota >= 1 ? "/icons/estrela.svg" : "/icons/estrela_desmarcada.svg" } className={ estrela }/>
+                    <Icone src={ nota >= 2 ? "/icons/estrela.svg" : "/icons/estrela_desmarcada.svg" } className={ estrela }/>
+                    <Icone src={ nota >= 3 ? "/icons/estrela.svg" : "/icons/estrela_desmarcada.svg" } className={ estrela }/>
+                    <Icone src={ nota >= 4 ? "/icons/estrela.svg" : "/icons/estrela_desmarcada.svg" } className={ estrela }/>
+                    <Icone src={ nota >= 5 ? "/icons/estrela.svg" : "/icons/estrela_desmarcada.svg" } className={ estrela }/>
                 </div>
             </Link>
         </li>

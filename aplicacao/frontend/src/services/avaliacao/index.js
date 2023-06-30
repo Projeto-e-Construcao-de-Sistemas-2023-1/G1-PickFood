@@ -1,4 +1,5 @@
 import { v4 as uuid } from "uuid";
+import { buscarPedidosPorRestaurante } from "../pedido";
 
 const criarAvaliacao = ({
     idCliente,
@@ -77,9 +78,32 @@ const buscarAvaliacaoPorPedido = (idPedido) => {
     return null;
 }
 
+const calcularNotaMediaPorRestaurante = (idRestaurante) => {
+
+    const avaliacoes = buscarTodasAvaliacoes();
+
+    let nota = 0;
+    let numeroNotas = 0;
+
+    for (const avaliacao of avaliacoes) {
+
+        if (avaliacao.idRestaurante === idRestaurante) {
+            nota += avaliacao.nota;
+            numeroNotas++;
+        }
+    }
+
+    if (numeroNotas === 0) return 0;
+
+    const notaMedia = Math.ceil(nota/numeroNotas);
+
+    return notaMedia;
+}
+
 export {
     criarAvaliacao,
     buscarTodasAvaliacoes,
     buscarAvaliacaoPorPedido,
-    atualizarAvaliacao
+    atualizarAvaliacao,
+    calcularNotaMediaPorRestaurante
 }
