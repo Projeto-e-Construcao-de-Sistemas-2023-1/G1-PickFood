@@ -26,6 +26,8 @@ const RedefinirSenha = () => {
         let restaurante = buscarRestaurantePorEmail(email);;
         let cliente = buscarClientePorEmail(email);
 
+        
+
         if (cliente !== null) {
             redefinirSenhaCliente(cliente.id, senha);
         } else {

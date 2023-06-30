@@ -71,6 +71,7 @@ export default function Login() {
             usuario = {
                 id: cliente.id,
                 nome: cliente.nome,
+                email: cliente.email,
                 token: ""
             };
 
@@ -93,6 +94,7 @@ export default function Login() {
         usuario = {
             id: restaurante.id,
             nome: restaurante.nome_fantasia,
+            email: restaurante.email,
             token: ""
         };
 

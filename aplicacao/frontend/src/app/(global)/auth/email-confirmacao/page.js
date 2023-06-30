@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 
 const EmailConfirmacao = () => {
 
-    const { register, handleSubmit: tratarFormulario, formState: { errors: erros }, setError } = useForm();
+    const { register, handleSubmit: tratarFormulario, formState: { errors: erros }, setError, clearErrors } = useForm();
     const [sucesso, setSucesso] = useState(false);
 
 
@@ -60,7 +60,7 @@ const EmailConfirmacao = () => {
                         <Form.Input registrar={{ ...register("email", { required: mensagens.required("Email") }) }} type={"email"}/>
                     </Form.Field>
 
-                    <Form.Button>Enviar</Form.Button>
+                    <Form.Button onClick={() => clearErrors() }>Enviar</Form.Button>
             </Form>
         </>
     )

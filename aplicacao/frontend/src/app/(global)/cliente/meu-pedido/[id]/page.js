@@ -143,8 +143,8 @@ const MeuPedido = ({ params: { id }}) => {
 
             </div>
             <div className={ divider }></div>
-            <p className={ pagamento_titulo }>Avaliar Pedido</p>
-            <div className={ container_avaliacao }>
+            <p className={ pagamento_titulo } style={{ display: pedido.status >= 5 ? "block" : "none"}}>Avaliar Pedido</p>
+            <div className={ container_avaliacao } style={{ display: pedido.status >= 5 ? "flex" : "none"}}>
                 <Icone src={ avaliacao.nota >= 1 ? "/icons/estrela.svg" : "/icons/estrela_desmarcada.svg" } className={ estrela } onClick={ () => Object.keys(avaliacao).length === 0 ? avaliar(1) : reavaliar(1) }/>
                 <Icone src={ avaliacao.nota >= 2 ? "/icons/estrela.svg" : "/icons/estrela_desmarcada.svg" } className={ estrela } onClick={ () => Object.keys(avaliacao).length === 0  ? avaliar(2) : reavaliar(2) }/>
                 <Icone src={ avaliacao.nota >= 3 ? "/icons/estrela.svg" : "/icons/estrela_desmarcada.svg" } className={ estrela } onClick={ () => Object.keys(avaliacao).length === 0  ? avaliar(3) : reavaliar(3) }/>

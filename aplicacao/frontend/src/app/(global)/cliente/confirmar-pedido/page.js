@@ -77,10 +77,10 @@ const ConfirmarPedido = () => {
     }
     
         useEffect(() => {
-            const cuponsExistentes = buscarCuponsPorRestaurante(idRestaurante);
+            const cuponsExistentes = buscarCuponsPorRestaurante(itens[0].prato.idRestaurante);
     
             setCupons(cuponsExistentes);
-        }, [idRestaurante]);
+        }, [itens]);
 
     return(
     <>

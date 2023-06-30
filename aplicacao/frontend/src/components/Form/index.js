@@ -25,6 +25,19 @@ Form.Label = function InputLabel({ children, ...restProps }) {
     return <label className={ styles.label } { ...restProps }>{ children }</label>
 }
 
+Form.TextArea = function FormInput({ type, value, defaultValue, onChange, registrar, ...restProps }) {
+    return <textarea 
+        type={ type }
+        value={ value } 
+        onChange={ onChange } 
+        className={ styles.textarea }
+        maxLength={255}
+        defaultValue={ defaultValue } 
+        { ...registrar }
+        { ...restProps }
+    />
+} 
+
 Form.Input = function FormInput({ type, value, defaultValue, onChange, registrar, ...restProps }) {
     return <input 
         type={ type }

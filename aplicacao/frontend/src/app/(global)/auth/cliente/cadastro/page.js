@@ -61,6 +61,7 @@ export default function CadastroCliente() {
         const usuario = {
             id: cliente.id,
             nome: cliente.nome,
+            email: cliente.email,
             token: ""
         }
 

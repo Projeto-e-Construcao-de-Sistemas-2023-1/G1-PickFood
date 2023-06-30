@@ -38,12 +38,13 @@ const Restaurante = ({ params: { idRestaurante } }) => {
             <Retornar navigate={ () => router.push("/cliente/home") }/>
             <div className={ center }>
                 <TituloPagina className={ titulo }>{ restaurante.nome_fantasia }</TituloPagina>
-                <Icone className= { icone }                 
+                <Icone className= { icone }
                     src={ "/icons/mensagem.svg" }
                     alt="Icone de círculo com um + no centro."
+                    onClick={() => router.push("cliente/restaurante/" + idRestaurante + "/contato")}
                 />
             </div>
-           
+
             <CardapioCliente pratos={ pratos } />
         </>
     )

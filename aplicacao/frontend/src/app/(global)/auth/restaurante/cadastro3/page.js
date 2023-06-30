@@ -67,6 +67,7 @@ export default function Cadastro3() {
         const usuario = {
             id: restaurante.id,
             nome: restaurante.nome_fantasia,
+            email: restaurante.email,
             token: ""
         };
         
