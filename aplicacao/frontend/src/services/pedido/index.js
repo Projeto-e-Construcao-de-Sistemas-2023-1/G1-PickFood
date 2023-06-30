@@ -47,7 +47,14 @@ const criarPedido = ({
 }
 
 const buscarTodosPedidos = () => {
-    return JSON.parse(localStorage.getItem("pedidos"));
+
+    const pedidos = JSON.parse(localStorage.getItem("pedidos"));
+
+    if (pedidos === null || pedidos === undefined) {
+        return [];
+    }
+
+    return pedidos;
 }
 
 const buscarPedidosPorCliente = (idCliente) => {

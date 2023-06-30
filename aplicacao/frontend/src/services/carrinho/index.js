@@ -38,7 +38,14 @@ const adicionarItem = (prato, setItens) => {
 }
 
 const pegarCarrinho = () => {
-    return JSON.parse(localStorage.getItem("carrinho"));
+
+    const carrinho = JSON.parse(localStorage.getItem("carrinho"));
+
+    if (carrinho === null || undefined) {
+        return []
+    }
+
+    return carrinho;
 }
 
 const buscarItemPorPrato = (carrinho, idPrato) => {

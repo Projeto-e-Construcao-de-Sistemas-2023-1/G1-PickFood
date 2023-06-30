@@ -41,7 +41,14 @@ const excluirFavoritoPorClienteEPrato = ({ idCliente, idPrato }) => {
 }
 
 const buscarTodosFavoritosPratoCliente = () => {
-    return JSON.parse(localStorage.getItem("favoritos_prato_cliente"));
+    
+    const favoritosPratoCliente = JSON.parse(localStorage.getItem("favoritos_prato_cliente"));
+
+    if (favoritosPratoCliente === null || favoritosPratoCliente === undefined) {
+        return [];
+    }
+    
+    return favoritosPratoCliente;
 }
 
 const buscarPratosFavoritosPorCliente = (idCliente) => {

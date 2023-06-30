@@ -39,7 +39,13 @@ const criarCliente = ({
 }
 
 const buscarClientes = () => {
-    return JSON.parse(localStorage.getItem("clientes"));
+    const clientes = JSON.parse(localStorage.getItem("clientes"));
+
+    if (clientes === null || clientes === undefined) {
+        return [];
+    }
+
+    return clientes;
 }
 
 const buscarClientePorEmail = (email) => {

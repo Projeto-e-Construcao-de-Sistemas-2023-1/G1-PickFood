@@ -47,7 +47,14 @@ const criarItemPedido = ({
 }
 
 const buscarTodosItensPedido = () => {
-    return JSON.parse(localStorage.getItem("itens_pedido"));
+
+    const itensPedido = JSON.parse(localStorage.getItem("itens_pedido"));
+
+    if (itensPedido === null || itensPedido === undefined) {
+        return []
+    }
+
+    return itensPedido;
 }
 
 const buscarItensPedidoPorPedido = (idPedido) => {

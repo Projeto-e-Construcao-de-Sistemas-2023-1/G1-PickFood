@@ -98,7 +98,14 @@ const buscarRestaurantePorId = (id) => {
 }
 
 const buscarTodosRestaurantes = () => {
-    return JSON.parse(localStorage.getItem("restaurantes"));
+
+    const restaurantes = JSON.parse(localStorage.getItem("restaurantes"));
+
+    if (restaurantes === null || restaurantes === undefined) {
+        return [];
+    }
+
+    return restaurantes;
 }
 
 const atualizarRestaurante = (id, {

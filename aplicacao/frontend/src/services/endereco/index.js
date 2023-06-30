@@ -126,7 +126,13 @@ const excluirEndereco = (id) => {
 }
 
 const buscarEnderecos = () => {
-    return JSON.parse(localStorage.getItem("enderecos"));
+    const enderecos = JSON.parse(localStorage.getItem("enderecos"));
+
+    if (enderecos === null || enderecos === undefined) {
+        return [];
+    }
+
+    return enderecos;
 }
 
 export {

@@ -60,7 +60,13 @@ const buscarCupomPorId = (id) => {
 
 const buscarTodosCupons = () => {
 
-    return JSON.parse(localStorage.getItem("cupons"));
+    const cupons = JSON.parse(localStorage.getItem("cupons"));
+
+    if (cupons === null || cupons === undefined) {
+        return []
+    }
+
+    return cupons;
 }
 
 const atualizarCupom = (id, { titulo, valor }) => {

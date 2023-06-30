@@ -41,7 +41,14 @@ const excluirFavoritoPorClienteERestaurante = ({ idCliente, idRestaurante }) => 
 }
 
 const buscarTodosFavoritos = () => {
-    return JSON.parse(localStorage.getItem("favoritos"));
+
+    const favoritos = JSON.parse(localStorage.getItem("favoritos"));
+
+    if (favoritos === null || favoritos === undefined) {
+        return [];
+    }
+
+    return favoritos;
 }
 
 const buscarRestaurantesFavoritosPorCliente = (idCliente) => {

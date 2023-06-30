@@ -37,7 +37,14 @@ const criarPrato = ({
 }
 
 const buscarPratos = () => {
-    return JSON.parse(localStorage.getItem("pratos"));
+
+    const pratos = JSON.parse(localStorage.getItem("pratos"));
+
+    if (pratos === null || pratos === undefined) {
+        return [];
+    }
+
+    return pratos;
 }
 
 const atualizarPrato = (id, {
