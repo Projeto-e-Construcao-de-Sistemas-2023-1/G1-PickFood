@@ -90,7 +90,7 @@ const ConfirmarPedido = () => {
                         <Modal.Icone svg="/icons/ticket_verde.svg"/>
                         <Modal.Titulo>Cupons disponíveis</Modal.Titulo>
                     </Modal.Cabecalho>
-                    <ul>
+                    <ul >
                 {
                     cupons?.map(cupom => {
 

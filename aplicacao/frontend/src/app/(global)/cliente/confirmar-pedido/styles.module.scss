@@ -26,6 +26,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 .item_info {
@@ -119,8 +120,8 @@
 .cupom_dados {
     display: flex;
     align-items: center;
-    display: flex;
-    align-items: center;
+    width: 100%;
+    justify-content: space-between;
     margin-right: 15px;
     flex-direction: row;
 }
