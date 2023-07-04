@@ -40,7 +40,9 @@ public class RestauranteController {
     	RestauranteDTO dto){
 
     	Restaurante entity = dto.convertToEntity();
-      
+        entity.getUser().setEmail(dto.getLogin().getEmail());
+        entity.getUser().setSenha(dto.getLogin().getSenha());
+
     	return new ResponseEntity(service.create(entity), HttpStatusCode.valueOf(201));
     }
     
