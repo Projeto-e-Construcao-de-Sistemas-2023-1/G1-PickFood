@@ -62,7 +62,11 @@ const buscarItemPorPrato = (carrinho, idPrato) => {
 }
 
 const limpar = () => {
+
+    console.log("limpou");
+
     localStorage.setItem("carrinho", JSON.stringify([]));
+    
 }
 
 

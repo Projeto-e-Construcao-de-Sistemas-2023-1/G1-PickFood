@@ -27,7 +27,7 @@ const MeuCarrinho = () => {
 
     return(
         <>
-            <Retornar navigate={ () => router.back() } />
+            <Retornar navigate={ () => router.push("/cliente/home") } />
             <TituloPagina>Meu carrinho</TituloPagina>
             
             <Carrinho/>

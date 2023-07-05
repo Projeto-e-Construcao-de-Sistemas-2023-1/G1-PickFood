@@ -24,8 +24,9 @@ const EditarCupom = ({ params: { id }}) => {
 
             return {
                 titulo: cupom.titulo,
-                valor: cupom.valor
-            } 
+                valor: cupom.valor,
+                precoMinimo: cupom.precoMinimo
+            }
         }
     });
     const [sucesso, setSucesso] = useState(false);

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import {
-    pedido,
+    pedido_container,
     restaurante_nome,
     itens_lista,
     item_item,
@@ -10,17 +10,16 @@ import {
     item_quantidade,
     total
 } from "./styles.module.scss";
-import { CarrinhoContext } from "@/contexts";
-import { calcularValorTotalItens } from "@/utils";
 
-const ResumoPedido = ({ itens }) => {
+
+const ResumoPedido = ({ pedido, itens }) => {
 
     useEffect(() => {
-     
+        console.log(itens);
     }, []);
 
     return(
-        <div className={ pedido }>
+        <div className={ pedido_container }>
             <p className={ restaurante_nome }>Nome do restaurante</p>
             <div className={ itens_lista }>
                 {
@@ -40,8 +39,8 @@ const ResumoPedido = ({ itens }) => {
                 
             </div>
             <div className={ total }>
-                <p>Total com a entrega: </p>
-                <p>{ calcularValorTotalItens(itens) }</p>
+                <p>Total com a entrega + cupom: </p>
+                <p>{ pedido?.totalPedido }</p>
             </div>
         </div>
     )

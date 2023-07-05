@@ -41,7 +41,7 @@ export default function NavbarSuperiorCliente() {
 
                 
                 <NavbarSuperior.Botao onClick={ () => { setAtivo(prev => !prev) } }>
-                    { usuario.nome }
+                    { usuario?.nome }
                 </NavbarSuperior.Botao>
 
 

@@ -84,8 +84,8 @@ const atualizarCupom = (id, { titulo, valor, precoMinimo }) => {
     cupons[indice] = {
         ...cupons[indice],
         titulo,
-        valor,
-        precoMinimo
+        valor: Number.parseFloat(valor),
+        precoMinimo: Number.parseFloat(precoMinimo)
     }
 
     localStorage.setItem("cupons", JSON.stringify(cupons));

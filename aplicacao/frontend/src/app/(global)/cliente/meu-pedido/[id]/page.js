@@ -92,7 +92,7 @@ const MeuPedido = ({ params: { id }}) => {
         <div className={ container }>
             <Retornar navigate={() => router.push("/cliente/meus-pedidos")} />
 
-            <ResumoPedido itens={ itensPedidoExistentes }/>
+            <ResumoPedido pedido={ pedido } itens={ itensPedidoExistentes }/>
             <div className={ dados_entrega }>
                 <p className={ dados_entrega_texto }>Entregar em:</p>
                 <p className={ dados_entrega_endereco }>Endereço de entrega</p>
@@ -101,7 +101,11 @@ const MeuPedido = ({ params: { id }}) => {
             <div className={ divider }></div>
 
             <p className={pagamento_titulo}>Andamento do Pedido</p>
-            <Stepper activeStep={ passoAtivo } orientation="vertical" >
+            {
+                pedido.status === 6 ?
+                "Cancelado"
+                :
+                <Stepper activeStep={ passoAtivo } orientation="vertical" >
                 <Step>
                     <StepLabel>Aguardando confirmação</StepLabel>
                 </Step>
@@ -118,6 +122,8 @@ const MeuPedido = ({ params: { id }}) => {
                     <StepLabel>Entregue</StepLabel>
                 </Step>
             </Stepper>
+            }
+            
 
             <div className={ divider }></div>
             <div className={ pagamento }>

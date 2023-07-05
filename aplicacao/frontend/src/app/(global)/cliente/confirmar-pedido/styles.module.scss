@@ -97,12 +97,7 @@
     font-size: 12;
 }
 
-.cupons {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    flex-direction: row;
-}
+
 
 .textoCupom {
     display: flex;
@@ -117,10 +112,16 @@
     font-size: 12;
 }
 
+.cupom_lista {
+    font-size: utils.converterPxParaRem(12px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .cupom_dados {
     display: flex;
     align-items: center;
-    width: 100%;
     justify-content: space-between;
     margin-right: 15px;
     flex-direction: row;
@@ -133,27 +134,43 @@
 }
 
 .cupom_icone {
-    margin-right: 15px;
-}
-
-.cupom_titulo {
-    margin-right: 70px;
-    flex-direction: row;
+    margin-right: utils.converterPxParaRem(5px);
 }
 
 .cupom_item {
-    margin-bottom: utils.converterPxParaRem(10px);
+    margin-bottom: utils.converterPxParaRem(5px);
     padding: utils.converterPxParaRem(8px);
+    box-sizing: border-box;
     border-radius: 5px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     cursor: pointer;
     transition: 0.5s ease-in-out all;
     margin-right: 15px;
-    flex-direction: row;
-    margin: 0 auto;
+
+    width: 100%;
 
         &:hover {
             background-color: cores.$cinza;
         }
+}
+
+.cupom_preco_minimo {
+    font-size: utils.converterPxParaRem(10px);
+    margin-top: utils.converterPxParaRem(5px);
+}
+
+.cupom_aplicar {
+    padding: utils.converterPxParaRem(8px);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.5s ease-in-out all;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: cores.$cinza;
+
+    }
 }

@@ -4,6 +4,7 @@ import {
     cabecalho,
     icone,
     titulo,
+    corpo,
     rodape,
     botao,
     botaoConfirmar,
@@ -33,6 +34,12 @@ Modal.Icone = function ModalIcone({ svg }) {
 Modal.Titulo = function ModelTitulo({ children }) {
     return(
         <h2 className={ titulo }>{ children }</h2>
+    )
+}
+
+Modal.Corpo = function ModalCorpo({ children }) {
+    return (
+        <div className={ corpo }>{ children }</div>
     )
 }
 

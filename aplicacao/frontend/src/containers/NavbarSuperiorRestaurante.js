@@ -26,7 +26,7 @@ export default function NavbarSuperiorRestaurnte() {
 
                 
                 <NavbarSuperior.Botao onClick={ () => { setAtivo(prev => !prev) } }>
-                    { usuario.nome }
+                    { usuario?.nome }
                 </NavbarSuperior.Botao>
 
                 <NavbarSuperior.Dropdown ativo={ ativo }>

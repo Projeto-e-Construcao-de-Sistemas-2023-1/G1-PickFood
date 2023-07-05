@@ -18,14 +18,24 @@ import {
     removerCarrinho
 } from "./styles.module.scss";
 import Icone from "../Icone";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CarrinhoContext } from "@/contexts";
 import { limpar as limpaCarrinho } from "@/services/carrinho";
 import Link from "next/link";
+import { buscarRestaurantePorId } from "@/services/restaurante";
 
 const Carrinho = () => {
 
     const { itens, setItens } = useContext(CarrinhoContext);
+    const [restaurante, setRestaurante] = useState({});
+
+    useEffect(() => {
+        if (itens?.length !== 0) {
+            const restauranteExistente = buscarRestaurantePorId(itens[0].prato.idRestaurante);
+
+            setRestaurante(restauranteExistente);
+        }
+    }, [itens]);
 
 
     const incrementarItem = (id) => {
@@ -81,7 +91,7 @@ const Carrinho = () => {
         <div className={ container }>
             <div className={ cabecalho }>
                 <div>
-                    <p className={ nomeRestaurante }>Nome do restaurante</p>
+                    <p className={ nomeRestaurante }>{ restaurante?.nome_fantasia }</p>
                     <Link style={{ display: itens === null || itens.length === 0 ? "none" : ""}} href={ "/cliente/restaurante/" + (itens !== null ? itens[0]?.prato?.idRestaurante : "") } className={ adicionarMaisItens }>Adicionar mais itens</Link>
                 </div>
                 <p className={ limpar } onClick={ limparCarrinho }>Limpar carrinho</p>
