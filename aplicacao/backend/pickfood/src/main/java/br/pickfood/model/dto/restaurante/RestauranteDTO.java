@@ -2,6 +2,7 @@ package br.pickfood.model.dto.restaurante;
 
 import java.sql.Time;
 
+import br.pickfood.model.dto.login.LoginDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import br.pickfood.groups.ICreation;
@@ -30,7 +31,9 @@ public class RestauranteDTO extends BaseDTO<Restaurante> {
 	
 	@JsonProperty(value = "nome_fantasia")
     private String nomeFantasia;
-    
+
+	private LoginDTO login;
+
     private String cnpj;
     
 	@JsonProperty(value = "razao_social")
