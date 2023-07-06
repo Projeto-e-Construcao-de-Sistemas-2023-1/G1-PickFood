@@ -6,7 +6,8 @@ const criarPedido = ({
     idRestaurante,
     itens,
     formaPagamento,
-    totalPedido
+    totalPedido,
+    dataAgendamento = null
 }) => {
 
     const pedido = {
@@ -15,7 +16,8 @@ const criarPedido = ({
         status: 1,
         idRestaurante,
         formaPagamento,
-        totalPedido
+        totalPedido,
+        dataAgendamento
     };
 
     let pedidos = buscarTodosPedidos();
@@ -150,6 +152,21 @@ const atualizarStatusPedido = (codigo) => {
     localStorage.setItem("pedidos", JSON.stringify(pedidos));
 }
 
+const agendarPedido = (codigo, dataAgendamento) => {
+    let pedidos = buscarTodosPedidos();
+
+    for (const pedido of pedidos) {
+        if(pedido.codigo === codigo){
+            pedido.dataAgendamento = dataAgendamento;
+            pedido.status = 7;
+            break;
+        }
+    }
+
+    localStorage.setItem("pedidos", JSON.stringify(pedidos))
+}
+
+
 export {
     buscarTodosPedidos,
     criarPedido,
@@ -157,5 +174,6 @@ export {
     cancelarPedido,
     buscarPedidosPorRestaurante,
     buscarPedidoPorCodigo,
-    atualizarStatusPedido
+    atualizarStatusPedido,
+    agendarPedido
 }

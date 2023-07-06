@@ -57,7 +57,8 @@ export default function Pedidos({ params: { id }}) {
             3: "Em preparo",
             4: "A caminho",
             5: "Entregue",
-            6: "Cancelado"
+            6: "Cancelado",
+            7: "Agendado"
         };
 
         return opcoesStatus[pedido.status];
