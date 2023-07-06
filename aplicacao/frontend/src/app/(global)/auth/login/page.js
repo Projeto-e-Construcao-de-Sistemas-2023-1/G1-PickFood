@@ -52,11 +52,17 @@ export default function Login() {
 
                 axios.get("http://localhost:8080/api/v1/me").then(res => {
                     console.log(res.data);
-                    const clienteCriado = criarCliente({nome: res.data.data.names[0].displayName, email: res.data.data.emailAddresses[0].value, cpf: "", senha: "", telefone: ""})
+
+                    let cliente = buscarClientePorEmail(res.data.data.emailAddresses[0].value);
+                   
+
+                    if (cliente === null) {
+                        cliente = criarCliente({nome: res.data.data.names[0].displayName, email: res.data.data.emailAddresses[0].value, cpf: "", senha: "", telefone: ""})
+                    }
                     setUsuario({
-                        id: clienteCriado.id,
-                        email: clienteCriado.email,
-                        nome: clienteCriado.nome
+                        id: cliente.id,
+                        email: cliente.email,
+                        nome: cliente.nome
                     });
 
                     router.push("/cliente/home")
