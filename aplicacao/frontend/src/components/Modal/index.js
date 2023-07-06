@@ -13,9 +13,9 @@ import {
 import { createContext } from "react";
 
 
-export default function Modal({ ativo, children }) {
+export default function Modal({ ativo = false, children, ...restProps }) {
     return(
-        <div style={{ display: ativo ? "block" : "none" }} className={ modal }>{ children }</div>
+        <div style={{ display: ativo ? "block" : "none" }} className={ modal } { ...restProps }>{ children }</div>
     )
 }
 

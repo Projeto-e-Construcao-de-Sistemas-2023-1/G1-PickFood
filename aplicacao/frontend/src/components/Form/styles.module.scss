@@ -27,7 +27,7 @@
 }
 
 .input, .textarea {
-    background-color: #E7E7E7;
+    background-color: cores.$cinza;
     border: none;
     width: 12rem;
     height: 2.313rem;
@@ -41,9 +41,43 @@
     }
 }
 
+.select {
+    background-color: cores.$cinza;
+    position: absolute;
+    top: 50px;
+    border: none;
+    width: 14rem;
+    height: 8rem;
+    border-radius: 5px;
+    padding: 0 1rem;
+    resize: none;
+
+    &:focus {
+        border: none;
+        outline: none;
+    }
+
+    animation: showSelect 0.5s forwards;
+
+}
+
+.option {
+    padding: 0.2rem;
+}
+
 .textarea {
     padding: 1rem 1rem;
     height: utils.converterPxParaRem(150px);
+}
+
+@keyframes showSelect {
+    from {
+        opacity: 0%;
+        top: 30px;
+    }
+    to {
+        opacity: 100%;
+    }
 }
 
 

@@ -14,16 +14,17 @@ import {
     containerInferior
 } from "./styles.module.scss"
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Logo from "@/components/Logo";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/contexts";
 import request from "@/services/axios";
 import { useForm } from "react-hook-form";
 import { mensagens } from "@/erros/mensagens";
-import { buscarClientePorEmail } from "@/services/cliente";
+import { buscarClientePorEmail, criarCliente } from "@/services/cliente";
 import { buscarRestaurantePorEmail } from "@/services/restaurante";
 import axios from "axios";
+import popular from "@/scripts";
 
 export default function Login() {
 
@@ -37,6 +38,38 @@ export default function Login() {
     } = useForm();
 
     const { setUsuario } = useContext(AuthContext);
+    const search = useSearchParams();
+
+    useEffect(() => {
+
+        console.log(search.get("code"));
+    
+        if (search.get("code")) {
+            console.log("pegando link")
+            axios.post("http://localhost:8080/api/v1/token", {code: search.get("code")}).then(() => {
+
+                console.log("autentiquei");
+
+                axios.get("http://localhost:8080/api/v1/me").then(res => {
+                    console.log(res.data);
+                    const clienteCriado = criarCliente({nome: res.data.data.names[0].displayName, email: res.data.data.emailAddresses[0].value, cpf: "", senha: "", telefone: ""})
+                    setUsuario({
+                        id: clienteCriado.id,
+                        email: clienteCriado.email,
+                        nome: clienteCriado.nome
+                    });
+
+                    router.push("/cliente/home")
+                })
+            });
+        }
+    }, [search, setUsuario, router]);
+
+    const autenticarGoogle = () => {
+        axios.get("http://localhost:8080/api/v1/link").then(res => {
+            window.location.assign(res.data);
+        });
+    }
 
     const autenticar = (data) => {
 
@@ -45,7 +78,6 @@ export default function Login() {
         let usuario;
         let restaurante;
         let cliente;
-        
         
         cliente = buscarClientePorEmail(data.email);
         restaurante = buscarRestaurantePorEmail(data.email);
@@ -137,13 +169,15 @@ export default function Login() {
             <div className={ divider }></div>
 
             <div className={ containerInferior }>
-                <button className={ botaoGoogle }>
+                <button className={ botaoGoogle } onClick={ autenticarGoogle }>
                     <Image src="/google.png" width={17} height={17} alt="logo do google"/>
                     Entrar com Google
                 </button>
 
                 <Link href={ "/auth/restaurante/cadastro1" } className={ [link, center].join(' ') }>Quero me tornar um parceiro</Link>
             </div>
+
+            <div onClick={ popular }>Popular</div>
         </>
     )
 }

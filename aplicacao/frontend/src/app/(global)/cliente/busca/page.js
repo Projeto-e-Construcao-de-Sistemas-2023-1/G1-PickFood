@@ -15,6 +15,8 @@ import {
 import ListaPratos from "@/components/ListaPratos";
 import { buscarPratosPorNome } from "@/services/prato";
 import Button from "@/components/Button";
+import Modal from "@/components/Modal";
+import { buscarTodasRestricoes } from "@/services/restricao";
 
 const Busca = () => {
     const [busca, setBusca] = useState("");
@@ -23,12 +25,17 @@ const Busca = () => {
     const [tipoFiltro, setTipoFiltro] = useState("restaurante");
     const [exibirFiltros, setExibirFiltros] = useState(false);
     const [ordenacao, setOrdenacao] = useState(0);
+    const [restricoes, setRestricoes] = useState([]);
+    const [restricoesSelecionadas, setRestricoesSelecionadas] = useState([]);
 
 
     useEffect(() => {
 
         let restaurantesExistentes;
         let pratosExistentes;
+        let restricoesExistentes = buscarTodasRestricoes();
+
+        setRestricoes(restricoesExistentes);
 
         if (tipoFiltro === "restaurante") {
             restaurantesExistentes = buscarRestaurantes({nome: busca}, ordenacao);
@@ -36,10 +43,14 @@ const Busca = () => {
             return;
         }
 
-        pratosExistentes = buscarPratosPorNome({nome: busca}, ordenacao);
+        pratosExistentes = buscarPratosPorNome({nome: busca}, ordenacao, restricoesSelecionadas);
         setPratos(pratosExistentes);
 
-    }, [busca, tipoFiltro, exibirFiltros, ordenacao]);
+    }, [busca, tipoFiltro, exibirFiltros, ordenacao, restricoesSelecionadas]);
+
+    useEffect(() => {
+        console.log(restricoesSelecionadas);
+    }, [restricoesSelecionadas]);
 
     return(
         <div className={ container }>
@@ -49,8 +60,8 @@ const Busca = () => {
             </div>
 
 
-            <div className={ filtros } style={{ display: exibirFiltros ? "block" : "none" }}>
-
+            <Modal  ativo={ exibirFiltros } >
+                
                 <p className={ titulo }>O que deseja buscar? </p>
 
                 <div className={ filtro }>
@@ -64,6 +75,40 @@ const Busca = () => {
                         setTipoFiltro("restaurante");
                     }}/>
                     <label>Restaurantes</label>
+                </div>
+
+                <p className={ titulo }>Restrições: </p>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    {
+                        restricoes?.map(restricao => {
+                            return(
+                                <div key={ restricao.id } className={ filtro }>
+                                    <input value={ restricao.nome } type={ "checkbox" } onChange={(e) => {
+                                    
+
+                                        if (e.target.checked) {
+                                            setRestricoesSelecionadas(prev => [...prev, e.target.value])
+
+                                            return;
+                                        }
+
+                                        let posicao = -1;
+
+                                        for (const i in restricoesSelecionadas) {
+                                            if (restricoesSelecionadas[i] === e.target.value) {
+                                                posicao = i;
+                                            }
+                                        }
+
+                                        restricoesSelecionadas.splice(posicao, 1);
+
+                                        setRestricoesSelecionadas(restricoesSelecionadas);
+                                    }}/>
+                                    <label>{ restricao.nome }</label>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
 
                 <p className={ titulo }>Ordernar por: </p>
@@ -93,8 +138,8 @@ const Busca = () => {
                     <label>Maiores preços</label>
                 </div>
 
-                <Button className={ botao } onClick={() => setExibirFiltros(prev => !prev)}>Concluir personalização</Button>
-            </div>
+                <Button className={ botao } onClick={() => setExibirFiltros(false)}>Concluir personalização</Button>
+            </Modal>
             {
                 tipoFiltro === "prato" ?
                     <ListaPratos pratos={ pratos }/>

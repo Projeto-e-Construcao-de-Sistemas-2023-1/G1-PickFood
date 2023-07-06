@@ -8,19 +8,44 @@ import {
     imagem
 } from "./styles.module.scss"
 import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { useContext, useEffect } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { useContext, useEffect, useState } from "react";
 import { mensagens } from "@/erros/mensagens";
 import { criarPrato } from "@/services/prato";
 import { AuthContext } from "@/contexts";
 import { useRouter } from "next/navigation";
+import { buscarTodasRestricoes } from "@/services/restricao";
+import Select from "react-select";
+
+
+
+function getStyles(name, personName, theme) {
+    return {
+      fontWeight:
+        personName.indexOf(name) === -1
+          ? theme.typography.fontWeightRegular
+          : theme.typography.fontWeightMedium,
+    };
+  }
 
 export default function CriarPrato() {
 
     const { register: registrar, handleSubmit: tratarFormulario, watch,
-        formState: { errors: erros } } = useForm();
+        formState: { errors: erros }, setValue, getValues } = useForm();
 
     const { usuario } = useContext(AuthContext);
+    const [restricoes, setRestricoes] = useState([]);
+    const [mostrarRestricoes, setMostrarRestricoes] = useState(false);
+
+    useEffect(() => {
+        const restricoesExistentes = buscarTodasRestricoes();
+
+        setRestricoes(restricoesExistentes);
+    }, [])
+
+    useEffect(() => {
+        console.log(watch("restricoes"));
+    }, [watch])
 
     const imagemValida = /^https:\/\/[\w.-]+\/.*\.(jpg|png|jpeg)$/i;
 
@@ -29,6 +54,13 @@ export default function CriarPrato() {
     const criar = (data) => {
         console.log(data);
 
+        if (typeof data.restricoes === "string") {
+            data.restricoes = data.restricoes.split(",");
+        }
+
+        console.log(data);
+
+
         criarPrato({
             idRestaurante: usuario.id,
             ...data
@@ -36,6 +68,8 @@ export default function CriarPrato() {
 
         router.push("/restaurante/cardapio");
     }
+
+      
     // Falta só colocar o input de seleção de restrição
     return (
         <Container>
@@ -100,8 +134,48 @@ export default function CriarPrato() {
 
                 <Form.Field>
                     <Form.Label>Link da imagem</Form.Label>
-                    <Form.Input registrar={{ ...registrar("foto") }} type={"text"}></Form.Input>
+                    <Form.Input registrar={{ ...registrar("foto") }} type={"text"}/>
                 </Form.Field>
+                
+                <Form.Field>
+                    <Form.Label>Restrições</Form.Label>
+                    <Form.Input defaultValue={"Sem lactose"} registrar={{ ...registrar("restricoes") }} onClick={() => setMostrarRestricoes(prev => !prev)}/>
+
+                    <Form.Select ativo={ mostrarRestricoes } onChange={ (e) => {
+                        let restricoesSelecionadas = getValues("restricoes");
+
+                        console.log(restricoesSelecionadas)
+                        console.log(typeof restricoesSelecionadas);
+
+                        if (typeof restricoesSelecionadas === "string" && restricoesSelecionadas !== "") {
+                            restricoesSelecionadas = restricoesSelecionadas.split(",");
+                        }
+
+                        for (const restricaoSelecionada of restricoesSelecionadas) {
+                            if (restricaoSelecionada === e.target.value) {
+                                console.log("restriçao ja selecionada.");
+                                return;
+                            }
+                        }
+                        
+                        setValue("restricoes", [...restricoesSelecionadas, e.target.value])
+                        
+                        }} multiple >
+                            {
+                                restricoes.map(restricao => {
+
+                                    return (
+                                        <Form.Option key={ restricao.id } value={ restricao.nome }>{ restricao.nome }</Form.Option>
+                                    )
+                                })
+                            }
+                    </Form.Select>
+                </Form.Field>
+
+                
+            
+                
+
 
                 <Form.Button>Continuar</Form.Button>
             </Form>

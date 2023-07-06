@@ -50,6 +50,22 @@ Form.Input = function FormInput({ type, value, defaultValue, onChange, registrar
     />
 } 
 
+Form.Select = function FormSelect({ ativo = false, onChange, multiple, children, ...restProps }) {
+    return (
+        <select style={{ display: ativo ? "block" : "none" }} onChange={ onChange } className={ styles.select } multiple={ multiple } {...restProps}>
+            { children }
+        </select>
+    )
+}
+
+Form.Option = function FormOption({ value, children, ...restProps }) {
+    return (
+        <option value={ value } className={ styles.option } { ...restProps }>
+            { children }
+        </option>
+    )
+}
+
 Form.Button = function FormButton({ onClick, children, ...restProps }) {
     return <Button 
         onClick={ onClick } 

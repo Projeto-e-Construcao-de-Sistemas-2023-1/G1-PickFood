@@ -1,4 +1,6 @@
 import { v4 as uuid } from "uuid";
+import { buscarPratosRestricoesPorPrato, criarPratoRestricao } from "../prato_restricao";
+import { buscarRestricaoPorNome } from "../restricao";
 
 const criarPrato = ({
     idRestaurante,
@@ -6,8 +8,11 @@ const criarPrato = ({
     tipo,
     preco,
     descricao,
+    restricoes,
     foto
 }) => {
+
+    console.log(restricoes);
 
     const prato = {
         id: uuid(),
@@ -23,13 +28,15 @@ const criarPrato = ({
 
     let pratos = buscarPratos();
 
-    if (pratos === null || pratos.length === 0) {
-        localStorage.setItem("pratos", JSON.stringify([ prato ]));
-
-        return prato;
-    }
-
     pratos.push(prato);
+
+    for (const nomeRestricao of restricoes) {
+        const restricao = buscarRestricaoPorNome(nomeRestricao);
+
+        console.log(restricao);
+
+        criarPratoRestricao({idPrato: prato.id, idRestricao: restricao.id});
+    }
 
     localStorage.setItem("pratos", JSON.stringify(pratos));
 
@@ -52,6 +59,7 @@ const atualizarPrato = (id, {
     tipo,
     preco,
     descricao,
+    restricoes,
     foto
 }) => {
     let pratos = buscarPratos();
@@ -108,7 +116,7 @@ const buscarPratosPorRestaurante = (idRestaurante) => {
 
 const buscarPratosPorNome = ({
     nome
-}, ordenacao) => {
+}, ordenacao, restricoes) => {
     const pratos = buscarPratos();
     let pratosBuscados = [];
 
@@ -123,6 +131,38 @@ const buscarPratosPorNome = ({
             pratosBuscados.push(prato);
         }
     }
+
+    console.log("Filtrando por restriçao:");
+    console.log(restricoes);
+    console.log(pratosBuscados);
+
+    if (restricoes.length !== 0) {
+        for (let i in pratosBuscados) {
+            console.log(pratosBuscados[i]);
+    
+            const restricoesPrato = buscarPratosRestricoesPorPrato(pratosBuscados[i].id);
+    
+            let encontrou = false;
+    
+            for (const restricaoPrato of restricoesPrato) {
+                if (restricoes?.includes(restricaoPrato.nome)) {
+                    console.log(restricaoPrato.nome)
+
+                    console.log("encontrou restricao.");
+                    encontrou = true;
+                    break;
+                }
+            }
+    
+            if (!encontrou) {
+                console.log("Nao encontrou a restricao");
+                console.log(pratosBuscados);
+                pratosBuscados.splice(i, 1);
+            }
+        }
+    }
+
+
 
     pratosBuscados.sort((a, b) => {
 
