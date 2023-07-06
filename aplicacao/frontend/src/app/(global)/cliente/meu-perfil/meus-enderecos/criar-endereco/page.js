@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Form from "@/components/Form";
@@ -13,11 +13,15 @@ import { mensagens } from "@/erros/mensagens";
 import { criarEndereco } from "@/services/endereco";
 import { AuthContext } from "@/contexts";
 
+import axios from "axios";
+
 export default function CriarEndereco() {
+  
+  
 
   const router = useRouter();
 
-  const { register: registrar, handleSubmit: tratarFormulario, formState: { errors: erros } } = useForm();
+  const { register: registrar, handleSubmit: tratarFormulario, formState: { errors: erros } , setValue} = useForm();
   const { usuario } = useContext(AuthContext);
 
   const cadastrar = (data) => {
@@ -36,6 +40,40 @@ export default function CriarEndereco() {
     router.push(rotas.cliente.meu_perfil.meus_enderecos.url());
     
   }
+  // useEffect(() => {
+  //   axios.get(`http://127.0.0.1:5000/consulta-cep/21031780`).then(res => console.log(res.data))
+  // });
+
+  useEffect(() => {
+    const buscarDadosEndereco = async (cep) => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:5000/consulta-cep/${cep}`);
+        const { data } = response;
+        
+        setValue("bairro", data.bairro);
+        setValue("rua", data.rua);
+        setValue("estado", data.estado);
+        setValue("cidade", data.cidade);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const handleCepChange = (event) => {
+      const cep = event.target.value;
+      if (cep.length === 8) {
+        buscarDadosEndereco(cep);
+      }
+    };
+
+    registrar("cep", {
+      required: mensagens.required("cep"),
+      minLength: { message: mensagens.minLength("cep", 8), value: 8 },
+      onChange: handleCepChange
+    });
+  }, [registrar, setValue]);
+
+
 
   return (
     <>
