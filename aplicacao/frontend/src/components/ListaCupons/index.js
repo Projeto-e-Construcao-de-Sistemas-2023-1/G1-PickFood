@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Icone from "../Icone";
 import {
     cupom_item,
@@ -9,6 +10,9 @@ import {
 } from "./styles.module.scss";
 
 const ListaCupons = ({ cupons }) => {
+
+    const router = useRouter();
+
     return(
         <ul>
                 {
