@@ -1,0 +1,3 @@
+[submodule "aplicacao/backend2.0"]
+	path = aplicacao/backend2.0
+	url = git@github.com:jojoDev02/api-test-pf.git
