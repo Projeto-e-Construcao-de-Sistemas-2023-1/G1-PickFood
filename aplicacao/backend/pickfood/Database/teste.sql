@@ -1,15 +1,15 @@
 -- table user
-INSERT INTO user (id, email, senha) VALUES (1, 'abc@email.com', '123');
-INSERT INTO user (id, email, senha) VALUES (2, 'def@email.com', '456');
+INSERT INTO user (id, email, senha) VALUES (1, 'joao.coura@edu.unirio.br', 'joao1234');
+INSERT INTO user (id, email, senha) VALUES (2, 'romulo.pastore@edu.unirio.br', 'romulo1234');
 INSERT INTO user (id, email, senha) VALUES (3, 'ghi@email.com', '789');
-INSERT INTO user (id, email, senha) VALUES (4, 'jkl@email.com', '101');
-INSERT INTO user (id, email, senha) VALUES (5, 'mno@email.com', '102');
+INSERT INTO user (id, email, senha) VALUES (4, 'juangsantanna@edu.unirio.br', 'juan1234');
+INSERT INTO user (id, email, senha) VALUES (5, 'bqueiroz@edu.unirio.br', 'beatriz1234');
 
 -- table cliente
 INSERT INTO cliente (cpf, nome, telefone, user) 
-VALUES ('12345678900', 'João Silva', '987654321', 1);
+VALUES ('12345678900', 'João Coura', '987654321', 1);
 INSERT INTO cliente (cpf, nome, telefone, user) 
-VALUES ('98765432100', 'Maria Santos', '123456789', 2);
+VALUES ('98765432100', 'Rômulo Pastore', '123456789', 2);
 INSERT INTO cliente (cpf, nome, telefone, user) 
 VALUES ('55555555555', 'Pedro Oliveira', '111111111', 3);
 
@@ -32,9 +32,9 @@ INSERT INTO cliente_endereco (cliente, endereco) VALUES ('98765432100', 3);
 
 -- table restaurante
 INSERT INTO restaurante (cnpj, horario_abertura, horario_fechamento, nome_fantasia, razao_social, taxa_entrega, telefone, endereco, user) 
-VALUES ('12345678901234', '10:00:00', '20:00:00', 'Restaurante A', 'Empresa A Ltda.', 5.99, '987654321', 4, 4);
+VALUES ('12345678901234', '10:00:00', '20:00:00', 'Gostosuras do Juan', 'Empresa A Ltda.', 5.99, '987654321', 4, 4);
 INSERT INTO restaurante (cnpj, horario_abertura, horario_fechamento, nome_fantasia, razao_social, taxa_entrega, telefone, endereco, user) 
-VALUES ('98765432109876', '11:30:00', '22:00:00', 'Restaurante B', 'Empresa B Ltda.', 3.99, '123456789', 5, 5);
+VALUES ('98765432109876', '11:30:00', '22:00:00', 'Cantina da Triz', 'Empresa B Ltda.', 3.99, '123456789', 5, 5);
 
 -- table item (a foto é fictícia)
 INSERT INTO item (id, descricao, foto, nome, preco, tipo, restaurante) 
