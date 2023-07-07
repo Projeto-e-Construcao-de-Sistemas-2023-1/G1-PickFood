@@ -38,7 +38,10 @@ const MeuCarrinho = () => {
           </>
         );
       }
-
+    const taxaEntrega = buscarRestaurantePorId(itens[0].prato.idRestaurante).taxaEntrega;
+    const valorTotalItens = calcularValorTotalItens(itens)
+    const valorTotalComTaxa =  parseFloat(taxaEntrega) + parseFloat(valorTotalItens) 
+   // console.log("item q eu peguei jojozinh",itens[0].prato.idRestaurante)
       
     return(
         <>
@@ -49,14 +52,14 @@ const MeuCarrinho = () => {
         
             <div className={ info }>
                 <p className={ textoPrimario }>Hoje, 30 - 45 minutos</p>
-                <p className={ textoSecundario }>Taxa: R$10,00</p>
+                <p className={ textoSecundario }>Taxa: {taxaEntrega}</p>
             </div>
 
             <div className={ divider }></div>
 
             <div className={ total }>
                 <p className={ textoTotal }>Total com a entrega:</p>
-                <p className={ valorTotal }>{ calcularValorTotalItens(itens) }</p>
+                <p className={ valorTotal }>{valorTotalComTaxa}</p>
             </div>    
 
             <Button className={ botao } onClick={ () => {
