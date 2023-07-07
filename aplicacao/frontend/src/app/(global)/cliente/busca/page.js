@@ -37,8 +37,10 @@ const Busca = () => {
 
         setRestricoes(restricoesExistentes);
 
+        console.log(restricoesSelecionadas);
+
         if (tipoFiltro === "restaurante") {
-            restaurantesExistentes = buscarRestaurantes({nome: busca}, ordenacao);
+            restaurantesExistentes = buscarRestaurantes({nome: busca}, ordenacao, restricoesSelecionadas);
             setRestaurantes(restaurantesExistentes);
             return;
         }
@@ -48,10 +50,6 @@ const Busca = () => {
 
     }, [busca, tipoFiltro, exibirFiltros, ordenacao, restricoesSelecionadas]);
 
-    useEffect(() => {
-        console.log(restricoesSelecionadas);
-    }, [restricoesSelecionadas]);
-
     return(
         <div className={ container }>
             <Pesquisa setBusca={ setBusca } style={{ margin: "0" }}/>
@@ -60,7 +58,7 @@ const Busca = () => {
             </div>
 
 
-            <Modal  ativo={ exibirFiltros } >
+            <Modal  ativo={ exibirFiltros } posicaoY={ "-40%" }>
                 
                 <p className={ titulo }>O que deseja buscar? </p>
 
@@ -84,7 +82,8 @@ const Busca = () => {
                             return(
                                 <div key={ restricao.id } className={ filtro }>
                                     <input value={ restricao.nome } type={ "checkbox" } onChange={(e) => {
-                                    
+                                        
+                                        console.log(e.target.checked);
 
                                         if (e.target.checked) {
                                             setRestricoesSelecionadas(prev => [...prev, e.target.value])
@@ -100,7 +99,11 @@ const Busca = () => {
                                             }
                                         }
 
+                                        console.log(restricoesSelecionadas[posicao]);
+
                                         restricoesSelecionadas.splice(posicao, 1);
+
+                                        console.log(restricoesSelecionadas);
 
                                         setRestricoesSelecionadas(restricoesSelecionadas);
                                     }}/>

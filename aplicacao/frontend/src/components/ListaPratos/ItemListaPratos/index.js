@@ -10,7 +10,7 @@ import {
     favorito,
     info,
     nome,
-    restricoes,
+    restricoes_lista,
     restricao,
     estrelas,
     estrela,
@@ -19,19 +19,23 @@ import {
 import { buscarTodosFavoritosPratoCliente, criarFavoritoPratoClinete, excluirFavoritoPorClienteEPrato } from "@/services/favoritos_prato_cliente";
 import Icone from "@/components/Icone";
 import { calcularNotaMediaPorRestaurante } from "@/services/avaliacao";
+import { buscarPratosRestricoesPorPrato } from "@/services/prato_restricao";
 
 const ItemListaPratos = ({ prato }) => {
     
     const { usuario } = useContext(AuthContext);
     const [nota, setNota] = useState(0);
+    const [restricoes, setRestricoes] = useState([]);
 
     useEffect(() => {
 
         const notaMedia = calcularNotaMediaPorRestaurante(prato.idRestaurante);
+        const restricoesExistentes = buscarPratosRestricoesPorPrato(prato?.id);
 
         setNota(notaMedia);
+        setRestricoes(restricoesExistentes);
 
-    }, [prato.idRestaurante]);
+    }, [prato?.idRestaurante, prato?.id]);
 
     const ehFavoritado = () => {
         
@@ -95,9 +99,15 @@ const ItemListaPratos = ({ prato }) => {
             <Link href={ "/cliente/restaurante/" + prato.idRestaurante + "/prato/" + prato.id } className={ link }>
                 <div className={ info }>
                     <div className={ nome }>{ prato.nome  }</div>
-                    <div className={ restricoes }>
-                        <div className={ restricao }>Sem lactose</div>
-                        <div className={ restricao }>Low carb</div>
+                    <div className={ restricoes_lista }>
+                        {
+                            restricoes?.map(item => {
+
+                                return (
+                                    <p className={ restricao } key={ item.id }>{ item.nome }</p>
+                                )
+                            })
+                        }
                     </div>
                     <div className={ preco }>R$ { prato.preco }</div>
                 </div>

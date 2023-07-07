@@ -12,7 +12,7 @@ export default function ListaPratos({ pratos, ...restProps }) {
             {
                 pratos?.map(prato => {
                     return(
-                        <ItemListaPratos key={ prato.id } prato={ prato }/>
+                        <ItemListaPratos key={ prato?.id } prato={ prato }/>
                     )
                 })
             }

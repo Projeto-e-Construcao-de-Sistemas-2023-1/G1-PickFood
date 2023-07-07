@@ -11,6 +11,7 @@ import {
 } from "./styles.module.scss"
 import { useRouter } from "next/navigation";
 import Modal from "@/components/Modal";
+import { statusPedido } from "@/services/status_pedido";
 
 export default function PedidosRestaurante({ pedidos }) {
 
@@ -36,7 +37,7 @@ export default function PedidosRestaurante({ pedidos }) {
 
                     return(
 
-                        <li className={texto} key={ pedido.codigo }>
+                        <li className={texto} key={ pedido.codigo } style={{ display: pedido?.status === statusPedido.AGENDADO ? "none" : "flex" }}>
                             <div >
                                 <div className={ nome }>Pedido</div>
                                 <div>{ pedido.codigo }</div>

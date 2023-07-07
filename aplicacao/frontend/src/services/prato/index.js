@@ -136,40 +136,35 @@ const buscarPratosPorNome = ({
     console.log(restricoes);
     console.log(pratosBuscados);
 
+    let pratosBuscadosPorRetricao = [];
+
     if (restricoes.length !== 0) {
         for (let i in pratosBuscados) {
             console.log(pratosBuscados[i]);
     
             const restricoesPrato = buscarPratosRestricoesPorPrato(pratosBuscados[i].id);
     
-            let encontrou = false;
     
             for (const restricaoPrato of restricoesPrato) {
                 if (restricoes?.includes(restricaoPrato.nome)) {
-                    console.log(restricaoPrato.nome)
-
-                    console.log("encontrou restricao.");
-                    encontrou = true;
+                    pratosBuscadosPorRetricao.push(pratosBuscados[i]);
+                    
                     break;
                 }
             }
-    
-            if (!encontrou) {
-                console.log("Nao encontrou a restricao");
-                console.log(pratosBuscados);
-                pratosBuscados.splice(i, 1);
-            }
         }
+    } else {
+        pratosBuscadosPorRetricao = pratosBuscados
     }
 
 
 
-    pratosBuscados.sort((a, b) => {
+    pratosBuscadosPorRetricao.sort((a, b) => {
 
         return ordenar(a, b, ordenacao);
     });
 
-    return pratosBuscados;
+    return pratosBuscadosPorRetricao;
 }
 
 const ordenar = (a, b, criterio) => {

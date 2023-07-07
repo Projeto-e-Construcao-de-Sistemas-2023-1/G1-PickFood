@@ -42,10 +42,15 @@ import {
     cupom_preco_minimo
 } from "./styles.module.scss";
 import { buscarCuponsClientesPorCliente, criarClienteCupom } from "@/services/cliente_cupom";
+import Form from "@/components/Form";
+import { useForm } from "react-hook-form";
+import { statusPedido } from "@/services/status_pedido";
 
 const ConfirmarPedido = () => {
 
     const router = useRouter();
+
+    const { register, handleSubmit, getValues } = useForm();
 
     const [cupons, setCupons] = useState([]);
     const [cupomSelecionado, setCupomSelecionado] = useState({});
@@ -60,6 +65,12 @@ const ConfirmarPedido = () => {
 
     const [restaurante, setRestaurante] = useState({});
     const { setItens } = useContext(CarrinhoContext);
+    const [pedidoAgendado, setPedidoAgendado] = useState({
+        foiAgendado: false,
+        data: "",
+        hora: ""
+    })
+    const [modalAgendarPedido, setModalAgendarPedido] = useState(false);
 
     const selecionarCupom = (cupom) => {
 
@@ -79,17 +90,31 @@ const ConfirmarPedido = () => {
         console.log(formaPagamento);
         console.log(itens);
 
-
+        if (pedidoAgendado.foiAgendado) {
+            criarPedido({
+                idCliente: usuario.id,
+                idRestaurante: itens[0].prato.idRestaurante,
+                formaPagamento,
+                totalPedido: Object.keys(cupomSelecionado).length === 0 ? calcularValorTotalItens(itens) : (calcularValorTotalItens(itens) - cupomSelecionado.valor),
+                itens,
+                dataAgendamento: getValues("data"),
+                horaAgendamento: getValues("hora"),
+                status: statusPedido.AGENDADO
+            });
+        } else {
+            criarPedido({
+                idCliente: usuario.id,
+                idRestaurante: itens[0].prato.idRestaurante,
+                formaPagamento,
+                totalPedido: Object.keys(cupomSelecionado).length === 0 ? calcularValorTotalItens(itens) : (calcularValorTotalItens(itens) - cupomSelecionado.valor),
+                itens
+            });
+        }
         
-        const pedidoCriado = criarPedido({
-            idCliente: usuario.id,
-            idRestaurante: itens[0].prato.idRestaurante,
-            formaPagamento,
-            totalPedido: Object.keys(cupomSelecionado).length === 0 ? calcularValorTotalItens(itens) : (calcularValorTotalItens(itens) - cupomSelecionado.valor),
-            itens
-        });
+        if (Object.keys(cupomSelecionado).length !== 0) {
 
-        criarClienteCupom(usuario.id, cupomSelecionado.id);
+            criarClienteCupom(usuario.id, cupomSelecionado.id);
+        }
 
         limpar();
         setItens([]);
@@ -99,6 +124,17 @@ const ConfirmarPedido = () => {
 
     const cupomJaUtilizadoPeloCliente = (cupom) => {
         return clientesCuponsCliente.find(clienteCupomCliente => clienteCupomCliente.idCliente === usuario.id && clienteCupomCliente.idCupom === cupom.id)
+    }
+
+    const agendar = (data) => {
+        
+        setPedidoAgendado({
+            foiAgendado: true,
+            data: data.data,
+            hora: data.hora
+        });
+
+        setModalAgendarPedido(false);
     }
     
     useEffect(() => {
@@ -159,6 +195,26 @@ const ConfirmarPedido = () => {
             </Modal.Corpo>
             <Modal.Rodape className={ botoes }>
                 <Modal.BotaoCancelar onClick={ () => setAtivo(false) }/>
+            </Modal.Rodape>
+        </Modal>
+
+        <Modal ativo={ modalAgendarPedido }>
+            <Modal.Cabecalho>Agendar Pedido</Modal.Cabecalho>
+            <Form>
+                <Form.Field>
+                    <Form.Label>Data</Form.Label>
+                    <Form.Input registrar={{ ...register("data") }} type={ "date" }/>
+                </Form.Field>
+
+                <Form.Field>
+                    <Form.Label>Hora</Form.Label>
+                    <Form.Input registrar={{ ...register("hora") }} type={ "time" }/>
+                </Form.Field>
+
+            </Form>
+            <Modal.Rodape>
+                <Modal.BotaoConfirmar onClick={ handleSubmit(agendar) }/>
+                <Modal.BotaoCancelar onClick={() => setModalAgendarPedido(false) }/>
             </Modal.Rodape>
         </Modal>
 
@@ -230,6 +286,7 @@ const ConfirmarPedido = () => {
             </div>
 
             <div className={ divider }></div>
+
             <div className={ pagamento }>
                 <p className={ pagamento_titulo }>Pagamento</p>
                 <FormasPagamento formaPagamento={ formaPagamento} setFormaPagamento={ setFormaPagamento } />
@@ -252,6 +309,17 @@ const ConfirmarPedido = () => {
                     </li>
                 </ul> */}
 
+            </div>
+
+            <div className={ divider }></div>
+
+            <div>
+                <div style={{ display: pedidoAgendado.foiAgendado ? "none" : "block"}} onClick={() => setModalAgendarPedido(true)}>
+                    Agendar pedido
+                </div>
+                <div style={{ display: pedidoAgendado.foiAgendado ? "block" : "none"}} onClick={ () => setPedidoAgendado({}) }>
+                    Cancelar agendamento
+                </div>
             </div>
             <Button className={ botao_confirmar } onClick={ () => confirmarPedido() }>Confirmar pedido</Button>
         </div>

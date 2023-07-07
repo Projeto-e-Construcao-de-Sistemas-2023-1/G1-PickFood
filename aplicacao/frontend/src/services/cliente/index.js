@@ -8,6 +8,10 @@ const criarCliente = ({
     telefone
 }) => {
 
+    if (cpf === null || cpf === "") {
+        cpf = uuid();
+    }
+
     let clientes = buscarClientes();
 
     const cliente = {
@@ -18,6 +22,10 @@ const criarCliente = ({
         cpf,
         telefone
     };
+
+    console.log(cliente);
+    console.log(cpf);
+    console.log(cliente.cpf);
 
     if (clientes === null || clientes.length === 0) {
         localStorage.setItem("clientes", JSON.stringify([ cliente ]));

@@ -1,3 +1,4 @@
+import { statusPedido } from "@/services/status_pedido";
 import styles from "./styles.module.scss"
 
 import {
@@ -11,6 +12,7 @@ export default function PedidosPreview({ pedidos }) {
     const exibirStatus = (pedido) => {
 
         const opcoesStatus = {
+            0: "Agendado",
             1: "Aguardando confirmação",
             2: "Confirmado",
             3: "Em preparo",
@@ -23,12 +25,12 @@ export default function PedidosPreview({ pedidos }) {
     }
 
     return(
-        <ul className= {lista}>
+        <ul className= {lista} >
             {
                 pedidos?.map(pedido => {
 
                     return(
-                        <li className={texto} key={ pedido.codigo }>
+                        <li className={texto} key={ pedido.codigo } style={{ display: pedido?.status === statusPedido.AGENDADO ? "none" : "flex" }}>
                             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
                                 <p>Pedido</p>
                                 <p style={{ textAlign: "start"}}>{ pedido.codigo }</p>

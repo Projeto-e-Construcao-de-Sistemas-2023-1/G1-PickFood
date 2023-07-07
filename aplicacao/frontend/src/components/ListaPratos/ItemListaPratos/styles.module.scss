@@ -23,13 +23,17 @@
 
 .nome {
     font-size: utils.converterPxParaRem(12px);
+    margin-bottom: utils.converterPxParaRem(7px);
 }
 
-.restricoes {
+.restricoes_lista {
     font-size: utils.converterPxParaRem(9px);
     display: flex;
     margin-top: utils.converterPxParaRem(3px);
-
+    flex-wrap: wrap;
+    max-width: utils.converterPxParaRem(150px);
+ 
+    
 
 }
 
@@ -42,6 +46,7 @@
 
 .restricao {
     margin-right: utils.converterPxParaRem(5px);
+    margin-bottom: utils.converterPxParaRem(2px) ;
 }
 
 .estrela {

@@ -1,4 +1,6 @@
 import { v4 as uuid } from "uuid";
+import { buscarPratosPorRestaurante } from "../prato";
+import { buscarPratosRestricoesPorPrato } from "../prato_restricao";
 
 const criarRestaurante = ({
     email,
@@ -176,7 +178,7 @@ const excluirRestaurante = (id) => {
 
 const buscarRestaurantes = ({
     nome
-}, ordenacao) => {
+}, ordenacao, restricoes) => {
 
 
     const restaurantes = buscarTodosRestaurantes();
@@ -193,6 +195,39 @@ const buscarRestaurantes = ({
             restaurantesBuscados.push(restaurante);
         }
     }
+
+    // let restaurantesBuscadosPorRestricao = [];
+
+    // if (restricoes.length !== 0) {
+
+    //     for (const restauranteBuscado of restaurantesBuscados) {
+    
+    //         const pratosRestaurante = buscarPratosPorRestaurante(restauranteBuscado?.id);
+    
+    //         for (let i in pratosRestaurante) {
+    //             console.log(pratosRestaurante[i]);
+        
+    //             const restricoesPrato = buscarPratosRestricoesPorPrato(pratosRestaurante[i]?.id);
+        
+    //             let encontrou = false;
+                
+    //             for (const restricaoPrato of restricoesPrato) {
+    //                 if (restricoes?.includes(restricaoPrato.nome)) {
+    //                     restaurantesBuscadosPorRestricao.push(restauranteBuscado[i]);
+                        
+    //                     encontrou = true;
+    //                     break;
+    //                 }
+    //             }
+
+    //             if (encontrou) {
+    //                 break;
+    //             }
+    //         }
+    //     }
+    // } else {
+    //     restaurantesBuscadosPorRestricao = restaurantesBuscados
+    // }
 
     restaurantesBuscados.sort((a, b) => {
 

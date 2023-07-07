@@ -57,13 +57,22 @@ export default function Login() {
                    
 
                     if (cliente === null) {
+                        
                         cliente = criarCliente({nome: res.data.data.names[0].displayName, email: res.data.data.emailAddresses[0].value, cpf: "", senha: "", telefone: ""})
                     }
-                    setUsuario({
+
+                    console.log(cliente);
+
+                    const usuario = {
                         id: cliente.id,
                         email: cliente.email,
                         nome: cliente.nome
-                    });
+                    }
+
+                    setUsuario(usuario);
+
+                    localStorage.setItem("usuario", JSON.stringify(usuario));
+
 
                     router.push("/cliente/home")
                 })

@@ -1,5 +1,6 @@
 import { v4 as uuid } from "uuid";
 import { criarItemPedido } from "../itemPedido";
+import { statusPedido } from "@/services/status_pedido";
 
 const criarPedido = ({
     idCliente,
@@ -7,18 +8,23 @@ const criarPedido = ({
     itens,
     formaPagamento,
     totalPedido,
-    dataAgendamento = null
+    status = statusPedido.AGUARDANDO_CONFIRMACAO,
+    dataAgendamento = "",
+    horaAgendamento = ""
 }) => {
 
     const pedido = {
         codigo: uuid(),
         idCliente,
-        status: 1,
+        status,
         idRestaurante,
         formaPagamento,
         totalPedido,
-        dataAgendamento
+        dataAgendamento,
+        horaAgendamento
     };
+
+    console.log(pedido);
 
     let pedidos = buscarTodosPedidos();
 

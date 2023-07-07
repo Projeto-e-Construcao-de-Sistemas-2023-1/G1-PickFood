@@ -17,6 +17,7 @@ export default function PedidosCliente({ pedidos }) {
     const exibirStatus = (pedido) => {
 
         const opcoesStatus = {
+            0: "Agendado",
             1: "Aguardando confirmação",
             2: "Confirmado",
             3: "Em preparo",
