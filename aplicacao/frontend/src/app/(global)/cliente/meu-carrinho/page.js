@@ -18,13 +18,28 @@ import { useRouter } from "next/navigation";
 import Retornar from "@/components/Retornar";
 import { CarrinhoContext } from "@/contexts";
 import { calcularValorTotalItens } from "@/utils";
+import { buscarRestaurantePorId} from "@/services/restaurante";
 
 
 const MeuCarrinho = () => {
 
     const router = useRouter();
     const { itens } = useContext(CarrinhoContext);
+    if (itens === null || itens.length === 0) {
+        return (
+          <>
+            <Retornar navigate={() => router.push("/cliente/home")} />
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "65vh" }}>
+              <div style={{ textAlign: "center"}}>
+                <img src="/carrinho-vazio.png" alt="Carrinho Vazio" style={{ width: "50%", height: "auto" }} />
+                <p style={{ fontSize: "4vw", marginTop: "2vh", color:"#808080"  }}>Carrinho vazio</p>
+              </div>
+            </div>
+          </>
+        );
+      }
 
+      
     return(
         <>
             <Retornar navigate={ () => router.push("/cliente/home") } />
