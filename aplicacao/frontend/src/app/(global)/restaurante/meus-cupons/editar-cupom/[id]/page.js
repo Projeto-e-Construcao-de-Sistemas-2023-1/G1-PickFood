@@ -13,10 +13,12 @@ import { atualizarCupom, buscarCupomPorId, criarCupom, excluirCupom } from "@/se
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import Modal from "@/components/Modal";
 
 const EditarCupom = ({ params: { id }}) => {
     
     const router = useRouter();
+    const [ativo, setAtivo] = useState(false);
 
     const { register: registrar, handleSubmit: tratarFormulario, formState: { errors: erros } } = useForm({
         defaultValues: async () => {
@@ -46,6 +48,18 @@ const EditarCupom = ({ params: { id }}) => {
 
     return(
         <div>
+            <Modal ativo={ ativo }>
+                <Modal.Cabecalho>
+                    <Modal.Icone svg="/icons/aviso.svg"/>
+                    <Modal.Titulo>Tem certeza que deseja excluir esse cupom?</Modal.Titulo>
+                </Modal.Cabecalho>
+
+                <Modal.Rodape>
+                    <Modal.BotaoConfirmar onClick={removerCupom }/>
+                    <Modal.BotaoCancelar onClick={ () => setAtivo(false) }/>
+                </Modal.Rodape>
+            </Modal>
+
             <Retornar navigate={() => router.push("restaurante/meus-cupons") } />
             <TituloPagina textAlign="center">Editar Cupom</TituloPagina>
             <Form onSubmit={ tratarFormulario(editar) }>
@@ -69,7 +83,7 @@ const EditarCupom = ({ params: { id }}) => {
                 </Form.Field>
                 <div className={ margin }>
                     <Form.Button>Editar</Form.Button>
-                    <div className={ excluir } onClick={() => removerCupom() }>Excluir cupom</div>
+                    <div className={excluir } onClick={() => {setAtivo(prev => !prev)}}>Excluir cupom</div>
                 </div>
             </Form>
         </div>
